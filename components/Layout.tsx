@@ -1,14 +1,14 @@
-import React, { ReactNode } from 'react'
-import Link from 'next/link'
-import Head from 'next/head'
-import Navbar from './Navbar'
+import React, { ReactNode } from "react";
+import Link from "next/link";
+import Head from "next/head";
+import Navbar from "./Navbar";
 
 type Props = {
-  children?: ReactNode
-  title?: string
-}
+  children?: ReactNode;
+  title?: string;
+};
 
-const Layout = ({ children, title = 'This is the default title' }: Props) => (
+const Layout = ({ children, title = "Lanas" }: Props) => (
   <div>
     <Head>
       <title>{title}</title>
@@ -22,6 +22,6 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
       <span>I&apos;m here to stay (Footer)</span>
     </footer>
   </div>
-)
+);
 
-export default Layout
+export default Layout;
