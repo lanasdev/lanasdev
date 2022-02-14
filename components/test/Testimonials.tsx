@@ -12,7 +12,7 @@ const Testimonials = () => (
             </svg>
           </button>
           <img src="https://shuffle.dev/flex-ui-assets/images/testimonials/video-frame.jpeg" />
-          <video className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 min-h-full min-w-full max-w-none" poster="flex-ui-assets/images/testimonials/video-frame.jpeg" muted="">
+          <video className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 min-h-full min-w-full max-w-none" poster="flex-ui-assets/images/testimonials/video-frame.jpeg" muted={true}>
             <source src="https://static.shuffle.dev/files/video-placeholder.mp4" type="video/mp4" />
           </video>
         </div>
