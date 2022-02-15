@@ -1,4 +1,4 @@
-
+import Image from "next/image"
 
 const Testimonials = () => (
     <section className="py-24 md:pb-28 bg-white bg-pattern-white bg-center " >
