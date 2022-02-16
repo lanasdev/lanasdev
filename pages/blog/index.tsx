@@ -1,42 +1,52 @@
 import { format, parseISO } from 'date-fns';
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import React from 'react';
 import Layout from '../../components/Layout';
 import { getAllPosts } from '../../lib/api';
 import { PostType } from '../../types/post';
 
-type IndexProps = {
+type BlogProps = {
   posts: PostType[];
 };
 
-export const Index = ({ posts }: IndexProps): JSX.Element => {
+export const Index = ({ posts }: BlogProps): JSX.Element => {
   return (
-    <Layout title='Blog'>
-      <h1>Home Page</h1>
-      <p>Next.js starter for your next blog or personal site. Built with:</p>
-      <ul className="list-disc pl-4 my-6">
-        <li>Next.js</li>
-        <li className="mt-2">Typescript</li>
-        <li className="mt-2">MDX</li>
-        <li className="mt-2">Tailwind CSS</li>
-      </ul>
-
-      <a
-        href="https://github.com/ChangoMan/nextjs-typescript-mdx-blog"
-        className="inline-block px-7 py-3 rounded-md text-white dark:text-white bg-blue-600 hover:bg-blue-700 hover:text-white dark:hover:text-white"
-      >
-        Get the source code!
-      </a>
+    <Layout
+      customMeta={{
+        title: 'Blog - Lanas',
+      }}
+    >
+      <div className="flex flex-col justify-center items-center p-16">
+        <h1 className="text-2xl md:text-4xl lg:text-6xl py-10">Blog</h1>
+        <p>This is the Blog</p>
+      </div>
+      <section className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 m-16">
 
       {posts.map((post) => (
-        <article key={post.slug} className="mt-12 dark:bg-slate-700">
+        <article key={post.slug} className="mt-12 mx-8">
           <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
             {format(parseISO(post.date), 'MMMM dd, yyyy')}
           </p>
-          <h1 className="mb-2 text-xl text-gray-800">
+          { post.image && (
+            <Link href="/blog/[slug]" as={`/blog/${post.slug}`}>
+            <a>
+              <Image
+
+                src={post.image}
+                alt={post.title}
+                width={400}
+                height={400}
+              />
+            </a>
+          </Link>
+          
+          )}
+          
+          <h1 className="mb-4 text-xl">
             <Link as={`/blog/${post.slug}`} href={`/blog/[slug]`}>
-              <a className="text-gray-900 dark:text-white dark:hover:text-blue-400">
+              <a className="text-gray-900 hover:underline hover:decoration-wavy hover:decoration-yellow-500">
                 {post.title}
               </a>
             </Link>
@@ -49,6 +59,7 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
           </p>
         </article>
       ))}
+      </section>
     </Layout>
   );
 };

@@ -34,22 +34,22 @@ type PostPageProps = {
 
 const PostPage = ({ source, frontMatter }: PostPageProps): JSX.Element => {
   const customMeta: MetaProps = {
-    title: `${frontMatter.title} - Hunter Chang`,
+    title: `${frontMatter.title} - Lanas`,
     description: frontMatter.description,
     image: `${WEBSITE_HOST_URL}${frontMatter.image}`,
     date: frontMatter.date,
     type: 'article',
   };
   return (
-    <Layout customMeta={customMeta} title={customMeta.title}>
-      <article className=''>
+    <Layout customMeta={customMeta}>
+      <article className='container mex-auto w-screen '>
         <h1 className="mb-3 text-gray-900 dark:text-white">
           {frontMatter.title}
         </h1>
         <p className="mb-10 text-sm text-gray-500 dark:text-gray-400">
           {format(parseISO(frontMatter.date), 'MMMM dd, yyyy')}
         </p>
-        <div className="prose lg:prose-xl dark:prose-dark">
+        <div className="prose dark:prose-dark">
           <MDXRemote {...source} components={components} />
         </div>
       </article>
