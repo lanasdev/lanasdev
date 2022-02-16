@@ -14,7 +14,7 @@ const TestPage = () => {
                 <Hero />
                 <Features />
                 <Steps />
-                <Testimonials />
+                {/* <Testimonials /> */}
                 <Contact />
             </Layout>
         </>
