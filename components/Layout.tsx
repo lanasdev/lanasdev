@@ -9,7 +9,10 @@ type Props = {
   title?: string;
 };
 
+export const WEBSITE_HOST_URL = 'https://lanasdev.vercel.app';
+
 const Layout = ({ children, title }: Props) => (
+  // <div className="text-black bg-gray-50 dark:text-white dark:bg-slate-700">
   <div>
     <Head>
       <title>{title ? title + " | Lanas" : "Lanas" }</title>

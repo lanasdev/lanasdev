@@ -15,7 +15,7 @@ const Contact = () => (
                     <p className="text-lg md:text-xl text-coolGray-500 font-medium">With our integrated CRM, project management, collaboration and invoicing capabilities, you can manage every aspect of your business in one secure platform.</p>
                     <span className="pt-8">
                         <Link href="/contact">
-                            <a className="mt-16 inline-block py-2 px-4 text-sm leading-5 text-yellow-50 bg-yellow-500 hover:bg-yellow-600 font-medium focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50 rounded-md" href="#">
+                            <a className="mt-16 inline-block py-2 px-4 text-sm leading-5 text-yellow-50 bg-yellow-500 hover:bg-yellow-600 font-medium focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50 rounded-md">
                                 Build me a Website
                             </a>
                         </Link>
