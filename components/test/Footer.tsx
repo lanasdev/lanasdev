@@ -11,11 +11,10 @@ const Footer = () => {
         // a cool footer
         <footer className="py-24 bg-white overflow-hidden bg-pattern-white bg-center " >
             <div className="px-4 flex flex-col justify-center items-center">
-                <Image className="h-8" src="/img/LanasLogoYellow.svg" alt="Lanas Logo" width={108} height={32} />
+                <Image src="/img/LanasLogoYellow.svg" alt="Lanas Logo" width={108} height={32} />
 
-                <div className="flex sm:justify-center space-x-4 py-2 pt-6">
+                <div className="flex flex-col md:flex-row sm:justify-center md:ml-0 space-x-4 py-2 pt-6">
                     {[
-                        ["Lanas", "/"],
                         ["About", "/about"],
                         ["Blog", "/blog"],
                         ["Contact", "/contact"],

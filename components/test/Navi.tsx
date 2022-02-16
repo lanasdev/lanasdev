@@ -19,17 +19,18 @@ const Navi = () => {
     ]
 
 
-
     return (
         <section className="bg-white">
             <nav className="flex justify-between p-6 px-4">
                 <div className="flex justify-between items-center w-full">
                     <div className="xl:w-1/3">
-                        <a className="block max-w-max" href="#">
-                            <div className="h-8">
-                                <Image src="/img/LanasLogoYellow.svg" alt="Logo Lanas" width={108} height={32} />
-                            </div>
-                        </a>
+                        <div className="block max-w-max h-8">
+                            <Link href="/">
+                                <a className="">
+                                    <Image src="/img/LanasLogoYellow.svg" alt="Logo Lanas" width={108} height={32} />
+                                </a>
+                            </Link>
+                        </div>
                     </div>
                     <div className="hidden xl:block xl:w-1/3">
                         <ul className="flex justify-center">
@@ -44,20 +45,6 @@ const Navi = () => {
                                 </li>
                             ))}
                         </ul>
-                        {/* <ul className="flex justify-center">
-                            <li className="mr-12">
-                                <a className="text-gray-500 hover:text-gray-900 font-medium" href="#">Product</a>
-                                </li>
-                            <li className="mr-12">
-                                <a className="text-gray-500 hover:text-gray-900 font-medium" href="#">Features</a>
-                                </li>
-                            <li className="mr-12">
-                                <a className="text-gray-500 hover:text-gray-900 font-medium" href="#">Resources</a>
-                                </li>
-                            <li>
-                                <a className="text-gray-500 hover:text-gray-900 font-medium" href="#">Pricing</a>
-                                </li>
-                        </ul> */}
                     </div>
                     <div className="hidden xl:block xl:w-1/3">
                         <div className="flex items-center justify-end">
