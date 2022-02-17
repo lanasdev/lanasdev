@@ -27,7 +27,15 @@ const Footer = () => {
                         </Link>
                     ))}
                 </div>
-
+                {/* <div className="max-w-5xl px-8 mx-auto">
+                    Built by{' '}
+                    <a
+                        className="text-gray-900 dark:text-white"
+                        href="https://twitter.com/lanas_dev"
+                    >
+                        Lanas
+                    </a>
+                </div> */}
                 <span className="text-center pt-6 text-gray-400"> &copy; {new Date().getFullYear() || '2022'} Lanas.dev </span>
 
             </div>

@@ -23,7 +23,6 @@ const CTA = () => (
                         </Link>
                     </span>
                 </div>
-
             </div>
         </div>
     </section>

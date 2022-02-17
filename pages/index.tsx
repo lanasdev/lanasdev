@@ -10,7 +10,15 @@ import Layout from "../components/Layout";
 const TestPage = () => {
     return (
         <>
-            <Layout title="Home">
+            <Layout
+      customMeta={{
+        title: 'Lanas - digital craftsmenship',
+        description:
+            'Lanas - digital craftsmenship',
+        image: `/images/site-preview.png`,
+
+      }}
+    >
                 <Hero />
                 <Features />
                 <Steps />

@@ -5,7 +5,7 @@ import Head from "next/head";
 import HeroThree from "../components/three/HeroThree";
 
 const IndexPage = () => (
-  <Layout title="Lanas Portfolio">
+  <Layout>
     <div className="flex flex-col items-center justify-center min-h-screen py-2 max-h-screen overflow-hidden">
       <Head>
         <title>Lanas Portfolio</title>
