@@ -28,9 +28,9 @@ const Hero = () => {
 
                                 </div>
                                 <div className="w-full md:w-auto py-1 md:py-0">
-                                    <Link href="/work">
+                                    <Link href="/about">
                                         <a className="inline-block py-5 px-7 w-full text-base md:text-lg leading-4 text-coolGray-800 font-medium text-center bg-white hover:bg-coolGray-100 focus:ring-2 focus:ring-coolGray-200 focus:ring-opacity-50 border border-coolGray-200 rounded-md shadow-sm">
-                                            Our Work
+                                            About
                                         </a>
                                     </Link>
                                 </div>

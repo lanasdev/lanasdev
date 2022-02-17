@@ -3,7 +3,7 @@ import Image from "next/image";
 import Features from "../components/test/Features";
 import Steps from "../components/test/Steps";
 import Testimonials from "../components/test/Testimonials";
-import Contact from "../components/test/Contact";
+import CTA from "../components/test/CTA";
 import Hero from "../components/test/Hero";
 import Layout from "../components/Layout";
 
@@ -23,7 +23,7 @@ const TestPage = () => {
                 <Features />
                 <Steps />
                 {/* <Testimonials /> */}
-                <Contact />
+                <CTA />
             </Layout>
         </>
     )
