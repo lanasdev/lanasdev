@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Layout from "../components/Layout";
+import Contactform from "../components/Contactform";
+
 
 const ContactPage = () => (
   <Layout title="Contact">
@@ -8,6 +10,7 @@ const ContactPage = () => (
       <p>Contact me here: </p>
       <a href="https://t.me/lanasdev" className="text-blue-500 hover:text-blue-700 p-8">Telegram</a>
     </main>
+    <Contactform />
   </Layout>
 );
 

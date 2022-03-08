@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-
+import Contactform from "../Contactform"
 
 const CTA = () => (
     <section className="py-24 bg-white overflow-hidden bg-pattern-white bg-center " >
