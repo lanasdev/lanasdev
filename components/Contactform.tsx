@@ -80,11 +80,11 @@ function Contactform() {
 
                     }
                 } */}
-                <button type="reset" onClick={(event) => {
-                    event.target.reset()
+                {/* <button type="reset" onClick={(event) => {
+                    // event.target.reset()
                     setSubmitted(false)
                 }} className="p-4 border hover:shadow-md" >Reset Form
-                </button>
+                </button> */}
             </form>
             {/* {submitted && <p className="text-green-500">Submitted & Done!</p>} */}
         </>
