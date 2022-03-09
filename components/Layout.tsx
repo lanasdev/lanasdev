@@ -16,7 +16,7 @@ export const WEBSITE_HOST_URL = 'https://lanasdev.vercel.app';
 const Layout = ({ children, customMeta }: LayoutProps): JSX.Element => (
   // <div className="text-black bg-gray-50 dark:text-white dark:bg-slate-700">
   <div>
-      <Head customMeta={customMeta} />
+    <Head customMeta={customMeta} />
 
     {/* <Head>
       <title>{title ? title + " | Lanas" : "Lanas" }</title>

@@ -28,12 +28,12 @@ const IndexPage = () => (
             </p>
           </div>
 
-          
+
         </div>
         <div className="relative w-full min-h-full flex-1 top-0 right-0 ">
-            <Image src="/heroimg.png" alt="Image" width={550} height={550} className="p-8" />
-            {/* <HeroThree /> */}
-          </div>
+          <Image src="/heroimg.png" alt="Image" width={550} height={550} className="p-8" />
+          {/* <HeroThree /> */}
+        </div>
 
       </main>
     </div >

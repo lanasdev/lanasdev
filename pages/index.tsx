@@ -11,14 +11,14 @@ const TestPage = () => {
     return (
         <>
             <Layout
-      customMeta={{
-        title: 'Lanas - digital craftsmenship',
-        description:
-            'Lanas - digital craftsmenship',
-        image: `/images/site-preview.png`,
+                customMeta={{
+                    title: 'Lanas - digital craftsmenship',
+                    description:
+                        'Lanas - digital craftsmenship',
+                    image: `/images/site-preview.png`,
 
-      }}
-    >
+                }}
+            >
                 <Hero />
                 <Features />
                 <Steps />
