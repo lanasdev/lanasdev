@@ -2,16 +2,15 @@ import React, { ReactNode } from "react";
 import Link from "next/link";
 import Navi from "./test/Navi";
 import Footer from "./test/Footer";
-import Head from './test/Head';
-import { MetaProps } from '../types/layout';
+import Head from "./test/Head";
+import { MetaProps } from "../types/layout";
 
 type LayoutProps = {
   children: React.ReactNode;
   customMeta?: MetaProps;
 };
 
-export const WEBSITE_HOST_URL = 'https://lanasdev.vercel.app';
-
+export const WEBSITE_HOST_URL = "https://lanasdev.vercel.app";
 
 const Layout = ({ children, customMeta }: LayoutProps): JSX.Element => (
   // <div className="text-black bg-gray-50 dark:text-white dark:bg-slate-700">
