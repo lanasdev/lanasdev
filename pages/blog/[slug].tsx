@@ -42,7 +42,7 @@ const PostPage = ({ source, frontMatter }: PostPageProps): JSX.Element => {
   };
   return (
     <Layout customMeta={customMeta}>
-      <article className='container mex-auto w-screen '>
+      <article className='container mx-auto w-screen '>
         <h1 className="mb-3 text-gray-900 dark:text-white">
           {frontMatter.title}
         </h1>
