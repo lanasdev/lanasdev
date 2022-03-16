@@ -12,7 +12,7 @@ const Navi = () => {
     }
 
     const navItems = [
-        ["About", "/about"],
+        // ["About", "/about"],
         ["Blog", "/blog"],
         ["Contact", "/contact"],
         ["FAQ", "/faq"],
