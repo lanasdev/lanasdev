@@ -23,7 +23,7 @@ const Hero = () => {
                                 <div className="w-full md:w-auto py-1 md:py-0 md:mr-4">
                                     <Link href="/contact">
                                         <a className="inline-block py-5 px-7 w-full text-base md:text-lg leading-4 text-yellow-50 font-medium text-center bg-yellow-500 hover:bg-yellow-600 focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50 border border-yellow-500 rounded-md shadow-sm" >
-                                            Get a free Quote
+                                            Get your website
                                         </a>
                                     </Link>
 
