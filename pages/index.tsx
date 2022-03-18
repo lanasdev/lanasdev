@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
+import Head from "next/head";
+
 import Features from "../components/test/Features";
 import Steps from "../components/test/Steps";
 import Testimonials from "../components/test/Testimonials";

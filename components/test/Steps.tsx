@@ -36,7 +36,7 @@ const Steps = () => (
               <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-yellow-500 text-xl font-semibold text-white">
                 1
               </div>
-              <h3 className="mb-2 text-xl font-bold">
+              <h3 className="mb-2 text-2xl font-bold">
                 You make the first move
               </h3>
               <p className="text-coolGray-500 font-medium">
@@ -48,7 +48,7 @@ const Steps = () => (
               <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-yellow-500 text-xl font-semibold text-white">
                 2
               </div>
-              <h3 className="mb-2 text-xl font-bold">Design</h3>
+              <h3 className="mb-2 text-2xl font-bold">Design</h3>
               <p className="text-coolGray-500 font-medium">
                 We will work in constant contact with you to create something
                 both unique and suitable for your company.
@@ -58,7 +58,7 @@ const Steps = () => (
               <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-yellow-500 text-xl font-semibold text-white">
                 3
               </div>
-              <h3 className="mb-2 text-xl font-bold">Build</h3>
+              <h3 className="mb-2 text-2xl font-bold">Build</h3>
               <p className="text-coolGray-500 font-medium">
                 Now the development process starts. We will build your it, fix
                 all the quirks and bugs and make sure it is ready for launch.
@@ -68,7 +68,7 @@ const Steps = () => (
               <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-yellow-500 text-xl font-semibold text-white">
                 4
               </div>
-              <h3 className="mb-2 text-xl font-bold">Launch</h3>
+              <h3 className="mb-2 text-2xl font-bold">Launch</h3>
               <p className="text-coolGray-500 font-medium">
                 Your website is now live and ready to be seen. If you wish, we
                 can take care of the hosting and maintenance of the website. So
