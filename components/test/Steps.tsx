@@ -1,57 +1,85 @@
-import Image from "next/image"
-import Link from "next/link"
+import Image from "next/image";
+import Link from "next/link";
 
+import stockImg from "../../public/stock.png";
+import redCircle from "../../public/img/circle3-red.svg";
+import greenDots from "../../public/img/dots3-green.svg";
 
 const Steps = () => (
-    <section className="py-24 bg-white overflow-hidden bg-pattern-white bg-center" ><div className="container px-4 mx-auto">
-        <div className="flex flex-wrap -mx-4">
-            <div className="w-full md:w-1/2 px-4 mb-16 md:mb-0">
-                <div className="relative mx-auto md:ml-0 max-w-max">
-                    <img className="absolute z-10 -right-8 -top-8 w-28 md:w-auto" src="/img/circle3-red.svg" alt="" />
-                    <img className="absolute z-10 -left-10 -bottom-8 w-28 md:w-auto" src="/img/dots3-green.svg" alt="" />
-                    <img src="https://shuffle.dev/flex-ui-assets/images/how-it-works/stock.png" alt="" />
-
-                </div>
+  <section className="overflow-hidden bg-white bg-pattern-white bg-center py-24">
+    <div className="container mx-auto px-4">
+      <div className="-mx-4 flex flex-wrap">
+        <div className="mb-16 w-full px-4 md:mb-0 md:w-1/2">
+          <div className="relative mx-auto max-w-max md:ml-0">
+            <div className="absolute -right-8 -top-8 z-10 w-28 md:w-auto">
+              <Image src={redCircle} alt="Red Circle" />
             </div>
-            <div className="w-full md:w-1/2 px-4">
-                <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-yellow-500 bg-yellow-100 font-medium uppercase rounded-full shadow-sm">How it works</span>
-                <h2 className="mb-12 text-4xl md:text-5xl leading-tight font-bold tracking-tighter">Steps to your new Website</h2>
-                <div className="flex flex-wrap -mx-4 text-center md:text-left">
-                    <div className="w-full md:w-1/2 px-4 mb-8">
-                        <div className="inline-flex items-center justify-center mb-4 w-12 h-12 text-xl text-white bg-yellow-500 font-semibold rounded-full">1</div>
-                        <h3 className="mb-2 text-xl font-bold">You make the first move</h3>
-                        <p className="font-medium text-coolGray-500">
-                            Contact us so we can discuss your project and how we can get you on track.
-                        </p>
-                    </div>
-                    <div className="w-full md:w-1/2 px-4 mb-8">
-                        <div className="inline-flex items-center justify-center mb-4 w-12 h-12 text-xl text-white bg-yellow-500 font-semibold rounded-full">2</div>
-                        <h3 className="mb-2 text-xl font-bold">Design</h3>
-                        <p className="font-medium text-coolGray-500">
-                            We will work in constant contact with you to create something both unique and suitable for your company.
-                        </p>
-                    </div>
-                    <div className="w-full md:w-1/2 px-4 mb-8">
-                        <div className="inline-flex items-center justify-center mb-4 w-12 h-12 text-xl text-white bg-yellow-500 font-semibold rounded-full">3</div>
-                        <h3 className="mb-2 text-xl font-bold">Build</h3>
-                        <p className="font-medium text-coolGray-500">
-                            Now the development process starts. We will build your it, fix all the quirks and bugs and make sure it is ready for launch.
-                        </p>
-                    </div>
-                    <div className="w-full md:w-1/2 px-4 mb-8">
-                        <div className="inline-flex items-center justify-center mb-4 w-12 h-12 text-xl text-white bg-yellow-500 font-semibold rounded-full">4</div>
-                        <h3 className="mb-2 text-xl font-bold">Launch</h3>
-                        <p className="font-medium text-coolGray-500">
-                            Your website is now live and ready to be seen. If you wish, we can take care of the hosting and maintenance of the website. So that everything remains hassle free and runs smoothly.
-                        </p>
-                    </div>
-                </div>
-                
+            <Image
+              src={stockImg}
+              alt="Woman pointing to whiteboard"
+              loading="lazy"
+            />
+            <div className="absolute -left-10 -bottom-8 z-10 w-28 md:w-auto ">
+              <Image src={greenDots} alt="Green Dots" />
             </div>
-
+          </div>
         </div>
-    </div></section>
-)
+        <div className="w-full px-4 md:w-1/2">
+          <span className="mb-4 inline-block rounded-full bg-yellow-100 py-px px-2 text-xs font-medium uppercase leading-5 text-yellow-500 shadow-sm">
+            How it works
+          </span>
+          <h2 className="mb-12 text-4xl font-bold leading-tight tracking-tighter md:text-5xl">
+            Steps to your new Website
+          </h2>
+          <div className="-mx-4 flex flex-wrap text-center md:text-left">
+            <div className="mb-8 w-full px-4 md:w-1/2">
+              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-yellow-500 text-xl font-semibold text-white">
+                1
+              </div>
+              <h3 className="mb-2 text-xl font-bold">
+                You make the first move
+              </h3>
+              <p className="text-coolGray-500 font-medium">
+                Contact us so we can discuss your project and how we can get you
+                on track.
+              </p>
+            </div>
+            <div className="mb-8 w-full px-4 md:w-1/2">
+              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-yellow-500 text-xl font-semibold text-white">
+                2
+              </div>
+              <h3 className="mb-2 text-xl font-bold">Design</h3>
+              <p className="text-coolGray-500 font-medium">
+                We will work in constant contact with you to create something
+                both unique and suitable for your company.
+              </p>
+            </div>
+            <div className="mb-8 w-full px-4 md:w-1/2">
+              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-yellow-500 text-xl font-semibold text-white">
+                3
+              </div>
+              <h3 className="mb-2 text-xl font-bold">Build</h3>
+              <p className="text-coolGray-500 font-medium">
+                Now the development process starts. We will build your it, fix
+                all the quirks and bugs and make sure it is ready for launch.
+              </p>
+            </div>
+            <div className="mb-8 w-full px-4 md:w-1/2">
+              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-yellow-500 text-xl font-semibold text-white">
+                4
+              </div>
+              <h3 className="mb-2 text-xl font-bold">Launch</h3>
+              <p className="text-coolGray-500 font-medium">
+                Your website is now live and ready to be seen. If you wish, we
+                can take care of the hosting and maintenance of the website. So
+                that everything remains hassle free and runs smoothly.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+);
 
-
-export default Steps
+export default Steps;
