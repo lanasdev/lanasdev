@@ -49,7 +49,7 @@ const Navi = () => {
                     <div className="hidden xl:block xl:w-1/3">
                         <div className="flex items-center justify-end">
                             <Link href="/contact">
-                                <a className="inline-block py-2 px-4 text-sm leading-5 text-yellow-50 bg-yellow-500 hover:bg-yellow-600 font-medium focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50 rounded-md" href="#">Get Quote</a>
+                                <a className="inline-block py-2 px-4 text-sm leading-5 text-white bg-yellow-500 hover:bg-yellow-600 font-medium focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50 rounded-md">Get Quote</a>
                             </Link>
                         </div>
                     </div>
