@@ -4,6 +4,7 @@ import Link from "next/link";
 import Head from "next/head";
 import Navi from "./test/Navi";
 import Footer from "./test/Footer";
+import Favicon from "./Favicon"
 
 type Props = {
   children?: ReactNode;
@@ -30,6 +31,7 @@ const Layout = ({ children, title, description }: Props) => (
         content="Websites, design, build, startup, React, Nextjs"
       />
       <meta name="author" content="Lanas" />
+      <Favicon />
     </Head>
 
     <Navi />
