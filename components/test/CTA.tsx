@@ -12,7 +12,7 @@ const CTA = () => (
                 <div className="md:max-w-4xl mb-12 mx-auto text-center">
                     <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-yellow-500 bg-yellow-100 font-medium uppercase rounded-full shadow-sm">Contact</span>
                     <h1 className="mb-4 text-3xl md:text-4xl leading-tight font-bold tracking-tighter">How to get going</h1>
-                    <p className="text-lg md:text-xl text-coolGray-500 font-medium">
+                    <p className="text-lg md:text-xl text-coolGray-500 font-medium mx-4">
                         It&apos;s not hard! Just <span><Link href={'/contact'}><a>fill out the form on the contact page</a></Link></span> and we&apos;ll get back to you as soon as possible. Plus you get a 100% money back guarantee in the first month of signing with us.
                     </p>
                     <span className="pt-8">
