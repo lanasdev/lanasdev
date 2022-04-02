@@ -32,6 +32,20 @@ const Layout = ({ children, title, description }: Props) => (
       />
       <meta name="author" content="Lanas" />
       <Favicon />
+      <link
+            rel="preload"
+            href="/fonts/Inter/Inter-Medium.woff2?v=3.19"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
+          <link
+            rel="preload"
+            href="/fonts/Inter/Inter-Bold.woff2?v=3.19"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
     </Head>
 
     <Navi />
