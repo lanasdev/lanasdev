@@ -21,7 +21,7 @@ const Hero = () => {
                 digital craftsmenship that accels businesses.
               </h1>
               <p className="text-coolGray-500 mb-8 text-lg font-medium md:text-xl">
-                We help startups to get found online and crush their
+                We help small businesses to get found online and crush their
                 competitors.
               </p>
               <div className="flex flex-wrap">
