@@ -2,110 +2,420 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 
+/* This example requires Tailwind CSS v2.0+ */
+import { Fragment } from "react";
+import { Popover, Transition } from "@headlessui/react";
+import {
+  BookmarkAltIcon,
+  CalendarIcon,
+  ChartBarIcon,
+  CursorClickIcon,
+  MenuIcon,
+  PhoneIcon,
+  PlayIcon,
+  RefreshIcon,
+  ShieldCheckIcon,
+  SupportIcon,
+  ViewGridIcon,
+  XIcon,
+} from "@heroicons/react/outline";
+import { ChevronDownIcon } from "@heroicons/react/solid";
 
-const Navi = () => {
+//
+//     const navItems = [
+//         // ["About", "/about"],
+//         ["Blog", "/blog"], -->
+//          ["Portfolio", "/portfolio"] --->
+//         ["Contact", "/contact"],
+//         ["FAQ", "/faq"],
+//     ]
 
-    const [open, setOpen] = useState(false);
+const solutions = [
+  {
+    name: "About",
+    description:
+      "Get a better understanding of where your traffic is coming from.",
+    href: "#",
+    icon: ChartBarIcon,
+  },
+  {
+    name: "Blog",
+    description: "Speak directly to your customers in a more meaningful way.",
+    href: "#",
+    icon: CursorClickIcon,
+  },
+  {
+    name: "Portfolio",
+    description: "Your customers' data will be safe and secure.",
+    href: "#",
+    icon: ShieldCheckIcon,
+  },
+  {
+    name: "Contact",
+    description: "Connect with third-party tools that you're already using.",
+    href: "#",
+    icon: ViewGridIcon,
+  },
+  {
+    name: "FAQ",
+    description:
+      "Build strategic funnels that will drive your customers to convert",
+    href: "#",
+    icon: RefreshIcon,
+  },
+];
+const callsToAction = [
+  //   { name: "Watch Demo", href: "#", icon: PlayIcon },
+  { name: "Contact Sales", href: "#", icon: PhoneIcon },
+];
+const resources = [
+    {
+      name: 'Boost your conversion rate',
+      description: 'Get all of your questions answered in our forums or contact support.',
+      slug: 'test',
+      icon: SupportIcon,
+    },
+    {
+      name: 'Events',
+      description: 'See what meet-ups and other events we might be planning near you.',
+      slug: 'event',
+      icon: CalendarIcon,
+    },
+    { name: 'Security', description: 'Understand how we take your privacy seriously.', slug: 'security', icon: ShieldCheckIcon },
+];
+const recentPosts = [
+  { id: 1, name: "Boost your conversion rate", href: "#" },
+  {
+    id: 2,
+    name: "How to use search engine optimization to drive traffic to your site",
+    href: "#",
+  },
+  { id: 3, name: "Improve your customer experience", href: "#" },
+];
 
-    const toggle = () => {
-        setOpen(!open);
-    }
-
-    const navItems = [
-        // ["About", "/about"],
-        ["Blog", "/blog"],
-        ["Contact", "/contact"],
-        ["FAQ", "/faq"],
-    ]
-
-
-    return (
-        <section className="bg-white">
-            <nav className="flex justify-between p-6 px-4">
-                <div className="flex justify-between items-center w-full">
-                    <div className="xl:w-1/3">
-                        <div className="block max-w-max h-8">
-                            <Link href="/">
-                                <a className="">
-                                    <Image src="/img/LanasLogoYellow.svg" alt="Logo Lanas" width={108} height={32} />
-                                </a>
-                            </Link>
-                        </div>
-                    </div>
-                    <div className="hidden xl:block xl:w-1/3">
-                        <ul className="flex justify-center">
-
-                            {navItems.map(([title, url]) => (
-                                <li className="mr-12" key={title}>
-                                    <Link href={url}>
-                                        <a className={`text-gray-500 hover:text-gray-900 font-medium`}>
-                                            {title}
-                                        </a>
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div className="hidden xl:block xl:w-1/3">
-                        <div className="flex items-center justify-end">
-                            <Link href="/contact">
-                                <a className="inline-block py-2 px-4 text-sm leading-5 text-white bg-yellow-500 hover:bg-yellow-600 font-medium focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50 rounded-md">Get Quote</a>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-                <button className="navbar-burger self-center xl:hidden" onClick={() => toggle()} aria-label="Open the menu">
-                    <svg width="35" height="35" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect className="text-gray-50" width="32" height="32" rx="6" fill="currentColor"></rect>
-                        <path className="text-gray-500" d="M7 12H25C25.2652 12 25.5196 11.8946 25.7071 11.7071C25.8946 11.5196 26 11.2652 26 11C26 10.7348 25.8946 10.4804 25.7071 10.2929C25.5196 10.1054 25.2652 10 25 10H7C6.73478 10 6.48043 10.1054 6.29289 10.2929C6.10536 10.4804 6 10.7348 6 11C6 11.2652 6.10536 11.5196 6.29289 11.7071C6.48043 11.8946 6.73478 12 7 12ZM25 15H7C6.73478 15 6.48043 15.1054 6.29289 15.2929C6.10536 15.4804 6 15.7348 6 16C6 16.2652 6.10536 16.5196 6.29289 16.7071C6.48043 16.8946 6.73478 17 7 17H25C25.2652 17 25.5196 16.8946 25.7071 16.7071C25.8946 16.5196 26 16.2652 26 16C26 15.7348 25.8946 15.4804 25.7071 15.2929C25.5196 15.1054 25.2652 15 25 15ZM25 20H7C6.73478 20 6.48043 20.1054 6.29289 20.2929C6.10536 20.4804 6 20.7348 6 21C6 21.2652 6.10536 21.5196 6.29289 21.7071C6.48043 21.8946 6.73478 22 7 22H25C25.2652 22 25.5196 21.8946 25.7071 21.7071C25.8946 21.5196 26 21.2652 26 21C26 20.7348 25.8946 20.4804 25.7071 20.2929C25.5196 20.1054 25.2652 20 25 20Z" fill="currentColor"></path>
-                    </svg>
-                </button>
-            </nav>
-            <div className={open ? `navbar-menu fixed top-0 left-0 z-50 w-full h-full bg-gray-900 bg-opacity-50` : `navbar-menu hidden fixed top-0 left-0 z-50 w-full h-full bg-gray-900 bg-opacity-50`}>
-                <div className="fixed top-0 left-0 bottom-0 w-full w-4/6 max-w-xs bg-white">
-                    <nav className="relative p-6 h-full overflow-y-auto">
-                        <div className="flex flex-col justify-between h-full">
-                            <Link href="/">
-                                <a className="inline-block">
-                                    <Image src="/img/LanasLogoYellow.svg" alt="Lanas Logo" width={108} height={32} />
-                                </a>
-                            </Link>
-                            <ul className="py-6">
-                                {navItems.map(([title, url]) => (
-                                    <li key={title}>
-                                        <Link href={url}>
-                                            <a className={`block py-3 px-4 text-gray-500 hover:text-gray-900 font-medium hover:bg-gray-50 rounded-md`}>
-                                                {title}
-                                            </a>
-                                        </Link>
-                                    </li>
-                                ))}
-                                {/* <li>
-                                        <a className="block py-3 px-4 text-gray-500 hover:text-gray-900 font-medium hover:bg-gray-50 rounded-md" href="#">Product</a>
-                                    </li>
-                                <li><a className="block py-3 px-4 text-gray-500 hover:text-gray-900 font-medium hover:bg-gray-50 rounded-md" href="#">Features</a></li>
-                                <li><a className="block py-3 px-4 text-gray-500 hover:text-gray-900 font-medium hover:bg-gray-50 rounded-md" href="#">Pricing</a></li>
-                                <li><a className="block py-3 px-4 text-gray-500 hover:text-gray-900 font-medium hover:bg-gray-50 rounded-md" href="#">Resources</a></li> */}
-                            </ul>
-                            <div className="flex flex-wrap">
-                                <div className="w-full">
-                                    <Link href="/contact">
-                                        <a className="inline-block py-2 px-4 w-full text-sm leading-5 text-white bg-yellow-500 hover:bg-yellow-600 font-medium text-center focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50 rounded-md">Get Quote</a>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                    </nav>
-                    <button className="navbar-close absolute top-5 p-4 right-3" onClick={() => toggle()} aria-label="Close the menu">
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6.94004 6L11.14 1.80667C11.2656 1.68113 11.3361 1.51087 11.3361 1.33333C11.3361 1.1558 11.2656 0.985537 11.14 0.860002C11.0145 0.734466 10.8442 0.66394 10.6667 0.66394C10.4892 0.66394 10.3189 0.734466 10.1934 0.860002L6.00004 5.06L1.80671 0.860002C1.68117 0.734466 1.51091 0.663941 1.33337 0.663941C1.15584 0.663941 0.985576 0.734466 0.860041 0.860002C0.734505 0.985537 0.66398 1.1558 0.66398 1.33333C0.66398 1.51087 0.734505 1.68113 0.860041 1.80667L5.06004 6L0.860041 10.1933C0.797555 10.2553 0.747959 10.329 0.714113 10.4103C0.680267 10.4915 0.662842 10.5787 0.662842 10.6667C0.662842 10.7547 0.680267 10.8418 0.714113 10.9231C0.747959 11.0043 0.797555 11.078 0.860041 11.14C0.922016 11.2025 0.99575 11.2521 1.07699 11.2859C1.15823 11.3198 1.24537 11.3372 1.33337 11.3372C1.42138 11.3372 1.50852 11.3198 1.58976 11.2859C1.671 11.2521 1.74473 11.2025 1.80671 11.14L6.00004 6.94L10.1934 11.14C10.2554 11.2025 10.3291 11.2521 10.4103 11.2859C10.4916 11.3198 10.5787 11.3372 10.6667 11.3372C10.7547 11.3372 10.8419 11.3198 10.9231 11.2859C11.0043 11.2521 11.0781 11.2025 11.14 11.14C11.2025 11.078 11.2521 11.0043 11.286 10.9231C11.3198 10.8418 11.3372 10.7547 11.3372 10.6667C11.3372 10.5787 11.3198 10.4915 11.286 10.4103C11.2521 10.329 11.2025 10.2553 11.14 10.1933L6.94004 6Z" fill="#556987"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </section>
-    )
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
 }
 
+const Navi = () => {
+  return (
+    <Popover className="relative z-20 bg-white">
+      <div className=" px-6 sm:px-6">
+        <div className="flex items-center justify-between border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
+          <div className="flex justify-start lg:w-0 lg:flex-1">
+            <Link href="/">
+              <a>
+                <span className="sr-only">Workflow</span>
+                <Image
+                  src="/img/LanasLogoYellow.svg"
+                  alt="Logo Lanas"
+                  width={108}
+                  height={32}
+                />
+              </a>
+            </Link>
+          </div>
+          <div className="-my-2 -mr-2 md:hidden">
+            <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500">
+              <span className="sr-only">Open menu</span>
+              <MenuIcon className="h-6 w-6" aria-hidden="true" />
+            </Popover.Button>
+          </div>
+
+          <Popover.Group as="nav" className="hidden space-x-10 md:flex">
+            <Link href="/about">
+              <a className="text-base font-medium text-gray-500 hover:text-gray-900">
+                About
+              </a>
+            </Link>
+            <Popover className="relative">
+              {({ open }) => (
+                <>
+                  <Popover.Button
+                    className={classNames(
+                      open ? "text-gray-900" : "text-gray-500",
+                      "group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
+                    )}
+                  >
+                    <span>Portfolio</span>
+                    {/* solutions */}
+                    <ChevronDownIcon
+                      className={classNames(
+                        open ? "text-gray-600" : "text-gray-400",
+                        "ml-2 h-5 w-5 group-hover:text-gray-500"
+                      )}
+                      aria-hidden="true"
+                    />
+                  </Popover.Button>
+
+                  <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-200"
+                    enterFrom="opacity-0 translate-y-1"
+                    enterTo="opacity-100 translate-y-0"
+                    leave="transition ease-in duration-150"
+                    leaveFrom="opacity-100 translate-y-0"
+                    leaveTo="opacity-0 translate-y-1"
+                  >
+                    <Popover.Panel className="absolute z-10 -ml-4 mt-3 w-screen max-w-md transform px-2 sm:px-0 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2">
+                      <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
+                        <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
+                          {solutions.map((item) => (
+                            <a
+                              key={item.name}
+                              href={item.href}
+                              className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
+                            >
+                              <item.icon
+                                className="h-6 w-6 flex-shrink-0 text-yellow-600"
+                                aria-hidden="true"
+                              />
+                              <div className="ml-4">
+                                <p className="text-base font-medium text-gray-900">
+                                  {item.name}
+                                </p>
+                                <p className="mt-1 text-sm text-gray-500">
+                                  {item.description}
+                                </p>
+                              </div>
+                            </a>
+                          ))}
+                        </div>
+                        <div className="space-y-6 bg-gray-50 px-5 py-5 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
+                          {callsToAction.map((item) => (
+                            <div key={item.name} className="flow-root">
+                              <a
+                                href={item.href}
+                                className="-m-3 flex items-center rounded-md p-3 text-base font-medium text-gray-900 hover:bg-gray-100"
+                              >
+                                <item.icon
+                                  className="h-6 w-6 flex-shrink-0 text-gray-400"
+                                  aria-hidden="true"
+                                />
+                                <span className="ml-3">{item.name}</span>
+                              </a>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </Popover.Panel>
+                  </Transition>
+                </>
+              )}
+            </Popover>
+
+            <Link href="/contact">
+              <a className="text-base font-medium text-gray-500 hover:text-gray-900">
+                Contact
+              </a>
+            </Link>
+
+            <Popover className="relative">
+              {({ open }) => (
+                <>
+                  <Popover.Button
+                    className={classNames(
+                      open ? "text-gray-900" : "text-gray-500",
+                      "group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
+                    )}
+                  >
+                    <span>Blog</span>
+                    <ChevronDownIcon
+                      className={classNames(
+                        open ? "text-gray-600" : "text-gray-400",
+                        "ml-2 h-5 w-5 group-hover:text-gray-500"
+                      )}
+                      aria-hidden="true"
+                    />
+                  </Popover.Button>
+
+                  <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-200"
+                    enterFrom="opacity-0 translate-y-1"
+                    enterTo="opacity-100 translate-y-0"
+                    leave="transition ease-in duration-150"
+                    leaveFrom="opacity-100 translate-y-0"
+                    leaveTo="opacity-0 translate-y-1"
+                  >
+                    <Popover.Panel className="absolute left-1/2 z-10 mt-3 w-screen max-w-md -translate-x-1/2 transform px-2 sm:px-0">
+                      <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
+                        <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
+                          {resources.map((item) => (
+                            <a
+                              key={item.name}
+                              href={'/blog/' + item.slug}
+                              className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
+                            >
+                              <item.icon
+                                className="h-6 w-6 flex-shrink-0 text-yellow-600"
+                                aria-hidden="true"
+                              />
+                              <div className="ml-4">
+                                <p className="text-base font-medium text-gray-900">
+                                  {item.name}
+                                </p>
+                                <p className="mt-1 text-sm text-gray-500">
+                                  {item.description}
+                                </p>
+                              </div>
+                            </a>
+                          ))}
+                        </div>
+                        <div className="bg-gray-50 px-5 py-5 sm:px-8 sm:py-8">
+                          <div>
+                            <h3 className="text-sm font-medium uppercase tracking-wide text-gray-500">
+                              Recent Posts
+                            </h3>
+                            <ul role="list" className="mt-4 space-y-4">
+                              {recentPosts.map((post) => (
+                                <li
+                                  key={post.id}
+                                  className="truncate text-base"
+                                >
+                                  <a
+                                    href={post.href}
+                                    className="font-medium text-gray-900 hover:text-gray-700"
+                                  >
+                                    {post.name}
+                                  </a>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div className="mt-5 text-sm">
+                            <a
+                              href="#"
+                              className="font-medium text-yellow-600 hover:text-indigo-500"
+                            >
+                              {" "}
+                              View all posts{" "}
+                              <span aria-hidden="true">&rarr;</span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </Popover.Panel>
+                  </Transition>
+                </>
+              )}
+            </Popover>
+          </Popover.Group>
+          <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
+            <Link href="/contact">
+              <a
+                href="#"
+                className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-yellow-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-yellow-600"
+              >
+                Get Quote
+              </a>
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      <Transition
+        as={Fragment}
+        enter="duration-200 ease-out"
+        enterFrom="opacity-0 scale-95"
+        enterTo="opacity-100 scale-100"
+        leave="duration-100 ease-in"
+        leaveFrom="opacity-100 scale-100"
+        leaveTo="opacity-0 scale-95"
+      >
+        <Popover.Panel
+          focus
+          className="absolute inset-x-0 top-0 origin-top-right transform p-2 transition md:hidden"
+        >
+          <div className="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+            <div className="px-5 pt-5 pb-6">
+              <div className="flex items-center justify-between">
+                <Link href="/">
+                  <a>
+                    {/* <img
+                    className="h-8 w-auto"
+                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                    alt="Workflow"
+                  /> */}
+                    <Image
+                      src="/img/LanasLogoYellow.svg"
+                      alt="Logo Lanas"
+                      width={108}
+                      height={32}
+                      className="h-8 w-auto"
+                    />
+                  </a>
+                </Link>
+                <div className="-mr-2">
+                  <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500">
+                    <span className="sr-only">Close menu</span>
+                    <XIcon className="h-6 w-6" aria-hidden="true" />
+                  </Popover.Button>
+                </div>
+              </div>
+              <div className="mt-6">
+                <nav className="grid gap-y-8">
+                  {solutions.map((item) => (
+                    <Link key={item.name} href={item.href}>
+                      <a className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50">
+                        <item.icon
+                          className="h-6 w-6 flex-shrink-0 text-yellow-600"
+                          aria-hidden="true"
+                        />
+                        <span className="ml-3 text-base font-medium text-gray-900">
+                          {item.name}
+                        </span>
+                      </a>
+                    </Link>
+                  ))}
+                </nav>
+              </div>
+            </div>
+            <div className="space-y-6 py-6 px-5">
+              <div className="grid grid-cols-2 gap-y-4 gap-x-8">
+                <a
+                  href="#"
+                  className="text-base font-medium text-gray-900 hover:text-gray-700"
+                >
+                  Pricing
+                </a>
+
+                <a
+                  href="#"
+                  className="text-base font-medium text-gray-900 hover:text-gray-700"
+                >
+                  Docs
+                </a>
+                {resources.map((item) => (
+                  <a
+                    key={item.name}
+                    href={'/blog/' + item.slug}
+                    className="text-base font-medium text-gray-900 hover:text-gray-700"
+                  >
+                    {item.name}
+                  </a>
+                ))}
+              </div>
+              <div>
+                {/* <a
+                  href="#"
+                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                >
+                  Sign up
+                </a> */}
+                <p className="mt-6 text-center text-base font-medium text-gray-500">
+                  Existing customer?{" "}
+                  <a href="#" className="text-yellow-600 hover:text-yellow-500">
+                    Sign in
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </Popover.Panel>
+      </Transition>
+    </Popover>
+  );
+};
 
 export default Navi;
