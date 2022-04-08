@@ -9,8 +9,8 @@ const Features = () => (
             <h2 className="mb-4 text-3xl md:text-4xl leading-tight font-bold tracking-tighter">How we make your website great</h2>
             <p className="text-lg md:text-xl text-coolGray-500 font-medium">
                 {/* We have extensive experience in building websites and apps for startups and established companies. */}
-                We have extensive experience in building websites and also the tools we use. We do stay up to date with the latest technologies, but without sacrificing reliability. 
-                So is a list of some of the features we offer to every client.
+                We have extensive experience in building websites and also the tools we use. We do stay up to date with the latest technologies, but without sacrificing reliability.
+                So here is a list of some of the features we offer to every client.
             </p>
         </div>
         <div className="flex flex-wrap -mx-4">
@@ -21,10 +21,10 @@ const Features = () => (
                     <h3 className="mb-4 text-xl md:text-2xl leading-tight font-bold">Good communication</h3>
                     <p className="text-coolGray-500 font-medium">
                         We have a team of experienced developers who are always ready to help you with any questions you may have. During the project
-                    we like to keep you updated with the current status through a custom dashboard. </p>
+                        we like to keep you updated with the current status through a custom dashboard. </p>
                 </div>
             </div>
-            
+
             <div className="w-full md:w-1/2 lg:w-1/3 px-4">
                 <div className="h-full p-8 text-center hover:bg-white rounded-md hover:shadow-xl transition duration-200">
                     <div className="inline-flex h-16 w-16 mb-6 mx-auto items-center justify-center text-white bg-yellow-500 rounded-lg">
@@ -75,7 +75,7 @@ const Features = () => (
                         Easy maintenance
                     </h3>
                     <p className="text-coolGray-500 font-medium">
-                    The end result is a website that is easy to maintain and can be expanded with additional features at any time.
+                        The end result is a website that is easy to maintain and can be expanded with additional features at any time.
                     </p>
                 </div>
             </div>
