@@ -15,7 +15,7 @@ function Contactform() {
     const contactme = async event => {
         event.preventDefault()
 
-        const res = await fetch(process.env.NEXT_PUBLIC_PIPEDREAM_WS, {
+        const res = await fetch('/api/sendform', {
             body: JSON.stringify({
                 name: event.target.name.value,
                 email: event.target.email.value,
