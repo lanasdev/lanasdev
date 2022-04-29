@@ -36,18 +36,19 @@ function Contactform() {
 
     return (
         <>
+        <a href="#contact"></a>
             <form onSubmit={contactme} className="flex flex-col w-1/3 mx-auto">
                 <section className="flex flex-col py-2 mx-4">
                     <label htmlFor="name" className="mr-4">Name</label>
-                    <input id="name" name="name" type="text" autoComplete="name" required className="form-input" />
+                    <input id="name" name="name" type="text" autoComplete="name" required className="form-input text-black" />
                 </section>
                 <section className="flex flex-col py-2 mx-4">
                     <label htmlFor="email" className="mr-4">Email</label>
-                    <input id="email" name="email" type="email" autoComplete="email" required className="form-input" />
+                    <input id="email" name="email" type="email" autoComplete="email" required className="form-input text-black" />
                 </section>
                 <section className="flex flex-col py-2 mx-4">
                     <label htmlFor="message" className="mr-4">Message</label>
-                    <textarea id="message" name="message" autoComplete="message" required className="form-textarea" />
+                    <textarea id="message" name="message" autoComplete="message" required className="form-textarea text-black" />
                 </section>
                 {/* <section>
                 <label className="mr-4">Type of Project: </label>
