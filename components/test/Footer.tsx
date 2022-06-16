@@ -9,16 +9,19 @@ const Footer = () => {
 
     return (
         // a cool footer
-        <footer className="py-24 bg-white overflow-hidden bg-pattern-white bg-center " >
+        <footer className="py-24 overflow-hidden " >
             <div className="px-4 flex flex-col justify-center items-center">
-                <Image src="/img/LanasLogoYellow.svg" alt="Lanas Logo" width={108} height={32} />
-
+                {/* <Image src="/img/LanasLogoYellow.svg" alt="Lanas Logo" width={108} height={32} /> */}
+                <span className="text-xl">Lanas.</span>
                 <div className="flex flex-col md:flex-row sm:justify-center md:ml-0 space-x-4 py-2 pt-6">
                     {[
+                        ["Home", "/"],
                         ["About", "/about"],
-                        ["Blog", "/blog"],
-                        ["Contact", "/contact"],
-                        ["Privacy Policy", "/privacy-policy"],
+                        ["Projects", "/projects"],
+
+                        // ["Blog", "/blog"],
+                        // ["Contact", "/contact"],
+                        // ["Privacy Policy", "/privacy-policy"],
                     ].map(([title, url]) => (
                         <Link href={url} key={title}>
                             <a className={aClass} >
