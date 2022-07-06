@@ -16,11 +16,12 @@ import { postFilePaths, POSTS_PATH } from '../utils/mdxUtils'
 // import CTA from "../components/test/CTA";
 // import Hero from "../components/test/Hero";
 import Layout from "../components/Layout";
+import CallToAction from "../components/CallToAction";
 
 const IndexPage = ({ posts }) => {
   const imgurl = "https://via.placeholder.com/600/771796";
   const gridclassnames =
-    "h-[600px] rounded-lg flex flex-col p-8 justify-end items-start hover:scale-105 transform duration-300 ease-in-out backdrop-blur-2xl text-whiteish dark:text-midnight ";
+    "h-[600px] rounded-lg flex flex-col p-8 justify-end items-start hover:scale-105 transform duration-300 ease-in-out backdrop-blur-2xl text-white dark:text-midnight ";
 
   const projects = [
     {
@@ -56,24 +57,6 @@ const IndexPage = ({ posts }) => {
   return (
     <>
       <Layout title="Home">
-        <div className="flex w-full items-baseline justify-between py-16">
-          <h1 className="text-bold text-6xl dark:text-whiteish/80 dark:hover:text-whiteish font-semibold">
-            Lanas.
-          </h1>
-          <h2 className="text-2xl">
-            Web development for thriving ecommerce shops
-          </h2>
-        </div>
-        {/* <div className="grid grid-cols-1 gap-4 pt-16 md:grid-cols-2 ">
-          {projects.map((project) => (
-            <Link href={`/projects/${project.slug}`} key={project.id}>
-              <a className={cn(gridclassnames, project.classname)}>
-                <h3 className="text-2xl font-semibold">{project.name}</h3>
-                <p className="text-md">{project.description} </p>
-              </a>
-            </Link>
-          ))}
-        </div> */}
         <div className="grid grid-cols-1 gap-4 pt-16 md:grid-cols-2 ">
           {posts.map((post) => (
             <Link
@@ -88,10 +71,7 @@ const IndexPage = ({ posts }) => {
             </Link>
           ))}
         </div>
-        <div className="flex flex-col items-center justify-center pt-32 md:flex-row md:items-start md:justify-between">
-          <h3 className="text-2xl">Let&apos;s have a chat!</h3>
-          <Contactform />
-        </div>
+        <CallToAction />
       </Layout>
     </>
   );

@@ -15,9 +15,14 @@ module.exports = {
       },
       colors: {
         midnight: "#060B12",
-        whiteish: "#f8f8ff",
+        white: "#f8f8ff",
       },
     },
   },
-  plugins: [require("@tailwindcss/forms"), require("@tailwindcss/typography"), require("@tailwindcss/aspect-ratio"), require("@tailwindcss/line-clamp")],
+  plugins: [
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/aspect-ratio"),
+    require("@tailwindcss/line-clamp"),
+  ],
 };

@@ -2,9 +2,10 @@ import React, { ReactNode } from "react";
 import Link from "next/link";
 
 import Head from "next/head";
-import Navi from "./test/Navi";
-import Footer from "./test/Footer";
+import Navi from "./Navi";
+import Footer from "./Footer";
 import Favicon from "./Favicon";
+import TopBar from "./TopBar"
 
 type Props = {
   children?: ReactNode;
@@ -48,9 +49,10 @@ const Layout = ({ children, title, description }: Props) => (
       />
     </Head>
     <div className="max-w-screen md:max-w-6xl px-8 mx-auto">
-    {/* <Navi /> */}
-    {children}
-    <Footer />
+      {/* <Navi /> */}
+      <TopBar />
+      {children}
+      <Footer />
 
     </div>
   </div>
