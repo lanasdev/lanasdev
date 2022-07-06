@@ -18,56 +18,24 @@ import { postFilePaths, POSTS_PATH } from '../utils/mdxUtils'
 import Layout from "../components/Layout";
 import CallToAction from "../components/CallToAction";
 
-const IndexPage = ({ posts }) => {
-  const imgurl = "https://via.placeholder.com/600/771796";
+const IndexPage = ({ products }) => {
   const gridclassnames =
     "h-[600px] rounded-lg flex flex-col p-8 justify-end items-start hover:scale-105 transform duration-300 ease-in-out backdrop-blur-2xl text-white dark:text-midnight ";
-
-  const projects = [
-    {
-      id: 1,
-      name: "Project 1",
-      description: "lorem ipsum",
-      classname: "bg-gradient-to-tr from-[#DB758F] to-[#39B0EF]",
-      slug: "project-1",
-    },
-    {
-      id: 2,
-      name: "Project 2",
-      description: "lorem ipsum scheiss",
-      classname: "bg-gradient-to-tr from-[#F46634] to-[#FABFD5]",
-      slug: "project-2",
-    },
-    {
-      id: 3,
-      name: "Project 3",
-      description: "lorem ipsum",
-      classname: "bg-gradient-to-tr from-[#8100ED] to-[#FF3903]",
-      slug: "project-3",
-    },
-    {
-      id: 4,
-      name: "Project 4",
-      description: "lorem ipsum",
-      classname: "bg-gradient-to-tl from-[#B671FF] to-[#FFDC7C]",
-      slug: "project-4",
-    },
-  ];
 
   return (
     <>
       <Layout title="Home">
         <div className="grid grid-cols-1 gap-4 pt-16 md:grid-cols-2 ">
-          {posts.map((post) => (
+          {products.map((product) => (
             <Link
-              as={`/${post.filePath.replace(/\.mdx?$/, '')}`}
+              as={`/${product.filePath.replace(/\.mdx?$/, '')}`}
               href={`/[slug]`}
-              key={post.filePath}
+              key={product.filePath}
             >
 
-              <a className={cn(gridclassnames, post.data.classnames)}>
-                <h3 className="text-2xl font-semibold">{post.data.title}</h3>
-                <p className="text-md">{post.data.description} </p></a>
+              <a className={cn(gridclassnames, product.data.classnames)}>
+                <h3 className="text-2xl font-semibold">{product.data.title}</h3>
+                <p className="text-md">{product.data.description} </p></a>
             </Link>
           ))}
         </div>
@@ -86,7 +54,7 @@ const IndexPage = ({ posts }) => {
 //   return { props: { data } };
 // };
 export function getStaticProps() {
-  const posts = postFilePaths.map((filePath) => {
+  const products = postFilePaths.map((filePath) => {
     const source = fs.readFileSync(path.join(POSTS_PATH, filePath))
     const { content, data } = matter(source)
 
@@ -97,7 +65,7 @@ export function getStaticProps() {
     }
   })
 
-  return { props: { posts } }
+  return { props: { products } }
 }
 
 export default IndexPage;

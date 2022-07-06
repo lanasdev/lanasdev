@@ -8,7 +8,7 @@ const TopBar = () => {
                 <Link href="/"><a>Lanas.</a></Link>
             </h1>
             <h2 className="text-2xl">
-                Web development for thriving ecommerce shops
+                Web craftsmenship for thriving ecommerce shops
             </h2>
         </div>
     );
