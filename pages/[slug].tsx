@@ -7,13 +7,13 @@ import Head from 'next/head'
 import Link from 'next/link'
 import path from 'path'
 // import CustomLink from '../../components/CustomLink'
-import { postFilePaths, POSTS_PATH } from '../../utils/mdxUtils'
+import { postFilePaths, POSTS_PATH } from '../utils/mdxUtils'
 
 import Image from "next/image";
-import Layout from "../../components/Layout";
-import CustomLink from '../../components/CustomLink'
-import CustomImage from '../../components/CustomImage'
-import CallToAction from '../../components/CallToAction'
+import Layout from "../components/Layout";
+import CustomLink from '../components/CustomLink'
+import CustomImage from '../components/CustomImage'
+import CallToAction from '../components/CallToAction'
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
 // to handle import statements. Instead, you must include components in scope
@@ -24,8 +24,8 @@ const components = {
     // It also works with dynamically-imported components, which is especially
     // useful for conditionally loading components for certain routes.
     // See the notes in README.md for more details.
-    Contactform: dynamic(() => import('../../components/Contactform')),
-    CustomImage: dynamic(() => import('../../components/CustomImage')),
+    Contactform: dynamic(() => import('../components/Contactform')),
+    CustomImage: dynamic(() => import('../components/CustomImage')),
     // CustomLink: dynamic(() => import('../../components/CustomLink')),
     Head,
 }
@@ -33,7 +33,7 @@ const components = {
 const ProjectPage = ({ source, frontMatter }) => {
     return (
         <Layout title="Project Page">
-            <article className="prose dark:prose-dark  dark:prose-headings:text-whiteish dark:text-whiteish dark:prose-a:text-whiteish py-16">
+            <article className="prose dark:prose-dark dark:prose-headings:text-white dark:text-white py-16">
                 {/* <h1>Project Page</h1> */}
                 {/* <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis commodi voluptates similique at aspernatur maiores odio dignissimos unde natus impedit, vero deleniti possimus debitis, fugiat tempore eveniet! Animi, nesciunt recusandae.</p> */}
                 <div className="post-header">

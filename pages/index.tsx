@@ -60,8 +60,8 @@ const IndexPage = ({ posts }) => {
         <div className="grid grid-cols-1 gap-4 pt-16 md:grid-cols-2 ">
           {posts.map((post) => (
             <Link
-              as={`/projects/${post.filePath.replace(/\.mdx?$/, '')}`}
-              href={`/projects/[slug]`}
+              as={`/${post.filePath.replace(/\.mdx?$/, '')}`}
+              href={`/[slug]`}
               key={post.filePath}
             >
 
