@@ -2,9 +2,10 @@ import React, { ReactNode } from "react";
 import Link from "next/link";
 
 import Head from "next/head";
-import Navi from "./test/Navi";
-import Footer from "./test/Footer";
-import Favicon from "./Favicon"
+import Navi from "./Navi";
+import Footer from "./Footer";
+import Favicon from "./Favicon";
+import TopBar from "./TopBar"
 
 type Props = {
   children?: ReactNode;
@@ -33,24 +34,27 @@ const Layout = ({ children, title, description }: Props) => (
       <meta name="author" content="Lanas" />
       <Favicon />
       <link
-            rel="preload"
-            href="/fonts/Inter/Inter-Medium.woff2?v=3.19"
-            as="font"
-            type="font/woff2"
-            crossOrigin="anonymous"
-          />
-          <link
-            rel="preload"
-            href="/fonts/Inter/Inter-Bold.woff2?v=3.19"
-            as="font"
-            type="font/woff2"
-            crossOrigin="anonymous"
-          />
+        rel="preload"
+        href="/fonts/Inter/Inter-Medium.woff2?v=3.19"
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="preload"
+        href="/fonts/Inter/Inter-Bold.woff2?v=3.19"
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
     </Head>
+    <div className="max-w-screen md:max-w-6xl px-8 mx-auto">
+      {/* <Navi /> */}
+      <TopBar />
+      {children}
+      <Footer />
 
-    <Navi />
-    {children}
-    <Footer />
+    </div>
   </div>
 );
 
