@@ -10,9 +10,6 @@ module.exports = {
       serif: ["ui-serif", "Georgia"],
     },
     extend: {
-      backgroundImage: {
-        "pattern-white": "url('/img/pattern-white.svg')",
-      },
       colors: {
         midnight: "#060B12",
         white: "#f8f8ff",
