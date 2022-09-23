@@ -69,19 +69,26 @@ const callsToAction = [
   { name: "Contact Sales", href: "#", icon: PhoneIcon },
 ];
 const resources = [
-    {
-      name: 'Boost your conversion rate',
-      description: 'Get all of your questions answered in our forums or contact support.',
-      slug: 'test',
-      icon: SupportIcon,
-    },
-    {
-      name: 'Events',
-      description: 'See what meet-ups and other events we might be planning near you.',
-      slug: 'event',
-      icon: CalendarIcon,
-    },
-    { name: 'Security', description: 'Understand how we take your privacy seriously.', slug: 'security', icon: ShieldCheckIcon },
+  {
+    name: "Boost your conversion rate",
+    description:
+      "Get all of your questions answered in our forums or contact support.",
+    slug: "test",
+    icon: SupportIcon,
+  },
+  {
+    name: "Events",
+    description:
+      "See what meet-ups and other events we might be planning near you.",
+    slug: "event",
+    icon: CalendarIcon,
+  },
+  {
+    name: "Security",
+    description: "Understand how we take your privacy seriously.",
+    slug: "security",
+    icon: ShieldCheckIcon,
+  },
 ];
 const recentPosts = [
   { id: 1, name: "Boost your conversion rate", href: "#" },
@@ -244,7 +251,7 @@ const Navi = () => {
                           {resources.map((item) => (
                             <a
                               key={item.name}
-                              href={'/blog/' + item.slug}
+                              href={"/blog/" + item.slug}
                               className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
                             >
                               <item.icon
@@ -389,7 +396,7 @@ const Navi = () => {
                 {resources.map((item) => (
                   <a
                     key={item.name}
-                    href={'/blog/' + item.slug}
+                    href={"/blog/" + item.slug}
                     className="text-base font-medium text-gray-900 hover:text-gray-700"
                   >
                     {item.name}

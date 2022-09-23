@@ -21,7 +21,7 @@ const Favicon = (): JSX.Element => {
       <link rel="manifest" href="/site.webmanifest" />
       <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#f59e0b" />
       <meta name="msapplication-TileColor" content="#ffc40d" />
-      <meta name="theme-color" content="#ffffff" />
+      <meta name="theme-color" content="#f8f8ff" />
     </>
   );
 };

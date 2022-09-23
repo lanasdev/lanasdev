@@ -5,7 +5,7 @@ import Head from "next/head";
 import Navi from "./Navi";
 import Footer from "./Footer";
 import Favicon from "./Favicon";
-import TopBar from "./TopBar"
+import TopBar from "./TopBar";
 
 type Props = {
   children?: ReactNode;
@@ -16,7 +16,7 @@ type Props = {
 const Layout = ({ children, title, description }: Props) => (
   <div>
     <Head>
-      <title>{title ? title + " | Lanas" : "Lanas"}</title>
+      <title>{title ? title + " | Lanas" : "Lanas Web design"}</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <meta
@@ -29,9 +29,9 @@ const Layout = ({ children, title, description }: Props) => (
       />
       <meta
         name="keywords"
-        content="Websites, design, build, startup, React, Nextjs"
+        content="webdesigner, Websites, design, build, startup, React, Nextjs"
       />
-      <meta name="author" content="Lanas" />
+      <meta name="author" content="Lanas.dev" />
       <Favicon />
       <link
         rel="preload"
@@ -48,12 +48,11 @@ const Layout = ({ children, title, description }: Props) => (
         crossOrigin="anonymous"
       />
     </Head>
-    <div className="max-w-screen md:max-w-6xl px-8 mx-auto">
+    <div className="max-w-screen mx-auto px-8 md:max-w-6xl">
       {/* <Navi /> */}
       <TopBar />
       {children}
       <Footer />
-
     </div>
   </div>
 );

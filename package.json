@@ -6,7 +6,8 @@
     "build": "next build",
     "start": "next start",
     "type-check": "tsc --noEmit",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "npx prettier -w components pages && yarn build"
   },
   "dependencies": {
     "@formspree/react": "^2.4.0",

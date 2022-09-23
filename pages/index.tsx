@@ -4,11 +4,10 @@ import Head from "next/head";
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
 import cn from "classnames";
 
-import fs from 'fs'
-import matter from 'gray-matter';
-import path from 'path'
-import { postFilePaths, POSTS_PATH } from '../utils/mdxUtils'
-
+import fs from "fs";
+import matter from "gray-matter";
+import path from "path";
+import { postFilePaths, POSTS_PATH } from "../utils/mdxUtils";
 
 import Layout from "../components/Layout";
 import CallToAction from "../components/CallToAction";
@@ -60,14 +59,14 @@ const IndexPage = ({ products }) => {
         <div className="grid grid-cols-1 gap-4 pt-16 md:grid-cols-2 ">
           {products.map((product, index) => (
             <Link
-              as={`/${product.filePath.replace(/\.mdx?$/, '')}`}
+              as={`/${product.filePath.replace(/\.mdx?$/, "")}`}
               href={`/[slug]`}
               key={product.filePath}
             >
-
               <a className={cn(gridclassnames, product.data.classnames)}>
                 <h3 className="text-2xl font-semibold">{product.data.title}</h3>
-                <p className="text-md">{product.data.description} </p></a>
+                <p className="text-md">{product.data.description} </p>
+              </a>
             </Link>
           ))}
         </div>
@@ -87,17 +86,17 @@ const IndexPage = ({ products }) => {
 // };
 export function getStaticProps() {
   const products = postFilePaths.map((filePath) => {
-    const source = fs.readFileSync(path.join(POSTS_PATH, filePath))
-    const { content, data } = matter(source)
+    const source = fs.readFileSync(path.join(POSTS_PATH, filePath));
+    const { content, data } = matter(source);
 
     return {
       content,
       data,
       filePath,
-    }
-  })
+    };
+  });
 
-  return { props: { products } }
+  return { props: { products } };
 }
 
 export default IndexPage;

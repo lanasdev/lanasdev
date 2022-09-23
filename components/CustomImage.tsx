@@ -1,9 +1,21 @@
-import Image from 'next/future/image'
+import Image from "next/future/image";
 
-export default function CustomImage({ src, alt, width = 600, height = 600, ...otherProps }) {
+export default function CustomImage({
+  src,
+  alt,
+  width = 600,
+  height = 600,
+  ...otherProps
+}) {
   return (
     <>
-      <Image src={src} alt={alt} width={width} height={height} {...otherProps} />
+      <Image
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        {...otherProps}
+      />
     </>
-  )
+  );
 }
