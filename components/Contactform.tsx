@@ -30,7 +30,7 @@ const Contactform = () => {
       onSubmit={handleSubmit}
       className="flex w-72 flex-col dark:text-midnight"
     >
-      <div className="flex flex-col items-center">
+      <fieldset className="flex flex-col items-center">
         {/* <label htmlFor="name">Your Name</label> */}
         <input
           id="name"
@@ -41,8 +41,8 @@ const Contactform = () => {
           className="form-input my-2 rounded-md px-4 py-3 focus:valid:ring-green-400 focus:invalid:ring-red-500"
         />
         <ValidationError prefix="Name" field="name" errors={state.errors} />
-      </div>
-      <div className="flex flex-col items-center">
+      </fieldset>
+      <fieldset className="flex flex-col items-center">
         {/* <label htmlFor="email">Email Address</label> */}
         <input
           id="email"
@@ -54,7 +54,7 @@ const Contactform = () => {
           className="form-input my-2 rounded-md px-4 py-3 focus:valid:ring-green-400 focus:invalid:ring-red-500"
         />
         <ValidationError prefix="Email" field="email" errors={state.errors} />
-      </div>
+      </fieldset>
       <textarea
         id="message"
         name="message"
