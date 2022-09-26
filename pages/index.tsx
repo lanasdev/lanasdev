@@ -4,35 +4,28 @@ import Head from "next/head";
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
 import cn from "classnames";
 
-import fs from "fs";
-import matter from "gray-matter";
-import path from "path";
-import { postFilePaths, POSTS_PATH } from "../utils/mdxUtils";
-
 import Layout from "../components/Layout";
 import CallToAction from "../components/CallToAction";
 
+import request from "../lib/datocms";
+import { getHome } from "../lib/api";
+
 const ProjectItem = ({ project }) => {
   const gridclassnames =
-    "h-[18em] hover:h-[20em] transition-all group rounded-lg flex flex-row justify-between  hover:scale-105 transform duration-300 ease-in-out backdrop-blur-2xl text-white dark:text-midnight";
+    "h-[18em] hover:h-[20em] bg-midnight dark:bg-white border-2 transition-all group rounded-lg flex flex-row justify-between  hover:scale-105 transform duration-300 ease-in-out backdrop-blur-2xl text-white dark:text-midnight";
 
   return (
-    <Link
-      as={`/${project.filePath.replace(/\.mdx?$/, "")}`}
-      href={`/[slug]`}
-      key={project.filePath}
-    >
+    <Link href={`/projects/${project.slug}`} key={project.slug}>
       <a
         className={cn(
           gridclassnames,
-          project.data.classnames,
-          " shadow-2xl backdrop-blur-3xl backdrop-hue-rotate-180"
+          `bg-gradient-to-${project.gradientdirection} from-[${project.color1.hex}] to-[${project.color2.hex}]`
         )}
       >
         <div className="flex flex-1 flex-col items-start justify-end p-8">
-          <h3 className="text-2xl font-semibold">{project.data.title}</h3>
+          <h3 className="text-2xl font-semibold">{project.title}</h3>
           <p className="text-md hidden group-hover:block ">
-            {project.data.description}
+            {project.description}
           </p>
         </div>
         {/* {project.data.image && (
@@ -49,13 +42,14 @@ const ProjectItem = ({ project }) => {
   );
 };
 
-const IndexPage = ({ projects }) => {
+const IndexPage = ({ data }) => {
   return (
     <>
-      <Layout title="Home">
+      <Layout>
         <div className="mb-32 grid grid-cols-1 gap-4 pt-16">
-          {projects.map((project, index) => (
-            <ProjectItem project={project} key={index} />
+          <pre>{JSON.stringify(data, null, 2)}</pre>
+          {data.allProjects.map((project) => (
+            <ProjectItem project={project} key={project.slug} />
           ))}
         </div>
         <CallToAction />
@@ -65,18 +59,10 @@ const IndexPage = ({ projects }) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const projects = postFilePaths.map((filePath) => {
-    const source = fs.readFileSync(path.join(POSTS_PATH, filePath));
-    const { content, data } = matter(source);
 
-    return {
-      content,
-      data,
-      filePath,
-    };
-  });
+  const data = await getHome();
 
-  return { props: { projects } };
+  return { props: { data } };
 };
 
 export default IndexPage;
