@@ -62,7 +62,7 @@ const Contactform = () => {
         name="message"
         placeholder="Message"
         minLength={4}
-        className="form-textarea my-4 rounded-md pt-3 pb-12 placeholder:focus:italic focus:valid:ring-green-400 focus:invalid:ring-red-500"
+        className="form-textarea mt-2 mb-4 rounded-md pt-3 pb-12 placeholder:focus:italic focus:valid:ring-green-400 focus:invalid:ring-red-500"
       />
       <ValidationError prefix="Message" field="message" errors={state.errors} />
       <button

@@ -45,24 +45,45 @@ const ProjectFacts = ({ project }) => {
   );
 };
 const OtherProjects = ({ project }) => {
+
+  // let colors = [
+  //   {
+  //     col1: projectselection[0].color1.hex,
+  //     col2: projectselection[0].color2.hex,
+  //   },
+  //   {
+  //     col1: projectselection[1].color1.hex,
+  //     col2: projectselection[1].color2.hex,
+  //   },
+  //   {
+  //     col1: projectselection[2].color1.hex,
+  //     col2: projectselection[2].color2.hex,
+  //   }
+  // ]
+
+  // console.log(colors);
+
   return (
     <div className="flex flex-col items-stretch space-y-8 md:flex-row md:space-y-0 md:space-x-8 pt-8">
       {project.otherprojects.slice(0, 3).map((project) => (
-        <div
+        <Link
           key={project.slug}
-          className={cn(
-            `w-full transform rounded-md bg-gradient-to-r from-[#FDE68A] to-[#FECACA] p-1 transition-all hover:scale-105 md:w-1/3`,
+          href={`/project/${project.slug}`}
+        >
+          <a className={cn(
+            `w-full transform rounded-md md:max-w-sm bg-gradient-to-r from-[#FDE68A] to-[#FECACA] p-1 transition-all hover:scale-105 md:w-1/3`,
             `from-[${project.color1.hex}]`,
             `to-[${project.color2.hex}]`
           )}
-        >
-          <div className="flex h-full max-w-md flex-col justify-between rounded-lg bg-white p-4 dark:bg-midnight">
-            <h3 className="pb-4 font-semibold">{project.title} </h3>
-            <p className="line-clamp-3">{project.description}</p>
-            <p>Color1: {project.color1.hex}</p>
-            <p>Color2: {project.color2.hex}</p>
-          </div>
-        </div>
+          >
+            <div className="flex h-full w-full flex-col justify-between rounded-lg bg-white p-4 dark:bg-midnight">
+              <h3 className="pb-4 font-semibold">{project.title} </h3>
+              <p className="line-clamp-3">{project.description}</p>
+              {/* <p>Color2: {project.color2.hex}</p> */}
+              {/* <p>Color1: {project.color1.hex}</p> */}
+            </div>
+          </a>
+        </Link>
       ))}
     </div>
   );
@@ -92,7 +113,7 @@ const ProjectPage = ({ project }) => {
         </article>
       </div>
       <OtherProjects project={project} />
-      {/* <pre>{JSON.stringify(project, null, 2)}</pre> */}
+      <pre>{JSON.stringify(project, null, 2)}</pre>
 
       <CallToAction />
     </Layout>

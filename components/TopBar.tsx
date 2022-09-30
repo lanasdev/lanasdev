@@ -1,12 +1,17 @@
 import Link from "next/link";
 import cn from "classnames";
+// import { withRouter, NextRouter } from "next/router";
 
-const TopBar = ({ isBig }) => {
+const TopBar = ({ router }) => {
+  // const currentPath = router.asPath
+
   return (
     <div className="flex w-full flex-col items-baseline justify-between py-16 md:flex-row">
       <h1 className="text-bold text-6xl font-semibold decoration-midnight hover:underline dark:text-white/80 dark:decoration-white dark:hover:text-white ">
         <Link href="/">
-          <a>Lanas.</a>
+          <a>
+            Lanas.
+          </a>
         </Link>
       </h1>
       <h2 className="pt-8 text-2xl md:pt-0">
@@ -17,4 +22,5 @@ const TopBar = ({ isBig }) => {
     </div>
   );
 };
+// export default withRouter(TopBar);
 export default TopBar;
