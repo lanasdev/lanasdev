@@ -134,26 +134,26 @@ const ProjectBySlug = gql`
           ...responsiveImageFragment
         }
       }
-    }
-    allProjects(filter: { slug: { neq: $slug } }) {
-      title
-      clientname
-      color1 {
-        hex
+      otherprojects {
+        title
+        description(markdown: false)
+        slug
+        classname
+        position
+        color1 {
+          hex
+        }
+        color2 {
+          hex
+        }
+        gradientdirection
+        __typename
+        id
+        createdAt
       }
-      color2 {
-        hex
-      }
-      description(markdown: false)
-      id
-      gradientdirection
-      projecttype
-      slug
-      title
-      year
-      __typename
     }
   }
+
   ${responsiveImageFragment}
 `;
 

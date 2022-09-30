@@ -44,6 +44,29 @@ const ProjectFacts = ({ project }) => {
     </div>
   );
 };
+const OtherProjects = ({ project }) => {
+  return (
+    <div className="flex flex-col items-stretch space-y-8 md:flex-row md:space-y-0 md:space-x-8 pt-8">
+      {project.otherprojects.slice(0, 3).map((project) => (
+        <div
+          key={project.slug}
+          className={cn(
+            `w-full transform rounded-md bg-gradient-to-r from-[#FDE68A] to-[#FECACA] p-1 transition-all hover:scale-105 md:w-1/3`,
+            `from-[${project.color1.hex}]`,
+            `to-[${project.color2.hex}]`
+          )}
+        >
+          <div className="flex h-full max-w-md flex-col justify-between rounded-lg bg-white p-4 dark:bg-midnight">
+            <h3 className="pb-4 font-semibold">{project.title} </h3>
+            <p className="line-clamp-3">{project.description}</p>
+            <p>Color1: {project.color1.hex}</p>
+            <p>Color2: {project.color2.hex}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
 
 const ProjectPage = ({ project }) => {
   // dark:prose-dark dark:prose-white prose flex-row items-stretch py-8 dark:text-white dark:prose-headings:text-white dark:prose-a:text-white
@@ -68,6 +91,7 @@ const ProjectPage = ({ project }) => {
           </main>
         </article>
       </div>
+      <OtherProjects project={project} />
       {/* <pre>{JSON.stringify(project, null, 2)}</pre> */}
 
       <CallToAction />
