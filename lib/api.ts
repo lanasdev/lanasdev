@@ -19,6 +19,7 @@ const responsiveImageFragment = gql`
     base64
   }
 `;
+// ...responsiveImageFragment
 
 export const HomeQuery = gql`
   query HomeQuery {
@@ -59,11 +60,163 @@ export const HomeQuery = gql`
 `;
 
 export const getHome = async () => {
-    const data = await request({
+  const data = await request({
     query: HomeQuery,
     variables: {},
     excludeInvalid: true,
     includeDrafts: true,
-  })
-    return data
-}
+  });
+  return data;
+};
+
+export const AllProjectSlug = gql`
+  query AllProjectSlug {
+    allProjects {
+      slug
+    }
+  }
+`;
+const ProjectBySlug = gql`
+  query ProjectBySlug($slug: String!) {
+    project(filter: { slug: { eq: $slug } }) {
+      title
+      description(markdown: false)
+      slug
+      classname
+      position
+      color1 {
+        hex
+      }
+      color2 {
+        hex
+      }
+      gradientdirection
+      clientname
+      projecttype
+      year
+      content {
+        value
+        links {
+          __typename
+          ... on ProjectRecord {
+            id
+            slug
+            title
+            description(markdown: false)
+            color1 {
+              hex
+            }
+            color2 {
+              hex
+            }
+            gradientdirection
+          }
+          ... on PostRecord {
+            id
+            title
+            slug
+            excerpt
+            createdAt
+            author {
+              name
+            }
+          }
+          ... on TestimonialRecord {
+            id
+            title
+            content(markdown: false)
+          }
+        }
+        blocks
+      }
+      image {
+        responsiveImage(imgixParams: { auto: format, fit: fill, h: "900" }) {
+          ...responsiveImageFragment
+        }
+      }
+    }
+    allProjects(filter: { slug: { neq: $slug } }) {
+      title
+      clientname
+      color1 {
+        hex
+      }
+      color2 {
+        hex
+      }
+      description(markdown: false)
+      id
+      gradientdirection
+      projecttype
+      slug
+      title
+      year
+      __typename
+    }
+  }
+  ${responsiveImageFragment}
+`;
+
+export const getAllProjectSlugs = async () => {
+  // get all project slugs for getStaticPaths
+  const data = await request({
+    query: AllProjectSlug,
+    variables: {},
+    excludeInvalid: true,
+    includeDrafts: true,
+  });
+
+  const { allProjects } = data;
+  // console.log(allProjects);
+
+  // const slugs = allProjects.map((project) => {
+  //     slug: project.slug
+  // })
+  // console.log(slugs);
+
+  return allProjects;
+};
+
+export const getProjectBySlug = async (slug) => {
+  const data = await request({
+    query: ProjectBySlug,
+    variables: { slug },
+    excludeInvalid: true,
+    includeDrafts: true,
+  });
+  return data.project;
+};
+
+const getOtherProjects = async (slug) => {
+  const OtherProjects = gql`
+    query OtherProjects($neq: String = "project-2") {
+      project(filter: { slug: { neq: $neq } }, orderBy: _createdAt_DESC) {
+        title
+        description(markdown: false)
+        slug
+        classname
+        position
+        color1 {
+          hex
+        }
+        color2 {
+          hex
+        }
+        gradientdirection
+        __typename
+        id
+        createdAt
+      }
+      _allProjectsMeta {
+        count
+      }
+    }
+  `;
+  const data = await request({
+    query: OtherProjects,
+    variables: { neq: slug },
+    excludeInvalid: true,
+    includeDrafts: true,
+  });
+  return data;
+};

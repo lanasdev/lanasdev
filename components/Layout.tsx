@@ -11,9 +11,10 @@ type Props = {
   children?: ReactNode;
   title?: string;
   description?: string;
+  isBig?: boolean;
 };
 
-const Layout = ({ children, title, description }: Props) => (
+const Layout = ({ children, title, description, isBig = true }: Props) => (
   <div>
     <Head>
       <title>{title ? title + " | Lanas" : "Lanas Web design"}</title>
@@ -50,7 +51,7 @@ const Layout = ({ children, title, description }: Props) => (
     </Head>
     <div className="max-w-screen mx-auto px-8 md:max-w-6xl">
       {/* <Navi /> */}
-      <TopBar />
+      <TopBar isBig={isBig} />
       {children}
       <Footer />
     </div>

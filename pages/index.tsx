@@ -12,10 +12,10 @@ import { getHome } from "../lib/api";
 
 const ProjectItem = ({ project }) => {
   const gridclassnames =
-    "h-[18em] hover:h-[20em] bg-midnight dark:bg-white border-2 transition-all group rounded-lg flex flex-row justify-between  hover:scale-105 transform duration-300 ease-in-out backdrop-blur-2xl text-white dark:text-midnight";
+    "h-[18em] hover:h-[20em] shadow-lg bg-midnight dark:bg-white border-2 transition-all group rounded-lg flex flex-row justify-between  hover:scale-105 transform duration-200 ease-in-out backdrop-blur-2xl text-white dark:text-midnight";
 
   return (
-    <Link href={`/projects/${project.slug}`} key={project.slug}>
+    <Link href={`/project/${project.slug}`} key={project.slug}>
       <a
         className={cn(
           gridclassnames,
@@ -47,11 +47,11 @@ const IndexPage = ({ data }) => {
     <>
       <Layout>
         <div className="mb-32 grid grid-cols-1 gap-4 pt-16">
-          <pre>{JSON.stringify(data, null, 2)}</pre>
           {data.allProjects.map((project) => (
             <ProjectItem project={project} key={project.slug} />
           ))}
         </div>
+        {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
         <CallToAction />
       </Layout>
     </>
@@ -59,7 +59,6 @@ const IndexPage = ({ data }) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-
   const data = await getHome();
 
   return { props: { data } };

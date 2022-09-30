@@ -6,6 +6,9 @@ const securityHeaders = [
 ];
 
 module.exports = {
+  images: {
+    domains: ["www.datocms-assets.com"],
+  },
   async headers() {
     return [
       {

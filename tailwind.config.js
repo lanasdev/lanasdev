@@ -14,6 +14,9 @@ module.exports = {
         midnight: "#060B12",
         white: "#f8f8ff",
       },
+      aspectRatio: {
+        golden: "1 / 1.618",
+      },
     },
   },
   plugins: [
