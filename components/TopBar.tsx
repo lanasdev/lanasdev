@@ -2,7 +2,8 @@ import Link from "next/link";
 import cn from "classnames";
 // import { withRouter, NextRouter } from "next/router";
 
-const TopBar = ({ router }) => {
+// const TopBar = ({ router }) => {
+const TopBar = ({ isBig }) => {
   // const currentPath = router.asPath
 
   return (
