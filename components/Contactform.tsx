@@ -39,7 +39,7 @@ const Contactform = () => {
           placeholder="Your Name"
           minLength={2}
           autoComplete="name"
-          className="form-input my-2 rounded-md px-4 py-3 placeholder:focus:italic focus:valid:ring-green-400 invalid:ring-red-500"
+          className="form-input my-2 rounded-md px-4 py-3 invalid:ring-red-500 placeholder:focus:italic focus:valid:ring-green-400"
         />
         <ValidationError prefix="Name" field="name" errors={state.errors} />
       </fieldset>
@@ -53,7 +53,7 @@ const Contactform = () => {
           minLength={3}
           autoComplete="email"
           pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
-          className="form-input my-2 rounded-md px-4 py-3 placeholder:focus:italic focus:valid:ring-green-400 invalid:ring-red-500"
+          className="form-input my-2 rounded-md px-4 py-3 invalid:ring-red-500 placeholder:focus:italic focus:valid:ring-green-400"
         />
         <ValidationError prefix="Email" field="email" errors={state.errors} />
       </fieldset>

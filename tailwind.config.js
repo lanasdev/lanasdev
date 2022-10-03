@@ -17,6 +17,11 @@ module.exports = {
       aspectRatio: {
         golden: "1 / 1.618",
       },
+      scale: {
+        101: "1.01",
+        102: "1.02",
+        103: "1.03",
+      },
     },
   },
   plugins: [

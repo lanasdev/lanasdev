@@ -40,6 +40,7 @@ export const HomeQuery = gql`
       color2 {
         hex
       }
+      direction
       gradientdirection
       image {
         responsiveImage(imgixParams: { fm: webp, fit: fill, w: 600, h: 600 }) {

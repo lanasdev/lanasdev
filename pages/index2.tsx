@@ -14,20 +14,20 @@ import { getHome } from "lib/api";
 
 const IndexPage = ({ data }) => {
 
-  return (
-    <Layout>
+    return (
+        <Layout>
 
-      <ProjectList data={data} />
-      {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
-      <CallToAction />
-    </Layout>
-  );
+            <ProjectList data={data} />
+            {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+            <CallToAction />
+        </Layout>
+    );
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const data = await getHome();
+    const data = await getHome();
 
-  return { props: { data } };
+    return { props: { data } };
 };
 
 export default IndexPage;
