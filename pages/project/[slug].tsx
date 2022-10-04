@@ -69,7 +69,6 @@ const OtherProjects = ({ project }) => {
 };
 
 const ProjectPage = ({ project }) => {
-  // dark:prose-dark dark:prose-white prose flex-row items-stretch py-8 dark:text-white dark:prose-headings:text-white dark:prose-a:text-white
   return (
     <Layout title={project.title}>
       <div className="">

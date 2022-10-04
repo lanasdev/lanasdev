@@ -12,9 +12,14 @@ type Props = {
   title?: string;
   description?: string;
   isBig?: boolean;
+  DataTopBar?: {
+    title: string;
+    subtitle: string;
+    updatedAt: string;
+  }
 };
 
-const Layout = ({ children, title, description, isBig = true }: Props) => (
+const Layout = ({ children, title, description, isBig = true, DataTopBar }: Props) => (
   <div>
     <Head>
       <title>{title ? title + " | Lanas" : "Lanas Web design"}</title>
@@ -51,7 +56,7 @@ const Layout = ({ children, title, description, isBig = true }: Props) => (
     </Head>
     <div className="max-w-screen mx-auto px-8 md:max-w-6xl">
       {/* <Navi /> */}
-      <TopBar isBig={isBig} />
+      <TopBar isBig={isBig} DataTopBar={DataTopBar} />
       {children}
       <Footer />
     </div>

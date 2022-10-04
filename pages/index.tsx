@@ -7,18 +7,17 @@ import cn from "classnames";
 import Layout from "components/Layout";
 import ProjectList from "components/Project/ProjectList";
 import CallToAction from "components/CallToAction";
+import Carousel from "components/crousel";
 
 // import request from "lib/datocms";
 import { getHome } from "lib/api";
 
-
 const IndexPage = ({ data }) => {
-
   return (
-    <Layout>
-
+    <Layout DataTopBar={data.home}>
       <ProjectList data={data} />
       {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+      <Carousel />
       <CallToAction />
     </Layout>
   );
