@@ -59,6 +59,21 @@ export const HomeQuery = gql`
         }
       }
     }
+    allPosts {
+      id
+      title
+      excerpt
+      slug
+      createdAt
+      author {
+        name
+      }
+      coverImage {
+        responsiveImage(imgixParams: { fit: crop, w: 300, h: 300, ar: "1" }) {
+          ...responsiveImageFragment
+        }
+      }
+    }
   }
   ${responsiveImageFragment}
 `;

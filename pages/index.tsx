@@ -10,6 +10,7 @@ import CallToAction from "components/CallToAction";
 
 // import request from "lib/datocms";
 import { getHome } from "lib/api";
+import BlogList from "components/Blog/BlogList";
 
 const IndexPage = ({ data }) => {
   return (
@@ -18,6 +19,7 @@ const IndexPage = ({ data }) => {
       <ProjectList data={data} />
       {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
       <Testimonials testimonials={data.allTestimonials} />
+      <BlogList posts={data.allPosts} />
       <CallToAction />
     </Layout>
   );
