@@ -2,12 +2,12 @@ import Link from "next/link";
 
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
 
-import Layout from "../../components/Layout";
-import CustomLink from "../../components/CustomLink";
-import CustomImage from "../../components/CustomImage";
-import CallToAction from "../../components/CallToAction";
-import CoverImage from "../../components/CoverImage";
-import CustomStructuredText from "../../components/CustomStructuredText";
+import Layout from "components/Layout";
+import CustomLink from "components/CustomLink";
+import CustomImage from "components/CustomImage";
+import CallToAction from "components/CallToAction";
+import CoverImage from "components/CoverImage";
+import CustomStructuredText from "components/CustomStructuredText";
 import { Image } from "react-datocms";
 
 import cn from "classnames";
@@ -16,8 +16,9 @@ import {
   getAllProjectSlugs,
   getProjectBySlug,
   AllProjectSlug,
-} from "../../lib/api";
-import request from "../../lib/datocms";
+  getTopBar,
+} from "lib/api";
+import request from "lib/datocms";
 
 const ProjectFacts = ({ project }) => {
   return (
@@ -68,8 +69,9 @@ const OtherProjects = ({ project }) => {
   );
 };
 
-const ProjectPage = ({ project }) => {
+const ProjectPage = ({ project, DataTopBar }) => {
   return (
+    // <Layout title={project.title} DataTopBar={DataTopBar}>
     <Layout title={project.title}>
       <div className="">
         <CoverImage
@@ -91,8 +93,7 @@ const ProjectPage = ({ project }) => {
         </article>
       </div>
       <OtherProjects project={project} />
-      {/* <pre>{JSON.stringify(project, null, 2)}</pre> */}
-
+      {/* <pre className="pt-16">{JSON.stringify(project, null, 2)}</pre> */}
       <CallToAction />
     </Layout>
   );
@@ -102,10 +103,13 @@ export default ProjectPage;
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const project = await getProjectBySlug(context.params.slug);
+  const TopBar = await getTopBar();
+  const DataTopBar = TopBar.home;
 
   return {
     props: {
       project,
+      DataTopBar,
     },
   };
 };

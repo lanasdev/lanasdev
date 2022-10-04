@@ -26,7 +26,6 @@ export const HomeQuery = gql`
     home {
       title
       subheading
-      updatedAt
     }
     allProjects {
       title
@@ -49,12 +48,16 @@ export const HomeQuery = gql`
       }
     }
     allTestimonials {
-      slug
       title
-      text {
-        value
+      content
+      name
+      company
+      slug
+      image {
+        responsiveImage(imgixParams: { fit: crop, w: 300, h: 300, ar: "1" }) {
+          ...responsiveImageFragment
+        }
       }
-      content(markdown: false)
     }
   }
   ${responsiveImageFragment}
@@ -79,6 +82,10 @@ export const AllProjectSlug = gql`
 `;
 const ProjectBySlug = gql`
   query ProjectBySlug($slug: String!) {
+    home {
+      title
+      subheading
+    }
     project(filter: { slug: { eq: $slug } }) {
       title
       description(markdown: false)
@@ -125,7 +132,7 @@ const ProjectBySlug = gql`
           ... on TestimonialRecord {
             id
             title
-            content(markdown: false)
+            content
           }
         }
         blocks
@@ -218,6 +225,25 @@ const getOtherProjects = async (slug) => {
     variables: { neq: slug },
     excludeInvalid: true,
     includeDrafts: true,
+  });
+  return data;
+};
+
+const TopBarQuery = gql`
+  query TopBarQuery {
+    home {
+      title
+      subheading
+    }
+  }
+`;
+
+export const getTopBar = async () => {
+  const data = await request({
+    query: TopBarQuery,
+    variables: {},
+    excludeInvalid: false,
+    includeDrafts: false,
   });
   return data;
 };
