@@ -17,13 +17,7 @@ import ProjectFacts from "components/Project/ProjectFacts";
 import OtherProjects from "components/Project/OtherProjects";
 import cn from "classnames";
 
-import {
-  getAllProjectSlugs,
-  getProjectBySlug,
-  AllProjectSlug,
-  getTopBar,
-} from "lib/api";
-import request from "lib/datocms";
+import { getAllProjectSlugs, getProjectBySlug, getTopBar } from "lib/api";
 
 const ProjectPage = ({ project, DataTopBar }) => {
   return (
@@ -71,16 +65,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await request({
-    query: AllProjectSlug,
-    variables: {},
-    excludeInvalid: true,
-    includeDrafts: true,
-  });
-  const projects = data.allProjects;
-  const paths = projects.map((project) => ({
-    params: { slug: project.slug },
-  }));
+  const paths = await getAllProjectSlugs();
 
   return {
     paths,
