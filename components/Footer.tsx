@@ -15,8 +15,6 @@ const Footer = () => {
         <div className="flex flex-row py-2 pt-6 sm:justify-center md:ml-0 ">
           {[
             ["Home", "/"],
-            ["About", "/about"],
-
             // ["Blog", "/blog"],
             // ["Contact", "/contact"],
             // ["Privacy Policy", "/privacy-policy"],
@@ -27,7 +25,7 @@ const Footer = () => {
           ))}
         </div>
 
-        <span className="pt-6 text-center text-gray-400">
+        <span className="pt-6 text-center text-gray-500">
           {" "}
           &copy; {new Date().getFullYear() || "2022"} Lanas.dev{" "}
         </span>

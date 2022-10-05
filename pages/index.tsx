@@ -1,16 +1,25 @@
 import Link from "next/link";
 import Head from "next/head";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
 import cn from "classnames";
 
 import Layout from "components/Layout";
 import ProjectList from "components/Project/ProjectList";
-import Testimonials from "components/Testimonial";
-import CallToAction from "components/CallToAction";
+// import Testimonials from "components/Testimonial";
+const Testimonials = dynamic(() => import("components/Testimonial"));
+
+// import BlogList from "components/Blog/BlogList";
+const Blog = dynamic(() => import("components/Blog/BlogList"));
+
+// import CallToAction from "components/CallToAction";
+const CallToAction = dynamic(() => import("components/CallToAction"), {
+  suspense: true,
+});
 
 // import request from "lib/datocms";
 import { getHome } from "lib/api";
-import BlogList from "components/Blog/BlogList";
 
 const IndexPage = ({ data }) => {
   return (
@@ -19,8 +28,10 @@ const IndexPage = ({ data }) => {
       <ProjectList data={data} />
       {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
       <Testimonials testimonials={data.allTestimonials} />
-      <BlogList posts={data.allPosts} />
-      <CallToAction />
+      <Blog posts={data.allPosts} />
+      <Suspense fallback={`Loading Contact...`}>
+        <CallToAction />
+      </Suspense>
     </Layout>
   );
 };
