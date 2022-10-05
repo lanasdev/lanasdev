@@ -224,3 +224,60 @@ export const getTopBar = async () => {
   });
   return data;
 };
+
+export const getAllPostsSlugs = async () => {
+  const data = await request({
+    query: gql`
+      query AllPostSlug {
+        allPosts {
+          slug
+        }
+      }
+    `,
+    variables: {},
+    excludeInvalid: true,
+    includeDrafts: true,
+  });
+  const posts = data.allPosts;
+  const paths = data.allPosts.map((slug) => ({
+    params: {
+      slug: slug.slug,
+    },
+  }));
+
+  return paths;
+};
+
+export const getPostBySlug = async (slug) => {
+  const PostBySlug = gql`
+    query PostBySlug($slug: String!) {
+      post(filter: { slug: { eq: $slug } }) {
+        title
+        slug
+        author {
+          name
+        }
+        excerpt
+        date
+        updatedAt
+        content {
+          value
+        }
+        coverImage {
+          responsiveImage(imgixParams: { auto: format, fit: fill, h: "900" }) {
+            ...responsiveImageFragment
+          }
+        }
+      }
+    }
+    ${responsiveImageFragment}
+  `;
+  const data = await request({
+    query: PostBySlug,
+    variables: { slug },
+    excludeInvalid: true,
+    includeDrafts: true,
+  });
+
+  return data;
+};
