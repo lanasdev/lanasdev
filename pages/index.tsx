@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Head from "next/head";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
@@ -8,17 +7,20 @@ import cn from "classnames";
 import Layout from "components/Layout";
 import ProjectList from "components/Project/ProjectList";
 // import Testimonials from "components/Testimonial";
-const Testimonials = dynamic(() => import("components/Testimonial"));
+const Testimonials = dynamic(() => import("components/Testimonial"), {
+  suspense: true,
+});
 
-// import BlogList from "components/Blog/BlogList";
-const Blog = dynamic(() => import("components/Blog/BlogList"));
+import BlogList from "components/Blog/BlogList";
+const Blog = dynamic(() => import("components/Blog/BlogList"), {
+  suspense: true,
+});
 
 // import CallToAction from "components/CallToAction";
 const CallToAction = dynamic(() => import("components/CallToAction"), {
   suspense: true,
 });
 
-// import request from "lib/datocms";
 import { getHome } from "lib/api";
 
 const IndexPage = ({ data }) => {
@@ -27,8 +29,12 @@ const IndexPage = ({ data }) => {
     <Layout>
       <ProjectList data={data} />
       {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
-      <Testimonials testimonials={data.allTestimonials} />
-      <Blog posts={data.allPosts} />
+      <Suspense fallback={<div>Loading Testimonials...</div>}>
+        <Testimonials testimonials={data.allTestimonials} />
+      </Suspense>
+      <Suspense fallback={<div>Loading Blog Posts...</div>}>
+        <Blog posts={data.allPosts} />
+      </Suspense>
       <Suspense fallback={`Loading Contact...`}>
         <CallToAction />
       </Suspense>

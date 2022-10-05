@@ -117,6 +117,7 @@ const ProjectBySlug = gql`
       clientname
       projecttype
       year
+      liveurl
       content {
         value
         links {
