@@ -30,7 +30,7 @@ const Contactform = () => {
       onSubmit={handleSubmit}
       className="flex w-72 flex-col dark:text-midnight"
     >
-      <div className="flex flex-col items-center">
+      <fieldset className="flex flex-col items-center">
         {/* <label htmlFor="name">Your Name</label> */}
         <input
           id="name"
@@ -38,11 +38,12 @@ const Contactform = () => {
           name="name"
           placeholder="Your Name"
           minLength={2}
-          className="form-input my-2 rounded-md px-4 py-3 focus:valid:ring-green-400 focus:invalid:ring-red-500"
+          autoComplete="name"
+          className="form-input my-2 rounded-md px-4 py-3 invalid:ring-red-500 placeholder:focus:italic focus:valid:ring-green-400"
         />
         <ValidationError prefix="Name" field="name" errors={state.errors} />
-      </div>
-      <div className="flex flex-col items-center">
+      </fieldset>
+      <fieldset className="flex flex-col items-center">
         {/* <label htmlFor="email">Email Address</label> */}
         <input
           id="email"
@@ -50,17 +51,18 @@ const Contactform = () => {
           name="email"
           placeholder="Email Adress"
           minLength={3}
+          autoComplete="email"
           pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
-          className="form-input my-2 rounded-md px-4 py-3 focus:valid:ring-green-400 focus:invalid:ring-red-500"
+          className="form-input my-2 rounded-md px-4 py-3 invalid:ring-red-500 placeholder:focus:italic focus:valid:ring-green-400"
         />
         <ValidationError prefix="Email" field="email" errors={state.errors} />
-      </div>
+      </fieldset>
       <textarea
         id="message"
         name="message"
         placeholder="Message"
         minLength={4}
-        className="form-textarea my-4 rounded-md py-3 focus:valid:ring-green-400 focus:invalid:ring-red-500"
+        className="form-textarea mt-2 mb-4 rounded-md pt-3 pb-12 placeholder:focus:italic focus:valid:ring-green-400 focus:invalid:ring-red-500"
       />
       <ValidationError prefix="Message" field="message" errors={state.errors} />
       <button

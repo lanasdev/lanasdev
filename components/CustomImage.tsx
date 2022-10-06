@@ -3,7 +3,7 @@ import Image from "next/future/image";
 export default function CustomImage({
   src,
   alt,
-  width = 600,
+  width = 1000,
   height = 600,
   ...otherProps
 }) {
