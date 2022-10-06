@@ -12,7 +12,7 @@ const CallToAction = dynamic(() => import("components/CallToAction"), {
 });
 import CoverImage from "components/CoverImage";
 import CustomStructuredText from "components/CustomStructuredText";
-import { Image } from "react-datocms";
+import { Image, StructuredText } from "react-datocms";
 import ProjectFacts from "components/Project/ProjectFacts";
 import OtherProjects from "components/Project/OtherProjects";
 import cn from "classnames";
@@ -27,7 +27,7 @@ const ProjectPage = ({ project, DataTopBar }) => {
         responsiveImage={project.image.responsiveImage}
         path={project.liveurl}
       />
-      <article className="dark:prose-dark dark:prose-white prose flex-row items-stretch py-8 dark:text-white dark:prose-headings:text-white dark:prose-a:text-white">
+      <article className="dark:prose-white prose flex-row items-stretch py-8 hover:prose-a:text-amber-500 prose-img:rounded-md dark:prose-invert dark:text-white dark:prose-headings:text-white dark:prose-a:text-white dark:prose-blockquote:text-white">
         <div className="post-sidebar flex flex-col items-stretch justify-between pb-8 ">
           <h2 className="mt-0">{project.title}</h2>
           {project.description && (
@@ -35,9 +35,9 @@ const ProjectPage = ({ project, DataTopBar }) => {
           )}
           <ProjectFacts project={project} />
         </div>
-        {/* <main className="flex flex-col items-stretch justify-between md:flex-row">
+        <main className="flex flex-col items-stretch justify-between md:flex-row">
           <CustomStructuredText data={project} />
-        </main> */}
+        </main>
       </article>
 
       <OtherProjects project={project} />

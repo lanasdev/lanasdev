@@ -15,7 +15,6 @@ const responsiveImageFragment = gql`
     aspectRatio
     alt
     title
-    bgColor
     base64
   }
 `;
@@ -166,11 +165,31 @@ export const getProjectBySlug = async (slug) => {
             }
             ... on TestimonialRecord {
               id
+              name
+              slug
               title
+              company
               content
+              image {
+                responsiveImage(
+                  imgixParams: { fit: crop, w: 300, h: 300, ar: "1" }
+                ) {
+                  ...responsiveImageFragment
+                }
+              }
             }
           }
-          blocks
+          blocks {
+            __typename
+            ... on ImageRecord {
+              id
+              image {
+                responsiveImage(imgixParams: { fit: crop, w: 600 }) {
+                  ...responsiveImageFragment
+                }
+              }
+            }
+          }
         }
         image {
           responsiveImage(imgixParams: { auto: format, fit: fill, h: "900" }) {
@@ -262,6 +281,18 @@ export const getPostBySlug = async (slug) => {
         updatedAt
         content {
           value
+          blocks {
+            __typename
+            ... on ImageRecord {
+              id
+              image {
+                responsiveImage(imgixParams: { fit: crop, w: 600 }) {
+                  ...responsiveImageFragment
+                }
+                alt
+              }
+            }
+          }
         }
         coverImage {
           responsiveImage(imgixParams: { auto: format, fit: fill, h: "900" }) {

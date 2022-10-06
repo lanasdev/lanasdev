@@ -3,12 +3,17 @@ import Layout from "components/Layout";
 import CoverImage from "components/CoverImage";
 import { getPostBySlug, getAllPostsSlugs } from "lib/api";
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
+import BlogStructuredText from "components/Blog/BlogStructuredText";
+import { StructuredText, Image } from "react-datocms";
 
 const BlogPost = ({ data }) => {
   const post = data.post;
   return (
     <Layout>
       <section className="pb-16">
+        <Link href="/blog">
+          <a className="pb-8">Back to blog</a>
+        </Link>
         <CoverImage
           title={post.title}
           responsiveImage={post.coverImage.responsiveImage}
@@ -18,11 +23,12 @@ const BlogPost = ({ data }) => {
           {post.title}
         </h1>
         <p className="">{post.excerpt}</p>
-        <Link href="/blog">
-          <a>Back to blog</a>
-        </Link>
+
+        <main className="flex flex-row items-stretch justify-between py-16">
+          <BlogStructuredText post={post} />
+        </main>
       </section>
-      <pre className="pt-16">{JSON.stringify(data, null, 2)}</pre>
+      {/* <pre className="pt-16">{JSON.stringify(data, null, 2)}</pre> */}
     </Layout>
   );
 };
