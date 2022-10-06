@@ -14,3 +14,5 @@ Build with the follwing Tech Stack:
 - [Vercel](https://vercel.com/)
 - [Formspree](https://formspree.io/)
 - [Simple Analytics](https://simpleanalytics.com/)
+
+Visit site: [Lanas.dev](https://lanas.dev)
