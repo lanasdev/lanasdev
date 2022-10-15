@@ -29,9 +29,11 @@ const IndexPage = ({ data }) => {
     <Layout>
       <ProjectList data={data} />
       {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
-      <Suspense fallback={<div>Loading Testimonials...</div>}>
+      {/*<Suspense fallback={<div>Loading Testimonials...</div>}>
         <Testimonials testimonials={data.allTestimonials} />
       </Suspense>
+      */}
+      
       <Suspense fallback={<div>Loading Blog Posts...</div>}>
         <Blog posts={data.allPosts} />
       </Suspense>
