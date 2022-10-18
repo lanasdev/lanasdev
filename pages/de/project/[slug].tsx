@@ -52,9 +52,9 @@ const ProjectPage = ({ project, DataTopBar }) => {
 export default ProjectPage;
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const { locale } = context;
-  const formattedLocale = locale.split("-")[0];
-  // const formattedLocale = "de";
+  // const { locale } = context;
+  // const formattedLocale = locale.split("-")[0];
+  const formattedLocale = "de";
   console.log("locale:", formattedLocale);
 
   const project = await getProjectBySlug(context.params.slug, formattedLocale);

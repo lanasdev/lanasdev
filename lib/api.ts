@@ -20,16 +20,17 @@ const responsiveImageFragment = gql`
 `;
 // ...responsiveImageFragment
 
-export const getHome = async () => {
+export const getHome = async (locale: string) => {
+
   const HomeQuery = gql`
-    query HomeQuery {
-      home {
+    query HomeQuery($locale: SiteLocale) {
+      home(locale: $locale) {
         title
         subheading
       }
-      allProjects {
+      allProjects(locale: $locale) {
         title
-        description(markdown: false)
+        description
         slug
         classname
         position
@@ -61,7 +62,7 @@ export const getHome = async () => {
           }
         }
       }
-      allPosts {
+      allPosts(locale: $locale, fallbackLocales: en) {
         id
         title
         excerpt
@@ -81,9 +82,11 @@ export const getHome = async () => {
   `;
   const data = await request({
     query: HomeQuery,
-    variables: {},
+    variables: {
+      locale,
+    },
     excludeInvalid: true,
-    includeDrafts: true,
+    includeDrafts: false,
   });
   return data;
 };
@@ -112,16 +115,16 @@ export const getAllProjectSlugs = async () => {
   return paths;
 };
 
-export const getProjectBySlug = async (slug) => {
+export const getProjectBySlug = async (slug, locale: string) => {
   const ProjectBySlug = gql`
-    query ProjectBySlug($slug: String!) {
-      home {
+    query ProjectBySlug($slug: String!, $locale: SiteLocale) {
+      home(locale: $locale) {
         title
         subheading
       }
-      project(filter: { slug: { eq: $slug } }) {
+      project(locale: $locale, filter: { slug: { eq: $slug } }) {
         title
-        description(markdown: false)
+        description
         slug
         classname
         position
@@ -144,7 +147,7 @@ export const getProjectBySlug = async (slug) => {
               id
               slug
               title
-              description(markdown: false)
+              description
               color1 {
                 hex
               }
@@ -198,7 +201,7 @@ export const getProjectBySlug = async (slug) => {
         }
         otherprojects {
           title
-          description(markdown: false)
+          description
           slug
           classname
           position
@@ -220,24 +223,26 @@ export const getProjectBySlug = async (slug) => {
   `;
   const data = await request({
     query: ProjectBySlug,
-    variables: { slug },
+    variables: { slug, locale },
     excludeInvalid: true,
-    includeDrafts: true,
+    includeDrafts: false,
   });
   return data.project;
 };
 
-export const getTopBar = async () => {
+export const getTopBar = async (locale: string) => {
   const data = await request({
     query: gql`
-      query TopBarQuery {
-        home {
+      query TopBarQuery($locale: SiteLocale) {
+        home(locale: $locale) {
           title
           subheading
         }
       }
     `,
-    variables: {},
+    variables: {
+      locale,
+    },
     excludeInvalid: false,
     includeDrafts: false,
   });
@@ -267,10 +272,10 @@ export const getAllPostsSlugs = async () => {
   return paths;
 };
 
-export const getPostBySlug = async (slug) => {
+export const getPostBySlug = async (slug, locale: string) => {
   const PostBySlug = gql`
-    query PostBySlug($slug: String!) {
-      post(filter: { slug: { eq: $slug } }) {
+    query PostBySlug($slug: String!, $locale: SiteLocale) {
+      post(locale: $locale, filter: { slug: { eq: $slug } }) {
         title
         slug
         author {
@@ -305,7 +310,7 @@ export const getPostBySlug = async (slug) => {
   `;
   const data = await request({
     query: PostBySlug,
-    variables: { slug },
+    variables: { slug, locale },
     excludeInvalid: true,
     includeDrafts: true,
   });

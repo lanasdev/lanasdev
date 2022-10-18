@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { TwitterLogo, InstagramLogo, GithubLogo } from "phosphor-react";
+import LanguageBar from "./LanguageBar";
 
 const Footer = () => {
   const aClass =
@@ -52,6 +53,7 @@ const Footer = () => {
           &copy; {new Date().getFullYear() || "2022"} Lanas.dev{" "}
         </span>
       </div>
+      <LanguageBar />
     </footer>
   );
 };

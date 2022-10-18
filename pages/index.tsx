@@ -33,7 +33,7 @@ const IndexPage = ({ data }) => {
         <Testimonials testimonials={data.allTestimonials} />
       </Suspense>
       */}
-      
+
       <Suspense fallback={<div>Loading Blog Posts...</div>}>
         <Blog posts={data.allPosts} />
       </Suspense>
@@ -45,7 +45,10 @@ const IndexPage = ({ data }) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const data = await getHome();
+  const { locale } = context;
+  console.log("locale:", locale);
+
+  const data = await getHome(locale);
 
   return { props: { data } };
 };

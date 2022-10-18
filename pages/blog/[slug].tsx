@@ -35,8 +35,13 @@ const BlogPost = ({ data }) => {
 
 export default BlogPost;
 
-export const getStaticProps = async ({ params }) => {
-  const data = await getPostBySlug(params.slug);
+export const getStaticProps = async (context) => {
+  const { locale } = context;
+  const formattedLocale = locale.split("-")[0];
+  // const formattedLocale = "de";
+  console.log("locale:", formattedLocale);
+
+  const data = await getPostBySlug(context.params.slug, locale);
   return {
     props: {
       data,
