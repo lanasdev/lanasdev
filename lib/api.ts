@@ -41,13 +41,6 @@ export const getHome = async (locale: string) => {
         }
         direction
         gradientdirection
-        image {
-          responsiveImage(
-            imgixParams: { fm: webp, fit: fill, w: 600, h: 600 }
-          ) {
-            ...responsiveImageFragment
-          }
-        }
       }
       allTestimonials {
         title
@@ -207,7 +200,7 @@ export const getProjectBySlug = async (
           }
         }
         image {
-          responsiveImage(imgixParams: { auto: format, fit: fill, h: "900" }) {
+          responsiveImage(imgixParams: { auto: format, fit: crop, h: 900 }) {
             ...responsiveImageFragment
           }
         }

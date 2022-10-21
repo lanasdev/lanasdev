@@ -17,7 +17,7 @@ export default function CoverImage({ title, responsiveImage, path }: Props) {
         alt: `Cover Image for ${title}`,
       }}
       className={cn(
-        "relative mt-16 mb-8 h-96 w-full overflow-auto rounded-md object-cover",
+        "relative mt-16 mb-8 w-full overflow-auto rounded-md object-cover",
         {
           "hover:shadow-medium transition-shadow duration-200": path,
         }

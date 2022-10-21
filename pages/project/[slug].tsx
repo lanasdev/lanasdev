@@ -1,5 +1,6 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 import { Suspense } from "react";
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
 
@@ -20,6 +21,10 @@ import cn from "classnames";
 import { getAllProjectSlugs, getProjectBySlug, getTopBar } from "lib/api";
 
 const ProjectPage = ({ project, DataTopBar }) => {
+  const router = useRouter();
+  const { locale } = router;
+  const fmLocale = locale.split("-")[0];
+
   return (
     <Layout title={project.title}>
       <CoverImage
@@ -33,7 +38,7 @@ const ProjectPage = ({ project, DataTopBar }) => {
           {project.description && (
             <p className="description">{project.description}</p>
           )}
-          <ProjectFacts project={project} />
+          <ProjectFacts project={project} locale={fmLocale} />
         </div>
         <main className="flex flex-col items-stretch justify-between md:flex-row">
           <CustomStructuredText data={project} />
@@ -42,9 +47,6 @@ const ProjectPage = ({ project, DataTopBar }) => {
 
       <OtherProjects project={project} />
       {/* <pre className="pt-16">{JSON.stringify(project, null, 2)}</pre> */}
-      <Suspense fallback={`Loading Contact...`}>
-        <CallToAction />
-      </Suspense>
     </Layout>
   );
 };
