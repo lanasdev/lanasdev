@@ -2,7 +2,8 @@ export const i18n = {
     home: {
         subtitle: {
             en: "Web craftsmenship for thriving businesses.",
-            de: "Webhandwerk für wachsende Unternehmen.",
+            // de: "Webhandwerk für wachsende Unternehmen.",
+            de: "Digitales Handwerk für die Solarbranche.",
         },
         blogsubheading: {
             en: "Thoughts on web development, design and business.",

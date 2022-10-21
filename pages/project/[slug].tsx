@@ -10,7 +10,7 @@ import CustomStructuredText from "components/CustomStructuredText";
 import ProjectFacts from "components/Project/ProjectFacts";
 import OtherProjects from "components/Project/OtherProjects";
 
-import ArticleHeader from "components/ArticleHeader";
+import ProjectHeader from "components/Project/ProjectHeader";
 
 import { getAllProjectSlugs, getProjectBySlug, getTopBar } from "lib/api";
 
@@ -21,11 +21,10 @@ const ProjectPage = ({ project }) => {
 
   return (
     <Layout title={project.title}>
-      <ArticleHeader
+      <ProjectHeader
         title={project.title}
-        subheadingText={"Project"}
+        excerpt={project.description}
         date={project.createdAt}
-        author={project.author}
       />
       <CoverImage
         title={project.title}
@@ -33,11 +32,7 @@ const ProjectPage = ({ project }) => {
         path={project.liveurl}
       />
       <article className="dark:prose-white prose flex-row items-stretch py-8 hover:prose-a:text-amber-500 prose-img:rounded-md dark:text-white dark:prose-invert dark:prose-headings:text-white dark:prose-a:text-white dark:prose-blockquote:text-white">
-        <div className="post-sidebar flex flex-col items-stretch justify-between pb-8 ">
-          <h2 className="mt-0">{project.title}</h2>
-          {project.description && (
-            <p className="description">{project.description}</p>
-          )}
+        <div className="post-sidebar flex flex-col items-stretch justify-between pb-16 ">
           <ProjectFacts project={project} locale={fmLocale} />
         </div>
         <main className="flex flex-col items-stretch justify-between md:flex-row">

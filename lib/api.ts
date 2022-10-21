@@ -313,7 +313,7 @@ export const getPostBySlug = async (slug: any, locale: string) => {
             ... on ImageRecord {
               id
               image {
-                responsiveImage(imgixParams: { fit: crop, w: 600 }) {
+                responsiveImage(imgixParams: { fit: crop, h: 600 }) {
                   ...responsiveImageFragment
                 }
                 alt
