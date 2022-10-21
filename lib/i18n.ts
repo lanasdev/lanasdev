@@ -54,7 +54,7 @@ export const i18n = {
         },
         viewwebsite: {
             en: "View website",
-            de: "Website ansehen",
+            de: "Website",
         },
 
     },

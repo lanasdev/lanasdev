@@ -5,14 +5,18 @@ import { getPostBySlug, getAllPostsSlugs } from "lib/api";
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
 import BlogStructuredText from "components/Blog/BlogStructuredText";
 // import { StructuredText, Image } from "react-datocms";
-import BlogHeader from "components/Blog/BlogHeader";
+import ArticleHeader from "components/ArticleHeader";
 
 const BlogPost = ({ data }) => {
   const post = data.post;
   return (
     <Layout>
       <section className="pb-16 pt-16">
-        <BlogHeader title={post.title} date={post.date} author={post.author} />
+        <ArticleHeader
+          title={post.title}
+          date={post.date}
+          author={post.author}
+        />
 
         <CoverImage
           title={post.title}
@@ -22,7 +26,6 @@ const BlogPost = ({ data }) => {
           <BlogStructuredText post={post} />
         </main>
       </section>
-      {/* <pre className="pt-16">{JSON.stringify(data, null, 2)}</pre> */}
     </Layout>
   );
 };

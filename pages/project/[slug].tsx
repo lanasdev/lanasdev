@@ -1,32 +1,32 @@
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import { Suspense } from "react";
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
+import cn from "classnames";
 
 import Layout from "components/Layout";
-import CustomLink from "components/CustomLink";
-import CustomImage from "components/CustomImage";
-// import CallToAction from "components/CallToAction";
-const CallToAction = dynamic(() => import("components/CallToAction"), {
-  suspense: true,
-});
+
 import CoverImage from "components/CoverImage";
 import CustomStructuredText from "components/CustomStructuredText";
-import { Image, StructuredText } from "react-datocms";
 import ProjectFacts from "components/Project/ProjectFacts";
 import OtherProjects from "components/Project/OtherProjects";
-import cn from "classnames";
+
+import ArticleHeader from "components/ArticleHeader";
 
 import { getAllProjectSlugs, getProjectBySlug, getTopBar } from "lib/api";
 
-const ProjectPage = ({ project, DataTopBar }) => {
+const ProjectPage = ({ project }) => {
   const router = useRouter();
   const { locale } = router;
   const fmLocale = locale.split("-")[0];
 
   return (
     <Layout title={project.title}>
+      <ArticleHeader
+        title={project.title}
+        subheadingText={"Project"}
+        date={project.createdAt}
+        author={project.author}
+      />
       <CoverImage
         title={project.title}
         responsiveImage={project.image.responsiveImage}
@@ -61,13 +61,10 @@ export const getStaticProps: GetStaticProps = async ({
   const formattedLocale = locale.split("-")[0];
 
   const project = await getProjectBySlug(params.slug, formattedLocale);
-  const TopBar = await getTopBar(formattedLocale);
-  const DataTopBar = TopBar.home;
 
   return {
     props: {
       project,
-      DataTopBar,
     },
   };
 };

@@ -144,6 +144,7 @@ export const getProjectBySlug = async (
         projecttype
         year
         liveurl
+        createdAt
         content {
           value
           links {

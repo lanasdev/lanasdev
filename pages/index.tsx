@@ -42,9 +42,6 @@ const IndexPage = ({ data }) => {
       <Suspense fallback={<div>Loading Blog Posts...</div>}>
         <Blog posts={data.allPosts} locale={fmLocale} />
       </Suspense>
-      <Suspense fallback={`Loading Contact...`}>
-        <CallToAction locale={fmLocale} />
-      </Suspense>
     </Layout>
   );
 };
