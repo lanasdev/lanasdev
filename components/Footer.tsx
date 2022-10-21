@@ -30,15 +30,9 @@ const Footer = () => {
 
   return (
     // a cool footer
-    <footer className="overflow-hidden py-24 ">
-      <div className="flex flex-col items-center justify-center px-4">
-        {/* <Image src="/img/LanasLogoYellow.svg" alt="Lanas Logo" width={108} height={32} /> */}
-        <Link href="/">
-          <a className="text-xl hover:underline hover:decoration-amber-500">
-            Lanas.
-          </a>
-        </Link>
-        <div className="flex flex-row gap-6 py-2 pt-6 sm:justify-center md:ml-0 ">
+    <footer className=" pt-24 ">
+      <div className="flex flex-col items-center justify-center space-y-4 pb-4 pt-32 sm:flex-row-reverse sm:justify-between ">
+        <div className="flex flex-row items-center gap-4 ">
           {socials.map((s) => (
             <Link href={s.link} key={s.id}>
               <a className={aClass} aria-label={s.name}>
@@ -47,13 +41,19 @@ const Footer = () => {
             </Link>
           ))}
         </div>
+        <div className="flex flex-col sm:flex-row-reverse">
+          <LanguageBar />
 
-        <span className="pt-6 text-center text-gray-500">
-          {" "}
-          &copy; {new Date().getFullYear() || "2022"} Lanas.dev{" "}
-        </span>
+          <Link href="/">
+            <a className="hover:underline hover:decoration-amber-500 hover:decoration-2">
+              &copy; {new Date().getFullYear() || "2022"} Lanas.dev{" "}
+              <span className="hidden whitespace-pre-line md:inline-block">
+                {"-"}
+              </span>
+            </a>
+          </Link>
+        </div>
       </div>
-      <LanguageBar />
     </footer>
   );
 };

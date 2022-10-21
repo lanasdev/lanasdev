@@ -26,7 +26,7 @@ export function reportWebVitals(metric: NextWebVitalsMetric) {
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Fragment>
-      <div className="selection:bg-amber-500 dark:selection:bg-amber-600">
+      <div className="bg-white text-midnight selection:bg-amber-500 dark:bg-midnight dark:text-white ">
         <Component {...pageProps} />
       </div>
       <Script src="https://sa.lanas.dev/latest.js" />

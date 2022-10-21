@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import cn from "classnames";
 
 const LanguageBar = () => {
   const router = useRouter();
@@ -7,26 +8,28 @@ const LanguageBar = () => {
   const otherLocales = locales.filter((locale) => locale !== activeLocale);
 
   return (
-    <div>
-      <p>Locale switcher:</p>
-      <ul>
-        {otherLocales.map((locale) => {
-          const { pathname, query, asPath } = router;
-          return (
-            <li
-              key={locale}
-              className="mr-0 mt-0 mb-0 flex flex-col items-center md:mb-0 md:flex-row md:justify-end"
-            >
-              <Link href={{ pathname, query }} as={asPath} locale={locale}>
-                <a className="hover:text-success p-1 underline transition-colors duration-200">
-                  {locale}
-                </a>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <ul className="flex flex-row justify-center sm:justify-start">
+      {locales.map((locale, index) => {
+        const { pathname, query, asPath } = router;
+        return (
+          <li key={locale} className="">
+            <span className="">{index == 1 ? "/" : ""}</span>
+            <Link href={{ pathname, query }} as={asPath} locale={locale}>
+              <a
+                className={cn(
+                  locale === activeLocale
+                    ? "underline decoration-gray-500 "
+                    : "hover:underline hover:decoration-amber-500 ",
+                  "hover:text-success px-2 decoration-2 transition-colors duration-200"
+                )}
+              >
+                {locale.toUpperCase()}
+              </a>
+            </Link>
+          </li>
+        );
+      })}
+    </ul>
   );
 };
 
