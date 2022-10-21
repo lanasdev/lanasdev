@@ -46,8 +46,6 @@ const IndexPage = ({ data }) => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { locale } = context;
-  console.log("locale:", locale);
-
   const data = await getHome(locale);
 
   return { props: { data } };

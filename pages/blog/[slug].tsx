@@ -31,8 +31,6 @@ export default BlogPost;
 
 export const getStaticProps = async ({ params, preview = false, locale }) => {
   const formattedLocale = locale.split("-")[0];
-  // const formattedLocale = "de";
-  console.log("locale:", formattedLocale);
 
   const data = await getPostBySlug(params.slug, formattedLocale);
   return {
@@ -43,8 +41,6 @@ export const getStaticProps = async ({ params, preview = false, locale }) => {
 };
 
 export const getStaticPaths = async ({ locales }) => {
-  console.log("locales from Blog:", locales);
-
   const paths = await getAllPostsSlugs(locales);
 
   return {

@@ -51,13 +51,14 @@ const ProjectPage = ({ project, DataTopBar }) => {
 
 export default ProjectPage;
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const { locale } = context;
+export const getStaticProps: GetStaticProps = async ({
+  params,
+  preview = false,
+  locale,
+}) => {
   const formattedLocale = locale.split("-")[0];
-  // const formattedLocale = "de";
-  console.log("locale:", formattedLocale);
 
-  const project = await getProjectBySlug(context.params.slug, formattedLocale);
+  const project = await getProjectBySlug(params.slug, formattedLocale);
   const TopBar = await getTopBar(formattedLocale);
   const DataTopBar = TopBar.home;
 
@@ -69,8 +70,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
   };
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await getAllProjectSlugs();
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
+  const paths = await getAllProjectSlugs({ locales });
 
   return {
     paths,

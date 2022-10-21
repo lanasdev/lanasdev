@@ -90,7 +90,7 @@ export const getHome = async (locale: string) => {
   return data;
 };
 
-export const getAllProjectSlugs = async () => {
+export const getAllProjectSlugs = async ({ locales = ["en", "de"] }) => {
   // get all project slugs for getStaticPaths
   const data = await request({
     query: gql`
@@ -105,19 +105,20 @@ export const getAllProjectSlugs = async () => {
     includeDrafts: true,
   });
 
-  // const pathsArray = [];
 
-  // data.allProjects.map((project) => {
-  //   allLocales.map(language => {
-  //     pathsArray.push({ params: { slug: project.slug }, locale: language });
-  //   });
-  // });
+  const paths = [];
 
-  const paths = data.allProjects.map((slug: { slug: any }) => ({
-    params: {
-      slug: slug.slug,
-    },
-  }));
+  data.allProjects.map((project) => {
+    locales.map(language => {
+      paths.push({ params: { slug: project.slug }, locale: language });
+    });
+  });
+
+  // const paths = data.allProjects.map((slug: { slug: any }) => ({
+  //   params: {
+  //     slug: slug.slug,
+  //   },
+  // }));
 
   // return pathsArray;
   return paths;
@@ -198,7 +199,7 @@ export const getProjectBySlug = async (
             ... on ImageRecord {
               id
               image {
-                responsiveImage(imgixParams: { fit: crop, w: 600 }) {
+                responsiveImage(imgixParams: { fit: crop, h: 600 }) {
                   ...responsiveImageFragment
                 }
               }
