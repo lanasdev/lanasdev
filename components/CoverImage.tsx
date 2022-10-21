@@ -16,9 +16,12 @@ export default function CoverImage({ title, responsiveImage, path }: Props) {
         ...responsiveImage,
         alt: `Cover Image for ${title}`,
       }}
-      className={cn("mt-16 w-full rounded-md object-cover", {
-        "hover:shadow-medium transition-shadow duration-200": path,
-      })}
+      className={cn(
+        "relative mt-16 mb-8 h-96 w-full overflow-auto rounded-md object-cover",
+        {
+          "hover:shadow-medium transition-shadow duration-200": path,
+        }
+      )}
     />
   );
   return (

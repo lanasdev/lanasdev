@@ -21,7 +21,6 @@ const responsiveImageFragment = gql`
 // ...responsiveImageFragment
 
 export const getHome = async (locale: string) => {
-
   const HomeQuery = gql`
     query HomeQuery($locale: SiteLocale) {
       home(locale: $locale) {
@@ -105,17 +104,29 @@ export const getAllProjectSlugs = async () => {
     excludeInvalid: true,
     includeDrafts: true,
   });
-  const projects = data.allProjects;
-  const paths = data.allProjects.map((slug) => ({
+
+  // const pathsArray = [];
+
+  // data.allProjects.map((project) => {
+  //   allLocales.map(language => {
+  //     pathsArray.push({ params: { slug: project.slug }, locale: language });
+  //   });
+  // });
+
+  const paths = data.allProjects.map((slug: { slug: any }) => ({
     params: {
       slug: slug.slug,
     },
   }));
 
+  // return pathsArray;
   return paths;
 };
 
-export const getProjectBySlug = async (slug, locale: string) => {
+export const getProjectBySlug = async (
+  slug: string | string[],
+  locale: string
+) => {
   const ProjectBySlug = gql`
     query ProjectBySlug($slug: String!, $locale: SiteLocale) {
       home(locale: $locale) {
@@ -249,7 +260,7 @@ export const getTopBar = async (locale: string) => {
   return data;
 };
 
-export const getAllPostsSlugs = async () => {
+export const getAllPostsSlugs = async ({ locales = ["en", "de"] }) => {
   const data = await request({
     query: gql`
       query AllPostSlug {
@@ -262,17 +273,24 @@ export const getAllPostsSlugs = async () => {
     excludeInvalid: true,
     includeDrafts: true,
   });
-  const posts = data.allPosts;
-  const paths = data.allPosts.map((slug) => ({
-    params: {
-      slug: slug.slug,
-    },
-  }));
+
+  const paths = [];
+  data.allPosts.map((post: { slug: any }) => {
+    locales.map((language) => {
+      paths.push({ params: { slug: post.slug }, locale: language });
+    });
+  });
+
+  // const paths = data.allPosts.map((slug) => ({
+  //   params: {
+  //     slug: slug.slug,
+  //   },
+  // }));
 
   return paths;
 };
 
-export const getPostBySlug = async (slug, locale: string) => {
+export const getPostBySlug = async (slug: any, locale: string) => {
   const PostBySlug = gql`
     query PostBySlug($slug: String!, $locale: SiteLocale) {
       post(locale: $locale, filter: { slug: { eq: $slug } }) {
@@ -280,9 +298,18 @@ export const getPostBySlug = async (slug, locale: string) => {
         slug
         author {
           name
+          role
+          picture {
+            responsiveImage(
+              imgixParams: { fit: crop, w: 50, h: 50, ar: "1", auto: format }
+            ) {
+              ...responsiveImageFragment
+            }
+          }
         }
         excerpt
         date
+        createdAt
         updatedAt
         content {
           value
@@ -300,7 +327,7 @@ export const getPostBySlug = async (slug, locale: string) => {
           }
         }
         coverImage {
-          responsiveImage(imgixParams: { auto: format, fit: fill, h: "900" }) {
+          responsiveImage(imgixParams: { auto: format, fit: crop, h: "900", }) {
             ...responsiveImageFragment
           }
         }
