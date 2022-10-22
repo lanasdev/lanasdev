@@ -31,8 +31,8 @@ const Footer = () => {
   return (
     // a cool footer
     <footer className=" pt-24 ">
-      <div className="flex flex-col items-center justify-center space-y-4 pb-4 pt-32 sm:flex-row-reverse sm:justify-between ">
-        <div className="flex flex-row items-center gap-4 ">
+      <div className="flex flex-col items-center justify-center space-y-4 pb-4 pt-32 sm:flex-row-reverse sm:justify-between sm:space-y-0 ">
+        <div className="flex flex-row items-center gap-4 sm:gap-0 ">
           {socials.map((s) => (
             <Link href={s.link} key={s.id}>
               <a className={aClass} aria-label={s.name}>
