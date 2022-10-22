@@ -1,11 +1,13 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
+import { useRouter } from "next/router";
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
 import cn from "classnames";
 
 import Layout from "components/Layout";
 import ProjectList from "components/Project/ProjectList";
+
 // import Testimonials from "components/Testimonial";
 const Testimonials = dynamic(() => import("components/Testimonial"), {
   suspense: true,
@@ -24,6 +26,9 @@ const CallToAction = dynamic(() => import("components/CallToAction"), {
 import { getHome } from "lib/api";
 
 const IndexPage = ({ data }) => {
+  let { locale } = useRouter();
+  const fmLocale = locale.split("-")[0];
+
   return (
     // <Layout DataTopBar={data.home}>
     <Layout>
@@ -33,19 +38,17 @@ const IndexPage = ({ data }) => {
         <Testimonials testimonials={data.allTestimonials} />
       </Suspense>
       */}
-      
+
       <Suspense fallback={<div>Loading Blog Posts...</div>}>
-        <Blog posts={data.allPosts} />
-      </Suspense>
-      <Suspense fallback={`Loading Contact...`}>
-        <CallToAction />
+        <Blog posts={data.allPosts} locale={fmLocale} />
       </Suspense>
     </Layout>
   );
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const data = await getHome();
+  const { locale } = context;
+  const data = await getHome(locale);
 
   return { props: { data } };
 };

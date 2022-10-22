@@ -20,16 +20,16 @@ const responsiveImageFragment = gql`
 `;
 // ...responsiveImageFragment
 
-export const getHome = async () => {
+export const getHome = async (locale: string) => {
   const HomeQuery = gql`
-    query HomeQuery {
-      home {
+    query HomeQuery($locale: SiteLocale) {
+      home(locale: $locale) {
         title
         subheading
       }
-      allProjects {
+      allProjects(locale: $locale) {
         title
-        description(markdown: false)
+        description
         slug
         classname
         position
@@ -41,13 +41,6 @@ export const getHome = async () => {
         }
         direction
         gradientdirection
-        image {
-          responsiveImage(
-            imgixParams: { fm: webp, fit: fill, w: 600, h: 600 }
-          ) {
-            ...responsiveImageFragment
-          }
-        }
       }
       allTestimonials {
         title
@@ -61,7 +54,7 @@ export const getHome = async () => {
           }
         }
       }
-      allPosts {
+      allPosts(locale: $locale, fallbackLocales: en) {
         id
         title
         excerpt
@@ -81,14 +74,16 @@ export const getHome = async () => {
   `;
   const data = await request({
     query: HomeQuery,
-    variables: {},
+    variables: {
+      locale,
+    },
     excludeInvalid: true,
-    includeDrafts: true,
+    includeDrafts: false,
   });
   return data;
 };
 
-export const getAllProjectSlugs = async () => {
+export const getAllProjectSlugs = async ({ locales = ["en", "de"] }) => {
   // get all project slugs for getStaticPaths
   const data = await request({
     query: gql`
@@ -102,26 +97,39 @@ export const getAllProjectSlugs = async () => {
     excludeInvalid: true,
     includeDrafts: true,
   });
-  const projects = data.allProjects;
-  const paths = data.allProjects.map((slug) => ({
-    params: {
-      slug: slug.slug,
-    },
-  }));
 
+
+  const paths = [];
+
+  data.allProjects.map((project) => {
+    locales.map(language => {
+      paths.push({ params: { slug: project.slug }, locale: language });
+    });
+  });
+
+  // const paths = data.allProjects.map((slug: { slug: any }) => ({
+  //   params: {
+  //     slug: slug.slug,
+  //   },
+  // }));
+
+  // return pathsArray;
   return paths;
 };
 
-export const getProjectBySlug = async (slug) => {
+export const getProjectBySlug = async (
+  slug: string | string[],
+  locale: string
+) => {
   const ProjectBySlug = gql`
-    query ProjectBySlug($slug: String!) {
-      home {
+    query ProjectBySlug($slug: String!, $locale: SiteLocale) {
+      home(locale: $locale) {
         title
         subheading
       }
-      project(filter: { slug: { eq: $slug } }) {
+      project(locale: $locale, filter: { slug: { eq: $slug } }) {
         title
-        description(markdown: false)
+        description
         slug
         classname
         position
@@ -136,6 +144,7 @@ export const getProjectBySlug = async (slug) => {
         projecttype
         year
         liveurl
+        createdAt
         content {
           value
           links {
@@ -144,7 +153,7 @@ export const getProjectBySlug = async (slug) => {
               id
               slug
               title
-              description(markdown: false)
+              description
               color1 {
                 hex
               }
@@ -184,7 +193,7 @@ export const getProjectBySlug = async (slug) => {
             ... on ImageRecord {
               id
               image {
-                responsiveImage(imgixParams: { fit: crop, w: 600 }) {
+                responsiveImage(imgixParams: { fit: crop, h: 600 }) {
                   ...responsiveImageFragment
                 }
               }
@@ -192,13 +201,13 @@ export const getProjectBySlug = async (slug) => {
           }
         }
         image {
-          responsiveImage(imgixParams: { auto: format, fit: fill, h: "900" }) {
+          responsiveImage(imgixParams: { auto: format, fit: crop, h: 900 }) {
             ...responsiveImageFragment
           }
         }
         otherprojects {
           title
-          description(markdown: false)
+          description
           slug
           classname
           position
@@ -220,31 +229,33 @@ export const getProjectBySlug = async (slug) => {
   `;
   const data = await request({
     query: ProjectBySlug,
-    variables: { slug },
+    variables: { slug, locale },
     excludeInvalid: true,
-    includeDrafts: true,
+    includeDrafts: false,
   });
   return data.project;
 };
 
-export const getTopBar = async () => {
+export const getTopBar = async (locale: string) => {
   const data = await request({
     query: gql`
-      query TopBarQuery {
-        home {
+      query TopBarQuery($locale: SiteLocale) {
+        home(locale: $locale) {
           title
           subheading
         }
       }
     `,
-    variables: {},
+    variables: {
+      locale,
+    },
     excludeInvalid: false,
     includeDrafts: false,
   });
   return data;
 };
 
-export const getAllPostsSlugs = async () => {
+export const getAllPostsSlugs = async ({ locales = ["en", "de"] }) => {
   const data = await request({
     query: gql`
       query AllPostSlug {
@@ -257,27 +268,43 @@ export const getAllPostsSlugs = async () => {
     excludeInvalid: true,
     includeDrafts: true,
   });
-  const posts = data.allPosts;
-  const paths = data.allPosts.map((slug) => ({
-    params: {
-      slug: slug.slug,
-    },
-  }));
+
+  const paths = [];
+  data.allPosts.map((post: { slug: any }) => {
+    locales.map((language) => {
+      paths.push({ params: { slug: post.slug }, locale: language });
+    });
+  });
+
+  // const paths = data.allPosts.map((slug) => ({
+  //   params: {
+  //     slug: slug.slug,
+  //   },
+  // }));
 
   return paths;
 };
 
-export const getPostBySlug = async (slug) => {
+export const getPostBySlug = async (slug: any, locale: string) => {
   const PostBySlug = gql`
-    query PostBySlug($slug: String!) {
-      post(filter: { slug: { eq: $slug } }) {
+    query PostBySlug($slug: String!, $locale: SiteLocale) {
+      post(locale: $locale, filter: { slug: { eq: $slug } }) {
         title
         slug
         author {
           name
+          role
+          picture {
+            responsiveImage(
+              imgixParams: { fit: crop, w: 50, h: 50, ar: "1", auto: format }
+            ) {
+              ...responsiveImageFragment
+            }
+          }
         }
         excerpt
         date
+        createdAt
         updatedAt
         content {
           value
@@ -286,7 +313,7 @@ export const getPostBySlug = async (slug) => {
             ... on ImageRecord {
               id
               image {
-                responsiveImage(imgixParams: { fit: crop, w: 600 }) {
+                responsiveImage(imgixParams: { fit: crop, h: 600 }) {
                   ...responsiveImageFragment
                 }
                 alt
@@ -295,7 +322,7 @@ export const getPostBySlug = async (slug) => {
           }
         }
         coverImage {
-          responsiveImage(imgixParams: { auto: format, fit: fill, h: "900" }) {
+          responsiveImage(imgixParams: { auto: format, fit: crop, h: "900", }) {
             ...responsiveImageFragment
           }
         }
@@ -305,7 +332,7 @@ export const getPostBySlug = async (slug) => {
   `;
   const data = await request({
     query: PostBySlug,
-    variables: { slug },
+    variables: { slug, locale },
     excludeInvalid: true,
     includeDrafts: true,
   });

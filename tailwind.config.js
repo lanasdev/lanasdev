@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const colors = require("tailwindcss/colors");
+
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -13,6 +15,7 @@ module.exports = {
       colors: {
         midnight: "#060B12",
         white: "#f8f8ff",
+        gray: colors.slate,
       },
       aspectRatio: {
         golden: "1 / 1.618",
