@@ -2,38 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
+:root {
+  font-family: "Inter", sans-serif;
+}
+
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: "InterVar", sans-serif;
+    font-optical-sizing: auto;
+  }
+}
+
+@font-face {
+  font-family: "InterVar";
+  font-weight: 400 600 700;
   font-display: swap;
-  src: url("/fonts/Inter/Inter-Regular.woff2?v=3.19") format("woff2"),
-    url("/fonts/Inter/Inter-Regular.woff?v=3.19") format("woff");
-} */
+  font-style: normal;
+  src: url("/fonts/Inter/Inter.var.woff2") format("woff2-variations"),
+    url("/fonts/Inter/Inter.var.woff2") format("woff2");
+  src: url("/fonts/Inter/Inter.var.woff2") format("woff2") tech("variations");
+}
 
 @font-face {
   font-family: "Inter";
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   font-display: swap;
-  src: url("/fonts/Inter/Inter-Medium.woff2?v=3.19") format("woff2"),
-    url("/fonts/Inter/Inter-Medium.woff?v=3.19") format("woff");
+  src: url("/fonts/Inter/Inter-Regular.woff2?v=3.19") format("woff2");
 }
-
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/Inter/Inter-SemiBold.woff2?v=3.19") format("woff2");
+}
 @font-face {
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("/fonts/Inter/Inter-Bold.woff2?v=3.19") format("woff2"),
-    url("/fonts/Inter/Inter-Bold.woff?v=3.19") format("woff");
-}
-
-@font-face {
-  font-family: "Inter var";
-  font-weight: 100 900;
-  font-display: swap;
-  font-style: normal;
-  font-named-instance: "Regular";
-  src: url("/fonts/Inter/Inter-roman.var.woff2?v=3.19") format("woff2");
+  src: url("/fonts/Inter/Inter-Bold.woff2?v=3.19") format("woff2");
 }

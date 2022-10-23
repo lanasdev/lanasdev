@@ -56,20 +56,6 @@ const Layout = ({
         />
         <meta name="author" content="Lanas.dev" />
         <Favicon />
-        <link
-          rel="preload"
-          href="/fonts/Inter/Inter-Medium.woff2?v=3.19"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/Inter/Inter-Bold.woff2?v=3.19"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
       </Head>
       <div className="max-w-screen mx-auto px-8 md:max-w-6xl">
         {/* <Navi /> */}

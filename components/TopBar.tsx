@@ -6,12 +6,15 @@ import i18n from "lib/i18n";
 const TopBar = ({ locale = "en" }) => {
   return (
     <div className="flex w-full flex-col items-baseline justify-between py-16 md:flex-row">
-      <h1 className="text-bold text-6xl font-semibold decoration-midnight hover:underline dark:text-white/80 dark:decoration-white dark:hover:text-white ">
-        <Link href="/">
-          <a>{"Lanas."}</a>
-        </Link>
-      </h1>
-      <h2 className="pt-8 text-2xl md:pt-0">
+      <Link href="/">
+        <a>
+          <h1 className="text-6xl font-bold decoration-midnight hover:underline dark:text-white dark:decoration-white  ">
+            {"Lanas."}
+          </h1>
+        </a>
+      </Link>
+
+      <h2 className="pt-6 text-2xl font-semibold md:pt-0">
         {/* {"Web craftsmenship for thriving businesses."} */}
         {i18n.home.subtitle[locale]}
       </h2>

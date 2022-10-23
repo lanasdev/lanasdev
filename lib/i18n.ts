@@ -6,14 +6,14 @@ export const i18n = {
             de: "Digitales Handwerk für die Solarbranche.",
         },
         blogsubheading: {
-            en: "Thoughts on web development, design and business.",
-            de: "Eindrücke zu Webentwicklung, Design und Geschäft.",
+            en: "Thoughts on web development and design.",
+            de: "Eindrücke zu Webentwicklung und Design.",
         }
     },
     contact: {
         title: {
             en: "Let's have a chat!",
-            de: "Ich helfe gerne!",
+            de: "Ich helfe gerne weiter!",
         },
         name: {
             en: "Your Name",
@@ -29,7 +29,7 @@ export const i18n = {
         },
         submit: {
             en: "Submit",
-            de: "Senden",
+            de: "Unverbindlich Anfragen",
         },
         success: {
             en: "Thank you",
