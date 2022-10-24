@@ -25,7 +25,7 @@ const previewHandler = async (req: NextApiRequest,
     // // Enable Preview Mode by setting the cookies
     res.setPreviewData({});
 
-    const uri = url.parse(req.query.page || req.query.slug || '/', true);
+    const uri = url.parse(req.query.page as any || req.query.slug || '/', true);
     const sanitizedUrl = `${uri.pathname}${uri.search || ''}`;
 
     res.redirect(sanitizedUrl);
