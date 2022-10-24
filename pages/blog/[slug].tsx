@@ -61,6 +61,7 @@ export const getStaticProps = async ({ params, preview, locale }) => {
 
   return {
     props: data,
+    revalidate: 10,
   };
 };
 
@@ -69,6 +70,6 @@ export const getStaticPaths = async ({ locales }) => {
 
   return {
     paths,
-    fallback: false,
+    fallback: "blocking",
   };
 };

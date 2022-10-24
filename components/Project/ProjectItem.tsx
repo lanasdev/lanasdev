@@ -37,7 +37,7 @@ const ProjectItem = ({ project, index, numProjects }) => {
       >
         <div className="flex flex-1 flex-col items-start justify-end p-8 text-white">
           <h3 className="text-2xl  font-semibold">{project.title}</h3>
-          <p className="text-md hidden md:group-hover:block md:group-hover:line-clamp-2 ">
+          <p className="text-md hidden group-hover:block group-hover:line-clamp-2 ">
             {project.description}
             {/* {project.color1.hex}{" "} {project.color2.hex} */}
           </p>
