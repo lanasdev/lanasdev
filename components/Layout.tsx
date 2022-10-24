@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 import Head from "next/head";
+import Alert from "./Alert";
 import Navi from "./Navi";
 import Footer from "./Footer";
 import Favicon from "./Favicon";
@@ -19,6 +20,7 @@ type Props = {
   children?: ReactNode;
   title?: string;
   description?: string;
+  preview?: boolean;
   isBig?: boolean;
   DataTopBar?: {
     title: string;
@@ -30,6 +32,7 @@ const Layout = ({
   children,
   title,
   description,
+  preview = false,
   isBig = true,
   DataTopBar,
 }: Props) => {
@@ -57,15 +60,16 @@ const Layout = ({
         <meta name="author" content="Lanas.dev" />
         <Favicon />
       </Head>
-      <div className="max-w-screen mx-auto px-8 md:max-w-6xl">
+      <main className="max-w-screen mx-auto px-8 md:max-w-6xl">
         {/* <Navi /> */}
+        <Alert preview={preview} locale={fmLocale} />
         <TopBar locale={fmLocale} />
         {children}
         <Suspense fallback={`Loading Contact...`}>
           <CallToAction locale={fmLocale} />
         </Suspense>
         <Footer />
-      </div>
+      </main>
     </div>
   );
 };

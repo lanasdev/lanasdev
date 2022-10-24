@@ -4,7 +4,7 @@ import request from "./datocms";
 const API_URL = "https://graphql.datocms.com";
 const API_TOKEN = process.env.DATOCMS_API_TOKEN;
 
-const responsiveImageFragment = gql`
+export const responsiveImageFragment = gql`
   fragment responsiveImageFragment on ResponsiveImage {
     srcSet
     webpSrcSet
@@ -285,8 +285,7 @@ export const getAllPostsSlugs = async ({ locales = ["en", "de"] }) => {
   return paths;
 };
 
-export const getPostBySlug = async (slug: any, locale: string) => {
-  const PostBySlug = gql`
+export const PostBySlugQuery = gql`
     query PostBySlug($slug: String!, $locale: SiteLocale) {
       post(locale: $locale, filter: { slug: { eq: $slug } }) {
         title
@@ -330,12 +329,26 @@ export const getPostBySlug = async (slug: any, locale: string) => {
     }
     ${responsiveImageFragment}
   `;
-  const data = await request({
-    query: PostBySlug,
-    variables: { slug, locale },
-    excludeInvalid: true,
-    includeDrafts: true,
-  });
 
-  return data;
+export const getPostBySlug = async (slug: any, preview: boolean, locale: string) => {
+
+  const graphqlRequest = {
+    query: PostBySlugQuery,
+    variables: { limit: 10, locale, slug },
+    includeDrafts: preview,
+    excludeInvalid: true,
+  };
+
+  return {
+    subscription: preview
+      ? {
+        ...graphqlRequest,
+        initialData: await request(graphqlRequest),
+        token: process.env.NEXT_DATOCMS_API_TOKEN,
+      }
+      : {
+        enabled: false,
+        initialData: await request(graphqlRequest),
+      },
+  }
 };

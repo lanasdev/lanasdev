@@ -59,6 +59,28 @@ export const i18n = {
         },
 
     },
+    alert: {
+        draftContent: {
+            en: "This page is showing draft content.",
+            de: "Diese Seite zeigt Entwürfe.",
+        },
+        publishedContent: {
+            en: "This page is showing published content.",
+            de: "Diese Seite zeigt veröffentlichte Inhalte.",
+        },
+        clickCta: {
+            en: "Click here",
+            de: "Hier klicken",
+        },
+        exitPreview: {
+            en: "to exit preview mode.",
+            de: "um den Vorschau-Modus zu verlassen.",
+        },
+        enterPreview: {
+            en: "adding your preview token to enter preview mode!",
+            de: "um den Vorschau-Modus zu betreten!",
+        },
+    },
 
 }
 
