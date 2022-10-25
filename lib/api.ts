@@ -119,6 +119,7 @@ export const getAllProjectSlugs = async ({ locales = ["en", "de"] }) => {
 
 export const getProjectBySlug = async (
   slug: string | string[],
+  preview: boolean,
   locale: string
 ) => {
   const ProjectBySlug = gql`
@@ -227,13 +228,26 @@ export const getProjectBySlug = async (
 
     ${responsiveImageFragment}
   `;
-  const data = await request({
+
+  const graphqlRequest = {
     query: ProjectBySlug,
-    variables: { slug, locale },
+    variables: { limit: 10, locale, slug },
+    includeDrafts: preview,
     excludeInvalid: true,
-    includeDrafts: false,
-  });
-  return data.project;
+  };
+
+  return {
+    subscription: preview
+      ? {
+        ...graphqlRequest,
+        initialData: await request(graphqlRequest),
+        token: process.env.NEXT_DATOCMS_API_TOKEN,
+      }
+      : {
+        enabled: false,
+        initialData: await request(graphqlRequest),
+      },
+  }
 };
 
 export const getTopBar = async (locale: string) => {

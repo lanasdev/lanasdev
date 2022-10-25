@@ -62,7 +62,7 @@ const Layout = ({
       </Head>
       <main className="max-w-screen mx-auto px-8 md:max-w-6xl">
         {/* <Navi /> */}
-        <Alert preview={preview} locale={fmLocale} />
+        {/* <Alert preview={preview} locale={fmLocale} /> */}
         <TopBar locale={fmLocale} />
         {children}
         <Suspense fallback={`Loading Contact...`}>

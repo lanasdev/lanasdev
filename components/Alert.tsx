@@ -28,7 +28,7 @@ export default function Alert({ preview, locale = "en" }) {
             <>
               {i18n.alert.publishedContent[locale]}{" "}
               <a
-                href="/api/preview?secret=777"
+                href="/api/preview?secret="
                 className="hover:text-cyan underline transition-colors duration-200"
               >
                 {i18n.alert.clickCta[locale]}

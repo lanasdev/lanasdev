@@ -13,14 +13,36 @@ import OtherProjects from "components/Project/OtherProjects";
 import ProjectHeader from "components/Project/ProjectHeader";
 
 import { getAllProjectSlugs, getProjectBySlug, getTopBar } from "lib/api";
+import { useQuerySubscription } from "react-datocms";
 
-const ProjectPage = ({ project }) => {
+const ProjectPage = ({ subscription }) => {
   const router = useRouter();
   const { locale } = router;
   const fmLocale = locale.split("-")[0];
 
+  const { data, error, status } = useQuerySubscription(subscription);
+  const statusMessage = {
+    connecting: "Connecting to DatoCMS...",
+    connected: "Connected to DatoCMS, receiving live updates!",
+    closed: "Connection closed",
+  };
+  const project = data.project;
+
   return (
     <Layout title={project.title}>
+      {/* DatoCMS Live updates */}
+      {/* <div>
+        <p>Connection status: {statusMessage[status]}</p>
+        {error && (
+          <div>
+            <h1>Error: {error.code}</h1>
+            <div>{error.message}</div>
+            {error.response && (
+              <pre>{JSON.stringify(error.response, null, 2)}</pre>
+            )}
+          </div>
+        )}
+      </div> */}
       <ProjectHeader
         title={project.title}
         excerpt={project.description}
@@ -55,12 +77,10 @@ export const getStaticProps: GetStaticProps = async ({
 }) => {
   const formattedLocale = locale.split("-")[0];
 
-  const project = await getProjectBySlug(params.slug, formattedLocale);
+  const project = await getProjectBySlug(params.slug, preview, formattedLocale);
 
   return {
-    props: {
-      project,
-    },
+    props: project,
     revalidate: 10,
   };
 };
