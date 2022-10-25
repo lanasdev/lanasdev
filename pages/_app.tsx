@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import Script from "next/script";
 import { Fragment } from "react";
+import { Analytics } from "@vercel/analytics/react";
 
 import { NextWebVitalsMetric } from "next/app";
 
@@ -38,6 +39,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           referrerPolicy="no-referrer-when-downgrade"
         />
       </noscript>
+      <Analytics />
     </Fragment>
   );
 }
