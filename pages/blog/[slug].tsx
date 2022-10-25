@@ -25,19 +25,20 @@ const BlogPost = ({ subscription }) => {
   const post = data.post;
   return (
     <Layout>
-      <div>
-        <p>Connection status: {statusMessage[status]}</p>
-        {error && (
-          <div>
-            <h1>Error: {error.code}</h1>
-            <div>{error.message}</div>
-            {error.response && (
-              <pre>{JSON.stringify(error.response, null, 2)}</pre>
-            )}
-          </div>
-        )}
-        {/* {data && <div>{JSON.stringify(data, null, 2)}</div>} */}
-      </div>
+      {status != "closed" && (
+        <div className="pb-8">
+          <p>Connection status: {statusMessage[status]}</p>
+          {error && (
+            <div>
+              <h1>Error: {error.code}</h1>
+              <div>{error.message}</div>
+              {error.response && (
+                <pre>{JSON.stringify(error.response, null, 2)}</pre>
+              )}
+            </div>
+          )}
+        </div>
+      )}
       <section className="pb-16 pt-16">
         <BlogHeader title={post.title} date={post.date} author={post.author} />
 

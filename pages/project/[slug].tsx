@@ -31,18 +31,20 @@ const ProjectPage = ({ subscription }) => {
   return (
     <Layout title={project.title}>
       {/* DatoCMS Live updates */}
-      {/* <div>
-        <p>Connection status: {statusMessage[status]}</p>
-        {error && (
-          <div>
-            <h1>Error: {error.code}</h1>
-            <div>{error.message}</div>
-            {error.response && (
-              <pre>{JSON.stringify(error.response, null, 2)}</pre>
-            )}
-          </div>
-        )}
-      </div> */}
+      {status != "closed" && (
+        <div className="pb-8">
+          <p>Connection status: {statusMessage[status]}</p>
+          {error && (
+            <div>
+              <h1>Error: {error.code}</h1>
+              <div>{error.message}</div>
+              {error.response && (
+                <pre>{JSON.stringify(error.response, null, 2)}</pre>
+              )}
+            </div>
+          )}
+        </div>
+      )}
       <ProjectHeader
         title={project.title}
         excerpt={project.description}
