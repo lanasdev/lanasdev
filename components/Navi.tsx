@@ -111,15 +111,13 @@ const Navi = () => {
         <div className="flex items-center justify-between border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link href="/">
-              <a>
-                <span className="sr-only">Workflow</span>
-                <Image
-                  src="/img/LanasLogoYellow.svg"
-                  alt="Logo Lanas"
-                  width={108}
-                  height={32}
-                />
-              </a>
+              <span className="sr-only">Workflow</span>
+              <Image
+                src="/img/LanasLogoYellow.svg"
+                alt="Logo Lanas"
+                width={108}
+                height={32}
+              />
             </Link>
           </div>
           <div className="-my-2 -mr-2 md:hidden">
@@ -130,10 +128,11 @@ const Navi = () => {
           </div>
 
           <Popover.Group as="nav" className="hidden space-x-10 md:flex">
-            <Link href="/about">
-              <a className="text-base font-medium text-gray-500 hover:text-gray-900">
-                About
-              </a>
+            <Link
+              href="/about"
+              className="text-base font-medium text-gray-500 hover:text-gray-900"
+            >
+              About
             </Link>
             <Popover className="relative">
               {({ open }) => (
@@ -211,10 +210,11 @@ const Navi = () => {
               )}
             </Popover>
 
-            <Link href="/contact">
-              <a className="text-base font-medium text-gray-500 hover:text-gray-900">
-                Contact
-              </a>
+            <Link
+              href="/contact"
+              className="text-base font-medium text-gray-500 hover:text-gray-900"
+            >
+              Contact
             </Link>
 
             <Popover className="relative">
@@ -309,13 +309,11 @@ const Navi = () => {
             </Popover>
           </Popover.Group>
           <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-            <Link href="/contact">
-              <a
-                href="#"
-                className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-yellow-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-yellow-600"
-              >
-                Get Quote
-              </a>
+            <Link
+              href="/contact"
+              className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-yellow-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-yellow-600"
+            >
+              Get Quote
             </Link>
           </div>
         </div>
@@ -338,20 +336,18 @@ const Navi = () => {
             <div className="px-5 pt-5 pb-6">
               <div className="flex items-center justify-between">
                 <Link href="/">
-                  <a>
-                    {/* <img
+                  {/* <img
                     className="h-8 w-auto"
                     src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
                     alt="Workflow"
                   /> */}
-                    <Image
-                      src="/img/LanasLogoYellow.svg"
-                      alt="Logo Lanas"
-                      width={108}
-                      height={32}
-                      className="h-8 w-auto"
-                    />
-                  </a>
+                  <Image
+                    src="/img/LanasLogoYellow.svg"
+                    alt="Logo Lanas"
+                    width={108}
+                    height={32}
+                    className="h-8 w-auto"
+                  />
                 </Link>
                 <div className="-mr-2">
                   <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500">
@@ -363,16 +359,18 @@ const Navi = () => {
               <div className="mt-6">
                 <nav className="grid gap-y-8">
                   {solutions.map((item) => (
-                    <Link key={item.name} href={item.href}>
-                      <a className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50">
-                        <item.icon
-                          className="h-6 w-6 flex-shrink-0 text-yellow-600"
-                          aria-hidden="true"
-                        />
-                        <span className="ml-3 text-base font-medium text-gray-900">
-                          {item.name}
-                        </span>
-                      </a>
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
+                    >
+                      <item.icon
+                        className="h-6 w-6 flex-shrink-0 text-yellow-600"
+                        aria-hidden="true"
+                      />
+                      <span className="ml-3 text-base font-medium text-gray-900">
+                        {item.name}
+                      </span>
                     </Link>
                   ))}
                 </nav>

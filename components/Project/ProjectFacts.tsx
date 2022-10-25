@@ -33,8 +33,8 @@ const ProjectFacts = ({ project, locale = "en" }) => {
           <span className="pb-2 text-sm font-bold">
             {i18n.project.viewwebsite[locale]}
           </span>
-          <Link href={project.liveurl}>
-            <a className="text-sm">{project.liveurl}</a>
+          <Link href={project.liveurl} className="text-sm">
+            {project.liveurl}
           </Link>
         </div>
       )}

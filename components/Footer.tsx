@@ -34,23 +34,27 @@ const Footer = () => {
       <div className="flex flex-col items-center justify-center space-y-4 pb-4 pt-32 sm:flex-row-reverse sm:justify-between sm:space-y-0 ">
         <div className="flex flex-row items-center gap-4 sm:gap-0 ">
           {socials.map((s) => (
-            <Link href={s.link} key={s.id}>
-              <a className={aClass} aria-label={s.name}>
-                {s.icon}
-              </a>
+            <Link
+              href={s.link}
+              key={s.id}
+              className={aClass}
+              aria-label={s.name}
+            >
+              {s.icon}
             </Link>
           ))}
         </div>
         <div className="flex flex-col sm:flex-row-reverse">
           <LanguageBar />
 
-          <Link href="/">
-            <a className="hover:underline hover:decoration-amber-500 hover:decoration-2">
-              &copy; {new Date().getFullYear() || "2022"} Lanas.dev{" "}
-              <span className="hidden whitespace-pre-line md:inline-block">
-                {"-"}
-              </span>
-            </a>
+          <Link
+            href="/"
+            className="hover:underline hover:decoration-amber-500 hover:decoration-2"
+          >
+            &copy; {new Date().getFullYear() || "2022"} Lanas.dev{" "}
+            <span className="hidden whitespace-pre-line md:inline-block">
+              {"-"}
+            </span>
           </Link>
         </div>
       </div>

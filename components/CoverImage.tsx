@@ -27,8 +27,8 @@ export default function CoverImage({ title, responsiveImage, path }: Props) {
   return (
     <div className="sm:mx-0">
       {path ? (
-        <Link href={`${path}`}>
-          <a aria-label={title}>{image}</a>
+        <Link href={`${path}`} aria-label={title}>
+          {image}
         </Link>
       ) : (
         image

@@ -13,16 +13,16 @@ const Navbar = () => {
         ["About", "/about"],
         ["Contact", "/contact"],
       ].map(([title, url]) => (
-        <Link href={url} key={title}>
-          <a
-            className={
-              router.pathname == url
-                ? aClass + "underline decoration-yellow-300 decoration-wavy "
-                : aClass
-            }
-          >
-            {title}
-          </a>
+        <Link
+          href={url}
+          key={title}
+          className={
+            router.pathname == url
+              ? aClass + "underline decoration-yellow-300 decoration-wavy "
+              : aClass
+          }
+        >
+          {title}
         </Link>
       ))}
     </nav>

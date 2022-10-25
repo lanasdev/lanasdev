@@ -17,41 +17,23 @@ const ProjectItem = ({ project, index, numProjects }) => {
   const numProjectsIsOdd = numProjects % 2 === 1;
 
   return (
-    <Link href={`/project/${project.slug}`} key={project.slug}>
-      <a
-        // className={cn(
-        //     {
-        //         "bg-gradient-to-tr from-[#DB758F] to-[#39B0EF]": project.position === 1,
-        //         "bg-gradient-to-tr from-[#F46634] to-[#FABFD5]": project.position === 2,
-        //         "bg-gradient-to-tr from-[#8100ED] to-[#FF3903]": project.position === 3,
-        //         "bg-gradient-to-tl from-[#B671FF] to-[#FFDC7C]": project.position === 4,
-        //     },
-        //     gridclassnames
-        //)}
-        className={cn(gridclassnames, "h-80", {
-          "md:col-span-2": index === numProjects - 1 && numProjectsIsOdd,
-        })}
-        style={{
-          backgroundImage: `linear-gradient(${project.direction}deg, ${project.color1.hex} 0%, ${project.color2.hex} 100%)`,
-        }}
-      >
-        <div className="flex flex-1 flex-col items-start justify-end p-8 text-white">
-          <h3 className="text-2xl  font-semibold">{project.title}</h3>
-          <p className="text-md hidden group-hover:block group-hover:line-clamp-2 ">
-            {project.description}
-            {/* {project.color1.hex}{" "} {project.color2.hex} */}
-          </p>
-        </div>
-        {/* {project.data.image && (
-          <Image
-            src={project.data.image}
-            alt={project.data.title}
-            width={500}
-            height={500}
-            className="flex-1 rounded-lg object-cover hidden group-hover:block"
-          />
-        )} */}
-      </a>
+    <Link
+      href={`/project/${project.slug}`}
+      key={project.slug}
+      className={cn(gridclassnames, "h-80", {
+        "md:col-span-2": index === numProjects - 1 && numProjectsIsOdd,
+      })}
+      style={{
+        backgroundImage: `linear-gradient(${project.direction}deg, ${project.color1.hex} 0%, ${project.color2.hex} 100%)`,
+      }}
+    >
+      <div className="flex flex-1 flex-col items-start justify-end p-8 text-white">
+        <h3 className="text-2xl  font-semibold">{project.title}</h3>
+        <p className="text-md hidden md:group-hover:block md:group-hover:line-clamp-2 ">
+          {project.description}
+          {/* {project.color1.hex}{" "} {project.color2.hex} */}
+        </p>
+      </div>
     </Link>
   );
 };

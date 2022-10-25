@@ -21,15 +21,11 @@ const renderLinkToRecord = ({ record, children, transformedMeta }) => {
         </a>
       );
     case "PostRecord":
-      return (
-        <Link href={`/blog/${record.slug}`}>
-          <a>{record.title}</a>
-        </Link>
-      );
+      return <Link href={`/blog/${record.slug}`}>{record.title}</Link>;
     case "ProjectRecord":
       return (
         <Link href={`/project/${record.slug}`}>
-          <a>{record.slug || "Project Name"}</a>
+          {record.slug || "Project Name"}
         </Link>
       );
     case "TestimonialRecord":
@@ -56,21 +52,17 @@ const renderLinkToRecord = ({ record, children, transformedMeta }) => {
 const renderInlineRecord = ({ record }) => {
   switch (record.__typename) {
     case "ItemRecord":
-      return (
-        <Link href={`/items/${record.slug}`}>
-          <a>Link</a>
-        </Link>
-      );
+      return <Link href={`/items/${record.slug}`}>Link</Link>;
     case "PostRecord":
       return (
         <Link href={`/blog/${record.slug}`}>
-          <a className="">{record.title || "Link to Post"}</a>
+          {record.title || "Link to Post"}
         </Link>
       );
     case "ProjectRecord":
       return (
         <Link href={`/project/${record.slug}`}>
-          <a className="">{record.slug || "Project Name"}</a>
+          {record.slug || "Project Name"}
         </Link>
       );
     default:
@@ -80,11 +72,7 @@ const renderInlineRecord = ({ record }) => {
 const renderBlock = ({ record }) => {
   switch (record.__typename) {
     case "PostRecord":
-      return (
-        <Link href={`/blog/${record.slug}`}>
-          <a>{record.title}</a>
-        </Link>
-      );
+      return <Link href={`/blog/${record.slug}`}>{record.title}</Link>;
     case "ImageRecord":
       return (
         // https://stackoverflow.com/questions/67244166/how-to-read-value-from-unknown-type
@@ -107,15 +95,13 @@ const CustomStructuredText = ({ data }) => {
             case "PostRecord":
               return (
                 <Link href={`/blog/${record.slug}`}>
-                  <a className="">{(record as any).title || "Link to Post"}</a>
+                  {(record as any).title || "Link to Post"}
                 </Link>
               );
             case "ProjectRecord":
               return (
                 <Link href={`/project/${record.slug}`}>
-                  <a className="">
-                    {(record.name as string) || "Project Name"}
-                  </a>
+                  {(record.name as string) || "Project Name"}
                 </Link>
               );
             default:
@@ -136,13 +122,13 @@ const CustomStructuredText = ({ data }) => {
             case "PostRecord":
               return (
                 <Link href={`/blog/${record.slug}`}>
-                  <a>{(record as any).title}</a>
+                  {(record as any).title}
                 </Link>
               );
             case "ProjectRecord":
               return (
                 <Link href={`/project/${record.slug}`}>
-                  <a>{(record as any).slug || "Project Name"}</a>
+                  {(record as any).slug || "Project Name"}
                 </Link>
               );
             case "TestimonialRecord":

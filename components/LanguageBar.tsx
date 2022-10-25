@@ -14,17 +14,18 @@ const LanguageBar = () => {
         return (
           <li key={locale} className="">
             <span className="">{index == 1 ? "/" : ""}</span>
-            <Link href={{ pathname, query }} as={asPath} locale={locale}>
-              <a
-                className={cn(
-                  locale === activeLocale
-                    ? "underline decoration-gray-500 "
-                    : "hover:underline hover:decoration-amber-500 ",
-                  "hover:text-success px-2 decoration-2 transition-colors duration-200"
-                )}
-              >
-                {locale.toUpperCase()}
-              </a>
+            <Link
+              href={{ pathname, query }}
+              as={asPath}
+              locale={locale}
+              className={cn(
+                locale === activeLocale
+                  ? "underline decoration-gray-500 "
+                  : "hover:underline hover:decoration-amber-500 ",
+                "hover:text-success px-2 decoration-2 transition-colors duration-200"
+              )}
+            >
+              {locale.toUpperCase()}
             </Link>
           </li>
         );
