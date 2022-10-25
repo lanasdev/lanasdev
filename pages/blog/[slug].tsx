@@ -1,16 +1,43 @@
 import Link from "next/link";
 import Layout from "components/Layout";
 import CoverImage from "components/CoverImage";
-import { getPostBySlug, getAllPostsSlugs } from "lib/api";
+import {
+  getPostBySlug,
+  getAllPostsSlugs,
+  responsiveImageFragment,
+  PostBySlugQuery,
+} from "lib/api";
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
 import BlogStructuredText from "components/Blog/BlogStructuredText";
-// import { StructuredText, Image } from "react-datocms";
 import BlogHeader from "components/Blog/BlogHeader";
+import { useQuerySubscription } from "react-datocms";
+import request from "lib/datocms";
+import { gql } from "graphql-request";
 
-const BlogPost = ({ data }) => {
+const BlogPost = ({ subscription }) => {
+  const { data, error, status } = useQuerySubscription(subscription);
+  const statusMessage = {
+    connecting: "Connecting to DatoCMS...",
+    connected: "Connected to DatoCMS, receiving live updates!",
+    closed: "Connection closed",
+  };
+
   const post = data.post;
   return (
     <Layout>
+      <div>
+        <p>Connection status: {statusMessage[status]}</p>
+        {error && (
+          <div>
+            <h1>Error: {error.code}</h1>
+            <div>{error.message}</div>
+            {error.response && (
+              <pre>{JSON.stringify(error.response, null, 2)}</pre>
+            )}
+          </div>
+        )}
+        {/* {data && <div>{JSON.stringify(data, null, 2)}</div>} */}
+      </div>
       <section className="pb-16 pt-16">
         <BlogHeader title={post.title} date={post.date} author={post.author} />
 
@@ -28,14 +55,13 @@ const BlogPost = ({ data }) => {
 
 export default BlogPost;
 
-export const getStaticProps = async ({ params, preview = false, locale }) => {
+export const getStaticProps = async ({ params, preview, locale }) => {
   const formattedLocale = locale.split("-")[0];
+  const data = await getPostBySlug(params.slug, preview, formattedLocale);
 
-  const data = await getPostBySlug(params.slug, formattedLocale);
   return {
-    props: {
-      data,
-    },
+    props: data,
+    revalidate: 10,
   };
 };
 
@@ -44,6 +70,6 @@ export const getStaticPaths = async ({ locales }) => {
 
   return {
     paths,
-    fallback: false,
+    fallback: "blocking",
   };
 };

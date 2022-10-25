@@ -50,7 +50,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const { locale } = context;
   const data = await getHome(locale);
 
-  return { props: { data } };
+  return { props: { data }, revalidate: 10 };
 };
 
 export default IndexPage;
