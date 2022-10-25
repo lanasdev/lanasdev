@@ -4,31 +4,12 @@ import Script from "next/script";
 import { Fragment } from "react";
 import { Analytics } from "@vercel/analytics/react";
 
-import { NextWebVitalsMetric } from "next/app";
-
-export function reportWebVitals(metric: NextWebVitalsMetric) {
-  const url = process.env.NEXT_PUBLIC_AXIOM_INGEST_ENDPOINT;
-
-  if (!url) {
-    return;
-  }
-
-  const body = JSON.stringify({
-    route: window.__NEXT_DATA__.page,
-    ...metric,
-  });
-
-  if (navigator.sendBeacon) {
-    navigator.sendBeacon(url, body);
-  } else {
-    fetch(url, { body, method: "POST", keepalive: true });
-  }
-}
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Fragment>
       <div className="bg-white text-midnight selection:bg-amber-500 dark:bg-midnight dark:text-white ">
         <Component {...pageProps} />
+        <Analytics />
       </div>
       <Script src="https://sa.lanas.dev/latest.js" />
       <noscript>
@@ -39,7 +20,6 @@ function MyApp({ Component, pageProps }: AppProps) {
           referrerPolicy="no-referrer-when-downgrade"
         />
       </noscript>
-      <Analytics />
     </Fragment>
   );
 }

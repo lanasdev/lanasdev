@@ -10,10 +10,11 @@ const Custom404 = () => {
         </h1>
         <p>
           That&apos;s unfortunate! The site was not found.
-          <Link href="/" className="underline-2 decoration-amber-500 underline-offset-2">
-            
-              Go Back Home
-            
+          <Link
+            href="/"
+            className="underline-2 decoration-amber-500 underline-offset-2"
+          >
+            Go Back Home
           </Link>
         </p>
       </main>

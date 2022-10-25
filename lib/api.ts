@@ -98,11 +98,10 @@ export const getAllProjectSlugs = async ({ locales = ["en", "de"] }) => {
     includeDrafts: true,
   });
 
-
   const paths = [];
 
   data.allProjects.map((project) => {
-    locales.map(language => {
+    locales.map((language) => {
       paths.push({ params: { slug: project.slug }, locale: language });
     });
   });
@@ -239,15 +238,15 @@ export const getProjectBySlug = async (
   return {
     subscription: preview
       ? {
-        ...graphqlRequest,
-        initialData: await request(graphqlRequest),
-        token: process.env.NEXT_DATOCMS_API_TOKEN,
-      }
+          ...graphqlRequest,
+          initialData: await request(graphqlRequest),
+          token: process.env.NEXT_DATOCMS_API_TOKEN,
+        }
       : {
-        enabled: false,
-        initialData: await request(graphqlRequest),
-      },
-  }
+          enabled: false,
+          initialData: await request(graphqlRequest),
+        },
+  };
 };
 
 export const getTopBar = async (locale: string) => {
@@ -300,52 +299,55 @@ export const getAllPostsSlugs = async ({ locales = ["en", "de"] }) => {
 };
 
 export const PostBySlugQuery = gql`
-    query PostBySlug($slug: String!, $locale: SiteLocale) {
-      post(locale: $locale, filter: { slug: { eq: $slug } }) {
-        title
-        slug
-        author {
-          name
-          role
-          picture {
-            responsiveImage(
-              imgixParams: { fit: crop, w: 50, h: 50, ar: "1", auto: format }
-            ) {
-              ...responsiveImageFragment
-            }
-          }
-        }
-        excerpt
-        date
-        createdAt
-        updatedAt
-        content {
-          value
-          blocks {
-            __typename
-            ... on ImageRecord {
-              id
-              image {
-                responsiveImage(imgixParams: { fit: crop, h: 600 }) {
-                  ...responsiveImageFragment
-                }
-                alt
-              }
-            }
-          }
-        }
-        coverImage {
-          responsiveImage(imgixParams: { auto: format, fit: crop, h: "900", }) {
+  query PostBySlug($slug: String!, $locale: SiteLocale) {
+    post(locale: $locale, filter: { slug: { eq: $slug } }) {
+      title
+      slug
+      author {
+        name
+        role
+        picture {
+          responsiveImage(
+            imgixParams: { fit: crop, w: 50, h: 50, ar: "1", auto: format }
+          ) {
             ...responsiveImageFragment
           }
         }
       }
+      excerpt
+      date
+      createdAt
+      updatedAt
+      content {
+        value
+        blocks {
+          __typename
+          ... on ImageRecord {
+            id
+            image {
+              responsiveImage(imgixParams: { fit: crop, h: 600 }) {
+                ...responsiveImageFragment
+              }
+              alt
+            }
+          }
+        }
+      }
+      coverImage {
+        responsiveImage(imgixParams: { auto: format, fit: crop, h: "900" }) {
+          ...responsiveImageFragment
+        }
+      }
     }
-    ${responsiveImageFragment}
-  `;
+  }
+  ${responsiveImageFragment}
+`;
 
-export const getPostBySlug = async (slug: any, preview: boolean, locale: string) => {
-
+export const getPostBySlug = async (
+  slug: any,
+  preview: boolean,
+  locale: string
+) => {
   const graphqlRequest = {
     query: PostBySlugQuery,
     variables: { limit: 10, locale, slug },
@@ -356,13 +358,13 @@ export const getPostBySlug = async (slug: any, preview: boolean, locale: string)
   return {
     subscription: preview
       ? {
-        ...graphqlRequest,
-        initialData: await request(graphqlRequest),
-        token: process.env.NEXT_DATOCMS_API_TOKEN,
-      }
+          ...graphqlRequest,
+          initialData: await request(graphqlRequest),
+          token: process.env.NEXT_DATOCMS_API_TOKEN,
+        }
       : {
-        enabled: false,
-        initialData: await request(graphqlRequest),
-      },
-  }
+          enabled: false,
+          initialData: await request(graphqlRequest),
+        },
+  };
 };
