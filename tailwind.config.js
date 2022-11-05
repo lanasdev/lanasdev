@@ -8,7 +8,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      sans: ["InterVar", "Inter", "Helvetica", "sans-serif"],
+      sans: ["Inter", "InterVar", "Helvetica", "sans-serif"],
     },
     extend: {
       colors: {
