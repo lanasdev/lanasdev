@@ -1,18 +1,12 @@
 import Link from "next/link";
 import Layout from "components/Layout";
 import CoverImage from "components/CoverImage";
-import {
-  getPostBySlug,
-  getAllPostsSlugs,
-  responsiveImageFragment,
-  PostBySlugQuery,
-} from "lib/api";
+import { getPostBySlug, getAllPostsSlugs } from "lib/api";
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
 import BlogStructuredText from "components/Blog/BlogStructuredText";
 import BlogHeader from "components/Blog/BlogHeader";
 import { useQuerySubscription } from "react-datocms";
-import request from "lib/datocms";
-import { gql } from "graphql-request";
+import { useRouter } from "next/router";
 
 const BlogPost = ({ subscription }) => {
   const { data, error, status } = useQuerySubscription(subscription);
@@ -21,8 +15,12 @@ const BlogPost = ({ subscription }) => {
     connected: "Connected to DatoCMS, receiving live updates!",
     closed: "Connection closed",
   };
-
   const post = data.post;
+
+  const router = useRouter();
+  const { locale } = router;
+  const fmLocale = locale.split("-")[0];
+
   return (
     <Layout>
       {status != "closed" && (
@@ -40,7 +38,12 @@ const BlogPost = ({ subscription }) => {
         </div>
       )}
       <section className="pb-16 pt-16">
-        <BlogHeader title={post.title} date={post.date} author={post.author} />
+        <BlogHeader
+          title={post.title}
+          date={post.date}
+          author={post.author}
+          locale={fmLocale}
+        />
 
         <CoverImage
           title={post.title}

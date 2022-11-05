@@ -4,7 +4,7 @@ import i18n from "lib/i18n";
 
 const BlogList = ({ posts, locale }) => {
   return (
-    <div>
+    <div id="blog">
       <h4 className="pt-32 text-gray-600 dark:text-gray-400">
         {i18n.home.blogsubheading[locale]}
       </h4>

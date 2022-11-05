@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <div
       className={cn(
-        "bg-white text-midnight selection:bg-amber-500 dark:bg-midnight dark:text-white ",
+        "bg-white text-midnight subpixel-antialiased selection:bg-amber-500 dark:bg-midnight dark:text-white ",
         inter.className
       )}
     >

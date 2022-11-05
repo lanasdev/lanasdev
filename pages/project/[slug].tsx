@@ -4,6 +4,7 @@ import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
 import cn from "classnames";
 
 import Layout from "components/Layout";
+import i18n from "lib/i18n";
 
 import CoverImage from "components/CoverImage";
 import CustomStructuredText from "components/CustomStructuredText";
@@ -49,6 +50,7 @@ const ProjectPage = ({ subscription }) => {
         title={project.title}
         excerpt={project.description}
         date={project.createdAt}
+        locale={locale}
       />
       <CoverImage
         title={project.title}

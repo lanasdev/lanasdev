@@ -1,7 +1,7 @@
 export const i18n = {
   home: {
     subtitle: {
-      en: "Web craftsmenship for thriving businesses.",
+      en: "Digital craftsmanship for the solar industry.",
       // de: "Webhandwerk für wachsende Unternehmen.",
       de: "Digitales Handwerk für die Solarbranche.",
     },
@@ -41,6 +41,10 @@ export const i18n = {
     },
   },
   project: {
+    subtitle: {
+      en: "Project",
+      de: "Projekt"
+    },
     client: {
       en: "Client",
       de: "Kunde",
@@ -56,6 +60,12 @@ export const i18n = {
     viewwebsite: {
       en: "View website",
       de: "Website",
+    },
+  },
+  blog: {
+    subtitle: {
+      en: "Blog post",
+      de: "Blogbeitrag",
     },
   },
   alert: {
