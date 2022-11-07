@@ -43,7 +43,7 @@ export const i18n = {
   project: {
     subtitle: {
       en: "Project",
-      de: "Projekt"
+      de: "Projekt",
     },
     client: {
       en: "Client",
@@ -88,6 +88,20 @@ export const i18n = {
     enterPreview: {
       en: "adding your preview token to enter preview mode!",
       de: "um den Vorschau-Modus zu betreten!",
+    },
+  },
+  error: {
+    title: {
+      en: "404 - Page not found",
+      de: "404 - Seite nicht gefunden",
+    },
+    subtitle: {
+      en: "Sorry, the page you are looking for does not exist.",
+      de: "Entschuldigung, die von Ihnen gesuchte Seite existiert nicht.",
+    },
+    back: {
+      en: "Back to home",
+      de: "Zurück zur Startseite",
     },
   },
 };

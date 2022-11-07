@@ -1,31 +1,28 @@
 import { gql } from "graphql-request";
 import request from "./datocms";
+import { responsiveImageFragment } from "lib/fragments";
 
 const API_URL = "https://graphql.datocms.com";
 const API_TOKEN = process.env.DATOCMS_API_TOKEN;
 
-export const responsiveImageFragment = gql`
-  fragment responsiveImageFragment on ResponsiveImage {
-    srcSet
-    webpSrcSet
-    sizes
-    src
-    width
-    height
-    aspectRatio
-    alt
-    title
-    base64
-  }
-`;
-// ...responsiveImageFragment
-
 export const getHome = async (locale: string) => {
   const HomeQuery = gql`
     query HomeQuery($locale: SiteLocale) {
+      site: _site {
+        favicon: faviconMetaTags {
+          attributes
+          content
+          tag
+        }
+      }
       home(locale: $locale) {
         title
         subheading
+        seo: _seoMetaTags {
+          attributes
+          content
+          tag
+        }
       }
       allProjects(locale: $locale) {
         title
@@ -123,11 +120,24 @@ export const getProjectBySlug = async (
 ) => {
   const ProjectBySlug = gql`
     query ProjectBySlug($slug: String!, $locale: SiteLocale) {
+      site: _site {
+        favicon: faviconMetaTags {
+          attributes
+          content
+          tag
+        }
+      }
+
       home(locale: $locale) {
         title
         subheading
       }
       project(locale: $locale, filter: { slug: { eq: $slug } }) {
+        seo: _seoMetaTags {
+          attributes
+          content
+          tag
+        }
         title
         description
         slug
@@ -300,7 +310,19 @@ export const getAllPostsSlugs = async ({ locales = ["en", "de"] }) => {
 
 export const PostBySlugQuery = gql`
   query PostBySlug($slug: String!, $locale: SiteLocale) {
+    site: _site {
+      favicon: faviconMetaTags {
+        attributes
+        content
+        tag
+      }
+    }
     post(locale: $locale, filter: { slug: { eq: $slug } }) {
+      seo: _seoMetaTags {
+        attributes
+        content
+        tag
+      }
       title
       slug
       author {
@@ -367,4 +389,34 @@ export const getPostBySlug = async (
           initialData: await request(graphqlRequest),
         },
   };
+};
+
+export const ErrorQuery = async () => {
+  const ERRORQUERY = gql`
+    {
+      site: _site {
+        favicon: faviconMetaTags {
+          attributes
+          content
+          tag
+        }
+      }
+      home {
+        seo: _seoMetaTags {
+          attributes
+          content
+          tag
+        }
+      }
+    }
+  `;
+
+  const data = await request({
+    query: ERRORQUERY,
+    variables: {},
+    excludeInvalid: true,
+    includeDrafts: false,
+  });
+
+  return data;
 };
