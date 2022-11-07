@@ -1,9 +1,12 @@
 import Link from "next/link";
+import Head from "next/head";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import { useRouter } from "next/router";
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
 import cn from "classnames";
+
+import { renderMetaTags } from "react-datocms";
 
 import Layout from "components/Layout";
 import ProjectList from "components/Project/ProjectList";
@@ -30,19 +33,20 @@ const IndexPage = ({ data }) => {
   const fmLocale = locale.split("-")[0];
 
   return (
-    // <Layout DataTopBar={data.home}>
-    <Layout>
-      <ProjectList data={data} />
-      {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
-      {/*<Suspense fallback={<div>Loading Testimonials...</div>}>
+    <>
+      <Head>{renderMetaTags(data.home.seo.concat(data.site.favicon))}</Head>
+      <Layout>
+        <ProjectList data={data} />
+        {/*<Suspense fallback={<div>Loading Testimonials...</div>}>
         <Testimonials testimonials={data.allTestimonials} />
       </Suspense>
       */}
 
-      <Suspense fallback={<div>Loading Blog Posts...</div>}>
-        <Blog posts={data.allPosts} locale={fmLocale} />
-      </Suspense>
-    </Layout>
+        <Suspense fallback={<div>Loading Blog Posts...</div>}>
+          <Blog posts={data.allPosts} locale={fmLocale} />
+        </Suspense>
+      </Layout>
+    </>
   );
 };
 

@@ -9,6 +9,8 @@ import Footer from "./Footer";
 import Favicon from "./Favicon";
 import TopBar from "./TopBar";
 
+import i18n from "lib/i18n";
+
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 
@@ -18,49 +20,24 @@ const CallToAction = dynamic(() => import("components/CallToAction"), {
 
 type Props = {
   children?: ReactNode;
-  title?: string;
-  description?: string;
   preview?: boolean;
-  isBig?: boolean;
-  DataTopBar?: {
-    title: string;
-    subtitle: string;
-  };
 };
 
-const Layout = ({
-  children,
-  title,
-  description,
-  preview = false,
-  isBig = true,
-  DataTopBar,
-}: Props) => {
+const Layout = ({ children, preview = false }: Props) => {
   const router = useRouter();
   const { locale } = router;
   const fmLocale = locale.split("-")[0];
+
   return (
     <div>
       <Head>
-        <title>{title ? title + " | Lanas" : "Lanas Web design"}</title>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta
-          name="description"
-          content={
-            description
-              ? description
-              : "Lanas designs & builds fast and responsible Websites for startups and businesses alike. "
-          }
-        />
         <meta
           name="keywords"
           content="webdesigner, webdesigner stuttgart, website für elektriker, website für photovoltaik, Websites, design, build, startup, React, Nextjs"
         />
         <meta name="author" content="Lanas.dev" />
-        <Favicon />
       </Head>
-      <main className="max-w-screen mx-auto px-8 md:max-w-6xl">
+      <main className="max-w-screen mx-auto px-8 md:max-w-6xl xl:max-w-7xl">
         {/* <Navi /> */}
         {/* <Alert preview={preview} locale={fmLocale} /> */}
         <TopBar locale={fmLocale} />
@@ -69,6 +46,7 @@ const Layout = ({
           <CallToAction locale={fmLocale} />
         </Suspense>
         <Footer />
+        {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
       </main>
     </div>
   );
