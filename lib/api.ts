@@ -46,7 +46,9 @@ export const getHome = async (locale: string) => {
         company
         slug
         image {
-          responsiveImage(imgixParams: { fit: crop, w: 300, h: 300, ar: "1" }) {
+          responsiveImage(
+            imgixParams: { auto: format, fit: crop, w: 300, h: 300, ar: "1" }
+          ) {
             ...responsiveImageFragment
           }
         }
@@ -61,7 +63,9 @@ export const getHome = async (locale: string) => {
           name
         }
         coverImage {
-          responsiveImage(imgixParams: { fit: crop, w: 300, h: 300, ar: "1" }) {
+          responsiveImage(
+            imgixParams: { auto: format, fit: crop, w: 300, h: 300, ar: "1" }
+          ) {
             ...responsiveImageFragment
           }
         }
@@ -191,7 +195,13 @@ export const getProjectBySlug = async (
               content
               image {
                 responsiveImage(
-                  imgixParams: { fit: crop, w: 300, h: 300, ar: "1" }
+                  imgixParams: {
+                    auto: format
+                    fit: crop
+                    w: 300
+                    h: 300
+                    ar: "1"
+                  }
                 ) {
                   ...responsiveImageFragment
                 }
@@ -203,7 +213,9 @@ export const getProjectBySlug = async (
             ... on ImageRecord {
               id
               image {
-                responsiveImage(imgixParams: { fit: crop, h: 600 }) {
+                responsiveImage(
+                  imgixParams: { auto: format, fit: crop, h: 600 }
+                ) {
                   ...responsiveImageFragment
                 }
               }
@@ -330,7 +342,14 @@ export const PostBySlugQuery = gql`
         role
         picture {
           responsiveImage(
-            imgixParams: { fit: crop, w: 50, h: 50, ar: "1", auto: format }
+            imgixParams: {
+              auto: format
+              fit: crop
+              w: 50
+              h: 50
+              ar: "1"
+              auto: format
+            }
           ) {
             ...responsiveImageFragment
           }
@@ -347,7 +366,9 @@ export const PostBySlugQuery = gql`
           ... on ImageRecord {
             id
             image {
-              responsiveImage(imgixParams: { fit: crop, h: 600 }) {
+              responsiveImage(
+                imgixParams: { auto: format, fit: crop, h: 600 }
+              ) {
                 ...responsiveImageFragment
               }
               alt
