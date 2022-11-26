@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { Image } from "react-datocms";
 
 const BlogAuthor = ({ author }) => {

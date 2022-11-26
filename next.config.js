@@ -25,6 +25,11 @@ module.exports = {
     locales: ["en", "de"],
     defaultLocale: "en",
   },
+  experimental: {
+    fontLoaders: [
+      { loader: "@next/font/google", options: { subsets: ["latin"] } },
+    ],
+  },
   async headers() {
     return [
       {

@@ -111,14 +111,11 @@ const CustomStructuredText = ({ data }) => {
         renderLinkToRecord={({ record, children, transformedMeta }) => {
           switch (record.__typename) {
             case "ItemRecord":
-              return <Link href={`/items/${record.slug}`}>{children[0]}</Link>;
-            case "TeamMemberRecord":
               return (
-                <a {...transformedMeta} href={`/team/${record.slug}`}>
-                  {children}
-                </a>
+                <Link href={`/items/${record.slug}`} className="hello">
+                  {children[0]}
+                </Link>
               );
-
             case "PostRecord":
               return (
                 <Link href={`/blog/${record.slug}`}>

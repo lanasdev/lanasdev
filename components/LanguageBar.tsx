@@ -25,7 +25,8 @@ const LanguageBar = () => {
                 "hover:text-success px-2 decoration-2 transition-colors duration-200"
               )}
             >
-              {locale.toUpperCase()}
+              {/* {locale.toUpperCase()} */}
+              {locale == "en" ? "🇺🇸 EN" : "🇩🇪 DE"}
             </Link>
           </li>
         );

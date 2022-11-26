@@ -60,11 +60,13 @@ const ProjectPage = ({ subscription }) => {
           responsiveImage={project.image.responsiveImage}
           path={project.liveurl}
         />
-        <article className="dark:prose-white prose flex-row items-stretch py-8 hover:prose-a:text-amber-500 prose-img:rounded-md dark:text-white dark:prose-invert dark:prose-headings:text-white dark:prose-a:text-white dark:prose-blockquote:text-white">
+        <article className="dark:prose-white prose flex-row items-stretch py-8 prose-a:[word-break:break-word] hover:prose-a:text-amber-500 prose-img:rounded-md dark:text-white dark:prose-invert dark:prose-headings:text-white dark:prose-a:text-white dark:prose-blockquote:text-white">
+          {/* prose-a:break-words */}
+          {/*   word-break: break-word; */}
           <div className="post-sidebar flex flex-col items-stretch justify-between pb-16 ">
             <ProjectFacts project={project} locale={fmLocale} />
           </div>
-          <main className="flex flex-col items-stretch justify-between md:flex-row">
+          <main className="">
             <CustomStructuredText data={project} />
           </main>
         </article>
