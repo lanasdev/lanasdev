@@ -145,7 +145,6 @@ export const getProjectBySlug = async (
         title
         description
         slug
-        classname
         position
         color1 {
           hex
@@ -213,9 +212,7 @@ export const getProjectBySlug = async (
             ... on ImageRecord {
               id
               image {
-                responsiveImage(
-                  imgixParams: { auto: format, fit: crop, h: 600 }
-                ) {
+                responsiveImage(imgixParams: { auto: format }) {
                   ...responsiveImageFragment
                 }
               }
@@ -223,7 +220,7 @@ export const getProjectBySlug = async (
           }
         }
         image {
-          responsiveImage(imgixParams: { auto: format, fit: crop, h: 900 }) {
+          responsiveImage(imgixParams: { auto: format }) {
             ...responsiveImageFragment
           }
         }
