@@ -38,21 +38,26 @@ export const getHome = async (locale: string) => {
         }
         direction
         gradientdirection
-      }
-      allTestimonials {
-        title
-        content
-        name
-        company
-        slug
         image {
-          responsiveImage(
-            imgixParams: { auto: format, fit: crop, w: 300, h: 300, ar: "1" }
-          ) {
+          responsiveImage(imgixParams: { auto: format }) {
             ...responsiveImageFragment
           }
         }
       }
+      # allTestimonials {
+      #   title
+      #   content
+      #   name
+      #   company
+      #   slug
+      #   image {
+      #     responsiveImage(
+      #       imgixParams: { auto: format, fit: crop, w: 300, h: 300, ar: "1" }
+      #     ) {
+      #       ...responsiveImageFragment
+      #     }
+      #   }
+      # }
       allPosts(locale: $locale, fallbackLocales: en) {
         id
         title
@@ -107,13 +112,6 @@ export const getAllProjectSlugs = async ({ locales = ["en", "de"] }) => {
     });
   });
 
-  // const paths = data.allProjects.map((slug: { slug: any }) => ({
-  //   params: {
-  //     slug: slug.slug,
-  //   },
-  // }));
-
-  // return pathsArray;
   return paths;
 };
 
@@ -339,14 +337,7 @@ export const PostBySlugQuery = gql`
         role
         picture {
           responsiveImage(
-            imgixParams: {
-              auto: format
-              fit: crop
-              w: 50
-              h: 50
-              ar: "1"
-              auto: format
-            }
+            imgixParams: { auto: format, fit: crop, w: 50, h: 50, ar: "1" }
           ) {
             ...responsiveImageFragment
           }

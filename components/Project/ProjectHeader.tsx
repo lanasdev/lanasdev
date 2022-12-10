@@ -17,7 +17,7 @@ const ProjectHeader = ({ title, excerpt, date, locale }) => {
       <h2 className="text-amber-500 hover:underline ">
         <Link href="/">{i18n.project.subtitle[locale]}</Link>
       </h2>
-      <h1 className="mt-2 font-semibold md:text-3xl">{title}</h1>
+      <h1 className="mt-2 text-2xl font-semibold md:text-3xl">{title}</h1>
       {excerpt && <p className="max-w-xl line-clamp-2">{excerpt}</p>}
       <span className="text-sm text-gray-600 dark:text-gray-400">
         {formattedDate}
