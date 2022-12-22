@@ -4,7 +4,7 @@ const ProjectList = ({ data }) => {
   const numProjects = data.allProjects.length;
 
   return (
-    <section className="grid grid-cols-1 gap-4 pt-16 md:grid-cols-2  ">
+    <section className="grid gap-4 pt-16 sm:grid-cols-autofitmd ">
       {data.allProjects.map((p, index) => (
         <ProjectItem
           project={p}

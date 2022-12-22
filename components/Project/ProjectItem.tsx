@@ -12,7 +12,7 @@ import { getHome } from "lib/api";
 
 const ProjectItem = ({ project, index, numProjects }) => {
   const gridclassnames =
-    "h-96 md:h-[600px] w-full md:last:h-[300px] transition-all group rounded-lg flex flex-row justify-between  hover:scale-102 transform delay-75 duration-150 ease-in-out backdrop-blur-2xl text-white dark:text-midnight";
+    "h-96 md:h-[600px] transition-all group rounded-lg flex flex-row justify-between  hover:scale-102 transform delay-75 duration-150 ease-in-out backdrop-blur-2xl text-white dark:text-midnight";
 
   const numProjectsIsOdd = numProjects % 2 === 1;
 
@@ -21,7 +21,8 @@ const ProjectItem = ({ project, index, numProjects }) => {
       href={`/project/${project.slug}`}
       key={project.slug}
       className={cn(gridclassnames, "h-80", {
-        "md:col-span-2": index === numProjects - 1 && numProjectsIsOdd,
+        "md:col-span-2 md:h-[300px]":
+          index === numProjects - 1 && numProjectsIsOdd,
       })}
       style={{
         backgroundImage: `linear-gradient(${project.direction}deg, ${project.color1.hex} 0%, ${project.color2.hex} 100%)`,

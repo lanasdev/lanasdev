@@ -25,6 +25,10 @@ module.exports = {
         102: "1.02",
         103: "1.03",
       },
+      gridTemplateColumns: {
+        autofit: "repeat(auto-fit, minmax(200px, 1fr))",
+        autofitmd: "repeat(auto-fit, minmax(400px, 1fr))",
+      },
     },
   },
   plugins: [
