@@ -89,7 +89,10 @@ export const getHome = async (locale: string) => {
   return data;
 };
 
-export const getAllProjectSlugs = async ({ locales = ["en", "de"] }) => {
+export const getAllProjectSlugs = async ({
+  preview = false,
+  locales = ["en", "de"],
+}) => {
   // get all project slugs for getStaticPaths
   const data = await request({
     query: gql`
@@ -101,7 +104,7 @@ export const getAllProjectSlugs = async ({ locales = ["en", "de"] }) => {
     `,
     variables: {},
     excludeInvalid: true,
-    includeDrafts: true,
+    includeDrafts: preview,
   });
 
   const paths = [];
@@ -129,13 +132,12 @@ export const getProjectBySlug = async (
           tag
         }
       }
-
       home(locale: $locale) {
         title
         subheading
       }
       project(locale: $locale, filter: { slug: { eq: $slug } }) {
-        seo: _seoMetaTags {
+        seo: _seoMetaTags(locale: $locale) {
           attributes
           content
           tag

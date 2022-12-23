@@ -72,7 +72,7 @@ const ProjectPage = ({ subscription }) => {
         </article>
 
         <OtherProjects project={project} />
-        {/* <pre className="pt-16">{JSON.stringify(project, null, 2)}</pre> */}
+        {/* <pre className="pt-16">{JSON.stringify(data, null, 2)}</pre> */}
       </Layout>
     </>
   );
