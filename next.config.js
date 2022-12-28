@@ -1,3 +1,5 @@
+/** @type {import('next').NextConfig} */
+
 const securityHeaders = [
   {
     key: "X-XSS-Protection",
@@ -17,7 +19,7 @@ const securityHeaders = [
   },
 ];
 
-module.exports = {
+const nextConfig = {
   images: {
     domains: ["www.datocms-assets.com"],
   },
@@ -26,6 +28,7 @@ module.exports = {
     defaultLocale: "en",
   },
   experimental: {
+    appDir: true,
     fontLoaders: [
       { loader: "@next/font/google", options: { subsets: ["latin"] } },
     ],
@@ -40,3 +43,5 @@ module.exports = {
     ];
   },
 };
+
+module.exports = nextConfig;
