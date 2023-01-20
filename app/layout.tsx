@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import cn from "classnames";
 import { Inter } from "@next/font/google";
 import Navigation from "./Navigation";
+import NavCircle from "./NavCircle";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -18,14 +19,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.className}>
+    <html
+      lang="en"
+      className={`${inter.className} scroll-smooth subpixel-antialiased`}
+    >
       <body
         className={
           "bg-white text-midnight subpixel-antialiased selection:bg-amber-500 dark:bg-midnight dark:text-white "
         }
       >
         <Navigation />
+
         {children}
+        <NavCircle />
+
         {/* <Analytics /> */}
       </body>
     </html>

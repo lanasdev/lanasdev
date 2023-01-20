@@ -5,7 +5,7 @@ export default async function Page() {
   // Fetch data directly in a Server Component
   // Forward fetched data to your Client Component
   return (
-    <>
+    <div className="h-screen">
       <header className="px-8 pb-4">
         <Marquee text="web design • web development • ecommerce • web design • web development • ecommerce • web design • web development • ecommerce • web design • web development • ecommerce" />
         <h1 className=" pt-4 text-justify text-9xl after:inline-block after:w-full after:content-none	">
@@ -18,6 +18,6 @@ export default async function Page() {
           className="block h-[50vh] w-full rounded-lg bg-white "
         ></Link>
       </main>
-    </>
+    </div>
   );
 }
