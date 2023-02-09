@@ -25,7 +25,7 @@ const Contactform = ({ locale }) => {
     );
   }
   const buttonClass =
-    " border px-4 rounded-md py-2 border-midnight hover:bg-midnight hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-midnight transition-all duration-300";
+    " border px-4 rounded-md py-2 border-midnight hover:bg-midnight hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-midnight transition-all duration-300 hover:font-semibold";
   return (
     <form
       onSubmit={handleSubmit}
