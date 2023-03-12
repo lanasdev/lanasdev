@@ -7,7 +7,7 @@ type RecordImageType = {
 
 const BlogStructuredText = ({ post }) => {
   return (
-    <div className="prose dark:text-white dark:prose-invert dark:prose-headings:text-white dark:prose-a:text-white">
+    <div className="prose dark:prose-invert dark:text-white dark:prose-headings:text-white dark:prose-a:text-white">
       <StructuredText
         data={post.content}
         renderBlock={({ record }) => {
