@@ -16,8 +16,9 @@ const securityHeaders = [
     value: "max-age=63072000; includeSubDomains; preload",
   },
 ];
+/** @type {import('next').NextConfig} */
 
-module.exports = {
+const nextConfig = {
   images: {
     domains: ["www.datocms-assets.com"],
   },
@@ -40,3 +41,4 @@ module.exports = {
     ];
   },
 };
+module.exports = nextConfig;

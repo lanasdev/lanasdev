@@ -1,7 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import { TwitterLogo, InstagramLogo, GithubLogo } from "phosphor-react";
+import classNames from "classnames";
+
+import {
+  TwitterLogo,
+  InstagramLogo,
+  TelegramLogo,
+  GithubLogo,
+} from "phosphor-react";
 import LanguageBar from "./LanguageBar";
 
 const Footer = () => {
@@ -22,6 +28,12 @@ const Footer = () => {
     },
     {
       id: 3,
+      name: "Telegram",
+      icon: <TelegramLogo size={24} />,
+      link: process.env.NEXT_PUBLIC_TELEGRAM_URL,
+    },
+    {
+      id: 4,
       name: "Github",
       icon: <GithubLogo size={24} />,
       link: process.env.NEXT_PUBLIC_GITHUB_URL,
