@@ -37,7 +37,7 @@ const Layout = ({ children, preview = false }: Props) => {
         />
         <meta name="author" content="Lanas.dev" />
       </Head>
-      <main className="max-w-screen mx-auto px-8 md:max-w-6xl xl:max-w-7xl">
+      <main className="mx-auto px-8 md:max-w-6xl xl:max-w-7xl">
         {/* <Navi /> */}
         {/* <Alert preview={preview} locale={fmLocale} /> */}
         <TopBar locale={fmLocale} />

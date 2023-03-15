@@ -12,8 +12,14 @@ export const i18n = {
   },
   contact: {
     title: {
-      en: "Let's have a chat!",
+      en: "Let's make your project look great!",
       de: "Ich helfe gerne weiter!",
+    },
+    subtitle: {
+      en: "We increase your online presence through handcrafted web experiences.",
+      de: "Wir erhöhen Ihre Onlinepräsenz durch handgefertigte Web-Erfahrungen.",
+      // en: "We take your project to the next level.",
+      // de: "Wir bringen Ihr Projekt auf die nächste Stufe.",
     },
     name: {
       en: "Your Name",

@@ -29,7 +29,7 @@ const Contactform = ({ locale }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex w-72 flex-col dark:text-midnight"
+      className="flex flex-col bg-white text-midnight md:w-72"
     >
       <fieldset className="flex flex-col ">
         {/* <label className="" htmlFor="name">
@@ -42,7 +42,7 @@ const Contactform = ({ locale }) => {
           placeholder={i18n.contact.name[locale]}
           minLength={2}
           autoComplete="name"
-          className="form-input my-2 rounded-md px-4 py-3 invalid:ring-red-500 placeholder:focus:italic focus:valid:ring-green-400"
+          className="form-input my-2 rounded-md border-0 px-4 py-3 invalid:ring-red-500 placeholder:focus:italic focus:valid:ring-green-400"
         />
         <ValidationError prefix="Name" field="name" errors={state.errors} />
       </fieldset>
@@ -58,7 +58,7 @@ const Contactform = ({ locale }) => {
           minLength={3}
           autoComplete="email"
           pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
-          className="form-input my-2 rounded-md px-4 py-3 invalid:ring-red-500 placeholder:focus:italic focus:valid:ring-green-400"
+          className="form-input my-2 rounded-md border-0 px-4 py-3 invalid:ring-red-500 placeholder:focus:italic focus:valid:ring-green-400"
         />
         <ValidationError prefix="Email" field="email" errors={state.errors} />
       </fieldset>
@@ -71,7 +71,7 @@ const Contactform = ({ locale }) => {
           name="message"
           placeholder={i18n.contact.message[locale]}
           minLength={4}
-          className="form-textarea mt-2 mb-4 rounded-md pt-3 pb-12 placeholder:focus:italic focus:valid:ring-green-400 focus:invalid:ring-red-500"
+          className="form-textarea mt-2 mb-4 rounded-md border-0 pt-3 pb-12 focus:border-b placeholder:focus:italic focus:invalid:ring-red-500"
         />
         <ValidationError
           prefix="Message"

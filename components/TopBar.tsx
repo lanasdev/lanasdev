@@ -2,6 +2,7 @@ import Link from "next/link";
 import cn from "classnames";
 import i18n from "lib/i18n";
 // import { withRouter, NextRouter } from "next/router";
+import Balancer from "react-wrap-balancer";
 
 const TopBar = ({ locale = "en" }) => {
   return (
@@ -12,10 +13,12 @@ const TopBar = ({ locale = "en" }) => {
         </h1>
       </Link>
 
-      <h2 className="pt-6 text-2xl font-semibold md:pt-0">
-        {/* {"Web craftsmenship for thriving businesses."} */}
-        {i18n.home.subtitle[locale]}
-      </h2>
+      <Balancer>
+        <h2 className="pt-6 text-2xl font-semibold md:pt-0">
+          {/* {"Web craftsmenship for thriving businesses."} */}
+          {i18n.home.subtitle[locale]}
+        </h2>
+      </Balancer>
     </div>
   );
 };

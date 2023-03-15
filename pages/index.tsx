@@ -11,17 +11,14 @@ import { renderMetaTags } from "react-datocms";
 import Layout from "components/Layout";
 import ProjectList from "components/Project/ProjectList";
 
-// import Testimonials from "components/Testimonial";
 const Testimonials = dynamic(() => import("components/Testimonial"), {
   suspense: true,
 });
 
-import BlogList from "components/Blog/BlogList";
 const Blog = dynamic(() => import("components/Blog/BlogList"), {
   suspense: true,
 });
 
-// import CallToAction from "components/CallToAction";
 const CallToAction = dynamic(() => import("components/CallToAction"), {
   suspense: true,
 });
@@ -37,10 +34,10 @@ const IndexPage = ({ data }) => {
       <Head>{renderMetaTags(data.home.seo.concat(data.site.favicon))}</Head>
       <Layout>
         <ProjectList data={data} />
-        {/*<Suspense fallback={<div>Loading Testimonials...</div>}>
-        <Testimonials testimonials={data.allTestimonials} />
-      </Suspense>
-      */}
+        {/* new hero example: https://play.tailwindcss.com/GnLlezSFqA */}
+        <Suspense fallback={<div>Loading Testimonials...</div>}>
+          <Testimonials testimonials={data.allTestimonials} />
+        </Suspense>
 
         <Suspense fallback={<div>Loading Blog Posts...</div>}>
           <Blog posts={data.allPosts} locale={fmLocale} />
