@@ -16,3 +16,7 @@ Build with the follwing Tech Stack:
 - [Simple Analytics](https://simpleanalytics.com/)
 
 Visit site: [Lanas.dev](https://lanas.dev)
+
+## Todo
+
+- [] fix footer social buttons
