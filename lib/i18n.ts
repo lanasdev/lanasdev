@@ -25,9 +25,21 @@ export const i18n = {
       en: "Your Name",
       de: "Ihr Name",
     },
+    firstname: {
+      en: "First name",
+      de: "Vorname",
+    },
+    lastname: {
+      en: "Last name",
+      de: "Nachname",
+    },
     email: {
-      en: "Email Adress",
+      en: "Email",
       de: "E-Mail Adresse",
+    },
+    company: {
+      en: "Company",
+      de: "Unternehmen",
     },
     message: {
       en: "Message",
