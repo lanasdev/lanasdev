@@ -17,7 +17,7 @@ export const i18n = {
     },
     subtitle: {
       en: "We increase your online presence through handcrafted web experiences.",
-      de: "Wir erhöhen Ihre Onlinepräsenz durch handgefertigte Web-Erfahrungen.",
+      de: "Wir verbessern Ihre Onlinepräsenz durch handgefertigte Websites.",
       // en: "We take your project to the next level.",
       // de: "Wir bringen Ihr Projekt auf die nächste Stufe.",
     },
