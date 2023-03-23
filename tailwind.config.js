@@ -29,6 +29,9 @@ module.exports = {
         autofit: "repeat(auto-fit, minmax(200px, 1fr))",
         autofitmd: "repeat(auto-fit, minmax(400px, 1fr))",
       },
+      animation: {
+        slowpulse: "pulse 10s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+      },
     },
   },
   plugins: [

@@ -1,12 +1,23 @@
 import Contactform from "./Contactform";
 import i18n from "lib/i18n";
+import Balancer from "react-wrap-balancer";
+
+import cn from "classnames";
 
 const CallToAction = ({ locale = "en" }) => {
   return (
-    <div className="flex flex-col items-center justify-center pt-32 md:flex-row md:items-start md:justify-between">
-      <h3 className="pb-8 text-2xl md:pb-0">{i18n.contact.title[locale]}</h3>
+    <section className="relative flex flex-col pt-48 md:flex-row md:items-start md:justify-between">
+      <div>
+        <h4 className=" text-gray-600 dark:text-gray-400">
+          <Balancer>{i18n.contact.subtitle[locale]}</Balancer>
+        </h4>
+
+        <h3 className="pt-2 pb-16 text-2xl font-semibold md:pb-0 md:text-4xl">
+          {i18n.contact.title[locale]}
+        </h3>
+      </div>
       <Contactform locale={locale} />
-    </div>
+    </section>
   );
 };
 

@@ -12,16 +12,34 @@ export const i18n = {
   },
   contact: {
     title: {
-      en: "Let's have a chat!",
+      en: "Let's make your project look great!",
       de: "Ich helfe gerne weiter!",
+    },
+    subtitle: {
+      en: "We increase your online presence through handcrafted web experiences.",
+      de: "Wir verbessern Ihre Onlinepräsenz durch handgefertigte Websites.",
+      // en: "We take your project to the next level.",
+      // de: "Wir bringen Ihr Projekt auf die nächste Stufe.",
     },
     name: {
       en: "Your Name",
       de: "Ihr Name",
     },
+    firstname: {
+      en: "First name",
+      de: "Vorname",
+    },
+    lastname: {
+      en: "Last name",
+      de: "Nachname",
+    },
     email: {
-      en: "Email Adress",
+      en: "Email",
       de: "E-Mail Adresse",
+    },
+    company: {
+      en: "Company",
+      de: "Unternehmen",
     },
     message: {
       en: "Message",

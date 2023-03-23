@@ -5,32 +5,36 @@ import { Carousel } from "react-responsive-carousel";
 
 const Testimonials = ({ testimonials }) => {
   return (
-    <div className="pt-16">
-      <Carousel
-        showThumbs={false}
-        showStatus={false}
-        autoPlay={true}
-        interval={7000}
-      >
-        {testimonials.map((t) => (
-          <div
-            key={t.slug}
-            className="flex flex-col items-center justify-around pt-16 "
+    <>
+      {testimonials && (
+        <div className="pt-16">
+          <Carousel
+            showThumbs={false}
+            showStatus={false}
+            autoPlay={true}
+            interval={7000}
           >
-            <div className="h-32 w-32">
-              <Image
-                data={t.image.responsiveImage}
-                className="h-32 w-32"
-                pictureClassName="rounded-full object-cover max-w-md max-h-md"
-              />
-            </div>
-            <p className="max-w-xs pt-8 sm:min-w-0">{t.content}</p>
-            <h3 className="pt-4 ">{t.name}</h3>
-            <p className="pb-16 text-gray-500 ">{t.company}</p>
-          </div>
-        ))}
-      </Carousel>
-    </div>
+            {testimonials.map((t) => (
+              <div
+                key={t.slug}
+                className="flex flex-col items-center justify-around pt-16 "
+              >
+                <div className="h-32 w-32">
+                  <Image
+                    data={t.image.responsiveImage}
+                    className="h-32 w-32"
+                    pictureClassName="rounded-full object-cover max-w-md max-h-md"
+                  />
+                </div>
+                <p className="max-w-xs pt-8 sm:min-w-0">{t.content}</p>
+                <h3 className="pt-4 ">{t.name}</h3>
+                <p className="pb-16 text-gray-500 ">{t.company}</p>
+              </div>
+            ))}
+          </Carousel>
+        </div>
+      )}
+    </>
   );
 };
 
