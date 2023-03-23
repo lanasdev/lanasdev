@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
-    <Html className="scroll-smooth subpixel-antialiased">
+    <Html className="subpixel-antialiased">
       <Head></Head>
       <Main />
       <NextScript />
