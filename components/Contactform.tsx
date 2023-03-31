@@ -38,7 +38,7 @@ const Contactform = ({ locale }) => {
     <div className=" isolate md:px-6 lg:px-8">
       <Blur />
       <form onSubmit={handleSubmit} className="mx-auto max-w-xl ">
-        <div className="grid grid-cols-1 gap-y-6 gap-x-8 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
           <fieldset>
             <label
               htmlFor="first-name"
@@ -53,7 +53,7 @@ const Contactform = ({ locale }) => {
                 id="first-name"
                 autoComplete="given-name"
                 minLength={2}
-                className="block w-full rounded-md border-0 py-2 px-3.5 text-midnight  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 px-3.5 py-2 text-midnight  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 sm:text-sm sm:leading-6"
               />
               <ValidationError
                 prefix="Name"
@@ -76,7 +76,7 @@ const Contactform = ({ locale }) => {
                 id="last-name"
                 autoComplete="family-name"
                 minLength={2}
-                className="block w-full rounded-md border-0 py-2 px-3.5 text-midnight  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 px-3.5 py-2 text-midnight  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 sm:text-sm sm:leading-6"
               />
               <ValidationError
                 prefix="last name"
@@ -100,7 +100,7 @@ const Contactform = ({ locale }) => {
                 autoComplete="email"
                 pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
                 minLength={3}
-                className="block w-full rounded-md border-0 py-2 px-3.5 text-midnight  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 px-3.5 py-2 text-midnight  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 sm:text-sm sm:leading-6"
               />
               <ValidationError
                 prefix="Email"
@@ -122,7 +122,7 @@ const Contactform = ({ locale }) => {
                 name="company"
                 id="company"
                 autoComplete="organization"
-                className="block w-full rounded-md border-0 py-2 px-3.5 text-midnight  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 px-3.5 py-2 text-midnight  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 sm:text-sm sm:leading-6"
               />
               <ValidationError
                 prefix="Company"
@@ -144,7 +144,7 @@ const Contactform = ({ locale }) => {
                 id="message"
                 minLength={4}
                 rows={4}
-                className="block w-full rounded-md border-0 py-2 px-3.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 dark:text-midnight sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 px-3.5 py-2 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 dark:text-midnight sm:text-sm sm:leading-6"
                 defaultValue={""}
               />
               <ValidationError

@@ -3,7 +3,7 @@ import cn from "classnames";
 
 const OtherProjects = ({ project }) => {
   return (
-    <div className="flex flex-col items-stretch space-y-8 pt-8 md:flex-row md:space-y-0 md:space-x-8">
+    <div className="flex flex-col items-stretch space-y-8 pt-8 md:flex-row md:space-x-8 md:space-y-0">
       {project.otherprojects.slice(0, 3).map((project) => (
         <Link
           key={project.slug}

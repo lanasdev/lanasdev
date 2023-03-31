@@ -12,7 +12,7 @@ const CallToAction = ({ locale = "en" }) => {
           <Balancer>{i18n.contact.subtitle[locale]}</Balancer>
         </h4>
 
-        <h3 className="pt-2 pb-16 text-2xl font-semibold md:pb-0 md:text-4xl">
+        <h3 className="pb-16 pt-2 text-2xl font-semibold md:pb-0 md:text-4xl">
           <Balancer>{i18n.contact.title[locale]}</Balancer>
         </h3>
       </div>

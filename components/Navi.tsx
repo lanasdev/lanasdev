@@ -187,7 +187,7 @@ const Navi = () => {
                             </a>
                           ))}
                         </div>
-                        <div className="space-y-6 bg-gray-50 px-5 py-5 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
+                        <div className="space-y-6 bg-gray-50 px-5 py-5 sm:flex sm:space-x-10 sm:space-y-0 sm:px-8">
                           {callsToAction.map((item) => (
                             <div key={item.name} className="flow-root">
                               <a
@@ -333,7 +333,7 @@ const Navi = () => {
           className="absolute inset-x-0 top-0 origin-top-right transform p-2 transition md:hidden"
         >
           <div className="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
-            <div className="px-5 pt-5 pb-6">
+            <div className="px-5 pb-6 pt-5">
               <div className="flex items-center justify-between">
                 <Link href="/">
                   {/* <img
@@ -376,8 +376,8 @@ const Navi = () => {
                 </nav>
               </div>
             </div>
-            <div className="space-y-6 py-6 px-5">
-              <div className="grid grid-cols-2 gap-y-4 gap-x-8">
+            <div className="space-y-6 px-5 py-6">
+              <div className="grid grid-cols-2 gap-x-8 gap-y-4">
                 <a
                   href="#"
                   className="text-base font-medium text-gray-900 hover:text-gray-700"
