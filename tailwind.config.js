@@ -29,8 +29,18 @@ module.exports = {
         autofit: "repeat(auto-fit, minmax(200px, 1fr))",
         autofitmd: "repeat(auto-fit, minmax(400px, 1fr))",
       },
+      transform: {
+        marqueeTransform: "translate3d(calc(-25% + 20vw), 0px, 0px)",
+      },
+      keyframes: {
+        marquee: {
+          "0%": { transform: "translate3d(calc(-25% + 20vw), 0px, 0px)" },
+          "100%": { transform: "translate3d(calc(-100% + 20vw), 0px, 0px)" },
+        },
+      },
       animation: {
         slowpulse: "pulse 10s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        marquee: "marquee 10s linear infinite",
       },
     },
   },

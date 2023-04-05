@@ -5,7 +5,6 @@ import { Suspense } from "react";
 import { useRouter } from "next/router";
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
 import cn from "classnames";
-
 import { renderMetaTags } from "react-datocms";
 
 import Layout from "components/Layout";
