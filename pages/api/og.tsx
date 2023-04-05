@@ -21,7 +21,7 @@ export default async function handler(req: NextRequest) {
   if (color1.indexOf("#") !== 0) {
     color1 = "#" + color1;
   }
-  if (color2.indexOf("#") !== 0) {
+  if (color2?.indexOf("#") !== 0) {
     color2 = "#" + color2;
   }
 

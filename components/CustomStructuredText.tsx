@@ -113,7 +113,7 @@ const CustomStructuredText = ({ data }) => {
             case "ItemRecord":
               return (
                 <Link href={`/items/${record.slug}`} className="hello">
-                  {children[0]}
+                  {children && children[0]}
                 </Link>
               );
             case "PostRecord":

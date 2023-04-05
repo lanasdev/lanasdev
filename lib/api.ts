@@ -107,11 +107,16 @@ export const getAllProjectSlugs = async ({
     includeDrafts: preview,
   });
 
-  const paths = [];
+  const paths: any = [];
 
   data.allProjects.map((project) => {
     locales.map((language) => {
-      paths.push({ params: { slug: project.slug }, locale: language });
+      paths.push({
+        params: {
+          slug: project.slug,
+        },
+        locale: language,
+      });
     });
   });
 
@@ -301,7 +306,7 @@ export const getAllPostsSlugs = async ({ locales = ["en", "de"] }) => {
     includeDrafts: true,
   });
 
-  const paths = [];
+  const paths: any = [];
   data.allPosts.map((post: { slug: any }) => {
     locales.map((language) => {
       paths.push({ params: { slug: post.slug }, locale: language });

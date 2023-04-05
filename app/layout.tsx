@@ -1,4 +1,4 @@
-import "../styles/globals.css";
+import "styles/globals.css";
 import type { AppProps } from "next/app";
 import { Analytics } from "@vercel/analytics/react";
 import cn from "classnames";
@@ -7,6 +7,7 @@ import { Inter } from "next/font/google";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
 });
 
 import TopBar from "components/TopBar";

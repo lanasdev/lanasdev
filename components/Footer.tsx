@@ -47,7 +47,7 @@ const Footer = () => {
         <div className="flex flex-row items-center gap-4 sm:gap-0 ">
           {socials.map((s) => (
             <Link
-              href={s.link}
+              href={s.link || "#"}
               key={s.id}
               className={aClass}
               aria-label={s.name}

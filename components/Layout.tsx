@@ -26,7 +26,7 @@ type Props = {
 const Layout = ({ children, preview = false }: Props) => {
   const router = useRouter();
   const { locale } = router;
-  const fmLocale = locale.split("-")[0];
+  const fmLocale = locale ? locale.split("-")[0] : "en";
 
   return (
     <div>

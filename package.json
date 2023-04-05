@@ -6,7 +6,7 @@
     "start": "next start",
     "type-check": "tsc --noEmit",
     "lint": "next lint",
-    "prepare-commit": "npx prettier -w lib components pages && yarn build"
+    "prepare-commit": "npx prettier -w lib components pages app ui && yarn build"
   },
   "dependencies": {
     "@formspree/react": "^2.4.0",
