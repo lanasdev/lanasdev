@@ -5,7 +5,7 @@ import { responsiveImageFragment } from "lib/fragments";
 const API_URL = "https://graphql.datocms.com";
 const API_TOKEN = process.env.DATOCMS_API_TOKEN;
 
-export const getHome = async (locale: string) => {
+export const getHome = async (locale: string = "en") => {
   const HomeQuery = gql`
     query HomeQuery($locale: SiteLocale) {
       site: _site {
@@ -121,7 +121,7 @@ export const getAllProjectSlugs = async ({
 export const getProjectBySlug = async (
   slug: string | string[],
   preview: boolean,
-  locale: string
+  locale: string = "en"
 ) => {
   const ProjectBySlug = gql`
     query ProjectBySlug($slug: String!, $locale: SiteLocale) {
@@ -268,7 +268,7 @@ export const getProjectBySlug = async (
   };
 };
 
-export const getTopBar = async (locale: string) => {
+export const getTopBar = async (locale: string = "en") => {
   const data = await request({
     query: gql`
       query TopBarQuery($locale: SiteLocale) {
@@ -379,7 +379,7 @@ export const PostBySlugQuery = gql`
 export const getPostBySlug = async (
   slug: any,
   preview: boolean,
-  locale: string
+  locale: string = "en"
 ) => {
   const graphqlRequest = {
     query: PostBySlugQuery,
