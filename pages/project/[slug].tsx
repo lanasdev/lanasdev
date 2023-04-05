@@ -16,6 +16,7 @@ import ProjectHeader from "components/Project/ProjectHeader";
 
 import { getAllProjectSlugs, getProjectBySlug, getTopBar } from "lib/api";
 import { renderMetaTags, useQuerySubscription } from "react-datocms";
+import CTAsmall from "components/CTAsmall";
 
 const ProjectPage = ({ subscription }) => {
   const router = useRouter();
@@ -73,6 +74,7 @@ const ProjectPage = ({ subscription }) => {
 
         <OtherProjects project={project} />
         {/* <pre className="pt-16">{JSON.stringify(data, null, 2)}</pre> */}
+        <CTAsmall />
       </Layout>
     </>
   );

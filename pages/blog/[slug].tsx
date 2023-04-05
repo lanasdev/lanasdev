@@ -10,6 +10,7 @@ import BlogStructuredText from "components/Blog/BlogStructuredText";
 import BlogHeader from "components/Blog/BlogHeader";
 
 import { renderMetaTags, useQuerySubscription } from "react-datocms";
+import CTAsmall from "components/CTAsmall";
 
 const BlogPost = ({ subscription }) => {
   const { data, error, status } = useQuerySubscription(subscription);
@@ -58,6 +59,7 @@ const BlogPost = ({ subscription }) => {
             <BlogStructuredText post={post} />
           </main>
         </section>
+        <CTAsmall />
       </Layout>
     </>
   );
