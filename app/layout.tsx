@@ -7,10 +7,10 @@ import { Inter } from "next/font/google";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display: "swap",
 });
 
 import TopBar from "components/TopBar";
+import Footer from "./Footer";
 import CallToAction from "./CallToAction";
 
 export default function RootLayout({
@@ -19,21 +19,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} font-sans`}>
       <body
-        className={cn(
-          `${inter.variable} font-sans`,
+        className={
           "bg-white text-midnight subpixel-antialiased selection:bg-amber-500 dark:bg-midnight dark:text-white "
-        )}
+        }
       >
         <main className="mx-auto px-8 md:max-w-6xl xl:max-w-7xl">
-          {/* <Navi /> */}
-          {/* <Alert preview={preview} locale={fmLocale} /> */}
           <TopBar />
           {children}
           {/* <CallToAction locale={"en"} /> */}
-          {/* <Footer /> */}
-          {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+          <Footer />
+          {/* <Analytics /> */}
         </main>
       </body>
     </html>

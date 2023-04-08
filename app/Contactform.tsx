@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import { useForm, ValidationError } from "@formspree/react";
@@ -7,7 +7,7 @@ import { Switch } from "@headlessui/react";
 import { Blur } from "ui/Blur";
 import cn from "classnames";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { CircleNotch } from "phosphor-react";
+import { CircleNotch } from "@phosphor-icons/react";
 
 import i18n from "lib/i18n";
 
@@ -19,7 +19,7 @@ type FormData = {
 
 const Contactform = ({ locale }) => {
   const [state, handleSubmit] = useForm("mgedprdn");
-  const [agreed, setAgreed] = useState(false);
+  // const [agreed, setAgreed] = useState(false);
 
   if (state.succeeded) {
     return (

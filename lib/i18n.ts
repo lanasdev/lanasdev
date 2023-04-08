@@ -12,11 +12,11 @@ export const i18n = {
   },
   contact: {
     title: {
-      en: "Let's make your project look great!",
+      en: "Let's work together to make your business look great!",
       de: "Ich helfe gerne weiter!",
     },
     subtitle: {
-      en: "We increase your online presence through handcrafted web experiences.",
+      en: "We improve your online presence through handcrafted web experiences.",
       de: "Wir verbessern Ihre Onlinepräsenz durch handgefertigte Websites.",
       // en: "We take your project to the next level.",
       // de: "Wir bringen Ihr Projekt auf die nächste Stufe.",
