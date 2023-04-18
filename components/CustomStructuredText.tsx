@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/alt-text */
+"use client";
 import Link from "next/link";
-import { StructuredText, Image, ResponsiveImageType } from "react-datocms";
+import { StructuredText, ResponsiveImageType } from "react-datocms";
+import CustomImage from "ui/CustomImage";
 
 type RecordImageType = {
   responsiveImage: ResponsiveImageType;
@@ -32,8 +34,8 @@ const renderLinkToRecord = ({ record, children, transformedMeta }) => {
       return (
         <div className="flex flex-col items-center justify-around pt-16 ">
           <div className="h-32 w-32">
-            <Image
-              data={record.image.responsiveImage}
+            <CustomImage
+              responsiveImage={record.image.responsiveImage}
               className="h-32 w-32"
               pictureClassName="rounded-full object-cover max-w-md max-h-md"
             />
@@ -76,7 +78,10 @@ const renderBlock = ({ record }) => {
     case "ImageRecord":
       return (
         // https://stackoverflow.com/questions/67244166/how-to-read-value-from-unknown-type
-        <Image data={(record.image as RecordImageType).responsiveImage} />
+        <CustomImage
+          responsiveImage={(record.image as RecordImageType).responsiveImage}
+          className={"w-full"}
+        />
       );
     default:
       return "renderBlock";
@@ -132,8 +137,10 @@ const CustomStructuredText = ({ data }) => {
               return (
                 <div className="flex flex-col items-center justify-around pt-16 ">
                   <div className="h-32 w-32">
-                    <Image
-                      data={(record.image as RecordImageType).responsiveImage}
+                    <CustomImage
+                      responsiveImage={
+                        (record.image as RecordImageType).responsiveImage
+                      }
                       className="h-32 w-32"
                       pictureClassName="rounded-full object-cover max-w-md max-h-md"
                     />
@@ -155,8 +162,10 @@ const CustomStructuredText = ({ data }) => {
           switch (record.__typename) {
             case "ImageRecord":
               return (
-                <Image
-                  data={(record.image as RecordImageType).responsiveImage}
+                <CustomImage
+                  responsiveImage={
+                    (record.image as RecordImageType).responsiveImage
+                  }
                 />
               );
             default:

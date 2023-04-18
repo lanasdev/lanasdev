@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 
 import {
@@ -6,6 +7,8 @@ import {
   TelegramLogo,
   GithubLogo,
 } from "@phosphor-icons/react";
+
+// import { TwitterLogo, InstagramLogo, TelegramLogo, GithubLogo } from "./Icons";
 // import LanguageBar from "./LanguageBar";
 
 const Footer = () => {
@@ -15,7 +18,7 @@ const Footer = () => {
     {
       id: 1,
       name: "Twitter",
-      icon: <TwitterLogo size={24} />,
+      // icon: <TwitterLogo size={24} />,
       link: process.env.NEXT_PUBLIC_TWITTER_URL,
     },
     {
@@ -42,7 +45,7 @@ const Footer = () => {
     // a cool footer
     <footer className=" pt-24 ">
       <div className="flex flex-col items-center justify-center space-y-4 pb-4 pt-32 sm:flex-row-reverse sm:justify-between sm:space-y-0 ">
-        {/* <div className="flex flex-row items-center gap-4 sm:gap-0 ">
+        <div className="flex flex-row items-center gap-4 sm:gap-0 ">
           {socials.map((s) => (
             <Link
               href={s.link ? s.link : "/"}
@@ -52,8 +55,8 @@ const Footer = () => {
             >
               {s.icon}
             </Link>
-          ))} 
-        </div> */}
+          ))}
+        </div>
         <div className="flex flex-col sm:flex-row-reverse">
           {/* <LanguageBar /> */}
 

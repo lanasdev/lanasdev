@@ -5,7 +5,7 @@ import { Switch } from "@headlessui/react";
 import { Blur } from "./Blur";
 import cn from "classnames";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { CircleNotch } from "@phosphor-icons/react";
+import { CircleNotch } from "app/Icons";
 
 import i18n from "lib/i18n";
 

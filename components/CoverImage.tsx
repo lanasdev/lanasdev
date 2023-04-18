@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
+"use client";
 import { Image } from "react-datocms";
-import cn from "classnames";
+import clsx from "clsx";
 import Link from "next/link";
 
 type Props = {
@@ -16,7 +17,7 @@ export default function CoverImage({ title, responsiveImage, path }: Props) {
         ...responsiveImage,
         alt: `Cover Image for ${title}`,
       }}
-      className={cn(
+      className={clsx(
         "relative mb-8 w-full overflow-auto rounded-md object-cover",
         {
           "hover:shadow-medium transition-shadow duration-200": path,

@@ -2,8 +2,6 @@ import Contactform from "./Contactform";
 import i18n from "lib/i18n";
 import Balancer from "react-wrap-balancer";
 
-import cn from "classnames";
-
 const CallToAction = ({ locale = "en" }) => {
   return (
     <section className="relative flex flex-col pt-48 md:flex-row md:items-start md:justify-between">
