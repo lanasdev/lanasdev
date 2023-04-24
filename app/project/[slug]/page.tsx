@@ -16,7 +16,7 @@ import { DEFAULT_LANG, getProjectBySlug } from "lib/apiV2";
 
 const ProjectPage = async ({ params }) => {
   const locale = "en";
-  console.log(params.slug);
+  // console.log(params.slug);
   // const subscription = await datoFetcher(`{query allProjects {slug}}`);
   const datoData = await getProjectBySlug(params.slug, false, "en");
   // const { data, error, status } = useQuerySubscription(subscription);
@@ -70,9 +70,9 @@ const ProjectPage = async ({ params }) => {
       </article>
 
       <OtherProjects project={project} />
-      <pre className="mt-16 bg-purple-700 pt-16">
+      {/* <pre className="mt-16 bg-purple-700 pt-16">
         {JSON.stringify(data, null, 2)}
-      </pre>
+      </pre> */}
     </div>
   );
 };
