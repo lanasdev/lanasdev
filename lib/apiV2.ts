@@ -427,3 +427,115 @@ export const getProjectBySlug = async (
       },
   };
 };
+
+/// Blog POSTS
+//
+//
+
+export const getAllPostsSlugs = async ({ locales = ["en", "de"] }) => {
+  const data = await request({
+    query: gql`
+      query AllPostSlug {
+        allPosts {
+          slug
+        }
+      }
+    `,
+    variables: {},
+    excludeInvalid: true,
+    includeDrafts: true,
+  });
+
+  const paths: any = [];
+  data.allPosts.map((post: { slug: any }) => {
+    locales.map((language) => {
+      paths.push({ params: { slug: post.slug }, locale: language });
+    });
+  });
+
+  // const paths = data.allPosts.map((slug) => ({
+  //   params: {
+  //     slug: slug.slug,
+  //   },
+  // }));
+
+  return paths;
+};
+
+export const PostBySlugQuery = gql`
+  query PostBySlug($slug: String!, $locale: SiteLocale) {
+    post(locale: $locale, filter: { slug: { eq: $slug } }) {
+      seo: _seoMetaTags {
+        attributes
+        content
+        tag
+      }
+      title
+      slug
+      author {
+        name
+        role
+        picture {
+          responsiveImage(
+            imgixParams: { auto: format, fit: crop, w: 300, h: 300, ar: "1" }
+          ) {
+            ...responsiveImageFragment
+          }
+        }
+      }
+      excerpt
+      date
+      createdAt
+      updatedAt
+      content {
+        value
+        blocks {
+          __typename
+          ... on ImageRecord {
+            id
+            image {
+              responsiveImage(
+                imgixParams: { auto: format, fit: crop, h: 600 }
+              ) {
+                ...responsiveImageFragment
+              }
+              alt
+            }
+          }
+        }
+      }
+      coverImage {
+        responsiveImage(imgixParams: { auto: format, fit: crop, h: "900" }) {
+          ...responsiveImageFragment
+        }
+      }
+    }
+  }
+  ${responsiveImageFragment}
+`;
+
+export const getPostBySlug = async (
+  slug: any,
+  preview: boolean = false,
+  locale: string = DEFAULT_LANG
+) => {
+  const graphqlRequest = {
+    query: PostBySlugQuery,
+    variables: { limit: 10, locale, slug },
+    includeDrafts: preview,
+    excludeInvalid: true,
+  };
+
+  return {
+    subscription: preview
+      ? {
+        ...graphqlRequest,
+        initialData: await request(graphqlRequest),
+        token: process.env.NEXT_DATOCMS_API_TOKEN,
+      }
+      : {
+        enabled: false,
+        initialData: await request(graphqlRequest),
+      },
+  };
+};
