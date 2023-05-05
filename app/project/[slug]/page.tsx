@@ -12,7 +12,15 @@ import ProjectHeader from "components/Project/ProjectHeader";
 import { gql } from "graphql-request";
 //
 import request from "lib/datocms";
-import { DEFAULT_LANG, getProjectBySlug } from "lib/apiV2";
+import { DEFAULT_LANG, getProjectBySlug, getAllProjectSlugs } from "lib/apiV2";
+
+export const revalidate = 60;
+
+export async function generateStaticParams() {
+  const projects = await getAllProjectSlugs();
+
+  return projects;
+}
 
 const ProjectPage = async ({ params }) => {
   const locale = "en";

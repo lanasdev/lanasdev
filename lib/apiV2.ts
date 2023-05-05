@@ -156,9 +156,6 @@ export const DEFAULT_LANG = "en";
 //   locale: string = "en"
 // ) => {
 
-
-
-
 export const getHome = async (locale: string = "en") => {
   const HomeQuery = gql`
     query HomeQuery($locale: SiteLocale) {
@@ -243,11 +240,11 @@ export const getHome = async (locale: string = "en") => {
   return data;
 };
 
-
-export const getAllProjectSlugs = async ({
-  preview = false,
-  locales = ["en", "de"],
-}) => {
+// export const getAllProjectSlugs = async ({
+// preview = false,
+// locales = ["en"],
+// }) => {
+export const getAllProjectSlugs = async () => {
   // get all project slugs for getStaticPaths
   const data = await request({
     query: gql`
@@ -259,21 +256,24 @@ export const getAllProjectSlugs = async ({
     `,
     variables: {},
     excludeInvalid: true,
-    includeDrafts: preview,
+    includeDrafts: false,
   });
 
-  const paths: any = [];
+  // const paths: any = [];
 
-  data.allProjects.map((project) => {
-    locales.map((language) => {
-      paths.push({
-        params: {
-          slug: project.slug,
-        },
-        locale: language,
-      });
-    });
-  });
+  // data.allProjects.map((project) => {
+  //   locales.map((language) => {
+  //     paths.push({
+  //       params: {
+  //         slug: project.slug,
+  //       },
+  //       locale: language,
+  //     });
+  //   });
+  // });
+  const paths = data.allProjects.map((project) => ({
+    slug: project.slug,
+  }));
 
   return paths;
 };
@@ -417,14 +417,14 @@ export const getProjectBySlug = async (
   return {
     subscription: preview
       ? {
-        ...graphqlRequest,
-        initialData: await request(graphqlRequest),
-        token: process.env.NEXT_DATOCMS_API_TOKEN,
-      }
+          ...graphqlRequest,
+          initialData: await request(graphqlRequest),
+          token: process.env.NEXT_DATOCMS_API_TOKEN,
+        }
       : {
-        enabled: false,
-        initialData: await request(graphqlRequest),
-      },
+          enabled: false,
+          initialData: await request(graphqlRequest),
+        },
   };
 };
 
@@ -432,7 +432,8 @@ export const getProjectBySlug = async (
 //
 //
 
-export const getAllPostsSlugs = async ({ locales = ["en", "de"] }) => {
+// export const getAllPostsSlugs = async ({ locales = ["en"] }) => {
+export const getAllPostsSlugs = async () => {
   const data = await request({
     query: gql`
       query AllPostSlug {
@@ -443,21 +444,19 @@ export const getAllPostsSlugs = async ({ locales = ["en", "de"] }) => {
     `,
     variables: {},
     excludeInvalid: true,
-    includeDrafts: true,
+    includeDrafts: false,
   });
 
-  const paths: any = [];
-  data.allPosts.map((post: { slug: any }) => {
-    locales.map((language) => {
-      paths.push({ params: { slug: post.slug }, locale: language });
-    });
-  });
+  // const paths: any = [];
+  // data.allPosts.map((post: { slug: any }) => {
+  //   locales.map((language) => {
+  //     paths.push({ params: { slug: post.slug }, locale: language });
+  //   });
+  // });
 
-  // const paths = data.allPosts.map((slug) => ({
-  //   params: {
-  //     slug: slug.slug,
-  //   },
-  // }));
+  const paths = data.allPosts.map((slug) => ({
+    slug: slug.slug,
+  }));
 
   return paths;
 };
@@ -529,13 +528,13 @@ export const getPostBySlug = async (
   return {
     subscription: preview
       ? {
-        ...graphqlRequest,
-        initialData: await request(graphqlRequest),
-        token: process.env.NEXT_DATOCMS_API_TOKEN,
-      }
+          ...graphqlRequest,
+          initialData: await request(graphqlRequest),
+          token: process.env.NEXT_DATOCMS_API_TOKEN,
+        }
       : {
-        enabled: false,
-        initialData: await request(graphqlRequest),
-      },
+          enabled: false,
+          initialData: await request(graphqlRequest),
+        },
   };
 };

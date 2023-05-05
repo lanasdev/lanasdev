@@ -5,7 +5,19 @@ import BlogHeader from "components/Blog/BlogHeader";
 import CoverImage from "components/CoverImage";
 import CustomStructuredText from "components/CustomStructuredText";
 //
-import { DEFAULT_LANG, getPostBySlug } from "lib/apiV2";
+import { DEFAULT_LANG, getPostBySlug, getAllPostsSlugs } from "lib/apiV2";
+
+export const revalidate = 60;
+
+// generate all the paths at build time using app dir
+export async function generateStaticParams() {
+  const posts = await getAllPostsSlugs();
+
+  return posts;
+  // return posts.map((post) => ({
+  //   slug: post.slug,
+  // }));
+}
 
 const BlogPost = async ({ params }) => {
   const datoData = await getPostBySlug(params.slug, false, "en");
@@ -51,9 +63,9 @@ const BlogPost = async ({ params }) => {
           </div>
         </main>
       </section>
-      <pre className="mt-16 bg-purple-700 pt-16">
+      {/* <pre className="mt-16 bg-purple-700 pt-16">
         {JSON.stringify(data, null, 2)}
-      </pre>
+      </pre> */}
     </>
   );
 };
