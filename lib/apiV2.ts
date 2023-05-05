@@ -428,6 +428,50 @@ export const getProjectBySlug = async (
   };
 };
 
+export const getProjectBySlugQuick = async (
+  slug: string | string[],
+  preview: boolean,
+  locale: string = DEFAULT_LANG
+) => {
+  const ProjectBySlug = gql`
+    query ProjectBySlug($slug: String!, $locale: SiteLocale) {
+      project(locale: $locale, filter: { slug: { eq: $slug } }) {
+        seo: _seoMetaTags(locale: $locale) {
+          attributes
+          content
+          tag
+        }
+        title
+        description
+        slug
+        position
+        color1 {
+          hex
+        }
+        color2 {
+          hex
+        }
+        gradientdirection
+        clientname
+        projecttype
+        year
+        liveurl
+        createdAt
+        }
+      }
+    }
+
+    ${responsiveImageFragment}
+  `;
+
+  const graphqlRequest = {
+    query: ProjectBySlug,
+    variables: { limit: 10, locale, slug },
+    includeDrafts: preview,
+    excludeInvalid: true,
+  };
+
+
 /// Blog POSTS
 //
 //
