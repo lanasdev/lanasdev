@@ -6,17 +6,51 @@ import CoverImage from "components/CoverImage";
 import CustomStructuredText from "components/CustomStructuredText";
 //
 import { DEFAULT_LANG, getPostBySlug, getAllPostsSlugs } from "lib/apiV2";
+import { Metadata } from "next";
 
 export const revalidate = 60;
+
+export async function generateMetadata({
+  params,
+}): Promise<Metadata | undefined> {
+  // const post = data.find((post) => post.slug === params.slug);
+  const post = getPostBySlug(params.slug, false, "en");
+  if (!post) {
+    return;
+  }
+
+  const { title, description, slug, createdAt } = (await post).subscription
+    .initialData.post;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      publishedTime: createdAt,
+      url: `https://lanas.dev/blog/${slug}`,
+      // images: [
+      // {
+      // url: ogImage,
+      // },
+      // ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      // images: [ogImage],
+    },
+  };
+}
 
 // generate all the paths at build time using app dir
 export async function generateStaticParams() {
   const posts = await getAllPostsSlugs();
 
   return posts;
-  // return posts.map((post) => ({
-  //   slug: post.slug,
-  // }));
 }
 
 const BlogPost = async ({ params }) => {

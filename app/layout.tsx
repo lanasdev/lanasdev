@@ -2,17 +2,55 @@ import "styles/globals.css";
 import type { AppProps } from "next/app";
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
-import cn from "classnames";
 import { Inter } from "next/font/google";
+import TopBar from "components/TopBar";
+import Footer from "./Footer";
+import CallToAction from "./CallToAction";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
 });
 
-import TopBar from "components/TopBar";
-import Footer from "./Footer";
-import CallToAction from "./CallToAction";
+export const metadata: Metadata = {
+  title: {
+    default: "Lanas - Web Design for the solar industry",
+    template: "%s | Lanas.dev",
+  },
+  description: "Digital craftsmanship for the solar industry.",
+  openGraph: {
+    title: "Lanas - Web Design for the solar industry",
+    description: "Digital craftsmanship for the solar industry.",
+    url: "https://lanas.dev",
+    siteName: "Lanas - Web Design for the solar industry",
+    locale: "en-DE",
+    type: "website",
+  },
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f8f8ff" },
+    { media: "(prefers-color-scheme: dark)", color: "#060B12" },
+  ],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  twitter: {
+    title: "Lanas - Web Design for the solar industry",
+    card: "summary_large_image",
+    creatorId: "@lanasdev",
+  },
+  icons: {
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
+};
 
 export default function RootLayout({
   children,
@@ -31,7 +69,7 @@ export default function RootLayout({
           {children}
           {/* <CallToAction locale={"en"} /> */}
           <Footer />
-          {/* <Analytics /> */}
+          <Analytics />
         </main>
       </body>
     </html>

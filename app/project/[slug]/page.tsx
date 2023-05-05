@@ -9,12 +9,49 @@ import CustomStructuredText from "components/CustomStructuredText";
 import OtherProjects from "components/Project/OtherProjects";
 import ProjectFacts from "components/Project/ProjectFacts";
 import ProjectHeader from "components/Project/ProjectHeader";
-import { gql } from "graphql-request";
+import { Metadata } from "next";
+
 //
 import request from "lib/datocms";
 import { DEFAULT_LANG, getProjectBySlug, getAllProjectSlugs } from "lib/apiV2";
 
 export const revalidate = 60;
+
+export async function generateMetadata({
+  params,
+}): Promise<Metadata | undefined> {
+  // const post = data.find((post) => post.slug === params.slug);
+  const post = getProjectBySlug(params.slug, false, "en");
+  if (!post) {
+    return;
+  }
+
+  const { title, description, slug, createdAt } = (await project).subscription
+    .initialData.post;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      publishedTime: createdAt,
+      url: `https://lanas.dev/project/${slug}`,
+      // images: [
+      // {
+      // url: ogImage,
+      // },
+      // ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      // images: [ogImage],
+    },
+  };
+}
 
 export async function generateStaticParams() {
   const projects = await getAllProjectSlugs();
