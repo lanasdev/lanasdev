@@ -46,7 +46,9 @@ const BlogPost = async ({ params }) => {
           responsiveImage={post.coverImage.responsiveImage}
         />
         <main className="flex flex-row items-stretch justify-between py-16">
-          <CustomStructuredText data={post} />
+          <div className="prose dark:prose-invert dark:text-white dark:prose-headings:text-white dark:prose-a:text-white">
+            <CustomStructuredText data={post} />
+          </div>
         </main>
       </section>
       <pre className="mt-16 bg-purple-700 pt-16">

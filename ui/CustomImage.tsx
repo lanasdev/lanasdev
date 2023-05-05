@@ -12,7 +12,7 @@ const CustomImage = ({ responsiveImage, className = "", ...otherProps }) => {
   return (
     <Image
       data={responsiveImage}
-      className={clsx(className, "rounded-md")}
+      className={clsx(className, "aspect-auto rounded-md")}
       {...otherProps}
     />
   );

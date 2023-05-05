@@ -5,7 +5,7 @@ import { useForm, ValidationError } from "@formspree/react";
 import { Switch } from "@headlessui/react";
 
 import { Blur } from "ui/Blur";
-import cn from "classnames";
+import clsx from "clsx";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { CircleNotch } from "@phosphor-icons/react";
 
