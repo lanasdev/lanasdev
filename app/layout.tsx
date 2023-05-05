@@ -25,7 +25,13 @@ export const metadata: Metadata = {
     siteName: "Lanas - Web Design for the solar industry",
     locale: "en-DE",
     type: "website",
-    images: "/opengraph-image",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+      },
+    ],
   },
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#f8f8ff" },
@@ -44,7 +50,15 @@ export const metadata: Metadata = {
   },
   twitter: {
     title: "Lanas - Web Design for the solar industry",
+    description: "Digital craftsmanship for the solar industry.",
     card: "summary_large_image",
+    images: [
+      {
+        url: "/twitter-image",
+        width: 1200,
+        height: 630,
+      },
+    ],
     creatorId: "@lanasdev",
   },
   icons: {
