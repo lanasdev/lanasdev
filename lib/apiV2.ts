@@ -470,7 +470,7 @@ export const getProjectBySlugQuick = async (
     includeDrafts: preview,
     excludeInvalid: true,
   };
-
+};
 
 /// Blog POSTS
 //
