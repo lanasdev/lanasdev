@@ -21,13 +21,13 @@ export async function generateMetadata({
   params,
 }): Promise<Metadata | undefined> {
   // const post = data.find((post) => post.slug === params.slug);
-  const post = getProjectBySlug(params.slug, false, "en");
-  if (!post) {
+  const project = getProjectBySlug(params.slug, false, "en");
+  if (!project) {
     return;
   }
 
   const { title, description, slug, createdAt } = (await project).subscription
-    .initialData.post;
+    .initialData.project;
 
   return {
     title,

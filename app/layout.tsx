@@ -25,6 +25,7 @@ export const metadata: Metadata = {
     siteName: "Lanas - Web Design for the solar industry",
     locale: "en-DE",
     type: "website",
+    images: "/opengraph-image",
   },
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#f8f8ff" },
