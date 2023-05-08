@@ -115,9 +115,6 @@ const ProjectPage = async ({ params }) => {
       </article>
 
       <OtherProjects project={project} />
-      <pre className="mt-16 bg-purple-700 pt-16">
-        {JSON.stringify(data, null, 2)}
-      </pre>
     </div>
   );
 };
