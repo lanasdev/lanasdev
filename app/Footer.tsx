@@ -1,14 +1,15 @@
-import Image from "next/image";
+"use client";
 import Link from "next/link";
-import classNames from "classnames";
 
 import {
   TwitterLogo,
   InstagramLogo,
   TelegramLogo,
   GithubLogo,
-} from "phosphor-react";
-import LanguageBar from "./LanguageBar";
+} from "@phosphor-icons/react";
+
+// import { TwitterLogo, InstagramLogo, TelegramLogo, GithubLogo } from "./Icons";
+// import LanguageBar from "./LanguageBar";
 
 const Footer = () => {
   const aClass =
@@ -17,7 +18,7 @@ const Footer = () => {
     {
       id: 1,
       name: "Twitter",
-      icon: <TwitterLogo size={24} />,
+      // icon: <TwitterLogo size={24} />,
       link: process.env.NEXT_PUBLIC_TWITTER_URL,
     },
     {
@@ -47,7 +48,7 @@ const Footer = () => {
         <div className="flex flex-row items-center gap-4 sm:gap-0 ">
           {socials.map((s) => (
             <Link
-              href={s.link}
+              href={s.link ? s.link : "/"}
               key={s.id}
               className={aClass}
               aria-label={s.name}
@@ -57,16 +58,16 @@ const Footer = () => {
           ))}
         </div>
         <div className="flex flex-col sm:flex-row-reverse">
-          <LanguageBar />
+          {/* <LanguageBar /> */}
 
           <Link
             href="/"
             className="hover:underline hover:decoration-amber-500 hover:decoration-2"
           >
             &copy; {new Date().getFullYear() || "2022"} Lanas.dev{" "}
-            <span className="hidden whitespace-pre-line md:inline-block">
+            {/* <span className="hidden whitespace-pre-line md:inline-block">
               {"-"}
-            </span>
+            </span> */}
           </Link>
         </div>
       </div>

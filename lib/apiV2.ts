@@ -1,9 +1,160 @@
 import { gql } from "graphql-request";
-import request from "./datocms";
 import { responsiveImageFragment } from "lib/fragments";
+import request from "./datocms";
 
 const API_URL = "https://graphql.datocms.com";
 const API_TOKEN = process.env.DATOCMS_API_TOKEN;
+
+export const DEFAULT_LANG = "en";
+
+// const datoFetcher = async ({ query, variables }: { query: string }) => {
+//   // fetch datocms
+//   const res = await fetch(API_URL, {
+//     method: "POST",
+//     headers: {
+//       // content type graphql
+
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${API_TOKEN}`,
+//       "X-Include-Drafts": "false",
+//       "X-Exclude-Invalid": "true",
+//     },
+//     body: JSON.stringify({ query }),
+//   });
+//   const data = await res.json();
+//   if (data.errors) {
+//     throw new Error("Failed to fetch API");
+//   }
+//   console.log("data", data);
+//   return data;
+// };
+// export default datoFetcher;
+
+// export const ProjectBySlug = gql`
+//   query ProjectBySlug($slug: String!, $locale: SiteLocale) {
+//     site: _site {
+//       favicon: faviconMetaTags {
+//         attributes
+//         content
+//         tag
+//       }
+//     }
+
+//     project(locale: $locale, filter: { slug: { eq: $slug } }) {
+//       seo: _seoMetaTags(locale: $locale) {
+//         attributes
+//         content
+//         tag
+//       }
+//       title
+//       description
+//       slug
+//       position
+//       color1 {
+//         hex
+//       }
+//       color2 {
+//         hex
+//       }
+//       gradientdirection
+//       clientname
+//       projecttype
+//       year
+//       liveurl
+//       createdAt
+//       content {
+//         value
+//         links {
+//           __typename
+//           ... on ProjectRecord {
+//             id
+//             slug
+//             title
+//             description
+//             color1 {
+//               hex
+//             }
+//             color2 {
+//               hex
+//             }
+//             gradientdirection
+//           }
+//           ... on PostRecord {
+//             id
+//             title
+//             slug
+//             excerpt
+//             createdAt
+//             author {
+//               name
+//             }
+//           }
+//           ... on TestimonialRecord {
+//             id
+//             name
+//             slug
+//             title
+//             company
+//             content
+//             image {
+//               responsiveImage(
+//                 imgixParams: {
+//                   auto: format
+//                   fit: crop
+//                   w: 300
+//                   h: 300
+//                   ar: "1"
+//                 }
+//               ) {
+//                 ...responsiveImageFragment
+//               }
+//             }
+//           }
+//         }
+//         blocks {
+//           __typename
+//           ... on ImageRecord {
+//             id
+//             image {
+//               responsiveImage(imgixParams: { auto: format }) {
+//                 ...responsiveImageFragment
+//               }
+//             }
+//           }
+//         }
+//       }
+//       image {
+//         responsiveImage(imgixParams: { auto: format }) {
+//           ...responsiveImageFragment
+//         }
+//       }
+//       otherprojects {
+//         title
+//         description
+//         slug
+//         classname
+//         position
+//         color1 {
+//           hex
+//         }
+//         color2 {
+//           hex
+//         }
+//         gradientdirection
+//         __typename
+//         id
+//         createdAt
+//       }
+//     }
+//   }
+
+//   ${responsiveImageFragment}
+// `;
+
+// export const getProjectBySlug = async (
+//   slug: string | string[],
+//   locale: string = "en"
+// ) => {
 
 export const getHome = async (locale: string = "en") => {
   const HomeQuery = gql`
@@ -89,10 +240,11 @@ export const getHome = async (locale: string = "en") => {
   return data;
 };
 
-export const getAllProjectSlugs = async ({
-  preview = false,
-  locales = ["en", "de"],
-}) => {
+// export const getAllProjectSlugs = async ({
+// preview = false,
+// locales = ["en"],
+// }) => {
+export const getAllProjectSlugs = async () => {
   // get all project slugs for getStaticPaths
   const data = await request({
     query: gql`
@@ -104,21 +256,24 @@ export const getAllProjectSlugs = async ({
     `,
     variables: {},
     excludeInvalid: true,
-    includeDrafts: preview,
+    includeDrafts: false,
   });
 
-  const paths: any = [];
+  // const paths: any = [];
 
-  data.allProjects.map((project) => {
-    locales.map((language) => {
-      paths.push({
-        params: {
-          slug: project.slug,
-        },
-        locale: language,
-      });
-    });
-  });
+  // data.allProjects.map((project) => {
+  //   locales.map((language) => {
+  //     paths.push({
+  //       params: {
+  //         slug: project.slug,
+  //       },
+  //       locale: language,
+  //     });
+  //   });
+  // });
+  const paths = data.allProjects.map((project) => ({
+    slug: project.slug,
+  }));
 
   return paths;
 };
@@ -273,26 +428,56 @@ export const getProjectBySlug = async (
   };
 };
 
-export const getTopBar = async (locale: string = "en") => {
-  const data = await request({
-    query: gql`
-      query TopBarQuery($locale: SiteLocale) {
-        home(locale: $locale) {
-          title
-          subheading
+export const getProjectBySlugQuick = async (
+  slug: string | string[],
+  preview: boolean,
+  locale: string = DEFAULT_LANG
+) => {
+  const ProjectBySlug = gql`
+    query ProjectBySlug($slug: String!, $locale: SiteLocale) {
+      project(locale: $locale, filter: { slug: { eq: $slug } }) {
+        seo: _seoMetaTags(locale: $locale) {
+          attributes
+          content
+          tag
+        }
+        title
+        description
+        slug
+        position
+        color1 {
+          hex
+        }
+        color2 {
+          hex
+        }
+        gradientdirection
+        clientname
+        projecttype
+        year
+        liveurl
+        createdAt
         }
       }
-    `,
-    variables: {
-      locale,
-    },
-    excludeInvalid: false,
-    includeDrafts: false,
-  });
-  return data;
+    }
+
+    ${responsiveImageFragment}
+  `;
+
+  const graphqlRequest = {
+    query: ProjectBySlug,
+    variables: { limit: 10, locale, slug },
+    includeDrafts: preview,
+    excludeInvalid: true,
+  };
 };
 
-export const getAllPostsSlugs = async ({ locales = ["en", "de"] }) => {
+/// Blog POSTS
+//
+//
+
+// export const getAllPostsSlugs = async ({ locales = ["en"] }) => {
+export const getAllPostsSlugs = async () => {
   const data = await request({
     query: gql`
       query AllPostSlug {
@@ -303,34 +488,25 @@ export const getAllPostsSlugs = async ({ locales = ["en", "de"] }) => {
     `,
     variables: {},
     excludeInvalid: true,
-    includeDrafts: true,
+    includeDrafts: false,
   });
 
-  const paths: any = [];
-  data.allPosts.map((post: { slug: any }) => {
-    locales.map((language) => {
-      paths.push({ params: { slug: post.slug }, locale: language });
-    });
-  });
+  // const paths: any = [];
+  // data.allPosts.map((post: { slug: any }) => {
+  //   locales.map((language) => {
+  //     paths.push({ params: { slug: post.slug }, locale: language });
+  //   });
+  // });
 
-  // const paths = data.allPosts.map((slug) => ({
-  //   params: {
-  //     slug: slug.slug,
-  //   },
-  // }));
+  const paths = data.allPosts.map((slug) => ({
+    slug: slug.slug,
+  }));
 
   return paths;
 };
 
 export const PostBySlugQuery = gql`
   query PostBySlug($slug: String!, $locale: SiteLocale) {
-    site: _site {
-      favicon: faviconMetaTags {
-        attributes
-        content
-        tag
-      }
-    }
     post(locale: $locale, filter: { slug: { eq: $slug } }) {
       seo: _seoMetaTags {
         attributes
@@ -344,7 +520,7 @@ export const PostBySlugQuery = gql`
         role
         picture {
           responsiveImage(
-            imgixParams: { auto: format, fit: crop, w: 50, h: 50, ar: "1" }
+            imgixParams: { auto: format, fit: crop, w: 300, h: 300, ar: "1" }
           ) {
             ...responsiveImageFragment
           }
@@ -383,8 +559,8 @@ export const PostBySlugQuery = gql`
 
 export const getPostBySlug = async (
   slug: any,
-  preview: boolean,
-  locale: string = "en"
+  preview: boolean = false,
+  locale: string = DEFAULT_LANG
 ) => {
   const graphqlRequest = {
     query: PostBySlugQuery,
@@ -405,34 +581,4 @@ export const getPostBySlug = async (
           initialData: await request(graphqlRequest),
         },
   };
-};
-
-export const ErrorQuery = async () => {
-  const ERRORQUERY = gql`
-    {
-      site: _site {
-        favicon: faviconMetaTags {
-          attributes
-          content
-          tag
-        }
-      }
-      home {
-        seo: _seoMetaTags {
-          attributes
-          content
-          tag
-        }
-      }
-    }
-  `;
-
-  const data = await request({
-    query: ERRORQUERY,
-    variables: {},
-    excludeInvalid: true,
-    includeDrafts: false,
-  });
-
-  return data;
 };
