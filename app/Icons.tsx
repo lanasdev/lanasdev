@@ -6,10 +6,18 @@ import {
   InstagramLogo,
   TelegramLogo,
   GithubLogo,
+  EnvelopeSimple,
 } from "@phosphor-icons/react";
 
 // // reexport all icons
-export { CircleNotch, TwitterLogo, InstagramLogo, TelegramLogo, GithubLogo };
+export {
+  CircleNotch,
+  TwitterLogo,
+  InstagramLogo,
+  TelegramLogo,
+  GithubLogo,
+  EnvelopeSimple,
+};
 
 // export function TwitterIcon() {
 //   return (

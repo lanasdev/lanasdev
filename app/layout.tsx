@@ -83,7 +83,10 @@ export default function RootLayout({
           <TopBar />
           {children}
           {/* <CallToAction locale={"en"} /> */}
+
+          {/* @ts-expect-error Server Component */}
           <Footer />
+
           <Analytics />
         </main>
       </body>
