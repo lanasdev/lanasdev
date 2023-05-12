@@ -7,6 +7,8 @@ import CustomStructuredText from "components/CustomStructuredText";
 //
 import { DEFAULT_LANG, getPostBySlug, getAllPostsSlugs } from "lib/apiV2";
 import { Metadata } from "next";
+import CallToActionSmall from "app/CallToActionSmall";
+import CallToAction from "app/CallToAction";
 
 export const revalidate = 60;
 
@@ -22,6 +24,7 @@ export async function generateMetadata({
   const { title, description, slug, createdAt } = (await post).subscription
     .initialData.post;
 
+  const ogImage = `https://lanas.dev/blog/${slug}/opengraph-image`;
   return {
     title,
     description,
@@ -31,11 +34,11 @@ export async function generateMetadata({
       type: "article",
       publishedTime: createdAt,
       url: `https://lanas.dev/blog/${slug}`,
-      // images: [
-      // {
-      // url: ogImage,
-      // },
-      // ],
+      images: [
+        {
+          url: ogImage,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
@@ -100,6 +103,8 @@ const BlogPost = async ({ params }) => {
       {/* <pre className="mt-16 bg-purple-700 pt-16">
         {JSON.stringify(data, null, 2)}
       </pre> */}
+      {/* <CallToActionSmall /> */}
+      <CallToAction />
     </>
   );
 };
