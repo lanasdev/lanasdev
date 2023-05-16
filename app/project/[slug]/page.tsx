@@ -14,6 +14,8 @@ import { Metadata } from "next";
 //
 import request from "lib/datocms";
 import { DEFAULT_LANG, getProjectBySlug, getAllProjectSlugs } from "lib/apiV2";
+import CallToActionSmall from "app/CallToActionSmall";
+import CallToAction from "app/CallToAction";
 
 export const revalidate = 60;
 
@@ -29,6 +31,8 @@ export async function generateMetadata({
   const { title, description, slug, createdAt } = (await project).subscription
     .initialData.project;
 
+  const ogImage = `https://lanas.dev/project/${slug}/opengraph-image`;
+
   return {
     title,
     description,
@@ -38,11 +42,11 @@ export async function generateMetadata({
       type: "article",
       publishedTime: createdAt,
       url: `https://lanas.dev/project/${slug}`,
-      // images: [
-      // {
-      // url: ogImage,
-      // },
-      // ],
+      images: [
+        {
+          url: ogImage,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
@@ -115,6 +119,8 @@ const ProjectPage = async ({ params }) => {
       </article>
 
       <OtherProjects project={project} />
+      {/* <CallToActionSmall /> */}
+      <CallToAction />
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/server";
 import i18n from "lib/i18n";
+import { Metadata } from "next";
 // import { DEFAULT_LANG, getProjectBySlug } from "lib/apiV2";
 
 export const alt = "Lanas Web design for the solar industry";
