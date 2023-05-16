@@ -38,8 +38,8 @@ export const i18n = {
       de: "E-Mail Adresse",
     },
     company: {
-      en: "Company",
-      de: "Unternehmen",
+      en: "Company website",
+      de: "Unternehmenswebsite",
     },
     message: {
       en: "Message",
