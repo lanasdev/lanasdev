@@ -25,8 +25,8 @@ export async function generateMetadata({
 }): Promise<Metadata | undefined> {
   // const post = data.find((post) => post.slug === params.slug);
   const project = getProjectBySlug(params.slug, false, "en");
-  if (!project) {
-    return;
+  if (!project || project === null || (project as any).length === 0) {
+    return notFound();
   }
 
   const { title, description, slug, createdAt } = ((await project) as any)

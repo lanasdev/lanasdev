@@ -118,7 +118,7 @@ export const i18n = {
       de: "Entschuldigung, die von Ihnen gesuchte Seite existiert nicht.",
     },
     back: {
-      en: "Back to home",
+      en: "Go back home",
       de: "Zurück zur Startseite",
     },
   },
