@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 // import datoFetcher from "lib/apiV2";
 // import { ProjectBySlug } from "lib/apiV2";
@@ -28,8 +29,8 @@ export async function generateMetadata({
     return;
   }
 
-  const { title, description, slug, createdAt } = (await project).subscription
-    .initialData.project;
+  const { title, description, slug, createdAt } = ((await project) as any)
+    .subscription.initialData.project;
 
   const ogImage = `https://lanas.dev/project/${slug}/opengraph-image`;
 
@@ -69,8 +70,10 @@ const ProjectPage = async ({ params }) => {
   //   connected: "Connected to DatoCMS, receiving live updates!",
   //   closed: "Connection closed",
   // };
-  const data = datoData.subscription.initialData;
-  const project = data.project;
+  if (!datoData) {
+    notFound();
+  }
+  const project = (datoData.subscription.initialData as any).project;
 
   return (
     <div className="">

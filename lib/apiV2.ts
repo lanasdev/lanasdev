@@ -270,7 +270,7 @@ export const getAllProjectSlugs = async () => {
   //     });
   //   });
   // });
-  const paths = data.allProjects.map((project) => ({
+  const paths = (data as any).allProjects.map((project) => ({
     slug: project.slug,
   }));
 
@@ -497,7 +497,10 @@ export const getAllPostsSlugs = async () => {
   //   });
   // });
 
-  const paths = data.allPosts.map((slug) => ({
+  if (!data) {
+    return [];
+  }
+  const paths = (data as any).allPosts.map((slug) => ({
     slug: slug.slug,
   }));
 

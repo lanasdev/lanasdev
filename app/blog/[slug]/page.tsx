@@ -21,8 +21,8 @@ export async function generateMetadata({
     return;
   }
 
-  const { title, description, slug, createdAt } = (await post).subscription
-    .initialData.post;
+  const { title, description, slug, createdAt } = ((await post) as any)
+    .subscription.initialData.post;
 
   const ogImage = `https://lanas.dev/blog/${slug}/opengraph-image`;
   return {
@@ -64,8 +64,7 @@ const BlogPost = async ({ params }) => {
   // //   connected: "Connected to DatoCMS, receiving live updates!",
   // //   closed: "Connection closed",
   // // };
-  const data = datoData.subscription.initialData;
-  const post = data.post;
+  const post = (datoData.subscription.initialData as any).post;
 
   return (
     <>

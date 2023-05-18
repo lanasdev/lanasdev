@@ -2,7 +2,8 @@ import Link from "next/link";
 import BlogItem from "./BlogItem";
 import i18n from "lib/i18n";
 
-const BlogList = ({ posts, locale = "en" }) => {
+const BlogList = ({ data, locale = "en" }) => {
+  const posts = data.allPosts;
   return (
     <div id="blog">
       <h3 className="pt-32 text-gray-600 dark:text-gray-400">
