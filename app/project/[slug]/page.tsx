@@ -42,17 +42,13 @@ export async function generateMetadata({
       type: "article",
       publishedTime: createdAt,
       url: `https://lanas.dev/project/${slug}`,
-      images: [
-        {
-          url: ogImage,
-        },
-      ],
+      images: ogImage,
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      // images: [ogImage],
+      images: ogImage,
     },
   };
 }
@@ -65,7 +61,6 @@ export async function generateStaticParams() {
 
 const ProjectPage = async ({ params }) => {
   const locale = "en";
-  // console.log(params.slug);
   // const subscription = await datoFetcher(`{query allProjects {slug}}`);
   const datoData = await getProjectBySlug(params.slug, false, "en");
   // const { data, error, status } = useQuerySubscription(subscription);

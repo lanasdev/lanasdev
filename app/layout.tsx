@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     template: "%s | Lanas.dev",
   },
   description: "Digital craftsmanship for the solar industry.",
+  // metadataBase: new URL("https://lanas.dev"),
   openGraph: {
     title: "Lanas - Web Design for the solar industry",
     description: "Digital craftsmanship for the solar industry.",

@@ -25,7 +25,6 @@ export const DEFAULT_LANG = "en";
 //   if (data.errors) {
 //     throw new Error("Failed to fetch API");
 //   }
-//   console.log("data", data);
 //   return data;
 // };
 // export default datoFetcher;
