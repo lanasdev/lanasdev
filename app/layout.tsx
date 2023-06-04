@@ -85,7 +85,6 @@ export default function RootLayout({
           {children}
           {/* <CallToAction locale={"en"} /> */}
 
-          {/* @ts-expect-error Server Component */}
           <Footer />
 
           <Analytics />
