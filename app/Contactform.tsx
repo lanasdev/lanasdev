@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useForm, ValidationError } from "@formspree/react";
 import { Switch } from "@headlessui/react";
+import va from "@vercel/analytics";
 
 import { Blur } from "ui/Blur";
 import clsx from "clsx";
@@ -160,6 +161,9 @@ const Contactform = ({ locale }) => {
         <div className="mt-10">
           <button
             type="submit"
+            onClick={() => {
+              va.track("Form Submit");
+            }}
             disabled={state.submitting}
             className="group block w-full cursor-pointer rounded-md border-2 border-midnight bg-midnight px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:bg-white hover:text-midnight focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600 dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-midnight"
           >
