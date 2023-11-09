@@ -1,17 +1,22 @@
 /** @type {import('next').NextConfig} */
-
 const nextConfig = {
   images: {
-    domains: ["www.datocms-assets.com"],
-  },
-  async redirects() {
-    return [
+    // domains: ["www.datocms-assets.com"],
+    remotePatterns: [
       {
-        source: "/call",
-        destination: "https://cal.com/lanas/hallo",
-        permanent: false,
+        protocol: "https",
+        hostname: "datocms-assets.com",
+        port: "",
+        pathname: "/64642/**",
       },
-    ];
+      {
+        protocol: "https",
+        hostname: "www.datocms-assets.com",
+        port: "",
+        pathname: "/64642/**",
+      },
+    ],
   },
 };
+
 module.exports = nextConfig;

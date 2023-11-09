@@ -2,15 +2,12 @@
 
 import { useState } from "react";
 import { useForm, ValidationError } from "@formspree/react";
-import { Switch } from "@headlessui/react";
-import va from "@vercel/analytics";
 
-import { Blur } from "ui/Blur";
-import clsx from "clsx";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { CircleNotch } from "@phosphor-icons/react";
+// import { Blur } from "./Blur";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
-import i18n from "lib/i18n";
+import i18n, { Locale } from "@/lib/i18n";
 
 type FormData = {
   name: string;
@@ -18,14 +15,14 @@ type FormData = {
   message: string;
 };
 
-const Contactform = ({ locale }) => {
+const Contactform = ({ locale }: { locale: Locale }) => {
   const [state, handleSubmit] = useForm("mgedprdn");
-  // const [agreed, setAgreed] = useState(false);
+  const [agreed, setAgreed] = useState(false);
 
   if (state.succeeded) {
     return (
       <div className=" isolate">
-        <Blur />
+        {/* <Blur /> */}
         <p className="md:max-w-md">
           <span className="underline decoration-amber-500 decoration-2">
             {i18n.contact.success[locale]}
@@ -38,8 +35,8 @@ const Contactform = ({ locale }) => {
   const buttonClass =
     " border px-4 rounded-md py-2 border-midnight hover:bg-midnight hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-midnight transition-all duration-300 hover:font-semibold";
   return (
-    <div className=" isolate md:px-6 lg:px-8">
-      <Blur />
+    <div className="flex-1 isolate md:px-6 lg:px-8">
+      {/* <Blur /> */}
       <form onSubmit={handleSubmit} className="mx-auto max-w-xl ">
         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
           <fieldset>
@@ -159,26 +156,25 @@ const Contactform = ({ locale }) => {
           </fieldset>
         </div>
         <div className="mt-10">
-          <button
+          <Button
+            variant={"ghost"}
             type="submit"
-            onClick={() => {
-              va.track("Form Submit");
-            }}
             disabled={state.submitting}
             className="group block w-full cursor-pointer rounded-md border-2 border-midnight bg-midnight px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:bg-white hover:text-midnight focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600 dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-midnight"
           >
             {state.submitting ? (
               <span className="flex transform-gpu items-center justify-center">
-                <CircleNotch
+                {/* <CircleNotch
                   size={24}
                   weight="bold"
                   className="animate-spin text-white group-hover:text-midnight "
-                />
+                /> */}
+                Loading...
               </span>
             ) : (
               i18n.contact.submit[locale]
             )}
-          </button>
+          </Button>
         </div>
       </form>
     </div>

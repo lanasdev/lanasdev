@@ -7,7 +7,7 @@ import {
   TelegramLogo,
   GithubLogo,
   EnvelopeSimple,
-} from "./Icons";
+} from "@/components/Icons";
 // import LanguageBar from "./LanguageBar";
 
 import { getAll } from "@vercel/edge-config";
@@ -73,8 +73,8 @@ const Footer = async () => {
   ];
 
   return (
-    <footer className=" pt-24 ">
-      <div className="flex flex-col items-center justify-center space-y-4 pb-4 pt-32 sm:flex-row-reverse sm:justify-between sm:space-y-0 ">
+    <footer className=" bg-foreground text-background px-8">
+      <div className="flex flex-col items-center justify-center space-y-4 pb-4 pt-8 sm:flex-row-reverse sm:justify-between sm:space-y-0 ">
         <div className="flex flex-row items-center gap-4 sm:gap-0 ">
           {socials.map((s, i) => (
             <Link

@@ -1,49 +1,54 @@
-import { ImageResponse } from "next/server";
-import i18n from "lib/i18n";
+import { ImageResponse } from "next/og";
 
-export const alt = "Lanas Web design for the solar industry";
+// Route segment config
+export const runtime = "edge";
+
+// Image metadata
+export const alt = "Tim Seidl";
 export const size = {
   width: 1200,
   height: 630,
 };
+
 export const contentType = "image/png";
-export const runtime = "edge";
 
-const colors = {
-  midnight: "#060B12",
-  white: "#f8f8ff",
-};
+// Image generation
+export default async function Image() {
+  // // Font
+  // const interSemiBold = fetch(
+  //   new URL("@/public/fonts/Inter-SemiBold.otf", import.meta.url)
+  // ).then((res) => res.arrayBuffer());
 
-export default function og() {
-  //   const font = fetch(
-  //     new URL("../../assets/TYPEWR__.ttf", import.meta.url)
-  //   ).then((res) => res.arrayBuffer());
   return new ImageResponse(
     (
+      // ImageResponse JSX element
       <div
         style={{
-          fontFamily: "Inter",
+          fontSize: 128,
+          background: "black",
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
-        tw="bg-[#f8f8ff] text-[#060B12] flex flex-col justify-between w-full h-full"
       >
-        <div tw="flex items-center justify-center h-4/5">
-          <div tw="flex flex-col">
-            <h1 tw="text-8xl font-bold">Lanas.dev</h1>
-            <h2 tw="text-4xl">{i18n.home.subtitle["en"]}</h2>
-          </div>
-        </div>
-        <div tw="h-1/5 bg-[#060B12]" />
+        Lanas.dev
       </div>
     ),
+    // ImageResponse options
     {
+      // For convenience, we can re-use the exported opengraph-image
+      // size config to also set the ImageResponse's width and height.
       ...size,
-      //   fonts: [
-      // {
-      //   name: "Typewriter",
-      //   data: fontData,
-      //   style: "normal",
-      // },
-      //   ],
+      // fonts: [
+      //   {
+      //     name: "Inter",
+      //     data: await interSemiBold,
+      //     style: "normal",
+      //     weight: 400,
+      //   },
+      // ],
     }
   );
 }
