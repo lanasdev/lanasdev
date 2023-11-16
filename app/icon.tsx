@@ -17,17 +17,17 @@ export default function Icon() {
       // ImageResponse JSX element
       <div
         style={{
-          fontSize: 20,
-          background: "black",
+          fontSize: 12,
+          background: "hsl(20 14.3% 4.1%)",
           width: "100%",
           height: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          color: "white",
+          color: "hsl(60 9.1% 97.8%)",
         }}
       >
-        Lanas
+        Lan
       </div>
     ),
     // ImageResponse options
