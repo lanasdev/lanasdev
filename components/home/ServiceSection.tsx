@@ -4,7 +4,7 @@ export default function ServiceSection() {
   return (
     <div className="pb-24" id="services">
       <h3 className="text-3xl font-semibold pb-8">Services</h3>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
         <ServiceCard
           title={"Web design & Development"}
           description={
@@ -18,9 +18,15 @@ export default function ServiceSection() {
           }
         />
         <ServiceCard
+          title={"Website Automation"}
+          description={
+            "We automate your Website and make sure that you can focus on your Business"
+          }
+        />
+        <ServiceCard
           title={"Hosting"}
           description={
-            "Optional. Website is offline? Not with us. We keep your online Business running"
+            "Optional. Website is offline? Not with us. We keep your Business online and running"
           }
         />
       </div>

@@ -19,8 +19,7 @@ export default function HeroSection() {
           <span className="inline-block hover:underline decoration-green-500 hover:-translate-y-2 transition-all duration-200">
             Building
           </span>{" "}
-          <span className="">🔨</span> fast <span>⚡</span> and high converting
-          websites{" 🎯"}
+          fast <span>⚡</span> and high converting websites{" 🎯"}
         </Balancer>
       </h1>
 
