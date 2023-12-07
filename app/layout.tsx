@@ -45,7 +45,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, generalsans.className)}>
+      <body
+        className={cn(inter.className, generalsans.className, "min-h-screen")}
+      >
         <Navbar />
         {children}
         <Footer />

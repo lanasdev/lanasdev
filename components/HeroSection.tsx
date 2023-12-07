@@ -12,15 +12,8 @@ export default function HeroSection() {
       <h2 className="text-xl uppercase text-accent-foreground font-semibold pb-4">
         <Balancer>Lanas Web design</Balancer>
       </h2>
-      <h1 className="text-[max(9.5vw,_24px,_4em)] leading-[95%] font-semibold pb-16">
-        {/* Lanas */}
-        <Balancer>
-          {/* We&apos;re{" "} */}
-          <span className="inline-block hover:underline decoration-green-500 hover:-translate-y-2 transition-all duration-200">
-            Building
-          </span>{" "}
-          fast <span>⚡</span> and high converting websites{" 🎯"}
-        </Balancer>
+      <h1 className="text-[max(8vw,_24px,_4em)] leading-[95%] font-semibold pb-16">
+        <Balancer>Schnelle Websites für das Handwerk</Balancer>
       </h1>
 
       {/* <Button className="px-16 py-8 font-semibold">

@@ -8,6 +8,7 @@ import Balancer from "react-wrap-balancer";
 import { Button } from "@/components/ui/button";
 import { Image as DatoImage } from "react-datocms";
 import Projectlist from "./Projectlist";
+import Projectgrid from "./Projectgrid";
 import Bloglist from "./Bloglist";
 // import Contactform from "./Contactform";
 import CallToAction from "./CallToAction";
@@ -77,15 +78,15 @@ export default async function Home() {
   const allPosts = data?.allPosts;
 
   return (
-    <main className="px-8 md:px-16">
+    <main className="px-8 md:px-16 min-h-screen">
       <HeroSection />
-      <Projectlist allProjects={allProjects} />
-      <div className="py-12"></div>
-      <ServiceSection />
+      <Projectgrid allProjects={allProjects} />
+      {/* <div className="py-12"></div>
+      <ServiceSection /> */}
 
-      <Bloglist allPosts={allPosts} />
+      {/* <Bloglist allPosts={allPosts} />
       <div className="pb-24"></div>
-      <CallToAction locale={"en"} />
+      <CallToAction locale={"en"} /> */}
       {/* <pre className="max-w-xl">{JSON.stringify(data, null, 2)}</pre> */}
     </main>
   );

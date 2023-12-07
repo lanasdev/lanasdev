@@ -17,9 +17,9 @@ const Navbar = () => {
       </Link>
       <div className="flex md:space-x-4 ">
         {[
-          ["Lanas", "/"],
-          ["About", "/about"],
-          ["Contact", "/contact"],
+          ["Home", "/"],
+          ["Projekte", "/#projekte"],
+          ["Testimonials", "/#testimonials"],
         ].map(([title, url]) => (
           <Link
             href={url}
@@ -33,6 +33,15 @@ const Navbar = () => {
             {title}
           </Link>
         ))}
+        <Link
+          href="/contact"
+          className={cn(
+            buttonVariants({ variant: "default" }),
+            "px-6 py-2 bg-foreground text-background transition-colors rounded-md hover:bg-foreground/90 hover:text-foreground"
+          )}
+        >
+          Kontakt
+        </Link>
       </div>
     </nav>
   );
