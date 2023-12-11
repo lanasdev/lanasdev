@@ -17,6 +17,7 @@ import HammerEmoji from "@/public/hammer-emoji.png";
 import HeroSection from "@/components/HeroSection";
 import ServiceCard from "@/components/home/ServiceCard";
 import ServiceSection from "@/components/home/ServiceSection";
+import Testimonial from "@/components/home/Testimonial";
 
 const PAGE_CONTENT_QUERY = gql`
   query getHome {
@@ -78,11 +79,12 @@ export default async function Home() {
   const allPosts = data?.allPosts;
 
   return (
-    <main className="px-8 md:px-16 min-h-screen">
+    <main className=" md:px-16 min-h-screen pb-32">
       <HeroSection />
       <Projectgrid allProjects={allProjects} />
-      {/* <div className="py-12"></div>
-      <ServiceSection /> */}
+      {/* <div className="py-12"></div>*/}
+      <ServiceSection />
+      <Testimonial />
 
       {/* <Bloglist allPosts={allPosts} />
       <div className="pb-24"></div>

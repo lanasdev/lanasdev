@@ -11,6 +11,8 @@
   "dependencies": {
     "@formspree/react": "^2.5.1",
     "@hookform/resolvers": "^3.3.2",
+    "@mdi/js": "^7.3.67",
+    "@mdi/react": "^1.6.1",
     "@phosphor-icons/react": "^2.0.15",
     "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.5",

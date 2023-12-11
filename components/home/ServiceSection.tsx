@@ -1,10 +1,59 @@
+import Image from "next/image";
 import ServiceCard from "./ServiceCard";
+
+import Image1 from "@/public/img/image1.jpg";
+import Image2 from "@/public/img/image2.jpg";
+import Image3 from "@/public/img/image3.jpg";
 
 export default function ServiceSection() {
   return (
-    <div className="pb-24" id="services">
-      <h3 className="text-3xl font-semibold pb-8">Services</h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+    <div
+      className="pt-24 overflow-x-hidden pb-24 flex flex-col gap-8"
+      id="services"
+    >
+      <div className="flex flex-row pl-6 gap-16">
+        <div className="flex flex-col flex-1">
+          <h5 className="text-xl font-semibold">Webdesign</h5>
+          <p className="leading-6 pt-4">
+            We design and create Websites for your Company that gets you more
+            leads and actually converts
+          </p>
+        </div>
+        <Image
+          src={Image1}
+          alt="Picture of the author"
+          className=" rounded-l-xl flex-1 object-cover object-center"
+        />
+      </div>
+      <div className="flex flex-row-reverse pr-6 gap-16">
+        <div className="flex flex-col">
+          <h5 className="text-xl font-semibold">Google My Business</h5>
+          <p className="leading-6 pt-4">
+            We help you with your Google My Business and Apple Business Connect
+            Profile and make sure that you show up on the map
+          </p>
+        </div>
+        <Image
+          src={Image2}
+          alt="Picture of the author"
+          className=" rounded-r-xl"
+        />
+      </div>
+      <div className="flex flex-row pl-6 gap-16">
+        <div className="flex flex-col">
+          <h5 className="text-xl font-semibold">Website Automation</h5>
+          <p className="leading-6 pt-4">
+            We automate your Website and make sure that you can focus on your
+            Business
+          </p>
+        </div>
+        <Image
+          src={Image3}
+          alt="Picture of the author"
+          className=" rounded-l-xl"
+        />
+      </div>
+      {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
         <ServiceCard
           title={"Web design & Development"}
           description={
@@ -29,7 +78,7 @@ export default function ServiceSection() {
             "Optional. Website is offline? Not with us. We keep your Business online and running"
           }
         />
-      </div>
+      </div> */}
     </div>
   );
 }
