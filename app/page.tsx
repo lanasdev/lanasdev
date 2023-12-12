@@ -18,6 +18,7 @@ import HeroSection from "@/components/HeroSection";
 import ServiceCard from "@/components/home/ServiceCard";
 import ServiceSection from "@/components/home/ServiceSection";
 import Testimonial from "@/components/home/Testimonial";
+import Contact from "./Contact";
 
 const PAGE_CONTENT_QUERY = gql`
   query getHome {
@@ -86,8 +87,9 @@ export default async function Home() {
       <ServiceSection />
       <Testimonial />
 
-      {/* <Bloglist allPosts={allPosts} />
-      <div className="pb-24"></div>
+      <Bloglist allPosts /*  */={allPosts} />
+      <Contact />
+      {/* <div className="pb-24"></div>
       <CallToAction locale={"en"} /> */}
       {/* <pre className="max-w-xl">{JSON.stringify(data, null, 2)}</pre> */}
     </main>

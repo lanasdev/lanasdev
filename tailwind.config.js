@@ -99,6 +99,11 @@ module.exports = {
         slowpulse: "pulse 10s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         marquee: "marquee 10s linear infinite",
       },
+      aspect: {
+        golden: [1, 1.61803398875],
+        "golden-vertical": [1.61803398875, 1],
+        "3/2": [3, 2],
+      },
     },
   },
   future: {
