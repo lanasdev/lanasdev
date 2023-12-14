@@ -22,7 +22,7 @@ export default function Projectgrid({ allProjects }) {
           alt="Picture of the author"
           //blur image
           placeholder="blur"
-          className="rounded-xl aspect-[1/1.5] object-cover object-center"
+          className="rounded-xl aspect-golden md:aspect-[3/1] object-cover object-center"
         />
         <h5 className="uppercase pt-6">Projekt Solar Sam</h5>
         <h4 className="text-xl font-semibold ">Projekt Solar Sam</h4>
@@ -32,7 +32,7 @@ export default function Projectgrid({ allProjects }) {
           src={Image2}
           alt="Picture of the author"
           placeholder="blur"
-          className="rounded-xl aspect-[1/1.5] object-cover object-center"
+          className="rounded-xl aspect-golden md:aspect-[3/1] object-cover object-center"
         />
         <h5 className="uppercase pt-6">Projekt Solar Sam</h5>
         <h4 className="text-xl font-semibold ">Projekt Solar Sam</h4>
@@ -42,7 +42,7 @@ export default function Projectgrid({ allProjects }) {
           src={Image3}
           alt="Picture of the author"
           placeholder="blur"
-          className="rounded-xl aspect-golden object-cover object-center"
+          className="rounded-xl aspect-golden md:aspect-[3/1] object-cover object-center"
         />
         <h5 className="uppercase pt-6">Projekt Solar Sam</h5>
         <h4 className="text-xl font-semibold ">Projekt Solar Sam</h4>

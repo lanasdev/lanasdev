@@ -40,7 +40,11 @@ const Navbar = () => {
           </SheetTrigger>
           <SheetContent>
             <SheetHeader>
-              <SheetTitle>Are you sure absolutely sure?</SheetTitle>
+              <SheetTitle>
+                <Link href="/" className="font-semibold text-xl">
+                  Lanas
+                </Link>
+              </SheetTitle>
               <SheetDescription>
                 This action cannot be undone. This will permanently delete your
                 account and remove your data from our servers.

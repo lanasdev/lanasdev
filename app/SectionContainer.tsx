@@ -6,6 +6,6 @@ const SectionContainer = ({
 }: {
   children: React.ReactNode;
   className: string;
-}) => <div className={cn("px-6 md:px-8", className)}>{children}</div>;
+}) => <div className={cn("px-6 md:px-16", className)}>{children}</div>;
 
 export default SectionContainer;

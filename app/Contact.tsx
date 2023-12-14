@@ -10,7 +10,8 @@ const Contact = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = async (e) => {
+  // type e = React.FormEvent<HTMLFormElement>;
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = {
@@ -42,11 +43,11 @@ const Contact = () => {
   };
 
   return (
-    <SectionContainer className=" pt-20">
+    <SectionContainer className=" pt-20 flex flex-col md:flex-row md:justify-between">
       <h3 className="text-3xl font-semibold pb-8">Kontakt</h3>
-      <form onSubmit={handleSubmit}>
-        <div className="flex md:flex-col gap-4">
-          <div className="">
+      <form onSubmit={handleSubmit} className=" max-w-screen-md">
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className=" flex flex-col flex-grow">
             <label className="">Name:</label>
             <input
               type="text"
@@ -56,7 +57,7 @@ const Contact = () => {
               placeholder="Name"
             />
           </div>
-          <div className="">
+          <div className="flex flex-col flex-grow">
             <label className="">Email:</label>
             <input
               type="email"

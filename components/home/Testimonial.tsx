@@ -8,7 +8,7 @@ interface TestimonialProps {
 
 const Testimonial: React.FC<TestimonialProps> = () => {
   return (
-    <SectionContainer className=" max-w-sm">
+    <SectionContainer className=" max-w-sm md:max-w-2xl  md:mx-auto">
       <p className="text-xl font-semibold mx-auto text-center">
         <Balancer>
           Alles lief super und wurde in Windeseile erledigt! 5 von 5 Sternen

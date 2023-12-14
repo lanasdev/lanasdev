@@ -80,7 +80,7 @@ export default async function Home() {
   const allPosts = data?.allPosts;
 
   return (
-    <main className=" md:px-16 min-h-screen pb-32">
+    <main className=" min-h-screen pb-32">
       <HeroSection />
       <Projectgrid allProjects={allProjects} />
       {/* <div className="py-12"></div>*/}
