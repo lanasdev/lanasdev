@@ -1,111 +1,108 @@
+import SectionContainer from "@/app/SectionContainer";
+// // import CustomStructuredText from "@/components/CustomStructuredText";
+import { performRequest } from "@/lib/datocms";
+import { gql } from "graphql-request";
 import Link from "next/link";
+import {
+  Image as DatoImage,
+  ResponsiveImageType,
+  StructuredText,
+} from "react-datocms";
 
-import BlogHeader from "components/Blog/BlogHeader";
-
-import CoverImage from "components/CoverImage";
-import CustomStructuredText from "components/CustomStructuredText";
-//
-import { DEFAULT_LANG, getPostBySlug, getAllPostsSlugs } from "lib/apiV2";
-import { Metadata } from "next";
-import CallToActionSmall from "app/CallToActionSmall";
-import CallToAction from "app/CallToAction";
-
-export const revalidate = 60;
-
-export async function generateMetadata({
-  params,
-}): Promise<Metadata | undefined> {
-  // const post = data.find((post) => post.slug === params.slug);
-  const post = getPostBySlug(params.slug, false, "en");
-  if (!post) {
-    return;
-  }
-
-  const { title, description, slug, createdAt } = ((await post) as any)
-    .subscription.initialData.post;
-
-  const ogImage = `https://lanas.dev/blog/${slug}/opengraph-image`;
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      type: "article",
-      publishedTime: createdAt,
-      url: `https://lanas.dev/blog/${slug}`,
-      images: [
-        {
-          url: ogImage,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      // images: [ogImage],
-    },
-  };
-}
-
-// generate all the paths at build time using app dir
-export async function generateStaticParams() {
-  const posts = await getAllPostsSlugs();
-
-  return posts;
-}
-
-const BlogPost = async ({ params }) => {
-  const datoData = await getPostBySlug(params.slug, false, "en");
-  // // const { data, error, status } = useQuerySubscription(subscription);
-  // // const statusMessage = {
-  // //   connecting: "Connecting to DatoCMS...",
-  // //   connected: "Connected to DatoCMS, receiving live updates!",
-  // //   closed: "Connection closed",
-  // // };
-  const post = (datoData.subscription.initialData as any).post;
-
-  return (
-    <>
-      {/* {status != "closed" && (
-          <div className="pb-8">
-            <p>Connection status: {statusMessage[status]}</p>
-            {error && (
-              <div>
-                <h1>Error: {error.code}</h1>
-                <div>{error.message}</div>
-                {error.response && (
-                  <pre>{JSON.stringify(error.response, null, 2)}</pre>
-                )}
-              </div>
-            )}
-          </div>
-        )}*/}
-      <section className="pb-16 pt-16">
-        <BlogHeader
-          title={post.title}
-          date={post.date}
-          author={post.author}
-          locale={DEFAULT_LANG}
-        />
-        <CoverImage
-          title={post.title}
-          responsiveImage={post.coverImage.responsiveImage}
-        />
-        <main className="flex flex-row items-stretch justify-between py-16">
-          <div className="prose dark:prose-invert dark:text-white dark:prose-headings:text-white dark:prose-a:text-white">
-            <CustomStructuredText data={post} />
-          </div>
-        </main>
-      </section>
-      {/* <pre className="mt-16 bg-purple-700 pt-16">
-        {JSON.stringify(data, null, 2)}
-      </pre> */}
-      {/* <CallToActionSmall /> */}
-      <CallToAction />
-    </>
-  );
+type RecordImageType = {
+  responsiveImage: ResponsiveImageType;
 };
 
-export default BlogPost;
+const PAGE_CONTENT_QUERY = gql`
+  query getPost($eq: String) {
+    post(filter: { slug: { eq: $eq } }) {
+      title
+      slug
+      date
+      excerpt
+      createdAt
+      content {
+        value
+      }
+      coverImage {
+        responsiveImage(imgixParams: { auto: format }) {
+          ...responsiveImageFragment
+        }
+      }
+      content {
+        value
+        links
+        blocks {
+          __typename
+          ... on ImageRecord {
+            id
+            image {
+              responsiveImage(imgixParams: { auto: format }) {
+                ...responsiveImageFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  fragment responsiveImageFragment on ResponsiveImage {
+    srcSet
+    webpSrcSet
+    sizes
+    src
+    width
+    height
+    aspectRatio
+    alt
+    title
+    base64
+  }
+`;
+
+export default async function BlogPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const query = PAGE_CONTENT_QUERY;
+  const variables = { eq: params.slug };
+  const { data } = await performRequest({ query, variables });
+
+  const p = data?.post;
+
+  return (
+    <div className="pb-32">
+      <SectionContainer className="pt-20 ">
+        <h1 className="text-3xl font-semibold">{p.title}</h1>
+        <p className=" leading-7">{p.excerpt}</p>
+      </SectionContainer>
+      <DatoImage
+        data={p.coverImage.responsiveImage}
+        className="mt-16 max-h-screen"
+        pictureClassName="object-cover"
+      />
+      <SectionContainer className="pt-32 prose lg:prose-xl prose-stone prose-img:rounded-xl mx-auto">
+        <StructuredText
+          data={p.content}
+          renderBlock={({ record }) => {
+            if (record.__typename === "ImageRecord") {
+              return (
+                <DatoImage
+                  data={(record.image as RecordImageType).responsiveImage}
+                  className="mt-16 max-h-screen"
+                  pictureClassName="object-cover"
+                />
+              );
+            }
+            return null;
+          }}
+        />
+      </SectionContainer>
+      {/* <SectionContainer className="">
+        <pre className="max-w-xl pt-24">{JSON.stringify(data, null, 2)}</pre>
+      </SectionContainer> */}
+    </div>
+  );
+}

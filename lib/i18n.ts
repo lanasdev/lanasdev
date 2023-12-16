@@ -1,3 +1,5 @@
+export type Locale = "en" | "de";
+
 export const i18n = {
   home: {
     subtitle: {

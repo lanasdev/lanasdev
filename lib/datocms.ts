@@ -1,17 +1,31 @@
-import { GraphQLClient } from "graphql-request";
+// lib/datocms.js
+export const performRequest = async ({
+  query,
+  variables = {},
+  includeDrafts = false,
+}: {
+  query: string;
+  variables?: {};
+  includeDrafts?: boolean;
+}) => {
+  const response = await fetch("https://graphql.datocms.com/", {
+    headers: {
+      Authorization: `Bearer ${process.env.NEXT_DATOCMS_API_TOKEN}`,
+      ...(includeDrafts ? { "X-Include-Drafts": "true" } : {}),
+    },
+    method: "POST",
+    body: JSON.stringify({ query, variables }),
+  });
 
-const request = ({ query, variables, includeDrafts, excludeInvalid }) => {
-  const headers = {
-    authorization: `Bearer ${process.env.NEXT_DATOCMS_API_TOKEN}`,
-  };
-  if (includeDrafts) {
-    headers["X-Include-Drafts"] = "true";
+  const responseBody = await response.json();
+
+  if (!response.ok) {
+    throw new Error(
+      `${response.status} ${response.statusText}: ${JSON.stringify(
+        responseBody,
+      )}`,
+    );
   }
-  if (excludeInvalid) {
-    headers["X-Exclude-Invalid"] = "true";
-  }
-  const client = new GraphQLClient("https://graphql.datocms.com", { headers });
-  return client.request(query, variables);
+
+  return responseBody;
 };
-
-export default request;

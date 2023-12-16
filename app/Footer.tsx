@@ -7,10 +7,11 @@ import {
   TelegramLogo,
   GithubLogo,
   EnvelopeSimple,
-} from "./Icons";
+} from "@/components/Icons";
 // import LanguageBar from "./LanguageBar";
 
 import { getAll } from "@vercel/edge-config";
+import { cn } from "@/lib/utils";
 
 export interface EdgeConfig {
   socials: Socials;
@@ -25,81 +26,69 @@ export interface Socials {
 }
 
 const Footer = async () => {
-  const edgeConfig: EdgeConfig = await getAll();
-
-  const aClass =
-    "rounded-lg px-3 py-2 text-gray-700 font-medium dark:text-white/75 hover:bg-gray-200 hover:text-gray-900 ";
+  // const edgeConfig: EdgeConfig = await getAll();
 
   const socials = [
     {
       id: 1,
-      name: "Twitter",
-      slug: "twitter",
-      icon: <TwitterLogo size={24} />,
-      link: edgeConfig?.socials?.twitter || process.env.NEXT_PUBLIC_TWITTER_URL,
+      name: "Github",
+      slug: "github",
+      icon: <GithubLogo size={24} />,
+      link: process.env.NEXT_PUBLIC_GITHUB_URL,
     },
     {
       id: 2,
       name: "Instagram",
       slug: "instagram",
       icon: <InstagramLogo size={24} />,
-      link:
-        edgeConfig?.socials.instagram || process.env.NEXT_PUBLIC_INSTAGRAM_URL,
+      link: process.env.NEXT_PUBLIC_INSTAGRAM_URL,
     },
     {
       id: 3,
-      name: "Telegram",
-      slug: "telegram",
-      icon: <TelegramLogo size={24} />,
-      link:
-        edgeConfig?.socials.telegram || process.env.NEXT_PUBLIC_TELEGRAM_URL,
+      name: "X (Twitter)",
+      slug: "x",
+      icon: <TwitterLogo size={24} />,
+      link: process.env.NEXT_PUBLIC_TWITTER_URL,
     },
     {
       id: 4,
-      name: "Github",
-      slug: "github",
+      name: "Tiktok",
+      slug: "tiktok",
       icon: <GithubLogo size={24} />,
-      link: edgeConfig?.socials.github || process.env.NEXT_PUBLIC_GITHUB_URL,
+      link: process.env.NEXT_PUBLIC_TIKTOK_URL,
     },
     {
       id: 5,
+      name: "Telegram",
+      slug: "telegram",
+      icon: <TelegramLogo size={24} />,
+      link: process.env.NEXT_PUBLIC_TELEGRAM_URL,
+    },
+    {
+      id: 6,
       name: "Email",
       slug: "email",
       icon: <EnvelopeSimple size={24} />,
-      link:
-        `mailto:${edgeConfig?.socials.email}?subject=Website` ||
-        process.env.NEXT_PUBLIC_EMAIL,
+      link: `mailto:${process.env.NEXT_PUBLIC_EMAIL}?subject=Website`,
     },
   ];
 
   return (
-    <footer className=" pt-24 ">
-      <div className="flex flex-col items-center justify-center space-y-4 pb-4 pt-32 sm:flex-row-reverse sm:justify-between sm:space-y-0 ">
-        <div className="flex flex-row items-center gap-4 sm:gap-0 ">
-          {socials.map((s, i) => (
-            <Link
-              href={s.link || "/"}
-              key={s.id}
-              className={aClass}
-              aria-label={s.name}
-            >
-              {s.icon}
-            </Link>
-          ))}
-        </div>
-        <div className="flex flex-col sm:flex-row-reverse">
-          {/* <LanguageBar /> */}
-
+    <footer className=" bg-foreground text-background px-8 flex justify-between py-8">
+      <Link href="/" className="">
+        &copy; {new Date().getFullYear() || "2022"} Lanas.dev{" "}
+      </Link>
+      <div className="flex flex-col md:flex-row items-center gap-4 ">
+        {socials.map((s, i) => (
           <Link
-            href="/"
-            className="hover:underline hover:decoration-amber-500 hover:decoration-2"
+            href={s.link || "/"}
+            key={s.id}
+            className={cn("")}
+            aria-label={s.name}
           >
-            &copy; {new Date().getFullYear() || "2022"} Lanas.dev{" "}
-            {/* <span className="hidden whitespace-pre-line md:inline-block">
-              {"-"}
-            </span> */}
+            {s.name}
           </Link>
-        </div>
+        ))}
       </div>
     </footer>
   );
