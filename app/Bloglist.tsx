@@ -13,7 +13,7 @@ export default function Bloglist({ allPosts }) {
       <div className="flex flex-shrink-0 space-x-4 py-4 snap-x overflow-x-auto">
         {allPosts.map((p: any) => (
           <Link
-            href={`/projects/${p.slug}`}
+            href={`/blog/${p.slug}`}
             key={p.slug}
             className="max-w-xs shrink-0 snap-center"
           >

@@ -153,7 +153,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <div>
+    <div className="pb-32">
       <SectionContainer className="pt-20 ">
         <h1 className="text-3xl font-semibold">Projekt: {p.title}</h1>
         <p className=" leading-7">
@@ -161,7 +161,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
             "Durch eine dreifach so schnelle Ladegeschwindigkeit konnten wir bei Solar Sam die Conversion Rate verdoppeln."}
         </p>
       </SectionContainer>
-      <DatoImage data={p.image.responsiveImage} className="mt-16" />
+      <DatoImage
+        data={p.image.responsiveImage}
+        className="mt-16"
+        pictureClassName="object-cover"
+      />
       <SectionContainer className="pt-8">
         <div className="flex gap-4 justify-around">
           <div className="">
@@ -232,9 +236,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
         {/* <CustomStructuredText data={p.content} /> */}
       </SectionContainer>
 
-      <SectionContainer className="">
+      {/* <SectionContainer className="">
         <pre className="max-w-xl pt-24">{JSON.stringify(data, null, 2)}</pre>
-      </SectionContainer>
+      </SectionContainer> */}
     </div>
   );
 }
