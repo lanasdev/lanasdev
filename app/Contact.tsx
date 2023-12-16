@@ -43,7 +43,7 @@ const Contact = () => {
   };
 
   return (
-    <SectionContainer className=" pt-20 flex flex-col md:flex-row md:justify-between">
+    <SectionContainer className=" pt-20 flex flex-col">
       <h3 className="text-3xl font-semibold pb-8">Kontakt</h3>
       <form onSubmit={handleSubmit} className=" max-w-screen-md">
         <div className="flex flex-col md:flex-row gap-4">

@@ -31,10 +31,10 @@ const Footer = async () => {
   const socials = [
     {
       id: 1,
-      name: "Twitter",
-      slug: "twitter",
-      icon: <TwitterLogo size={24} />,
-      link: process.env.NEXT_PUBLIC_TWITTER_URL,
+      name: "Github",
+      slug: "github",
+      icon: <GithubLogo size={24} />,
+      link: process.env.NEXT_PUBLIC_GITHUB_URL,
     },
     {
       id: 2,
@@ -45,20 +45,27 @@ const Footer = async () => {
     },
     {
       id: 3,
+      name: "X (Twitter)",
+      slug: "x",
+      icon: <TwitterLogo size={24} />,
+      link: process.env.NEXT_PUBLIC_TWITTER_URL,
+    },
+    {
+      id: 4,
+      name: "Tiktok",
+      slug: "tiktok",
+      icon: <GithubLogo size={24} />,
+      link: process.env.NEXT_PUBLIC_TIKTOK_URL,
+    },
+    {
+      id: 5,
       name: "Telegram",
       slug: "telegram",
       icon: <TelegramLogo size={24} />,
       link: process.env.NEXT_PUBLIC_TELEGRAM_URL,
     },
     {
-      id: 4,
-      name: "Github",
-      slug: "github",
-      icon: <GithubLogo size={24} />,
-      link: process.env.NEXT_PUBLIC_GITHUB_URL,
-    },
-    {
-      id: 5,
+      id: 6,
       name: "Email",
       slug: "email",
       icon: <EnvelopeSimple size={24} />,
