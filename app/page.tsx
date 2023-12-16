@@ -83,15 +83,13 @@ export default async function Home() {
     <main className=" min-h-screen pb-32">
       <HeroSection />
       <Projectgrid allProjects={allProjects} />
-      {/* <div className="py-12"></div>*/}
       <ServiceSection />
       <Testimonial />
-
       <Bloglist allPosts /*  */={allPosts} />
       <Contact />
       {/* <div className="pb-24"></div>
       <CallToAction locale={"en"} /> */}
-      <pre className="max-w-xl">{JSON.stringify(data, null, 2)}</pre>
+      {/* <pre className="max-w-xl">{JSON.stringify(data, null, 2)}</pre> */}
     </main>
   );
 }

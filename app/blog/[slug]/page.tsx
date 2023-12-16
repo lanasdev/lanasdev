@@ -76,7 +76,7 @@ export default async function BlogPage({
     <div className="pb-32">
       <SectionContainer className="pt-20 ">
         <h1 className="text-3xl font-semibold">{p.title}</h1>
-        <p className=" leading-7">{p.description}</p>
+        <p className=" leading-7">{p.excerpt}</p>
       </SectionContainer>
       <DatoImage
         data={p.coverImage.responsiveImage}

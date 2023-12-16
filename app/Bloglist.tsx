@@ -9,6 +9,7 @@ import SectionContainer from "./SectionContainer";
 export default function Bloglist({ allPosts }) {
   return (
     <SectionContainer className="flex flex-col pt-12  mr-6 md:mr-8">
+      <div id="blog" className=""></div>
       <h3 className="text-3xl font-semibold pb-8">Blog</h3>
       <div className="flex flex-shrink-0 space-x-4 py-4 snap-x overflow-x-auto">
         {allPosts.map((p: any) => (

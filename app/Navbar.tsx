@@ -18,9 +18,9 @@ import {
 
 const NavItems = [
   ["Home", "/"],
-  ["Dienstleistungen", "/dienstleistungen"],
-  ["Projekte", "/projekte"],
-  ["Blog", "/blog"],
+  ["Projekte", "/#projekte"],
+  ["Dienstleistungen", "/#dienstleistungen"],
+  ["Blog", "/#blog"],
 ];
 
 const Navbar = () => {
@@ -42,14 +42,31 @@ const Navbar = () => {
             <SheetHeader>
               <SheetTitle>
                 <Link href="/" className="font-semibold text-xl">
-                  Lanas
+                  Lanas Web design
                 </Link>
               </SheetTitle>
               <SheetDescription>
-                This action cannot be undone. This will permanently delete your
-                account and remove your data from our servers.
+                <p className="text-sm text-gray-500">
+                  Wir erstellen Websites für Ihr Unternehmen, die Ihnen mehr
+                  Kunden einbringen und tatsächlich konvertieren.
+                </p>
               </SheetDescription>
             </SheetHeader>
+            <div className="flex flex-col gap-4 pt-8">
+              {NavItems.map(([title, url]) => (
+                <Link
+                  href={url}
+                  key={title}
+                  className={cn(
+                    buttonVariants({ variant: "ghost" }),
+                    "px-4 py-2 text-foreground transition-all rounded-lg hover:underline hover:underline-offset-2",
+                    pathname == url ? " font-bold" : ""
+                  )}
+                >
+                  {title}
+                </Link>
+              ))}
+            </div>
           </SheetContent>
         </Sheet>
 
@@ -79,7 +96,7 @@ export default Navbar;
 
 const ContactButton = () => (
   <Link
-    href="/contact"
+    href="/#kontakt"
     className={cn(
       buttonVariants({ variant: "default" }),
       "px-6 py-2 bg-foreground text-background transition-colors rounded-md hover:bg-foreground/90 hover:text-foreground"

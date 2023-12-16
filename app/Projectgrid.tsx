@@ -28,6 +28,7 @@ export default function Projectgrid({
 
   return (
     <SectionContainer className="max-w-fit pt-32 flex flex-col gap-24">
+      <div id="projekte" className=""></div>
       {allProjects.map((project: ProjectType, index) => (
         <Link
           href={`/projekt/${project.slug}`}

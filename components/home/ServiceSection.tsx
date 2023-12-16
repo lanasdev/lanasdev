@@ -9,7 +9,7 @@ export default function ServiceSection() {
   return (
     <div
       className="pt-24 overflow-x-hidden pb-24 flex flex-col gap-8 md:[&>*]:justify-between"
-      id="services"
+      id="dienstleistungen"
     >
       <div className="flex flex-row pl-6 md:pl-16 gap-16">
         <div className="flex flex-col flex-1">
