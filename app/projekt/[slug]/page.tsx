@@ -192,7 +192,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           </div>
         </div>
       </SectionContainer>
-      <SectionContainer className="pt-64 mt-16 prose lg:prose-xl prose-stone prose-img:rounded-xl mx-auto">
+      <SectionContainer className="pt-32 prose lg:prose-xl prose-stone prose-img:rounded-xl mx-auto">
         <StructuredText
           data={p.content}
           renderInlineRecord={({ record }) => {

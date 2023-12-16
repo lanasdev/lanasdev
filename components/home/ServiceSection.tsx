@@ -15,8 +15,9 @@ export default function ServiceSection() {
         <div className="flex flex-col flex-1">
           <h5 className="text-xl font-semibold">Webdesign</h5>
           <p className="leading-6 pt-4">
-            We design and create Websites for your Company that gets you more
-            leads and actually converts
+            Wir designen und erstellen Websites für Ihr Unternehmen, die Ihnen
+            mehr Kunden einbringen und tatsächlich konvertieren, falls nicht
+            gibt es eine Geld-zurück-Garantie.
           </p>
         </div>
         <Image
@@ -29,8 +30,9 @@ export default function ServiceSection() {
         <div className="flex flex-col">
           <h5 className="text-xl font-semibold">Google My Business</h5>
           <p className="leading-6 pt-4">
-            We help you with your Google My Business and Apple Business Connect
-            Profile and make sure that you show up on the map
+            Wir helfen Ihnen bei Ihrem Google My Business und Apple Business
+            Connect Profil und stellen sicher, dass Sie auf der Karte angezeigt
+            werden.
           </p>
         </div>
         <Image
@@ -43,8 +45,8 @@ export default function ServiceSection() {
         <div className="flex flex-col">
           <h5 className="text-xl font-semibold">Website Automation</h5>
           <p className="leading-6 pt-4">
-            We automate your Website and make sure that you can focus on your
-            Business
+            Wir automatisieren Ihre Website mit Tools wie Zapier und stellen
+            sicher, dass Sie sich auf Ihr Geschäft konzentrieren können.
           </p>
         </div>
         <Image

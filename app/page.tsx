@@ -91,7 +91,7 @@ export default async function Home() {
       <Contact />
       {/* <div className="pb-24"></div>
       <CallToAction locale={"en"} /> */}
-      {/* <pre className="max-w-xl">{JSON.stringify(data, null, 2)}</pre> */}
+      <pre className="max-w-xl">{JSON.stringify(data, null, 2)}</pre>
     </main>
   );
 }
