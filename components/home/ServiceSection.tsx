@@ -2,8 +2,8 @@ import Image from "next/image";
 import ServiceCard from "./ServiceCard";
 
 import Image1 from "@/public/img/image1.jpg";
-import Image2 from "@/public/img/image2.jpg";
-import Image3 from "@/public/img/image3.jpg";
+import Image2 from "@/public/img/image2.webp";
+import Image3 from "@/public/img/image3.webp";
 
 export default function ServiceSection() {
   return (

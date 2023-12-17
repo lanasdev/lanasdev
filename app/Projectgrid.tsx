@@ -53,7 +53,7 @@ export default function Projectgrid({
               // layout="fill"
               objectFit="cover"
               objectPosition="50% 0%"
-              className="rounded-xl aspect-golden md:aspect-[3/1] "
+              className="rounded-xl aspect-golden md:aspect-[3/1]"
               // pictureClassName="object-cover object-top"
             />
           ) : (
