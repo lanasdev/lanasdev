@@ -20,8 +20,11 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## More Ideas
+## TODO
 
-- [] animate mouse cursor in hero
-- [] animate colored rectangles in bg of hero
-- [] add to every service an emoji or a small png
+- [] Submit Contact Form
+- [] Get confirmation email via react email
+- [] Fix Navbar
+- [] Recommend other Projects and Blog Posts
+- [] make blog posts and project pages static
+- [] multilang

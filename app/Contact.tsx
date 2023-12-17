@@ -1,96 +1,57 @@
 "use client";
 
-import { useState } from "react";
 import SectionContainer from "./SectionContainer";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import ContactButton from "./ContactButton";
+import { z } from "zod";
+import { sql } from "@vercel/postgres";
 
-const Contact = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+import { submitForm } from "@/app/actions";
 
-  // type e = React.FormEvent<HTMLFormElement>;
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const formData = {
-      name,
-      email,
-      message,
-    };
-
-    try {
-      const response = await fetch("/api/submitContactForm", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        // Handle successful form submission
-        console.log("Form submitted successfully");
-      } else {
-        // Handle form submission error
-        console.error("Form submission failed");
-      }
-    } catch (error) {
-      // Handle network error
-      console.error("Network error occurred");
-    }
-  };
-
+export default function Contact() {
   return (
     <SectionContainer className=" pt-20 flex flex-col">
       <div id="kontakt" className=""></div>
       <h3 className="text-3xl font-semibold pb-8">Kontakt</h3>
-      <form onSubmit={handleSubmit} className=" max-w-screen-md">
+      <form action={submitForm} className=" max-w-screen-md">
         <div className="flex flex-col md:flex-row gap-4">
           <div className=" flex flex-col flex-grow">
-            <label className="">Name:</label>
+            <label htmlFor="name" className="pb-1">
+              Name:
+            </label>
             <input
               type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              name="name"
               className="border border-foreground rounded-md py-3 px-4"
-              placeholder="Name"
+              required
+              placeholder="Matthias"
             />
           </div>
           <div className="flex flex-col flex-grow">
-            <label className="">Email:</label>
+            <label htmlFor="email" className="pb-1">
+              Email:
+            </label>
             <input
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              name="email"
               className="border border-foreground rounded-md py-3 px-4"
-              placeholder="Email"
+              required
+              placeholder="hey@lanas.dev"
             />
           </div>
         </div>
-        <label className="flex flex-col pt-6">
-          Message:
+        <label htmlFor="message" className="flex flex-col pt-6">
+          Nachricht:
           <textarea
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            className="border border-foreground rounded-md py-3 px-4"
+            name="message"
+            className="border border-foreground rounded-md py-3 px-4 mt-1"
             placeholder="Ihre Nachricht an mich"
           />
         </label>
         <br />
-        <button
-          type="submit"
-          className={cn(buttonVariants({ variant: "default" }), "group mt-8")}
-        >
-          Jetzt durchstarten{" "}
-          <span className=" ml-2 group-hover:translate-x-1 transition-transform">
-            {"->"}
-          </span>
-        </button>
+        <ContactButton />
       </form>
     </SectionContainer>
   );
-};
-
-export default Contact;
+}

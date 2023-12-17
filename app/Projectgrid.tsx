@@ -24,7 +24,7 @@ export default function Projectgrid({
 }: {
   allProjects: ProjectType[];
 }) {
-  const ImgArray = [Image1, Image2, Image3];
+  const ImgArray = [Image1, Image2, Image3, Image1, Image2, Image3];
 
   return (
     <SectionContainer className="max-w-fit pt-32 flex flex-col gap-24">
@@ -36,13 +36,13 @@ export default function Projectgrid({
           className="relative"
         >
           <Image
-            // set image from array and a maximum of 3 images
-            src={ImgArray[index % 3]}
+            src={ImgArray[index]}
             alt="Picture of the author"
             placeholder="blur"
+            property={index === 0 ? "true" : "false"}
             className="rounded-xl aspect-golden md:aspect-[3/1] object-cover object-center"
           />
-          <h5 className="uppercase pt-6">{project.description}</h5>
+          <h5 className="uppercase pt-6 line-clamp-2">{project.description}</h5>
           <h4 className="text-xl font-semibold ">{project.title}</h4>
         </Link>
       ))}
