@@ -27,6 +27,7 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 - [] Fix Navbar
 - [] favicon & OG Image
 - [] Recommend other Projects and Blog Posts
+- [] CTA on Projects and Posts (rectangle with Link to Cal.com)
 - [] make blog posts and project pages static
 - [] project hero videos
 - [] sitemap

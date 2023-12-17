@@ -148,8 +148,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
     ];
     const d = new Date(date);
     const month = months[d.getMonth()];
-    const day = d.getDate();
-    return `${month} ${day}`;
+    const year = d.getFullYear();
+    return `${month} ${year}`;
   }
 
   return (
@@ -169,22 +169,24 @@ export default async function Page({ params }: { params: { slug: string } }) {
       <SectionContainer className="pt-8">
         <div className="flex gap-4 justify-around">
           <div className="">
-            <p className="font-semibold text-xl">
+            <p className="font-medium md:text-xl">
               Client:{" "}
-              <span className="font-normal">{p.clientname || "Solar Sam"}</span>
+              <span className="font-normal inline-block">
+                {p.clientname || "Solar Sam"}
+              </span>
             </p>
           </div>
 
           <div className="">
-            <p className="font-semibold text-xl">
+            <p className="font-medium md:text-xl">
               Created at: {/* format date like this: "Sept 21" */}
-              <span className="font-normal">
+              <span className="font-normal inline-block">
                 {p.createdAt ? formatDate(p.createdAt) : ""}
               </span>
             </p>
           </div>
           <div className="">
-            <p className="font-medium text-xl">
+            <p className="font-medium md:text-xl">
               Live URL:{" "}
               <Link
                 href={p.liveurl || "/"}
@@ -224,7 +226,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
                 return (
                   <DatoImage
                     data={(record.image as RecordImageType).responsiveImage}
-                    className="mt-16"
+                    className="mt-16 aspect-auto"
+                    pictureClassName="object-cover "
                   />
                 );
               default:
