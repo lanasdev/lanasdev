@@ -13,6 +13,27 @@ type RecordImageType = {
   responsiveImage: ResponsiveImageType;
 };
 
+export const revalidate = 300; // 5 minutes
+
+export async function generateStaticParams() {
+  const query = gql`
+    query getProjectSlugs {
+      allProjects {
+        slug
+      }
+    }
+  `;
+  const { data } = await performRequest({ query });
+
+  const allProjects = data.allProjects;
+
+  return allProjects.map((project: any) => ({
+    params: {
+      slug: project.slug,
+    },
+  }));
+}
+
 const PAGE_CONTENT_QUERY = gql`
   query getProject($eq: String) {
     project(filter: { slug: { eq: $eq } }) {
