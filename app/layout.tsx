@@ -19,17 +19,16 @@ const generalsans = LocalFont({
 });
 
 export const metadata: Metadata = {
-  title: "Lanas Web design",
-  description:
-    "We built fast and high converting websites for small businesses. Lanas Web Design.",
+  metadataBase: new URL("https://lanas.dev"),
+  title: "Lanas",
+  description: "Schnelle Websites für das Handwerk. Lanas Web Design.",
   icons: "/icon",
   openGraph: {
     type: "website",
     url: "https://lanas.dev",
     title: "Lanas Web design",
-    description:
-      "We built fast and high converting websites for small businesses. Lanas Web Design.",
-    siteName: "Lanas Web design",
+    description: "Schnelle Websites für das Handwerk. Lanas Web Design.",
+    siteName: "Lanas",
     images: [
       {
         url: "/opengraph-image",

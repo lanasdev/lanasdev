@@ -1,21 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 
 import { performRequest } from "@/lib/datocms";
-import { RESPONSIVE_IMAGE_FRAGMENT } from "@/lib/fragments";
 import { gql } from "graphql-request";
-import Balancer from "react-wrap-balancer";
-import { Button } from "@/components/ui/button";
 import { Image as DatoImage } from "react-datocms";
-import Projectlist from "./Projectlist";
+import { toNextMetadata } from "react-datocms";
 import Projectgrid from "./Projectgrid";
 import Bloglist from "./Bloglist";
-// import Contactform from "./Contactform";
-import CallToAction from "./CallToAction";
-
-import HammerEmoji from "@/public/hammer-emoji.png";
 import HeroSection from "@/components/HeroSection";
-import ServiceCard from "@/components/home/ServiceCard";
 import ServiceSection from "@/components/home/ServiceSection";
 import Testimonial from "@/components/home/Testimonial";
 import Contact from "./Contact";
