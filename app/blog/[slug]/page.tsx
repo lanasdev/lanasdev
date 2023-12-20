@@ -1,4 +1,5 @@
 import SectionContainer from "@/app/SectionContainer";
+import CalContact from "@/components/CallToAction/CalContact";
 // // import CustomStructuredText from "@/components/CustomStructuredText";
 import { performRequest } from "@/lib/datocms";
 import { gql } from "graphql-request";
@@ -8,6 +9,7 @@ import {
   ResponsiveImageType,
   StructuredText,
 } from "react-datocms";
+import BlogAuthor from "./BlogAuthor";
 
 type RecordImageType = {
   responsiveImage: ResponsiveImageType;
@@ -48,6 +50,17 @@ const PAGE_CONTENT_QUERY = gql`
       coverImage {
         responsiveImage(imgixParams: { auto: format }) {
           ...responsiveImageFragment
+        }
+      }
+      author {
+        name
+        role
+        picture {
+          responsiveImage(
+            imgixParams: { auto: format, w: 150, h: 150, ar: "1:1" }
+          ) {
+            ...responsiveImageFragment
+          }
         }
       }
       content {
@@ -98,10 +111,11 @@ export default async function BlogPage({
       <SectionContainer className="pt-20 ">
         <h1 className="text-3xl font-semibold">{p.title}</h1>
         <p className=" leading-7">{p.excerpt}</p>
+        <BlogAuthor author={p.author} />
       </SectionContainer>
       <DatoImage
         data={p.coverImage.responsiveImage}
-        className="mt-16 max-h-screen"
+        className="mt-8 max-h-screen"
         pictureClassName="object-cover"
       />
       <SectionContainer className="pt-32 prose lg:prose-xl prose-stone prose-img:rounded-xl mx-auto">

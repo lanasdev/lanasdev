@@ -7,11 +7,11 @@ import { gql } from "graphql-request";
 import { Image as DatoImage } from "react-datocms";
 import { toNextMetadata } from "react-datocms";
 import Projectgrid from "./Projectgrid";
-import Bloglist from "./Bloglist";
+import Bloglist from "../components/Bloglist";
 import HeroSection from "@/components/HeroSection";
 import ServiceSection from "@/components/home/ServiceSection";
 import Testimonial from "@/components/home/Testimonial";
-import Contact from "./Contact";
+import Contact from "@/components/Contact";
 
 const PAGE_CONTENT_QUERY = gql`
   query getHome {

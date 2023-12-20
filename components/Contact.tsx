@@ -1,6 +1,6 @@
 "use client";
 
-import SectionContainer from "./SectionContainer";
+import SectionContainer from "../app/SectionContainer";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import ContactButton from "./ContactButton";

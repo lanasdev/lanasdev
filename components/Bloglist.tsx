@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Image as DatoImage } from "react-datocms";
-import SectionContainer from "./SectionContainer";
+import SectionContainer from "../app/SectionContainer";
 
 // @ts-ignore
 export default function Bloglist({ allPosts }) {
