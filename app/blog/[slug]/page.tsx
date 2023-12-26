@@ -10,6 +10,7 @@ import {
   StructuredText,
 } from "react-datocms";
 import BlogAuthor from "./BlogAuthor";
+import BlogHeader from "./BlogHeader";
 
 type RecordImageType = {
   responsiveImage: ResponsiveImageType;
@@ -108,11 +109,7 @@ export default async function BlogPage({
 
   return (
     <div className="pb-32">
-      <SectionContainer className="pt-20 ">
-        <h1 className="text-3xl font-semibold">{p.title}</h1>
-        <p className=" leading-7">{p.excerpt}</p>
-        <BlogAuthor author={p.author} />
-      </SectionContainer>
+      <BlogHeader title={p.title} date={p.date} author={p.author} />
       <DatoImage
         data={p.coverImage.responsiveImage}
         className="mt-8 max-h-screen"

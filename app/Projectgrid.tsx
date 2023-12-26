@@ -37,7 +37,7 @@ export default function Projectgrid({
         <Link
           href={`/projekt/${project.slug}`}
           key={project.position}
-          className="relative"
+          className="relative "
         >
           {/* <DatoImage
             src={project?.image?.responsiveImage}
@@ -53,7 +53,7 @@ export default function Projectgrid({
               // layout="fill"
               objectFit="cover"
               objectPosition="50% 0%"
-              className="rounded-xl aspect-golden md:aspect-[3/1]"
+              className="rounded-xl aspect-golden md:aspect-[3/1] border-2 border-gray-200 hover:border-gray-400 transition-all duration-300 ease-in-out"
               // pictureClassName="object-cover object-top"
             />
           ) : (
