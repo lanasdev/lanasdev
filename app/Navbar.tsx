@@ -81,7 +81,7 @@ const Navbar = () => {
                 buttonVariants({ variant: "ghost" }),
                 "px-4 py-2 text-foreground hover:bg-inherit rounded-lg hover:underline hover:underline-offset-2",
                 pathname == url
-                  ? " font-semibold underline underline-offset-2 hover:underline-offset-1"
+                  ? " font-medium underline underline-offset-2 hover:underline-offset-1"
                   : ""
               )}
             >

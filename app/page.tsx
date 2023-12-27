@@ -78,7 +78,7 @@ export default async function Home() {
       <Projectgrid allProjects={allProjects} />
       <ServiceSection />
       <Testimonial />
-      <Bloglist allPosts /*  */={allPosts} />
+      <Bloglist allPosts={allPosts} />
       <Contact />
       {/* <div className="pb-24"></div>
       <CallToAction locale={"en"} /> */}

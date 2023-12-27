@@ -24,10 +24,12 @@ const NAVBAR_QUERY = gql`
     allPosts(first: 3) {
       title
       slug
+      excerpt
     }
     allProjects(first: 3) {
       title
       slug
+      description
     }
   }
 `;
@@ -114,119 +116,112 @@ export default function NavbarNew() {
   const pathname = usePathname();
 
   return (
-    <nav className="flex gap-4 py-2 pt-8 px-6 sm:px-8 md:px-16 items-center justify-between w-full">
-      <Link href="/" className="font-semibold text-xl">
-        Lanas
-      </Link>
-      <div className="">
-        <div className="flex gap-4 md:hidden">
-          <Sheet>
-            <SheetTrigger>
-              <Icon path={mdiMenu} size={1.5} />
-            </SheetTrigger>
-            <SheetContent>
-              <SheetHeader>
-                <SheetTitle>
-                  <Link href="/" className="font-semibold text-xl">
-                    Lanas Web design
-                  </Link>
-                </SheetTitle>
-                <SheetDescription>
-                  <p className="text-sm text-gray-500">
-                    Wir erstellen Websites für Ihr Unternehmen, die Ihnen mehr
-                    Kunden einbringen und tatsächlich konvertieren.
-                  </p>
-                </SheetDescription>
-              </SheetHeader>
-              <div className="flex flex-col gap-4 pt-8">
-                {NavItems.map(([title, url]) => (
-                  <Link
-                    href={url}
-                    key={title}
-                    className={cn(
-                      buttonVariants({ variant: "ghost" }),
-                      "px-4 py-2 text-foreground transition-all rounded-lg hover:underline hover:underline-offset-2",
-                      pathname == url ? " font-bold" : ""
-                    )}
-                  >
-                    {title}
-                  </Link>
-                ))}
-              </div>
-            </SheetContent>
-          </Sheet>
-          <ContactButton />
-        </div>
-
-        <div className="hidden md:block">
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                    <li className="row-span-3">
-                      <NavigationMenuLink asChild>
-                        <Link
-                          className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                          href="/"
-                        >
-                          {/* <Icons.logo className="h-6 w-6" /> */}
-                          <div className="mb-2 mt-4 text-lg font-medium">
-                            Lan.as
-                          </div>
-                          <p className="text-sm leading-tight text-muted-foreground">
-                            Wir erstellen Websites für Ihr Unternehmen, die
-                            Ihnen mehr Kunden einbringen und tatsächlich
-                            konvertieren.
-                          </p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <ListItem href="/docs" title="Introduction">
-                      Re-usable components built using Radix UI and Tailwind
-                      CSS.
-                    </ListItem>
-                    <ListItem href="/docs/installation" title="Installation">
-                      How to install dependencies and structure your app.
-                    </ListItem>
-                    <ListItem
-                      href="/docs/primitives/typography"
-                      title="Typography"
-                    >
-                      Styles for headings, paragraphs, lists...etc
-                    </ListItem>
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Components</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                    {components.map((component) => (
-                      <ListItem
-                        key={component.title}
-                        title={component.title}
-                        href={component.href}
-                      >
-                        {component.description}
-                      </ListItem>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link href="/docs" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Documentation
-                  </NavigationMenuLink>
+    <>
+      <div className="flex gap-4 md:hidden">
+        <Sheet>
+          <SheetTrigger>
+            <Icon path={mdiMenu} size={1.5} />
+          </SheetTrigger>
+          <SheetContent>
+            <SheetHeader>
+              <SheetTitle>
+                <Link href="/" className="font-semibold text-xl">
+                  Lanas Web design
                 </Link>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
-        </div>
+              </SheetTitle>
+              <SheetDescription>
+                <p className="text-sm text-gray-500">
+                  Wir erstellen Websites für Ihr Unternehmen, die Ihnen mehr
+                  Kunden einbringen und tatsächlich konvertieren.
+                </p>
+              </SheetDescription>
+            </SheetHeader>
+            <div className="flex flex-col gap-4 pt-8">
+              {NavItems.map(([title, url]) => (
+                <Link
+                  href={url}
+                  key={title}
+                  className={cn(
+                    buttonVariants({ variant: "ghost" }),
+                    "px-4 py-2 text-foreground transition-all rounded-lg hover:underline hover:underline-offset-2",
+                    pathname == url ? " font-bold" : ""
+                  )}
+                >
+                  {title}
+                </Link>
+              ))}
+            </div>
+          </SheetContent>
+        </Sheet>
+        <ContactButton />
       </div>
-    </nav>
+
+      <div className="hidden md:block">
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                  <li className="row-span-3">
+                    <NavigationMenuLink asChild>
+                      <Link
+                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                        href="/"
+                      >
+                        {/* <Icons.logo className="h-6 w-6" /> */}
+                        <div className="mb-2 mt-4 text-lg font-medium">
+                          Lan.as
+                        </div>
+                        <p className="text-sm leading-tight text-muted-foreground">
+                          Wir erstellen Websites für Ihr Unternehmen, die Ihnen
+                          mehr Kunden einbringen und tatsächlich konvertieren.
+                        </p>
+                      </Link>
+                    </NavigationMenuLink>
+                  </li>
+                  <ListItem href="/docs" title="Introduction">
+                    Re-usable components built using Radix UI and Tailwind CSS.
+                  </ListItem>
+                  <ListItem href="/docs/installation" title="Installation">
+                    How to install dependencies and structure your app.
+                  </ListItem>
+                  <ListItem
+                    href="/docs/primitives/typography"
+                    title="Typography"
+                  >
+                    Styles for headings, paragraphs, lists...etc
+                  </ListItem>
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Components</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                  {components.map((component) => (
+                    <ListItem
+                      key={component.title}
+                      title={component.title}
+                      href={component.href}
+                    >
+                      {component.description}
+                    </ListItem>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/docs" legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Documentation
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+      </div>
+    </>
   );
 }
 

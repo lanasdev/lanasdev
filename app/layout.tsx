@@ -6,7 +6,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { cn } from "@/lib/utils";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-// import NavbarNew from "./NavbarNew";
+import NavbarNew from "./NavbarNew";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -50,7 +50,7 @@ export default function RootLayout({
         className={cn(
           inter.className,
           generalsans.className,
-          "min-h-screen selection:bg-cyan-400 selection:text-white"
+          "min-h-screen selection:bg-cyan-300 "
         )}
       >
         {/* <NavbarNew /> */}
