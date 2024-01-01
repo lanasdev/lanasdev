@@ -1,4 +1,5 @@
 import SectionContainer from "@/app/SectionContainer";
+import CalContact from "@/components/CallToAction/CalContact";
 // import CustomStructuredText from "@/components/CustomStructuredText";
 import { performRequest } from "@/lib/datocms";
 import { gql } from "graphql-request";
@@ -260,6 +261,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         />
         {/* <CustomStructuredText data={p.content} /> */}
       </SectionContainer>
+      {/* <CalContact /> */}
 
       {/* <SectionContainer className="">
         <pre className="max-w-xl pt-24">{JSON.stringify(data, null, 2)}</pre>

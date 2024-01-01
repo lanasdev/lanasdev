@@ -132,6 +132,10 @@ export default async function BlogPage({
           }}
         />
       </SectionContainer>
+
+      {/* <SectionContainer className=""> */}
+      {/* <CalContact /> */}
+      {/* </SectionContainer> */}
       {/* <SectionContainer className="">
         <pre className="max-w-xl pt-24">{JSON.stringify(data, null, 2)}</pre>
       </SectionContainer> */}
