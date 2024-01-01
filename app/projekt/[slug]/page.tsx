@@ -13,7 +13,7 @@ type RecordImageType = {
   responsiveImage: ResponsiveImageType;
 };
 
-export const revalidate = 300; // 5 minutes
+// export const revalidate = 300; // 5 minutes
 
 export async function generateStaticParams() {
   const query = gql`
@@ -190,7 +190,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
       <SectionContainer className="pt-8">
         <div className="flex gap-4 justify-around">
           <div className="">
-            <p className="font-medium md:text-xl">
+            <p className="font-medium ">
               Client:{" "}
               <span className="font-normal inline-block">
                 {p.clientname || "Solar Sam"}
@@ -199,7 +199,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           </div>
 
           <div className="">
-            <p className="font-medium md:text-xl">
+            <p className="font-medium ">
               Created at: {/* format date like this: "Sept 21" */}
               <span className="font-normal inline-block">
                 {p.createdAt ? formatDate(p.createdAt) : ""}
@@ -207,7 +207,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             </p>
           </div>
           <div className="">
-            <p className="font-medium md:text-xl">
+            <p className="font-medium">
               Live URL:{" "}
               <Link
                 href={p.liveurl || "/"}
@@ -252,7 +252,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
                   />
                 );
               default:
-                return <p>{JSON.stringify(record)}</p>;
+                // return <p>{JSON.stringify(record)}</p>;
+                return null;
             }
             return <p>{JSON.stringify(record)}</p>;
           }}

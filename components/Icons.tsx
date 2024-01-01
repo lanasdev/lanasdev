@@ -7,6 +7,7 @@ import {
   TelegramLogo,
   GithubLogo,
   EnvelopeSimple,
+  PhoneCall,
 } from "@phosphor-icons/react";
 
 // // reexport all icons
@@ -17,6 +18,7 @@ export {
   TelegramLogo,
   GithubLogo,
   EnvelopeSimple,
+  PhoneCall,
 };
 
 // export function TwitterIcon() {

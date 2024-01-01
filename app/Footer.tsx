@@ -7,6 +7,7 @@ import {
   TelegramLogo,
   GithubLogo,
   EnvelopeSimple,
+  PhoneCall,
 } from "@/components/Icons";
 // import LanguageBar from "./LanguageBar";
 
@@ -66,6 +67,13 @@ const Footer = async () => {
     },
     {
       id: 6,
+      name: "Video Call",
+      slug: "cal",
+      icon: <PhoneCall size={24} />,
+      link: process.env.NEXT_PUBLIC_CALCOM,
+    },
+    {
+      id: 7,
       name: "Email",
       slug: "email",
       icon: <EnvelopeSimple size={24} />,
@@ -83,7 +91,7 @@ const Footer = async () => {
           <Link
             href={s.link || "/"}
             key={s.id}
-            className={cn("")}
+            className={cn("hover:text-accent hover:underline")}
             aria-label={s.name}
           >
             {s.name}
