@@ -115,7 +115,7 @@ export default async function BlogPage({
         className="mt-8 max-h-screen"
         pictureClassName="object-cover"
       />
-      <SectionContainer className="pt-32 prose lg:prose-xl prose-stone prose-img:rounded-xl mx-auto">
+      <SectionContainer className="pt-32 prose prose-stone prose-img:rounded-xl mx-auto">
         <StructuredText
           data={p.content}
           renderBlock={({ record }) => {

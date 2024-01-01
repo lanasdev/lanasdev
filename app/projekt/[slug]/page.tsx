@@ -219,7 +219,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           </div>
         </div>
       </SectionContainer>
-      <SectionContainer className="pt-32 prose lg:prose-xl prose-stone prose-img:rounded-xl mx-auto">
+      <SectionContainer className="pt-32 prose prose-stone prose-img:rounded-xl mx-auto">
         <StructuredText
           data={p.content}
           renderInlineRecord={({ record }) => {
@@ -247,8 +247,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
                 return (
                   <DatoImage
                     data={(record.image as RecordImageType).responsiveImage}
-                    className="mt-16 aspect-auto"
-                    pictureClassName="object-cover "
+                    className="mt-16 aspect-auto h-auto w-full rounded-xl"
+                    pictureClassName="object-contain "
                   />
                 );
               default:
