@@ -22,15 +22,18 @@ const generalsans = LocalFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://lanas.dev"),
-  title: "Lanas",
-  description: "Schnelle Websites für das Handwerk. Lanas Web Design.",
+  title: "Lanas Webdesign",
+  description:
+    "Wir bauen schnelle und hoch konvertierende Websites für Ihr Photovoltaikunternehmen.",
   icons: "/icon",
   openGraph: {
     type: "website",
     url: "https://lanas.dev",
-    title: "Lanas Web design",
-    description: "Schnelle Websites für das Handwerk. Lanas Web Design.",
-    siteName: "Lanas",
+    title: "Lanas Webdesign",
+    description:
+      "Wir bauen schnelle und hoch konvertierende Websites für Ihr Photovoltaikunternehmen.",
+    siteName: "Lanas Webdesign",
+    emails: "hey@lanas.dev",
     images: [
       {
         url: "/opengraph-image",
@@ -45,7 +48,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="de">
       <body
         className={cn(
           inter.className,

@@ -8,9 +8,11 @@ import {
   Image as DatoImage,
   ResponsiveImageType,
   StructuredText,
+  toNextMetadata,
 } from "react-datocms";
 import BlogAuthor from "./BlogAuthor";
 import BlogHeader from "./BlogHeader";
+import { Metadata, ResolvingMetadata } from "next";
 
 type RecordImageType = {
   responsiveImage: ResponsiveImageType;
@@ -39,6 +41,13 @@ export async function generateStaticParams() {
 
 const PAGE_CONTENT_QUERY = gql`
   query getPost($eq: String) {
+    _site {
+      favicon: faviconMetaTags {
+        attributes
+        content
+        tag
+      }
+    }
     post(filter: { slug: { eq: $eq } }) {
       title
       slug
@@ -79,6 +88,17 @@ const PAGE_CONTENT_QUERY = gql`
           }
         }
       }
+      seo {
+        title
+        description
+        noIndex
+        twitterCard
+      }
+      seoFallback: _seoMetaTags {
+        attributes
+        content
+        tag
+      }
     }
   }
 
@@ -96,6 +116,13 @@ const PAGE_CONTENT_QUERY = gql`
   }
 `;
 
+function getPageRequest({ params }: { params: { slug: string } }) {
+  return {
+    query: PAGE_CONTENT_QUERY,
+    variables: { eq: params.slug },
+  };
+}
+
 export default async function BlogPage({
   params,
 }: {
@@ -103,7 +130,9 @@ export default async function BlogPage({
 }) {
   const query = PAGE_CONTENT_QUERY;
   const variables = { eq: params.slug };
-  const { data } = await performRequest({ query, variables });
+  const { data } = await performRequest(
+    getPageRequest({ params: { slug: params.slug } })
+  );
 
   const p = data?.post;
 
@@ -133,12 +162,29 @@ export default async function BlogPage({
         />
       </SectionContainer>
 
-      {/* <SectionContainer className=""> */}
-      {/* <CalContact /> */}
-      {/* </SectionContainer> */}
+      {/* <SectionContainer className="">
+        <CalContact />
+      </SectionContainer> */}
       {/* <SectionContainer className="">
         <pre className="max-w-xl pt-24">{JSON.stringify(data, null, 2)}</pre>
       </SectionContainer> */}
     </div>
   );
+}
+
+type MetadataProps = {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata(
+  { params, searchParams }: MetadataProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const response = await performRequest(
+    getPageRequest({ params: { slug: params.slug } })
+  );
+  const p = response.data.post;
+
+  return toNextMetadata(p.seoFallback || []);
 }

@@ -3,11 +3,14 @@ import CalContact from "@/components/CallToAction/CalContact";
 // import CustomStructuredText from "@/components/CustomStructuredText";
 import { performRequest } from "@/lib/datocms";
 import { gql } from "graphql-request";
+import { ResolvingMetadata } from "next";
 import Link from "next/link";
 import {
   Image as DatoImage,
+  Metadata,
   ResponsiveImageType,
   StructuredText,
+  toNextMetadata,
 } from "react-datocms";
 
 type RecordImageType = {
@@ -37,6 +40,13 @@ export async function generateStaticParams() {
 
 const PAGE_CONTENT_QUERY = gql`
   query getProject($eq: String) {
+    _site {
+      favicon: faviconMetaTags {
+        attributes
+        content
+        tag
+      }
+    }
     project(filter: { slug: { eq: $eq } }) {
       title
       slug
@@ -129,6 +139,17 @@ const PAGE_CONTENT_QUERY = gql`
           ...responsiveImageFragment
         }
       }
+      seo {
+        title
+        description
+        noIndex
+        twitterCard
+      }
+      seoFallback: _seoMetaTags {
+        attributes
+        content
+        tag
+      }
     }
   }
 
@@ -145,6 +166,13 @@ const PAGE_CONTENT_QUERY = gql`
     base64
   }
 `;
+
+function getPageRequest({ params }: { params: { slug: string } }) {
+  return {
+    query: PAGE_CONTENT_QUERY,
+    variables: { eq: params.slug },
+  };
+}
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const query = PAGE_CONTENT_QUERY;
@@ -268,4 +296,21 @@ export default async function Page({ params }: { params: { slug: string } }) {
       </SectionContainer> */}
     </div>
   );
+}
+
+type MetadataProps = {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata(
+  { params, searchParams }: MetadataProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const response = await performRequest(
+    getPageRequest({ params: { slug: params.slug } })
+  );
+  const p = response.data.project;
+
+  return toNextMetadata(p.seoFallback || []);
 }
