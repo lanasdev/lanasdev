@@ -12,12 +12,16 @@ import {
   StructuredText,
   toNextMetadata,
 } from "react-datocms";
+import ProjectCards from "./ProjectCards";
+import Projectlist from "@/app/Projectlist";
+import Projectgrid from "@/app/Projectgrid";
+import Balancer from "react-wrap-balancer";
 
 type RecordImageType = {
   responsiveImage: ResponsiveImageType;
 };
 
-// export const revalidate = 300; // 5 minutes
+export const revalidate = 300; // 5 minutes
 
 export async function generateStaticParams() {
   const query = gql`
@@ -139,6 +143,16 @@ const PAGE_CONTENT_QUERY = gql`
           ...responsiveImageFragment
         }
       }
+      otherprojects {
+        title
+        slug
+        description
+        image {
+          responsiveImage(imgixParams: { auto: format }) {
+            ...responsiveImageFragment
+          }
+        }
+      }
       seo {
         title
         description
@@ -205,10 +219,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
   return (
     <div className="pb-32">
       <SectionContainer className="pt-20 ">
-        <h1 className="text-3xl font-semibold">Projekt: {p.title}</h1>
-        <p className=" leading-7">
-          {p.description ||
-            "Durch eine dreifach so schnelle Ladegeschwindigkeit konnten wir bei Solar Sam die Conversion Rate verdoppeln."}
+        <h1 className="text-3xl font-semibold">
+          <Balancer>Projekt: {p.title}</Balancer>
+        </h1>
+        <p className=" pt-4 leading-7">
+          <Balancer>{p.description}</Balancer>
         </p>
       </SectionContainer>
       <DatoImage
@@ -217,11 +232,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
         pictureClassName="object-cover"
       />
       <SectionContainer className="pt-8">
-        <div className="flex gap-4 justify-around">
+        <div className="flex justify-around gap-4">
           <div className="">
             <p className="font-medium ">
-              Client:{" "}
-              <span className="font-normal inline-block">
+              Kunde:{" "}
+              <span className="inline-block font-normal">
                 {p.clientname || "Solar Sam"}
               </span>
             </p>
@@ -229,8 +244,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
           <div className="">
             <p className="font-medium ">
-              Created at: {/* format date like this: "Sept 21" */}
-              <span className="font-normal inline-block">
+              Erstellt: {/* format date like this: "Sept 21" */}
+              <span className="inline-block font-normal">
                 {p.createdAt ? formatDate(p.createdAt) : ""}
               </span>
             </p>
@@ -248,7 +263,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           </div>
         </div>
       </SectionContainer>
-      <SectionContainer className="pt-32 prose prose-stone prose-img:rounded-xl mx-auto">
+      <SectionContainer className="prose prose-stone mx-auto pt-32 prose-img:rounded-xl ">
         <StructuredText
           data={p.content}
           renderInlineRecord={({ record }) => {
@@ -291,6 +306,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
       </SectionContainer>
       {/* <CalContact /> */}
 
+      <SectionContainer className="pt-8">
+        <ProjectCards projects={p.otherprojects} currentProjectSlug={p.slug} />
+        {/* <Projectgrid allProjects={p.otherprojects} /> */}
+      </SectionContainer>
       {/* <SectionContainer className="">
         <pre className="max-w-xl pt-24">{JSON.stringify(data, null, 2)}</pre>
       </SectionContainer> */}
@@ -305,10 +324,10 @@ type MetadataProps = {
 
 export async function generateMetadata(
   { params, searchParams }: MetadataProps,
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const response = await performRequest(
-    getPageRequest({ params: { slug: params.slug } })
+    getPageRequest({ params: { slug: params.slug } }),
   );
   const p = response.data.project;
 

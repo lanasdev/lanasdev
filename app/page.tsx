@@ -19,6 +19,8 @@ import TechStack from "@/components/home/TechStack";
 import Contact from "@/components/Contact";
 import SectionContainer from "./SectionContainer";
 
+export const revalidate = 300; // 5 minutes
+
 const PAGE_CONTENT_QUERY = gql`
   query getHome {
     allProjects(first: 6) {

@@ -3,6 +3,7 @@ import BlogAuthor from "./BlogAuthor";
 import Link from "next/link";
 import { ResponsiveImageType } from "react-datocms";
 import { Author } from "./BlogAuthor"; // Import the 'Author' type from the appropriate module
+import Balancer from "react-wrap-balancer";
 
 const BlogHeader = ({
   title,
@@ -23,8 +24,10 @@ const BlogHeader = ({
     .replace(/ /g, " ");
 
   return (
-    <SectionContainer className="pt-12 flex flex-col space-y-4 pb-8">
-      <h1 className="text-2xl font-semibold md:text-3xl">{title}</h1>
+    <SectionContainer className="flex flex-col space-y-4 pb-8 pt-12">
+      <h1 className="text-2xl font-semibold md:text-3xl">
+        <Balancer>{title}</Balancer>
+      </h1>
       <span className="text-sm text-gray-600 dark:text-gray-400">
         {formattedDate}
       </span>

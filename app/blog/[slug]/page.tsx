@@ -13,6 +13,9 @@ import {
 import BlogAuthor from "./BlogAuthor";
 import BlogHeader from "./BlogHeader";
 import { Metadata, ResolvingMetadata } from "next";
+import { notFound } from "next/navigation";
+import Bloglist from "@/components/Bloglist";
+import OtherPosts from "./OtherPosts";
 
 type RecordImageType = {
   responsiveImage: ResponsiveImageType;
@@ -41,6 +44,20 @@ export async function generateStaticParams() {
 
 const PAGE_CONTENT_QUERY = gql`
   query getPost($eq: String) {
+    allPosts(filter: { slug: { neq: $eq } }) {
+      title
+      slug
+      excerpt
+      createdAt
+      coverImage {
+        responsiveImage(imgixParams: { auto: format }) {
+          ...responsiveImageFragment
+        }
+      }
+      author {
+        name
+      }
+    }
     _site {
       favicon: faviconMetaTags {
         attributes
@@ -101,7 +118,6 @@ const PAGE_CONTENT_QUERY = gql`
       }
     }
   }
-
   fragment responsiveImageFragment on ResponsiveImage {
     srcSet
     webpSrcSet
@@ -131,7 +147,7 @@ export default async function BlogPage({
   const query = PAGE_CONTENT_QUERY;
   const variables = { eq: params.slug };
   const { data } = await performRequest(
-    getPageRequest({ params: { slug: params.slug } })
+    getPageRequest({ params: { slug: params.slug } }),
   );
 
   const p = data?.post;
@@ -144,7 +160,7 @@ export default async function BlogPage({
         className="mt-8 max-h-screen"
         pictureClassName="object-cover"
       />
-      <SectionContainer className="pt-32 prose prose-stone prose-img:rounded-xl mx-auto">
+      <SectionContainer className="prose prose-stone mx-auto pt-32 prose-img:rounded-xl">
         <StructuredText
           data={p.content}
           renderBlock={({ record }) => {
@@ -165,6 +181,7 @@ export default async function BlogPage({
       {/* <SectionContainer className="">
         <CalContact />
       </SectionContainer> */}
+      <OtherPosts allPosts={data.allPosts} />
       {/* <SectionContainer className="">
         <pre className="max-w-xl pt-24">{JSON.stringify(data, null, 2)}</pre>
       </SectionContainer> */}
@@ -179,10 +196,10 @@ type MetadataProps = {
 
 export async function generateMetadata(
   { params, searchParams }: MetadataProps,
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const response = await performRequest(
-    getPageRequest({ params: { slug: params.slug } })
+    getPageRequest({ params: { slug: params.slug } }),
   );
   const p = response.data.post;
 
