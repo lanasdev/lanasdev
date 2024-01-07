@@ -31,13 +31,13 @@ export default function Projectgrid({
   const ImgArray = [Image1, Image2, Image3, Image1, Image2, Image3];
 
   return (
-    <SectionContainer className="max-w-fit pt-32 flex flex-col gap-24">
+    <SectionContainer className="flex max-w-fit flex-col gap-12 pt-32 md:gap-24">
       <div id="projekte" className=""></div>
       {allProjects.map((project: ProjectType, index) => (
         <Link
           href={`/projekt/${project.slug}`}
           key={project.position}
-          className="relative group"
+          className="group relative"
         >
           {/* <DatoImage
             src={project?.image?.responsiveImage}
@@ -53,7 +53,7 @@ export default function Projectgrid({
               // layout="fill"
               objectFit="cover"
               objectPosition="50% 0%"
-              className="rounded-xl border-muted-foreground aspect-golden md:aspect-[3/1] border-2  group-hover:border-foreground transition-all duration-150 ease-in-out"
+              className="aspect-golden rounded-xl border-2 border-muted-foreground transition-all duration-150 ease-in-out group-hover:scale-103 group-hover:border-foreground group-hover:opacity-80 md:aspect-[3/1]"
               // pictureClassName="object-cover object-top"
             />
           ) : (
@@ -64,8 +64,10 @@ export default function Projectgrid({
               className="object-cover object-center"
             />
           )}
-          <h5 className="uppercase pt-6 line-clamp-2">{project.description}</h5>
-          <h4 className="text-xl font-semibold group-hover:underline group-hover:decoration-muted-foreground ">{project.title}</h4>
+          <h5 className="line-clamp-2 pt-6 uppercase">{project.description}</h5>
+          <h4 className="text-xl font-semibold group-hover:underline group-hover:decoration-muted-foreground ">
+            {project.title}
+          </h4>
         </Link>
       ))}
       {/* <pre>{JSON.stringify(allProjects, null, 2)}</pre> */}

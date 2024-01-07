@@ -10,9 +10,7 @@ import SectionContainer from "@/app/SectionContainer";
 export default function OtherPosts({ allPosts }) {
   return (
     <SectionContainer className="flex flex-col pt-24 md:mr-8">
-      <h3 className="pb-8 text-2xl font-semibold">
-        Andere Beiträge aus dem Blog
-      </h3>
+      <h3 className="pb-8 text-2xl font-semibold">Andere Beiträge</h3>
       <div className="flex flex-shrink-0 snap-x space-x-4 overflow-x-auto py-4">
         {allPosts.map((p: any) => (
           <MiniBlogCard post={p} key={p.slug} />
@@ -27,11 +25,11 @@ export function MiniBlogCard({ post }: { post: any }) {
     <Link
       href={`/blog/${post.slug}`}
       key={post.slug}
-      className="max-w-xs shrink-0 snap-center"
+      className="group max-w-xs shrink-0 snap-center"
     >
       <DatoImage
         data={post.coverImage.responsiveImage}
-        className="aspect-[1/1.61803398875] max-h-[400px] w-full rounded-xl"
+        className="aspect-[1/1.61803398875] max-h-[400px] w-full rounded-xl transition-all duration-300 ease-in-out group-hover:scale-103 group-hover:opacity-80"
         pictureClassName="object-cover"
       />
       <p className="line-clamp-1 max-w-xs pt-4">{post.excerpt}</p>
