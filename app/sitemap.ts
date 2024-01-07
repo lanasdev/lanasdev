@@ -33,7 +33,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: project._updatedAt,
       changeFrequency: "monthly",
       priority: 0.8,
-    })
+    }),
   );
   const posts = allPosts.map((post: { slug: any; _updatedAt: any }) => ({
     url: `https://lanas.dev/blog/${post.slug}`,
@@ -54,6 +54,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: home._updatedAt,
       changeFrequency: "monthly",
       priority: 0.8,
+    },
+    {
+      url: "https://lanas.dev/ueber",
+      lastModified: home._updatedAt,
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
   ];
   return [...other, ...projects, ...posts];

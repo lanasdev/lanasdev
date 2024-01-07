@@ -24,17 +24,17 @@ const AboutSection = ({
 }: AboutSectionProps) => {
   return (
     <>
-      <SectionContainer className="flex flex-col md:flex-row gap-8 pt-24">
+      <SectionContainer className="flex flex-col gap-8 pt-24 md:flex-row">
         <div className="w-full md:w-2/5 xl:flex-1">
-          <h2 className="text-3xl font-semibold pb-8">
+          <h2 className="pb-8 text-3xl font-semibold">
             {titleAbout ?? "Über mich"}
           </h2>
           <DatoImage
             data={imageAbout.responsiveImage}
-            className="md:hidden aspect-square sm:max-w-12 mb-6 rounded-xl "
+            className="mb-6 aspect-square rounded-xl sm:max-w-12 md:hidden "
             pictureClassName="object-cover"
           />
-          <article className="leading-6">
+          <article className="leading-8">
             <>
               {/* Render Links as <Link> Tags */}
               <StructuredText
@@ -45,7 +45,7 @@ const AboutSection = ({
                       <Link
                         key={key}
                         href={node.url}
-                        className="text-cyan-500 hover:text-accent-foreground hover:underline transition-colors"
+                        className="text-cyan-500 transition-colors hover:text-accent-foreground hover:underline"
                       >
                         {children}
                       </Link>
@@ -55,11 +55,11 @@ const AboutSection = ({
               />
               <br />
               <Link
-                href="/about"
-                className="group block text-cyan-500 hover:text-accent-foreground hover:underline pt-4 transition-colors"
+                href="/ueber"
+                className="group block pt-4 text-cyan-500 transition-colors hover:text-accent-foreground hover:underline"
               >
                 Mehr über mich{" "}
-                <span className="inline-block group-hover:translate-x-1 transition-transform">
+                <span className="inline-block transition-transform group-hover:translate-x-1">
                   {"->"}
                 </span>
               </Link>
@@ -69,7 +69,7 @@ const AboutSection = ({
         <div className="w-0 md:w-3/5 xl:flex-1">
           <DatoImage
             data={imageAbout.responsiveImage}
-            className="hidden md:block rounded-xl lg:max-h-[50ch]"
+            className="hidden rounded-xl md:block lg:max-h-[50ch]"
             pictureClassName="object-cover"
           />
         </div>

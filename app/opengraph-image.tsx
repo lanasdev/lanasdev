@@ -24,17 +24,21 @@ export default async function Image() {
       // ImageResponse JSX element
       <div
         style={{
-          fontSize: 128,
           background: "hsl(20 14.3% 4.1%)",
           width: "100%",
           height: "100%",
           display: "flex",
-          alignItems: "center",
+          flexDirection: "column",
           justifyContent: "center",
           color: "hsl(60 9.1% 97.8%)",
         }}
+        tw="px-16"
       >
-        Lanas.dev
+        <h1 tw="text-6xl font-bold text-balance">Lanas Webdesign</h1>
+        <p tw="text-2xl text-balance max-w-xl">
+          Wir bauen schnelle und hoch konvertierende Websites für Ihr
+          Photovoltaikunternehmen.
+        </p>
       </div>
     ),
     // ImageResponse options

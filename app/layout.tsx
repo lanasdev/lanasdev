@@ -33,7 +33,6 @@ export const metadata: Metadata = {
     description:
       "Wir bauen schnelle und hoch konvertierende Websites für Ihr Photovoltaikunternehmen.",
     siteName: "Lanas Webdesign",
-    emails: "hey@lanas.dev",
     images: [
       {
         url: "/opengraph-image",
@@ -51,8 +50,8 @@ export default function RootLayout({
     <html lang="de">
       <body
         className={cn(
-          inter.className,
           generalsans.className,
+          inter.className,
           "min-h-screen selection:bg-cyan-300 "
         )}
       >
