@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 
-import Image1 from "@/public/img/image1.jpg";
+import Image1 from "@/public/img/image1-mini.webp";
 import Image2 from "@/public/img/image2.jpg";
 import Image3 from "@/public/img/image3.jpg";
 import SectionContainer from "./SectionContainer";
@@ -64,7 +64,7 @@ export default function Projectgrid({
               className="object-cover object-center"
             />
           )}
-          <h5 className="line-clamp-2 pt-6 uppercase">{project.description}</h5>
+          <p className="line-clamp-2 pt-6 uppercase">{project.description}</p>
           <h4 className="text-xl font-semibold group-hover:underline group-hover:decoration-muted-foreground ">
             {project.title}
           </h4>
