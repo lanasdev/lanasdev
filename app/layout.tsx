@@ -26,12 +26,6 @@ export const metadata: Metadata = {
   description:
     "Wir bauen schnelle und hoch konvertierende Websites für Ihr Photovoltaikunternehmen.",
   icons: "/icon",
-  alternates: {
-    canonical: "https://lanas.dev",
-    // types: {
-    //   "application/rss+xml": "https://nextjs.org/rss",
-    // },
-  },
   openGraph: {
     type: "website",
     url: "https://lanas.dev",

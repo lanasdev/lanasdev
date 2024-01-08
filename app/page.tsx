@@ -21,6 +21,12 @@ import SectionContainer from "./SectionContainer";
 
 export const revalidate = 300; // 5 minutes
 
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://lanas.dev",
+  },
+};
+
 const PAGE_CONTENT_QUERY = gql`
   query getHome {
     allProjects(first: 6) {
