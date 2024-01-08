@@ -22,7 +22,7 @@ const generalsans = LocalFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://lanas.dev"),
-  title: "Lanas Webdesign",
+  title: "Lanas - Webdesign & Entwicklung für die Solarbranche",
   description:
     "Wir bauen schnelle und hoch konvertierende Websites für Ihr Photovoltaikunternehmen.",
   icons: "/icon",
@@ -52,7 +52,7 @@ export default function RootLayout({
         className={cn(
           generalsans.className,
           inter.className,
-          "min-h-screen selection:bg-cyan-300 "
+          "min-h-screen selection:bg-cyan-300 ",
         )}
       >
         {/* <NavbarNew /> */}
