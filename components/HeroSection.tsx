@@ -9,11 +9,13 @@ import SectionContainer from "@/app/SectionContainer";
 export default function HeroSection() {
   return (
     <SectionContainer className="pt-20">
-      <h2 className="uppercase text-xl font-semibold text-accent-foreground pb-4">
-        <Balancer>Lanas Web design</Balancer>
+      <h2 className="pb-4 text-xl font-semibold uppercase text-accent-foreground">
+        <Balancer>
+          Lanas - Webdesign & Entwicklung für die Solarbranche
+        </Balancer>
       </h2>
-      <h1 className="text-4xl md:text-5xl font-semibold">
-        <Balancer>Schnelle Websites für das Handwerk</Balancer>
+      <h1 className="text-4xl font-semibold md:text-5xl">
+        <Balancer>Schnelle Websites für Ihr Photovoltaikunternehmen</Balancer>
       </h1>
     </SectionContainer>
   );

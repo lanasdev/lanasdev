@@ -84,7 +84,7 @@ const Footer = async () => {
   return (
     <footer className=" bg-foreground text-background px-8 flex justify-between py-8">
       <Link href="/" className="">
-        &copy; {new Date().getFullYear() || "2022"} Lanas.dev{" "}
+        &copy; {new Date().getFullYear() || "2022"} Lanas Webdesign für Photovoltaik{" "}
       </Link>
       <div className="flex flex-col md:flex-row items-center gap-4 ">
         {socials.map((s, i) => (

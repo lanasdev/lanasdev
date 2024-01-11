@@ -29,14 +29,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const projects = allProjects.map(
     (project: { slug: any; _updatedAt: any }) => ({
-      url: `https://lanas.dev/projekt/${project.slug}`,
+      url: `https://lan.as/projekt/${project.slug}`,
       lastModified: project._updatedAt,
       changeFrequency: "monthly",
       priority: 0.8,
     }),
   );
   const posts = allPosts.map((post: { slug: any; _updatedAt: any }) => ({
-    url: `https://lanas.dev/blog/${post.slug}`,
+    url: `https://lan.as/blog/${post.slug}`,
     lastModified: post._updatedAt,
     changeFrequency: "weekly",
     priority: 0.5,
@@ -44,19 +44,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const other = [
     {
-      url: "https://lanas.dev",
+      url: "https://lan.as",
       lastModified: home._updatedAt,
       changeFrequency: "weekly",
       priority: 1,
     },
     {
-      url: "https://lanas.dev/kontakt",
+      url: "https://lan.as/kontakt",
       lastModified: home._updatedAt,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: "https://lanas.dev/ueber",
+      url: "https://lan.as/ueber",
       lastModified: home._updatedAt,
       changeFrequency: "monthly",
       priority: 0.7,

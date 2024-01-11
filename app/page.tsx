@@ -23,7 +23,7 @@ export const revalidate = 300; // 5 minutes
 
 export const metadata: Metadata = {
   alternates: {
-    canonical: "https://lanas.dev",
+    canonical: "https://lan.as",
   },
 };
 
