@@ -30,6 +30,16 @@ const nextConfig = {
         destination: "/projekt/:slug",
         permanent: true,
       },
+      {
+        source: "/simpleanalytics",
+        destination: "https://www.simpleanalytics.com/?referral=matthias",
+        permanent: true,
+      },
+      {
+        source: "/netcup",
+        destination: "https://www.netcup.de/?ref=174577",
+        permanent: true,
+      },
     ];
   },
 };
