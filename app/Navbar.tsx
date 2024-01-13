@@ -20,7 +20,6 @@ const NavItems = [
   ["Home", "/"],
   ["Projekte", "/#projekte"],
   ["Dienstleistungen", "/#dienstleistungen"],
-  ["Über uns", "/ueber"],
   ["Blog", "/#blog"],
 ];
 
