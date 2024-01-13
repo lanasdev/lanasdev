@@ -12,7 +12,7 @@ export default function HeroSection() {
     <SectionContainer className="pt-20">
       <AvailableBanner />
 
-      <h1 className="pt-4 text-2xl font-bold sm:max-w-2xl sm:text-4xl sm:font-semibold md:text-5xl xl:max-w-xl xl:leading-tight">
+      <h1 className="pt-4 text-2xl font-bold sm:max-w-2xl sm:text-4xl sm:font-semibold md:text-5xl xl:max-w-3xl xl:leading-tight">
         <Balancer>Schnelle Websites für Ihr Photovoltaikunternehmen</Balancer>
       </h1>
       <h2 className="text-md max-w-2xl pb-4 pt-6 font-medium leading-8 text-accent-foreground sm:text-xl">

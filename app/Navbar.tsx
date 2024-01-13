@@ -39,8 +39,8 @@ const Navbar = () => {
             <SheetTrigger aria-label="Hamburger menu">
               <Icon path={mdiMenu} size={1.5} />
             </SheetTrigger>
-            <SheetContent>
-              <SheetHeader>
+            <SheetContent className="h-full">
+              <SheetHeader className="pt-2 text-left">
                 <SheetTitle>
                   <Link href="/" className="text-xl font-semibold">
                     Lanas Web design
@@ -53,20 +53,23 @@ const Navbar = () => {
                   </p>
                 </SheetDescription>
               </SheetHeader>
-              <div className="flex flex-col gap-4 pt-8">
-                {NavItems.map(([title, url]) => (
-                  <Link
-                    href={url}
-                    key={title}
-                    className={cn(
-                      buttonVariants({ variant: "ghost" }),
-                      "rounded-lg px-4 py-2 text-foreground transition-all hover:underline hover:underline-offset-2",
-                      pathname == url ? " font-bold" : "",
-                    )}
-                  >
-                    {title}
-                  </Link>
-                ))}
+              <div className="flex flex-col justify-between gap-8">
+                <div className="flex flex-col items-start gap-y-4 pt-8">
+                  {NavItems.map(([title, url]) => (
+                    <Link
+                      href={url}
+                      key={title}
+                      className={cn(
+                        buttonVariants({ variant: "ghost" }),
+                        "rounded-lg py-2 pr-4 text-foreground transition-all hover:underline hover:underline-offset-2",
+                        pathname == url ? " font-bold" : "",
+                      )}
+                    >
+                      {title}
+                    </Link>
+                  ))}
+                </div>
+                <ContactButton />
               </div>
             </SheetContent>
           </Sheet>
