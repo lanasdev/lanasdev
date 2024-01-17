@@ -71,8 +71,11 @@ dependencies:
   clsx:
     specifier: ^2.1.0
     version: 2.1.0
+  datocms-structured-text-utils:
+    specifier: ^3.0.0
+    version: 3.0.0
   embla-carousel-react:
-    specifier: ^8.0.0-rc17
+    specifier: 8.0.0-rc19
     version: 8.0.0-rc19(react@18.2.0)
   graphql:
     specifier: ^16.8.1
@@ -121,6 +124,9 @@ devDependencies:
   autoprefixer:
     specifier: ^10
     version: 10.4.16(postcss@8.4.33)
+  embla-carousel:
+    specifier: 8.0.0-rc19
+    version: 8.0.0-rc19
   eslint:
     specifier: ^8
     version: 8.56.0
@@ -1727,6 +1733,12 @@ packages:
       array-flatten: 3.0.0
     dev: false
 
+  /datocms-structured-text-utils@3.0.0:
+    resolution: {integrity: sha512-1mo78UD4Sz+fhiwBMUqNls/jgm+33/MxZe5eHYjKuklSdQPE7KslIWqD3hWi6W641rpeU0rEW+RFwQlduqEvIQ==}
+    dependencies:
+      array-flatten: 3.0.0
+    dev: false
+
   /debug@3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
     peerDependencies:
@@ -1834,7 +1846,6 @@ packages:
 
   /embla-carousel@8.0.0-rc19:
     resolution: {integrity: sha512-PAChVyYoVZo8subkBN8LjZ7+0vk4CmVvMnxH0Y2ux76VUEUBl1wk5xDo8+MUhH5MXU6ZrgkBpMe++bKob1Z+2g==}
-    dev: false
 
   /emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
