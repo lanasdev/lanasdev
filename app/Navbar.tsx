@@ -43,56 +43,61 @@ const Navbar = () => {
               <SheetHeader className="pt-2 text-left">
                 <SheetTitle>
                   <Link href="/" className="text-xl font-semibold">
-                    Lanas Web design
+                    Lanas Webdesign
                   </Link>
                 </SheetTitle>
                 <SheetDescription>
-                  <p className="text-sm text-gray-500">
-                    Wir erstellen Websites für Ihr Unternehmen, die Ihnen mehr
-                    Kunden einbringen und tatsächlich konvertieren.
+                  <p className="text-sm text-accent-foreground">
+                    Lanas ist eine Webagentur, die sich auf die Erstellung von
+                    Landing Pages und kleinen Shops in der Solarbranche
+                    spezialisiert hat.
                   </p>
                 </SheetDescription>
               </SheetHeader>
               <div className="flex flex-col justify-between gap-8">
-                <div className="flex flex-col items-start gap-y-4 pt-8">
+                <ul className="flex flex-col items-start gap-y-4 pt-8">
                   {NavItems.map(([title, url]) => (
-                    <Link
-                      href={url}
-                      key={title}
-                      className={cn(
-                        buttonVariants({ variant: "ghost" }),
-                        "rounded-lg py-2 pr-4 text-foreground transition-all hover:underline hover:underline-offset-2",
-                        pathname == url ? " font-bold" : "",
-                      )}
-                    >
-                      {title}
-                    </Link>
+                    <li key={title}>
+                      <Link
+                        href={url}
+                        className={cn(
+                          buttonVariants({ variant: "ghost" }),
+                          "rounded-lg py-2 pr-4 text-foreground transition-all hover:underline hover:underline-offset-2",
+                          pathname == url ? " font-bold" : "",
+                        )}
+                      >
+                        {title}
+                      </Link>
+                    </li>
                   ))}
-                </div>
+                </ul>
                 <ContactButton />
               </div>
             </SheetContent>
           </Sheet>
           <ContactButton />
         </div>
-        <div className="hidden md:flex md:space-x-4 ">
+        <ul className="hidden md:flex md:space-x-4 ">
           {NavItems.map(([title, url]) => (
-            <Link
-              href={url}
-              key={title}
-              className={cn(
-                buttonVariants({ variant: "ghost" }),
-                "rounded-lg px-4 py-2 text-foreground hover:bg-inherit hover:underline hover:underline-offset-2",
-                pathname == url
-                  ? " font-medium underline underline-offset-2 hover:underline-offset-1"
-                  : "",
-              )}
-            >
-              {title}
-            </Link>
+            <li key={title}>
+              <Link
+                href={url}
+                className={cn(
+                  buttonVariants({ variant: "ghost" }),
+                  " border-collapse rounded-none border-b-2 border-hidden px-4 py-2 text-foreground transition-all duration-75 hover:border-b-2 hover:border-solid hover:border-primary hover:bg-inherit  ",
+                  pathname == url
+                    ? "border-b-2 border-solid border-primary font-semibold"
+                    : "",
+                )}
+              >
+                {title}
+              </Link>
+            </li>
           ))}
-          <ContactButton />
-        </div>
+          <li>
+            <ContactButton />
+          </li>
+        </ul>
       </div>
     </nav>
   );
@@ -105,7 +110,7 @@ const ContactButton = () => (
     href="/#kontakt"
     className={cn(
       buttonVariants({ variant: "default" }),
-      "rounded-md bg-foreground px-6 py-2 text-background transition-colors",
+      "rounded-md bg-foreground px-6 py-2 text-background transition-colors hover:bg-primary/80",
     )}
   >
     Kontakt

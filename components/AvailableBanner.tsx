@@ -6,7 +6,7 @@ import { badgeVariants } from "@/components/ui/badge";
 const AvailableBanner = () => {
   return (
     <Link
-      href="/kontakt"
+      href="/#kontakt"
       className={cn(
         badgeVariants({ variant: "default" }),
         // "bg-green-300 text-green-800 hover:bg-green-100 hover:text-green-900",
