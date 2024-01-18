@@ -33,6 +33,7 @@
     "clsx": "^2.1.0",
     "datocms-structured-text-utils": "^3.0.0",
     "embla-carousel-react": "8.0.0-rc19",
+    "framer-motion": "^10.18.0",
     "graphql": "^16.8.1",
     "next": "^14.0.4",
     "react": "^18",

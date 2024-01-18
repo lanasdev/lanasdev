@@ -16,6 +16,7 @@ import { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 import Bloglist from "@/components/Bloglist";
 import OtherPosts from "./OtherPosts";
+import ProgressBar from "@/components/ProgressBar";
 
 type RecordImageType = {
   responsiveImage: ResponsiveImageType;
@@ -153,39 +154,42 @@ export default async function BlogPage({
   const p = data?.post;
 
   return (
-    <div className="pb-32">
-      <BlogHeader title={p.title} date={p.date} author={p.author} />
-      <DatoImage
-        data={p.coverImage.responsiveImage}
-        className="mt-8 max-h-screen"
-        pictureClassName="object-cover"
-      />
-      <SectionContainer className="prose prose-stone mx-auto pt-32 prose-img:rounded-xl">
-        <StructuredText
-          data={p.content}
-          renderBlock={({ record }) => {
-            if (record.__typename === "ImageRecord") {
-              return (
-                <DatoImage
-                  data={(record.image as RecordImageType).responsiveImage}
-                  className="mt-16 max-h-screen"
-                  pictureClassName="object-cover"
-                />
-              );
-            }
-            return null;
-          }}
+    <>
+      <div className="pb-32">
+        <BlogHeader title={p.title} date={p.date} author={p.author} />
+        <DatoImage
+          data={p.coverImage.responsiveImage}
+          className="mt-8 max-h-screen"
+          pictureClassName="object-cover"
         />
-      </SectionContainer>
+        <SectionContainer className="prose prose-stone mx-auto pt-32 prose-img:rounded-xl">
+          <StructuredText
+            data={p.content}
+            renderBlock={({ record }) => {
+              if (record.__typename === "ImageRecord") {
+                return (
+                  <DatoImage
+                    data={(record.image as RecordImageType).responsiveImage}
+                    className="mt-16 max-h-screen"
+                    pictureClassName="object-cover"
+                  />
+                );
+              }
+              return null;
+            }}
+          />
+          <ProgressBar />
+        </SectionContainer>
 
-      {/* <SectionContainer className="">
+        {/* <SectionContainer className="">
         <CalContact />
       </SectionContainer> */}
-      <OtherPosts allPosts={data.allPosts} />
-      {/* <SectionContainer className="">
+        <OtherPosts allPosts={data.allPosts} />
+        {/* <SectionContainer className="">
         <pre className="max-w-xl pt-24">{JSON.stringify(data, null, 2)}</pre>
       </SectionContainer> */}
-    </div>
+      </div>
+    </>
   );
 }
 

@@ -16,6 +16,7 @@ import ProjectCards from "./ProjectCards";
 import Projectlist from "@/app/Projectlist";
 import Projectgrid from "@/app/Projectgrid";
 import Balancer from "react-wrap-balancer";
+import ProgressBar from "@/components/ProgressBar";
 
 type RecordImageType = {
   responsiveImage: ResponsiveImageType;
@@ -233,34 +234,41 @@ export default async function Page({ params }: { params: { slug: string } }) {
       />
       <SectionContainer className="pt-8">
         <div className="flex justify-around gap-4">
-          <div className="">
-            <p className="font-medium ">
-              Kunde:{" "}
-              <span className="inline-block font-normal">
-                {p.clientname || "Solar Sam"}
-              </span>
-            </p>
-          </div>
+          {p.clientname && (
+            <div className="">
+              <p className="font-medium ">
+                Kunde:{" "}
+                <span className="inline-block font-normal">
+                  {p.clientname || "Solar Sam"}
+                </span>
+              </p>
+            </div>
+          )}
 
-          <div className="">
-            <p className="font-medium ">
-              Erstellt: {/* format date like this: "Sept 21" */}
-              <span className="inline-block font-normal">
-                {p.createdAt ? formatDate(p.createdAt) : ""}
-              </span>
-            </p>
-          </div>
-          <div className="">
-            <p className="font-medium">
-              Live URL:{" "}
-              <Link
-                href={p.liveurl || "/"}
-                className="font-normal hover:underline"
-              >
-                {p.liveurl || "https://solarsam.de"}
-              </Link>
-            </p>
-          </div>
+          {p.createdAt && (
+            <div className="">
+              <p className="font-medium ">
+                Erstellt: {/* format date like this: "Sept 21" */}
+                <span className="inline-block font-normal">
+                  {p.createdAt ? formatDate(p.createdAt) : ""}
+                </span>
+              </p>
+            </div>
+          )}
+
+          {p.liveurl && (
+            <div className="">
+              <p className="font-medium">
+                Live URL:{" "}
+                <Link
+                  href={p.liveurl || "/"}
+                  className="font-normal hover:underline"
+                >
+                  {p.liveurl}
+                </Link>
+              </p>
+            </div>
+          )}
         </div>
       </SectionContainer>
       <SectionContainer className="prose prose-stone mx-auto pt-32 prose-img:rounded-xl ">
@@ -303,6 +311,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           }}
         />
         {/* <CustomStructuredText data={p.content} /> */}
+        <ProgressBar />
       </SectionContainer>
       {/* <CalContact /> */}
 

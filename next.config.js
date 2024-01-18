@@ -24,6 +24,11 @@ const nextConfig = {
         destination: "/ueber",
         permanent: false,
       },
+      {
+        source: "/meet",
+        destination: "https://cal.com/lanas/hallo",
+        permanent: true,
+      },
       // redirect project/[slug] to projekt/[slug]
       {
         source: "/project/:slug",
