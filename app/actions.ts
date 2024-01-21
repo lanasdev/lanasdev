@@ -5,6 +5,15 @@ import { revalidatePath } from "next/cache";
 import { sql } from "@vercel/postgres";
 import { z } from "zod";
 
+import { EmailTemplate } from "@/components/email/email-template";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+const baseUrl = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : "https://lan.as";
+
 const schema = z.object({
   name: z.string().min(1).max(64),
   email: z.string().email(),
@@ -52,6 +61,31 @@ export async function submitForm(formData: FormData) {
   } catch (error) {
     console.log(error);
     return { message: "Failed to submit Form to Formspree" };
+  }
+
+  const clientName = data.name;
+  try {
+    await resend.emails.send({
+      from: "Matthias <noreply@noreply.lan.as>",
+      to: [data.email],
+      subject: "Danke fuer Ihre Anfrage bei Lanas",
+      react: EmailTemplate({ clientName, baseUrl }),
+      text: `
+            Hallo ${clientName}!
+
+              Danke für Ihr Interesse an einer schnellen Website. Ich werde mich
+              so schnell wie möglich bei Ihnen melden, sodass wir weiteres
+              besprechen können.
+              
+              
+            Viele Grüße,
+            Matthias
+            https://lan.as
+            `,
+    });
+  } catch (error) {
+    console.log(error);
+    return { message: "Failed to send Email", error };
   }
 
   // revalidate the page

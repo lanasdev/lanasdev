@@ -23,7 +23,7 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 ## TODO
 
 - [x] Submit Contact Form
-- [] Get confirmation email via react email
+- [x] Get confirmation email via react email
 - [x] Fix Navbar
 - [] favicon & OG Image
 - [x] Recommend other Projects and Blog Posts
