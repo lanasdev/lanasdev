@@ -30,7 +30,7 @@
     "@radix-ui/react-toast": "^1.1.5",
     "@vercel/edge-config": "^0.4.1",
     "@vercel/postgres": "^0.5.1",
-    "@vercel/speed-insights": "^1.0.7",
+    "@vercel/speed-insights": "^1.0.8",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "datocms-structured-text-utils": "^3.0.0",
