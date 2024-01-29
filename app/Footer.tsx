@@ -79,6 +79,13 @@ const Footer = async () => {
       icon: <EnvelopeSimple size={24} />,
       link: `mailto:${process.env.NEXT_PUBLIC_EMAIL}?subject=Website`,
     },
+    {
+      id: 8,
+      name: "Impressum",
+      slug: "impressum",
+      icon: <EnvelopeSimple size={24} />,
+      link: "/impressum",
+    }
   ];
 
   return (
@@ -86,7 +93,7 @@ const Footer = async () => {
       <Link href="/" className="">
         &copy; {new Date().getFullYear() || "2022"} Lanas Webdesign für Photovoltaik{" "}
       </Link>
-      <div className="flex flex-col md:flex-row items-center gap-4 ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:gap-y-12 md:grid-cols-4 gap-8 ">
         {socials.map((s, i) => (
           <Link
             href={s.link || "/"}

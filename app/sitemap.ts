@@ -7,6 +7,9 @@ const query = gql`
     home {
       _updatedAt
     }
+    impressum {
+      _updatedAt
+    }
     allProjects {
       slug
       title
@@ -25,7 +28,7 @@ const query = gql`
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const { data } = await performRequest({ query });
 
-  const { home, allProjects, allPosts } = data;
+  const { home, impressum, allProjects, allPosts } = data;
 
   const projects = allProjects.map(
     (project: { slug: any; _updatedAt: any }) => ({
@@ -60,6 +63,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: home._updatedAt,
       changeFrequency: "monthly",
       priority: 0.7,
+    },
+    {
+      url: "https://lan.as/impressum",
+      lastModified: impressum._updatedAt,
+      changeFrequency: "monthly",
+      priority: 0.4,
     },
   ];
   return [...other, ...projects, ...posts];

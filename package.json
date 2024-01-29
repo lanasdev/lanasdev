@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "email": "email dev --dir emails --port 3333"
+    "lint": "next lint"
   },
   "dependencies": {
     "@calcom/embed-react": "^1.3.0",
@@ -30,7 +29,7 @@
     "@radix-ui/react-toast": "^1.1.5",
     "@vercel/edge-config": "^0.4.1",
     "@vercel/postgres": "^0.5.1",
-    "@vercel/speed-insights": "^1.0.7",
+    "@vercel/speed-insights": "^1.0.8",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "datocms-structured-text-utils": "^3.0.0",
@@ -51,7 +50,7 @@
   "devDependencies": {
     "@mux/mux-player": "^2.3.2",
     "@tailwindcss/typography": "^0.5.10",
-    "@types/node": "^20.11.6",
+    "@types/node": "^20.11.10",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
     "autoprefixer": "^10.4.17",
