@@ -24,15 +24,14 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://lan.as"),
   title: "Lanas - Webdesign & Entwicklung für die Solarbranche",
   description:
-    "Wir bauen schnelle und hoch konvertierende Websites für Ihr Photovoltaikunternehmen. Wir sind spezialisiert auf die Solarbranche und bauen die beste Website für Ihr Unternehmen.",
-  icons: "/icon",
+    "Wir bauen blitzschnelle und hoch konvertierende Landing Pages und E-Commerce Shops für Ihr Photovoltaikunternehmen.",
   openGraph: {
     type: "website",
     url: "https://lan.as",
     title: "Lanas Webdesign für die Solarbranche",
     description:
-      "Wir bauen schnelle und hoch konvertierende Websites für Ihr Photovoltaikunternehmen. Wir sind spezialisiert auf die Solarbranche und bauen die beste Website für Ihr Unternehmen.",
-    siteName: "Lanas Webdesign für die Solarbranche",
+      "Wir bauen blitzschnelle und hoch konvertierende Landing Pages und E-Commerce Shops für Ihr Photovoltaikunternehmen.",
+    siteName: "Lanas - Webdesign & Entwicklung für die Solarbranche",
     images: [
       {
         url: "/opengraph-image",
