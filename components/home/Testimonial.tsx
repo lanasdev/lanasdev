@@ -8,8 +8,10 @@ interface TestimonialProps {
 
 const Testimonial: React.FC<TestimonialProps> = () => {
   return (
-    <SectionContainer className=" max-w-sm md:max-w-2xl md:py-24 md:mx-auto">
-      <p className="text-xl font-semibold mx-auto text-center">
+    <SectionContainer className=" max-w-sm md:mx-auto md:max-w-2xl md:py-24">
+      <h3 className="sr-only">Unsere Bewertungen</h3>
+
+      <p className="mx-auto text-center text-xl font-semibold">
         <Balancer>
           Alles lief super und wurde in Windeseile erledigt! 5 von 5 Sternen
         </Balancer>

@@ -26,9 +26,9 @@ const AboutSection = ({
     <>
       <SectionContainer className="flex flex-col gap-8 pt-24 md:flex-row">
         <div className="w-full md:w-2/5 xl:flex-1">
-          <h2 className="pb-8 text-3xl font-semibold">
+          <h3 className="pb-8 text-3xl font-semibold">
             {titleAbout ?? "Über mich"}
-          </h2>
+          </h3>
           <DatoImage
             data={imageAbout.responsiveImage}
             className="mb-6 aspect-square rounded-xl sm:max-w-12 md:hidden "
@@ -45,7 +45,7 @@ const AboutSection = ({
                       <Link
                         key={key}
                         href={node.url}
-                        className="text-cyan-600 transition-colors hover:text-accent-foreground hover:underline"
+                        className="text-cyan-800 transition-colors hover:text-accent-foreground hover:underline"
                       >
                         {children}
                       </Link>
@@ -56,7 +56,7 @@ const AboutSection = ({
               <br />
               <Link
                 href="/ueber"
-                className="group block pt-4 text-cyan-600 transition-colors hover:text-accent-foreground hover:underline"
+                className="group block pt-4 text-cyan-800 transition-colors hover:text-accent-foreground hover:underline"
               >
                 Mehr über mich{" "}
                 <span className="inline-block transition-transform group-hover:translate-x-1">

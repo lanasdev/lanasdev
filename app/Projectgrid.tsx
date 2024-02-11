@@ -32,7 +32,9 @@ export default function Projectgrid({
 
   return (
     <SectionContainer className="flex max-w-fit flex-col gap-12 pt-32 md:gap-24">
-      <div id="projekte" className=""></div>
+      <div id="projekte" />
+      <h3 className="hidden">Projekte</h3>
+
       {allProjects.map((project: ProjectType, index) => (
         <Link
           href={`/projekt/${project.slug}`}
@@ -53,7 +55,7 @@ export default function Projectgrid({
               // layout="fill"
               objectFit="cover"
               objectPosition="50% 0%"
-              className="aspect-golden rounded-xl border-2 border-muted-foreground transition-all duration-150 ease-in-out group-hover:scale-103 group-hover:border-foreground group-hover:opacity-80 md:aspect-[3/1]"
+              className="aspect-golden md:aspect-3/1 rounded-xl border-2 border-muted-foreground transition-all duration-150 ease-in-out group-hover:scale-103 group-hover:border-foreground group-hover:opacity-80"
               // pictureClassName="object-cover object-top"
             />
           ) : (

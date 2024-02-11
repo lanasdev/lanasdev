@@ -1,7 +1,8 @@
 import Image from "next/image";
 import ServiceCard from "./ServiceCard";
 
-import Image1 from "@/public/img/image1-mini.webp";
+// import Image1 from "@/public/img/image1-mini.webp";
+import Image1 from "@/public/img/image1-mini.jpeg";
 import Image2 from "@/public/img/image2.webp";
 import Image3 from "@/public/img/image3.webp";
 
@@ -11,6 +12,8 @@ export default function ServiceSection() {
       className="flex flex-col gap-8 overflow-x-hidden pb-24 pt-24 md:[&>*]:justify-between"
       id="dienstleistungen"
     >
+      <h3 className="sr-only">Dienstleistungen</h3>
+
       <div className="flex flex-row gap-16 pl-6 md:pl-16">
         <div className="flex flex-1 flex-col">
           <h5 className="text-xl font-semibold">Webdesign</h5>
@@ -23,7 +26,7 @@ export default function ServiceSection() {
         <Image
           src={Image1}
           alt="Picture of the author"
-          className=" aspect-[2/1] max-w-[50%] flex-1 rounded-l-xl object-cover object-center sm:max-w-[66%] md:aspect-[3/1]"
+          className=" md:aspect-3/1 aspect-[2/1] max-w-[50%] flex-1 rounded-l-xl object-cover object-center sm:max-w-[66%]"
         />
       </div>
       <div className="flex flex-row-reverse gap-16 pr-6 md:pr-16">
@@ -38,7 +41,7 @@ export default function ServiceSection() {
         <Image
           src={Image2}
           alt="Picture of the author"
-          className=" aspect-[2/1] max-w-[50%] flex-1 rounded-r-xl object-cover object-center sm:max-w-[66%] md:aspect-[3/1]"
+          className=" md:aspect-3/1 aspect-[2/1] max-w-[50%] flex-1 rounded-r-xl object-cover object-center sm:max-w-[66%]"
         />
       </div>
       <div className="flex flex-row gap-16 pl-6 md:pl-16">
@@ -52,7 +55,7 @@ export default function ServiceSection() {
         <Image
           src={Image3}
           alt="Picture of the author"
-          className=" aspect-[2/1] max-w-[50%] flex-1 rounded-l-xl object-cover object-center sm:max-w-[66%] md:aspect-[3/1]"
+          className=" md:aspect-3/1 aspect-[2/1] max-w-[50%] flex-1 rounded-l-xl object-cover object-center sm:max-w-[66%]"
         />
       </div>
       {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">

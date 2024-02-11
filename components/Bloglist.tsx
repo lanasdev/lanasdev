@@ -8,10 +8,12 @@ import SectionContainer from "../app/SectionContainer";
 // @ts-ignore
 export default function Bloglist({ allPosts }) {
   return (
-    <SectionContainer className="flex flex-col pt-12  mr-6 md:mr-8">
-      <div id="blog" className=""></div>
-      <h3 className="text-3xl font-semibold pb-8">Blog</h3>
-      <div className="flex flex-shrink-0 space-x-4 py-4 snap-x overflow-x-auto">
+    <SectionContainer className="mr-6 flex flex-col  pt-12 md:mr-8">
+      <div id="blog" className="">
+        <h3 className="sr-only">Unser Blog</h3>
+      </div>
+      <h3 className="pb-8 text-3xl font-semibold">Blog</h3>
+      <div className="flex flex-shrink-0 snap-x space-x-4 overflow-x-auto py-4">
         {allPosts.map((p: any) => (
           <Link
             href={`/blog/${p.slug}`}
@@ -20,10 +22,10 @@ export default function Bloglist({ allPosts }) {
           >
             <DatoImage
               data={p.coverImage.responsiveImage}
-              className="rounded-xl aspect-[1/1.61803398875] max-h-[400px] w-full"
+              className="aspect-golden max-h-[400px] w-full rounded-xl"
               pictureClassName="object-cover"
             />
-            <p className="max-w-xs pt-4 line-clamp-1">{p.excerpt}</p>
+            <p className="line-clamp-1 max-w-xs pt-4">{p.excerpt}</p>
             <h4 className="text-xl font-semibold">{p.title}</h4>
           </Link>
         ))}

@@ -15,10 +15,10 @@ const TechStack = ({
 }: TechStackProps) => {
   return (
     <SectionContainer className="pt-24 md:flex md:justify-between md:gap-32">
-      <h2 className="text-3xl font-semibold pb-8">
+      <h3 className="pb-8 text-3xl font-semibold">
         {titleTechstack ?? "Tech Stack"}
-      </h2>
-      <div className="grid auto-cols-auto grid-cols-4  md:max-w-screen-sm lg:max-w-screen-md gap-8">
+      </h3>
+      <div className="grid auto-cols-auto grid-cols-4  gap-8 md:max-w-screen-sm lg:max-w-screen-md">
         {logosTechstack.map((logo, index) => (
           <TechIcon key={index} responsiveImage={logo.responsiveImage} />
         ))}
@@ -37,7 +37,7 @@ const TechIcon = ({
 }) => {
   return (
     <DatoImage
-      className="aspect-square hover:ease-in-out hover:duration-300 object-contain filter grayscale transition-transform transform-gpu hover:grayscale-0 "
+      className="aspect-square transform-gpu object-contain grayscale filter transition-transform hover:grayscale-0 hover:duration-300 hover:ease-in-out "
       data={responsiveImage}
     />
   );

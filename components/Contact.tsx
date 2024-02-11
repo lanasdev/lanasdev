@@ -11,44 +11,50 @@ import { submitForm } from "@/app/actions";
 
 export default function Contact() {
   return (
-    <SectionContainer className=" pt-20 flex flex-col">
-      <div id="kontakt" className=""></div>
-      <h3 className="text-3xl font-semibold pb-8">Kontakt</h3>
+    <SectionContainer className=" flex flex-col pt-20">
+      <div id="kontakt" className="">
+        <h3 className="sr-only">Kontakt</h3>
+      </div>
+      <h3 className="pb-8 text-3xl font-semibold">Kontakt</h3>
       <form action={submitForm} className=" max-w-screen-md">
-        <div className="flex flex-col md:flex-row gap-4">
-          <div className=" flex flex-col flex-grow">
+        <div className="flex flex-col gap-4 md:flex-row">
+          <fieldset className=" flex flex-grow flex-col">
             <label htmlFor="name" className="pb-1">
               Name:
             </label>
             <input
               type="text"
               name="name"
-              className="border border-foreground rounded-md py-3 px-4"
+              className="rounded-md border border-foreground px-4 py-3"
+              autoComplete="first_name"
               required
               placeholder="Matthias"
             />
-          </div>
-          <div className="flex flex-col flex-grow">
+          </fieldset>
+          <fieldset className="flex flex-grow flex-col">
             <label htmlFor="email" className="pb-1">
               Email:
             </label>
             <input
               type="email"
               name="email"
-              className="border border-foreground rounded-md py-3 px-4"
+              className="rounded-md border border-foreground px-4 py-3"
+              autoComplete="email"
               required
               placeholder="hey@lanas.dev"
             />
-          </div>
+          </fieldset>
         </div>
-        <label htmlFor="message" className="flex flex-col pt-6">
-          Nachricht:
-          <textarea
-            name="message"
-            className="border border-foreground rounded-md py-3 px-4 mt-1"
-            placeholder="Ihre Nachricht an mich"
-          />
-        </label>
+        <fieldset className="flex flex-col pt-6">
+          <label htmlFor="message">
+            Nachricht:
+            <textarea
+              name="message"
+              className="mt-1 rounded-md border border-foreground px-4 py-3"
+              placeholder="Ihre Nachricht an mich"
+            />
+          </label>
+        </fieldset>
         <br />
         <ContactButton />
       </form>
