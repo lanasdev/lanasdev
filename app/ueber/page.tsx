@@ -5,7 +5,7 @@ import {
   StructuredText,
 } from "react-datocms";
 import { performRequest } from "@/lib/datocms";
-import { gql } from "graphql-request";
+import { gql } from "@/lib/utils";
 
 export const revalidate = 300; // 5 minutes
 

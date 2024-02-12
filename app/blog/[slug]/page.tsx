@@ -2,7 +2,7 @@ import SectionContainer from "@/app/SectionContainer";
 import CalContact from "@/components/CallToAction/CalContact";
 // // import CustomStructuredText from "@/components/CustomStructuredText";
 import { performRequest } from "@/lib/datocms";
-import { gql } from "graphql-request";
+import { gql } from "@/lib/utils";
 import Link from "next/link";
 import {
   Image as DatoImage,

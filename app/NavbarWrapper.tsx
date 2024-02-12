@@ -6,7 +6,7 @@ import { buttonVariants } from "@/components/ui/button";
 import Icon from "@mdi/react";
 import { mdiMenu } from "@mdi/js";
 
-import { gql } from "graphql-request";
+import { gql } from "@/lib/utils";
 import { performRequest } from "@/lib/datocms";
 
 // fetch last 3 posts and projects from dato
@@ -55,8 +55,8 @@ export default async function NavbarNew() {
   });
 
   return (
-    <nav className="flex gap-4 py-2 pt-8 px-6 sm:px-8 md:px-16 items-center justify-between w-full">
-      <Link href="/" className="font-semibold text-xl">
+    <nav className="flex w-full items-center justify-between gap-4 px-6 py-2 pt-8 sm:px-8 md:px-16">
+      <Link href="/" className="text-xl font-semibold">
         Lanas
       </Link>
       <NavbarNew />
@@ -66,4 +66,3 @@ export default async function NavbarNew() {
     </nav>
   );
 }
-

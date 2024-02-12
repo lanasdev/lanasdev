@@ -46,14 +46,12 @@ export default function Contact() {
           </fieldset>
         </div>
         <fieldset className="flex flex-col pt-6">
-          <label htmlFor="message">
-            Nachricht:
-            <textarea
-              name="message"
-              className="mt-1 rounded-md border border-foreground px-4 py-3"
-              placeholder="Ihre Nachricht an mich"
-            />
-          </label>
+          <label htmlFor="message">Nachricht:</label>
+          <textarea
+            name="message"
+            className="mt-1 rounded-md border border-foreground px-4 py-3"
+            placeholder="Ihre Nachricht an mich"
+          />
         </fieldset>
         <br />
         <ContactButton />

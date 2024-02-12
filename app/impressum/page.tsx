@@ -1,10 +1,9 @@
 import React from "react";
 import SectionContainer from "../SectionContainer";
 import type { Metadata } from "next";
-import { gql } from "graphql-request";
-import {
-  StructuredText,
-} from "react-datocms";
+import { gql } from "@/lib/utils";
+
+import { StructuredText } from "react-datocms";
 import { performRequest } from "@/lib/datocms";
 
 export const revalidate = 604800; // once a week
@@ -24,8 +23,7 @@ const IMPRESSUM_QUERY = gql`
 
 export const metadata: Metadata = {
   title: "Impressum",
-  description:
-    "Unser Impressum",
+  description: "Unser Impressum",
 };
 
 const ContactPage = async () => {
@@ -35,16 +33,17 @@ const ContactPage = async () => {
     includeDrafts: false,
   });
 
-  const impressum = data?.impressum
+  const impressum = data?.impressum;
 
   return (
-    <SectionContainer className="pt-24 pb-48">
+    <SectionContainer className="pb-48 pt-24">
       <h1 className="pb-8 text-3xl font-semibold">
         {impressum.title ?? "Impressum"}
       </h1>
-      <article className="prose"><StructuredText data={impressum.content} /></article>
+      <article className="prose">
+        <StructuredText data={impressum.content} />
+      </article>
     </SectionContainer>
-
   );
 };
 

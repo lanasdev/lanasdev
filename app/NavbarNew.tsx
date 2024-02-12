@@ -16,7 +16,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { gql } from "graphql-request";
+import { gql } from "@/lib/utils";
 
 // fetch last 3 posts and projects from dato
 const NAVBAR_QUERY = gql`
@@ -125,7 +125,7 @@ export default function NavbarNew() {
           <SheetContent>
             <SheetHeader>
               <SheetTitle>
-                <Link href="/" className="font-semibold text-xl">
+                <Link href="/" className="text-xl font-semibold">
                   Lanas Web design
                 </Link>
               </SheetTitle>
@@ -143,8 +143,8 @@ export default function NavbarNew() {
                   key={title}
                   className={cn(
                     buttonVariants({ variant: "ghost" }),
-                    "px-4 py-2 text-foreground transition-all rounded-lg hover:underline hover:underline-offset-2",
-                    pathname == url ? " font-bold" : ""
+                    "rounded-lg px-4 py-2 text-foreground transition-all hover:underline hover:underline-offset-2",
+                    pathname == url ? " font-bold" : "",
                   )}
                 >
                   {title}
@@ -236,7 +236,7 @@ const ListItem = React.forwardRef<
           ref={ref}
           className={cn(
             "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
+            className,
           )}
           {...props}
         >
@@ -256,7 +256,7 @@ const ContactButton = () => (
     href="/#kontakt"
     className={cn(
       buttonVariants({ variant: "default" }),
-      "px-6 py-2 bg-foreground text-background transition-colors rounded-md"
+      "rounded-md bg-foreground px-6 py-2 text-background transition-colors",
     )}
   >
     Kontakt

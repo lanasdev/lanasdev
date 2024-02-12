@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import LocalFont from "next/font/local";
 import "./globals.css";
 import Navbar from "./Navbar";
@@ -7,12 +6,6 @@ import Footer from "./Footer";
 import { cn } from "@/lib/utils";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import NavbarNew from "./NavbarNew";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
 
 const generalsans = LocalFont({
   src: "../public/fonts/GeneralSans-Variable.ttf",
@@ -50,7 +43,6 @@ export default function RootLayout({
       <body
         className={cn(
           generalsans.className,
-          inter.className,
           "min-h-screen antialiased selection:bg-cyan-300",
         )}
       >

@@ -1,9 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import type { Metadata } from "next";
 
 import { performRequest } from "@/lib/datocms";
-import { gql } from "graphql-request";
+import { gql } from "@/lib/utils";
+
 import {
   Image as DatoImage,
   toNextMetadata,
@@ -36,7 +38,7 @@ const PAGE_CONTENT_QUERY = gql`
       classname
       position
       image {
-        responsiveImage(imgixParams: { auto: format }) {
+        responsiveImage(imgixParams: { auto: format, ar: "3:1" }) {
           ...responsiveImageFragment
         }
       }

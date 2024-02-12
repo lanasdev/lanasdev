@@ -45,7 +45,7 @@ const AboutSection = ({
                       <Link
                         key={key}
                         href={node.url}
-                        className="text-cyan-800 transition-colors hover:text-accent-foreground hover:underline"
+                        className="text-cyan-700 transition-colors hover:text-accent-foreground hover:underline"
                       >
                         {children}
                       </Link>
@@ -56,7 +56,7 @@ const AboutSection = ({
               <br />
               <Link
                 href="/ueber"
-                className="group block pt-4 text-cyan-800 transition-colors hover:text-accent-foreground hover:underline"
+                className="group block pt-4 text-cyan-700 transition-colors hover:text-accent-foreground hover:underline"
               >
                 Mehr über mich{" "}
                 <span className="inline-block transition-transform group-hover:translate-x-1">

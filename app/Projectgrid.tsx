@@ -41,31 +41,15 @@ export default function Projectgrid({
           key={project.position}
           className="group relative"
         >
-          {/* <DatoImage
-            src={project?.image?.responsiveImage}
-            alt="Picture of the author"
-            placeholder="blur"
-            property={index === 0 ? "true" : "false"}
-            className="rounded-xl aspect-golden md:aspect-[3/1] object-cover object-center"
-          /> */}
-          {project.image.responsiveImage ? (
-            <DatoImage
-              data={project.image.responsiveImage}
-              priority={index === 0 ? true : false}
-              // layout="fill"
-              objectFit="cover"
-              objectPosition="50% 0%"
-              className="aspect-golden md:aspect-3/1 rounded-xl border-2 border-muted-foreground transition-all duration-150 ease-in-out group-hover:scale-103 group-hover:border-foreground group-hover:opacity-80"
-              // pictureClassName="object-cover object-top"
-            />
-          ) : (
-            <Image
-              src={ImgArray[index]}
-              alt="Placeholder"
-              priority={index === 0 ? true : false}
-              className="object-cover object-center"
-            />
-          )}
+          <DatoImage
+            data={project?.image?.responsiveImage}
+            priority={index === 0 ? true : false}
+            // layout="fill"
+            objectFit="cover"
+            objectPosition="50% 0%"
+            className="aspect-golden md:aspect-3/1 rounded-xl border-2 border-muted-foreground transition-all duration-150 ease-in-out group-hover:scale-103 group-hover:border-foreground group-hover:opacity-80"
+            // pictureClassName="object-cover object-top"
+          />
           <p className="line-clamp-2 pt-6 uppercase">{project.description}</p>
           <h4 className="text-xl font-semibold group-hover:underline group-hover:decoration-muted-foreground ">
             {project.title}

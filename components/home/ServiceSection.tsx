@@ -16,7 +16,7 @@ export default function ServiceSection() {
 
       <div className="flex flex-row gap-16 pl-6 md:pl-16">
         <div className="flex flex-1 flex-col">
-          <h5 className="text-xl font-semibold">Webdesign</h5>
+          <h4 className="text-xl font-semibold">Webdesign</h4>
           <p className="pt-4 leading-6">
             Wir designen und erstellen Websites für Ihr Unternehmen, die Ihnen
             mehr Kunden einbringen und tatsächlich konvertieren, falls nicht
@@ -31,7 +31,7 @@ export default function ServiceSection() {
       </div>
       <div className="flex flex-row-reverse gap-16 pr-6 md:pr-16">
         <div className="flex flex-col">
-          <h5 className="text-xl font-semibold">Google My Business</h5>
+          <h4 className="text-xl font-semibold">Google My Business</h4>
           <p className="pt-4 leading-6">
             Wir helfen Ihnen bei Ihrem Google My Business und Apple Business
             Connect Profil und stellen sicher, dass Sie auf der Karte angezeigt
@@ -46,7 +46,7 @@ export default function ServiceSection() {
       </div>
       <div className="flex flex-row gap-16 pl-6 md:pl-16">
         <div className="flex flex-col">
-          <h5 className="text-xl font-semibold">Website Automation</h5>
+          <h4 className="text-xl font-semibold">Website Automation</h4>
           <p className="pt-4 leading-6">
             Wir automatisieren Ihre Website mit Tools wie Zapier und stellen
             sicher, dass Sie sich auf Ihr Geschäft konzentrieren können.

@@ -1,4 +1,4 @@
-import { gql } from "graphql-request";
+import { gql } from "@/lib/utils";
 
 export const RESPONSIVE_IMAGE_FRAGMENT = gql`
   fragment responsiveImageFragment on ResponsiveImage {
