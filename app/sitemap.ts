@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 import { performRequest } from "@/lib/datocms";
-import { gql } from "graphql-request";
+import { gql } from "@/lib/utils";
 
 const query = gql`
   query getSitemap {
