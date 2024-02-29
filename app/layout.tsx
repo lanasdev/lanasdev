@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     siteName: "Lanas - Webdesign & Entwicklung für die Solarbranche",
     images: [
       {
-        url: "/opengraph-image",
+        url: "/opengraph-image.png",
       },
     ],
   },
