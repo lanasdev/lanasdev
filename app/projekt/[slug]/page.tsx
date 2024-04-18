@@ -9,6 +9,7 @@ import {
   Image as DatoImage,
   Metadata,
   ResponsiveImageType,
+  SRCImage,
   StructuredText,
   toNextMetadata,
 } from "react-datocms";
@@ -17,6 +18,7 @@ import Projectlist from "@/app/Projectlist";
 import Projectgrid from "@/app/Projectgrid";
 import Balancer from "react-wrap-balancer";
 import ProgressBar from "@/components/ProgressBar";
+import ClickableImage from "@/components/ClickableImage";
 
 type RecordImageType = {
   responsiveImage: ResponsiveImageType;
@@ -297,10 +299,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
             switch (record.__typename) {
               case "ImageRecord":
                 return (
-                  <DatoImage
+                  <ClickableImage
                     data={(record.image as RecordImageType).responsiveImage}
-                    className="mt-16 aspect-auto h-auto w-full rounded-xl"
-                    pictureClassName="object-contain "
                   />
                 );
               default:

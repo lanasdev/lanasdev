@@ -17,6 +17,7 @@ import { notFound } from "next/navigation";
 import Bloglist from "@/components/Bloglist";
 import OtherPosts from "./OtherPosts";
 import ProgressBar from "@/components/ProgressBar";
+import ClickableImage from "../../../components/ClickableImage";
 
 type RecordImageType = {
   responsiveImage: ResponsiveImageType;
@@ -162,16 +163,14 @@ export default async function BlogPage({
           className="mt-8 max-h-screen"
           pictureClassName="object-cover"
         />
-        <SectionContainer className="prose prose-stone mx-auto pt-32 prose-img:rounded-xl">
+        <SectionContainer className="prose prose-stone mx-auto pt-32 prose-img:rounded-xl lg:max-w-[90ch]">
           <StructuredText
             data={p.content}
             renderBlock={({ record }) => {
               if (record.__typename === "ImageRecord") {
                 return (
-                  <DatoImage
+                  <ClickableImage
                     data={(record.image as RecordImageType).responsiveImage}
-                    className="mt-16 max-h-screen"
-                    pictureClassName="object-cover"
                   />
                 );
               }
