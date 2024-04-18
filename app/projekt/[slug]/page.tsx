@@ -19,6 +19,7 @@ import Projectgrid from "@/app/Projectgrid";
 import Balancer from "react-wrap-balancer";
 import ProgressBar from "@/components/ProgressBar";
 import ClickableImage from "@/components/ClickableImage";
+import Contact from "@/components/Contact";
 
 type RecordImageType = {
   responsiveImage: ResponsiveImageType;
@@ -322,6 +323,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
       {/* <SectionContainer className="">
         <pre className="max-w-xl pt-24">{JSON.stringify(data, null, 2)}</pre>
       </SectionContainer> */}
+      <Contact />
     </div>
   );
 }
