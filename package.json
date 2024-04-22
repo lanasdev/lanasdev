@@ -45,7 +45,7 @@
     "resend": "^3.2.0",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.22.4"
+    "zod": "^3.23.0"
   },
   "devDependencies": {
     "@mux/mux-player": "^2.4.1",
