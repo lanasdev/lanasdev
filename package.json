@@ -55,7 +55,7 @@
     "@types/react-dom": "^18.2.25",
     "autoprefixer": "^10.4.19",
     "embla-carousel": "8.0.2",
-    "eslint": "^9.0.0",
+    "eslint": "^9.1.0",
     "eslint-config-next": "14.2.2",
     "graphql-request": "^6.1.0",
     "postcss": "^8.4.38",
