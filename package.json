@@ -11,6 +11,7 @@
   "dependencies": {
     "@calcom/embed-react": "^1.4.0",
     "@formspree/react": "^2.5.1",
+    "@heroicons/react": "^2.1.3",
     "@hookform/resolvers": "^3.3.4",
     "@mdi/js": "^7.4.47",
     "@mdi/react": "^1.6.1",
@@ -49,6 +50,7 @@
   },
   "devDependencies": {
     "@mux/mux-player": "^2.4.1",
+    "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.12",
     "@types/node": "^20.12.7",
     "@types/react": "^18.2.79",

@@ -13,7 +13,7 @@ export default function ContactButton() {
       aria-disabled={pending}
     >
       Jetzt durchstarten{" "}
-      <span className=" ml-2 group-hover:translate-x-1 transition-transform">
+      <span className=" ml-2 transition-transform group-hover:translate-x-1">
         {"->"}
       </span>
     </button>

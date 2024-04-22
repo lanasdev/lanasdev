@@ -20,6 +20,7 @@ import AboutSection from "@/components/home/AboutSection";
 import TechStack from "@/components/home/TechStack";
 import Contact from "@/components/Contact";
 import SectionContainer from "./SectionContainer";
+import AlternativeContact from "@/components/AlternativeContact";
 
 export const revalidate = 300; // 5 minutes
 
@@ -108,15 +109,16 @@ export default async function Home() {
   const { allProjects, allPosts, home } = data;
 
   return (
-    <main className=" min-h-screen pb-32">
+    <main className=" min-h-screen">
       <HeroSection />
       <Projectgrid allProjects={allProjects} />
       <ServiceSection />
-      <Testimonial />
+      {/* <Testimonial /> */}
       <Bloglist allPosts={allPosts} />
       <AboutSection aboutData={home} />
       <TechStack techData={home} />
-      <Contact />
+      <AlternativeContact />
+      {/* <Contact /> */}
       {/* <pre className="max-w-xl">{JSON.stringify(data, null, 2)}</pre> */}
     </main>
   );
