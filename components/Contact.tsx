@@ -54,7 +54,7 @@ export default function Contact() {
           />
         </fieldset>
         <br />
-        <ContactButton />
+        <ContactButton className="" />
       </form>
     </SectionContainer>
   );

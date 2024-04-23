@@ -18,7 +18,7 @@ import Bloglist from "@/components/Bloglist";
 import OtherPosts from "./OtherPosts";
 import ProgressBar from "@/components/ProgressBar";
 import ClickableImage from "../../../components/ClickableImage";
-import Contact from "@/components/Contact";
+import AlternativeContact from "@/components/AlternativeContact";
 
 type RecordImageType = {
   responsiveImage: ResponsiveImageType;
@@ -157,7 +157,7 @@ export default async function BlogPage({
 
   return (
     <>
-      <div className="pb-32">
+      <div className="">
         <BlogHeader title={p.title} date={p.date} author={p.author} />
         <DatoImage
           data={p.coverImage.responsiveImage}
@@ -188,7 +188,7 @@ export default async function BlogPage({
         {/* <SectionContainer className="">
         <pre className="max-w-xl pt-24">{JSON.stringify(data, null, 2)}</pre>
       </SectionContainer> */}
-        <Contact />
+        <AlternativeContact />
       </div>
     </>
   );
