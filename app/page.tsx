@@ -21,6 +21,7 @@ import TechStack from "@/components/home/TechStack";
 import Contact from "@/components/Contact";
 import SectionContainer from "./SectionContainer";
 import AlternativeContact from "@/components/AlternativeContact";
+import StepsSection from "@/components/home/StepsSection";
 
 export const revalidate = 300; // 5 minutes
 
@@ -114,6 +115,7 @@ export default async function Home() {
       <Projectgrid allProjects={allProjects} />
       <ServiceSection />
       {/* <Testimonial /> */}
+      <StepsSection />
       <Bloglist allPosts={allPosts} />
       <AboutSection aboutData={home} />
       <TechStack techData={home} />
