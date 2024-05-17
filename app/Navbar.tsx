@@ -17,14 +17,16 @@ import {
 } from "@/components/ui/sheet";
 
 const NavItems = [
-  ["Home", "/"],
-  ["Projekte", "/#projekte"],
-  ["Dienstleistungen", "/#dienstleistungen"],
-  ["Blog", "/#blog"],
+  ["Home", "/", "/"],
+  ["Projekte", "/#projekte", "/projekt"],
+  ["Dienstleistungen", "/#dienstleistungen", "/dienstleistungen"],
+  ["Blog", "/#blog", "/blog"],
 ];
 
 const Navbar = () => {
   const pathname = usePathname();
+  const match = pathname.match(/^\/[^\/]+/);
+  const firstPathname = match ? match[0] : null;
   // const aClass =
   //   "rounded-lg px-3 py-2 text-gray-700 font-medium hover:bg-gray-100 hover:text-gray-900 ";
 
@@ -56,14 +58,14 @@ const Navbar = () => {
               </SheetHeader>
               <div className="flex flex-col justify-between gap-8">
                 <ul className="flex flex-col items-start gap-y-4 pt-8">
-                  {NavItems.map(([title, url]) => (
+                  {NavItems.map(([title, url, realUrl]) => (
                     <li key={title}>
                       <Link
                         href={url}
                         className={cn(
                           buttonVariants({ variant: "ghost" }),
                           "rounded-lg py-2 pr-4 text-foreground transition-all hover:underline hover:underline-offset-2",
-                          pathname == url ? " font-bold" : "",
+                          firstPathname == realUrl ? " font-bold" : "",
                         )}
                       >
                         {title}
@@ -78,14 +80,14 @@ const Navbar = () => {
           <ContactButton />
         </div>
         <ul className="hidden md:flex md:space-x-4 ">
-          {NavItems.map(([title, url]) => (
+          {NavItems.map(([title, url, realUrl]) => (
             <li key={title}>
               <Link
                 href={url}
                 className={cn(
                   buttonVariants({ variant: "ghost" }),
                   " border-collapse rounded-none border-b-2 border-hidden px-4 py-2 text-foreground transition-all duration-75 hover:border-b-2 hover:border-solid hover:border-primary hover:bg-inherit  ",
-                  pathname == url
+                  firstPathname == realUrl
                     ? "border-b-2 border-solid border-primary font-semibold"
                     : "",
                 )}
