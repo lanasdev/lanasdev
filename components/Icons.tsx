@@ -8,6 +8,7 @@ import {
   GithubLogo,
   EnvelopeSimple,
   PhoneCall,
+  VideoConference,
 } from "@phosphor-icons/react";
 
 // // reexport all icons
@@ -19,6 +20,7 @@ export {
   GithubLogo,
   EnvelopeSimple,
   PhoneCall,
+  VideoConference,
 };
 
 // export function TwitterIcon() {

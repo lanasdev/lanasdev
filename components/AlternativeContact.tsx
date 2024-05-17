@@ -8,16 +8,34 @@ import { z } from "zod";
 // import { sql } from "@vercel/postgres";
 
 import { submitForm } from "@/app/actions";
-import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 
-import { TelegramLogo, EnvelopeSimple, PhoneCall } from "@/components/Icons";
+import {
+  TelegramLogo,
+  EnvelopeSimple,
+  PhoneCall,
+  VideoConference,
+} from "@/components/Icons";
 import { Textarea } from "./ui/textarea";
+// import CallToCal from "./CallToAction/CallToCal";
+// import { getCalApi } from "@calcom/embed-react";
+// import { useEffect } from "react";
 
 export default function AlternativeContact() {
+  // useEffect(() => {
+  //   (async function () {
+  //     const cal = await getCalApi();
+  //     cal("ui", {
+  //       theme: "dark",
+  //       styles: {
+  //         branding: { brandColor: "#000000" },
+  //       },
+  //     });
+  //   })();
+  // }, []);
   return (
     <>
       <SectionContainer className="mt-24 flex flex-col divide-y bg-secondary py-32 sm:flex-row sm:gap-8 sm:divide-x sm:divide-y-0">
@@ -32,17 +50,22 @@ export default function AlternativeContact() {
             weitergeholfen werden kann.
           </p>
           <aside className="mt-10 pb-16 ">
-            <div className="*:flex *:items-center *:gap-4 *:py-2">
-              <Link href={`mailto:hey@lanas.dev`} className="">
+            <div className="*:flex *:items-center *:gap-4 *:py-2 hover:*:underline">
+              <Link href={`mailto:hey@lanas.dev`}>
                 <EnvelopeSimple className="h-7 w-6" aria-hidden="true" /> Email:
                 hey@lanas.dev
               </Link>
-              <Link
-                href={process.env.NEXT_PUBLIC_TELEGRAM_URL || "#kontakt"}
-                className=""
-              >
+              <Link href={process.env.NEXT_PUBLIC_TELEGRAM_URL || "#kontakt"}>
                 <TelegramLogo className="h-7 w-6 " /> Telegram: lanasdev
               </Link>
+              {/* <Link href={process.env.NEXT_PUBLIC_CALCOM} || "/kontakt" */}
+              {/* <div className="">
+                <VideoConference className="mr-4 h-7 w-6" aria-hidden="true" />
+                Video Call:{" "}
+                <button data-cal-link="lanas/hallo" className="pl-1">
+                  Jetzt buchen
+                </button>
+              </div> */}
             </div>
           </aside>
         </div>
@@ -58,7 +81,8 @@ export default function AlternativeContact() {
               <Input
                 type="text"
                 name="name"
-                className="mt-2 rounded-md border border-foreground px-4 py-3"
+                id="name"
+                className="mt-2 rounded-md border border-foreground px-4 py-3 focus:bg-background"
                 autoComplete="first_name"
                 required
                 placeholder="Matthias"
@@ -71,7 +95,8 @@ export default function AlternativeContact() {
               <Input
                 type="email"
                 name="email"
-                className="mt-2 rounded-md border border-foreground px-4 py-3"
+                id="email"
+                className="mt-2 rounded-md border border-foreground px-4 py-3 focus:bg-background"
                 autoComplete="email"
                 required
                 placeholder="hey@lanas.dev"
@@ -84,7 +109,8 @@ export default function AlternativeContact() {
             </Label>
             <Textarea
               name="message"
-              className="mt-2 rounded-md border border-foreground px-4 py-3"
+              id="message"
+              className="mt-2 rounded-md border border-foreground px-4 py-3 focus:bg-background"
               placeholder="Ihre Nachricht an mich"
             />
           </fieldset>
