@@ -18,8 +18,8 @@ export function MiniProjectCard({ project }: { project: any }) {
     >
       <DatoImage
         data={project.image.responsiveImage}
-        className="aspect-golden max-h-96 w-full rounded-xl transition-all duration-300 ease-in-out group-hover:scale-103 group-hover:opacity-80"
-        pictureClassName="object-cover "
+        className="aspect-golden h-48 rounded-xl transition-all duration-300 ease-in-out group-hover:scale-103 group-hover:opacity-80"
+        objectFit="cover"
       />
       <p className="line-clamp-1 max-w-xs pt-4">{project.description}</p>
       <h4 className="text-xl font-semibold">{project.title}</h4>

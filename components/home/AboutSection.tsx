@@ -31,11 +31,10 @@ const AboutSection = ({
           </h3>
           <DatoImage
             data={imageAbout.responsiveImage}
-            className="mb-6 aspect-square rounded-xl sm:max-w-12 md:hidden "
-            pictureClassName="object-cover"
+            className="mb-6 aspect-square rounded-xl sm:max-w-12 md:hidden"
+            objectFit="cover"
           />
-          <article className="leading-8">
-            <>
+          <article className="leading-8 text-balance">
               {/* Render Links as <Link> Tags */}
               <StructuredText
                 data={textAbout}
@@ -63,14 +62,14 @@ const AboutSection = ({
                   {"->"}
                 </span>
               </Link>
-            </>
+
           </article>
         </div>
         <div className="w-0 md:w-3/5 xl:flex-1">
           <DatoImage
             data={imageAbout.responsiveImage}
-            className="hidden rounded-xl md:block lg:max-h-[50ch]"
-            pictureClassName="object-cover"
+            className="hidden rounded-xl md:block object-cover"
+            pictureClassName="object-cover "
           />
         </div>
       </SectionContainer>

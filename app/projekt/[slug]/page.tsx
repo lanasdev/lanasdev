@@ -274,7 +274,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           )}
         </div>
       </SectionContainer>
-      <SectionContainer className="prose prose-stone mx-auto pt-32 prose-img:rounded-xl ">
+      <SectionContainer className="prose prose-stone mx-auto pt-32 prose-img:rounded-xl max-w-full break-words">
         <StructuredText
           data={p.content}
           renderInlineRecord={({ record }) => {

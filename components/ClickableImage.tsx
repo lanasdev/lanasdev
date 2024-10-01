@@ -19,7 +19,7 @@ const ClickableImage = ({ data }: any) => {
         <SRCImage data={data} />
       </DialogTrigger>
       <DialogContent className="rounded-md p-0 sm:max-w-full">
-        <SRCImage data={data} className="h-auto w-full object-cover" />
+        <SRCImage data={data} imgClassName="h-auto w-full object-cover" />
       </DialogContent>
     </Dialog>
   );

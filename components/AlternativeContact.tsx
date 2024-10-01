@@ -1,11 +1,9 @@
-"use client";
+
 
 import SectionContainer from "../app/SectionContainer";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import ContactButton from "./ContactButton";
-import { z } from "zod";
-// import { sql } from "@vercel/postgres";
 
 import { submitForm } from "@/app/actions";
 import Link from "next/link";
@@ -22,7 +20,8 @@ import {
 import { Textarea } from "./ui/textarea";
 // import CallToCal from "./CallToAction/CallToCal";
 // import { getCalApi } from "@calcom/embed-react";
-// import { useEffect } from "react";
+
+
 
 export default function AlternativeContact() {
   // useEffect(() => {
@@ -70,6 +69,7 @@ export default function AlternativeContact() {
           </aside>
         </div>
         <form
+          // @ts-ignore
           action={submitForm}
           className="max-w-screen-md pt-16 sm:flex-[2] sm:pl-8 sm:pt-0 lg:px-16"
         >

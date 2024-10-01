@@ -17,7 +17,7 @@ export default function StepsSection() {
             1
           </span>
           <h4 className="pb-2 text-xl font-semibold">Planung und Konzeption</h4>
-          <p>
+          <p className="leading-7">
             Der erste Schritt ist die Planung und Konzeption der Webseite. Dies
             beinhaltet das Verstehen der Bedürfnisse und Ziele von Ihnen, das
             Definieren der Zielgruppe sowie das Festlegen der Hauptfunktionen
@@ -31,13 +31,8 @@ export default function StepsSection() {
             2
           </span>
           <h4 className="pb-2 text-xl font-semibold">Design und Entwicklung</h4>
-          <p>
-            Der erste Schritt ist die Planung und Konzeption der Webseite. Dies
-            beinhaltet das Verstehen der Bedürfnisse und Ziele von Ihnen, das
-            Definieren der Zielgruppe sowie das Festlegen der Hauptfunktionen
-            und des Inhalts der Webseite. Dabei werden möglichst schnell erste
-            Entwürfe erstellt, die als visuelle Guides für die Struktur und das
-            Layout der Webseite dienen.
+          <p className="leading-7">
+            In dieser Phase wird das visuelle Erscheinungsbild der Webseite gestaltet und die technische Umsetzung begonnen. Das Design orientiert sich an den Bedürfnissen der Zielgruppe und den Markenrichtlinien des Unternehmens. Parallel dazu startet die Entwicklung, bei der der Funktionsumfang der Webseite programmiert wird. Hierbei kommen moderne Webtechnologien zum Einsatz, um eine benutzerfreundliche und responsive Webseite zu erstellen, die auf allen Geräten optimal funktioniert.
           </p>
         </div>
         <div className="flex flex-col">
@@ -47,7 +42,7 @@ export default function StepsSection() {
           <h4 className="pb-2 text-xl font-semibold">
             Inhalte und SEO-Optimierung
           </h4>
-          <p>
+          <p className="leading-7">
             Nach der Entwicklung müssen die Inhalte für die Webseite erstellt
             und eingepflegt werden. Dies schließt Texte, Bilder, Videos und
             andere Medien ein. Dabei wird darauf geachtet, dass die Inhalte
@@ -64,7 +59,7 @@ export default function StepsSection() {
           <h4 className="pb-2 text-xl font-semibold">
             Test & Veröffentlichung
           </h4>
-          <p>
+          <p className="leading-7">
             Bevor die Webseite live geht, wird sie umfassend getestet. Dies
             beinhaltet Funktionalitätstests, Usability-Tests und die Überprüfung
             der Kompatibilität mit verschiedenen Browsern und Geräten. Nachdem
