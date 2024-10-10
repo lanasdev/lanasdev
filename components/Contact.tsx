@@ -23,7 +23,7 @@ import { Textarea } from "./ui/textarea";
 
 
 
-export default function AlternativeContact() {
+export default function Contact() {
   // useEffect(() => {
   //   (async function () {
   //     const cal = await getCalApi();

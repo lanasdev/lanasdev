@@ -19,7 +19,7 @@ import Testimonial from "@/components/home/Testimonial";
 import AboutSection from "@/components/home/AboutSection";
 import TechStack from "@/components/home/TechStack";
 import SectionContainer from "./SectionContainer";
-import AlternativeContact from "@/components/AlternativeContact";
+import Contact from "@/components/Contact";
 import StepsSection from "@/components/home/StepsSection";
 
 export const revalidate = 300; // 5 minutes
@@ -113,12 +113,12 @@ export default async function Home() {
       <HeroSection />
       <Projectgrid allProjects={allProjects} />
       <ServiceSection />
-      {/* <Testimonial /> */}
+      <Testimonial />
       <StepsSection />
       <Bloglist allPosts={allPosts} />
       <AboutSection aboutData={home} />
       <TechStack techData={home} />
-      <AlternativeContact />
+      <Contact />
       {/* <pre className="max-w-xl">{JSON.stringify(data, null, 2)}</pre> */}
     </main>
   );

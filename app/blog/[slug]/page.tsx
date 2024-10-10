@@ -18,7 +18,7 @@ import Bloglist from "@/components/Bloglist";
 import OtherPosts from "./OtherPosts";
 import ProgressBar from "@/components/ProgressBar";
 import ClickableImage from "../../../components/ClickableImage";
-import AlternativeContact from "@/components/AlternativeContact";
+import Contact from "@/components/Contact";
 
 type RecordImageType = {
   responsiveImage: ResponsiveImageType;
@@ -188,7 +188,7 @@ export default async function BlogPage({
         {/* <SectionContainer className="">
         <pre className="max-w-xl pt-24">{JSON.stringify(data, null, 2)}</pre>
       </SectionContainer> */}
-        <AlternativeContact />
+        <Contact />
       </div>
     </>
   );
