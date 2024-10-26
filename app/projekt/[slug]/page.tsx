@@ -192,7 +192,8 @@ function getPageRequest({ params }: { params: { slug: string } }) {
   };
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export default async function Page(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   const query = PAGE_CONTENT_QUERY;
   const variables = { eq: params.slug };
   const { data } = await performRequest({ query, variables });
@@ -329,14 +330,12 @@ export default async function Page({ params }: { params: { slug: string } }) {
 }
 
 type MetadataProps = {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-export async function generateMetadata(
-  { params, searchParams }: MetadataProps,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
+export async function generateMetadata(props: MetadataProps, parent: ResolvingMetadata): Promise<Metadata> {
+  const params = await props.params;
   const response = await performRequest(
     getPageRequest({ params: { slug: params.slug } }),
   );

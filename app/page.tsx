@@ -109,11 +109,11 @@ export default async function Home() {
   const { allProjects, allPosts, home } = data;
 
   return (
-    <main className=" min-h-screen">
+    <main className="min-h-screen">
       <HeroSection />
       <Projectgrid allProjects={allProjects} />
       <ServiceSection />
-      <Testimonial />
+      {/* <Testimonial /> */}
       <StepsSection />
       <Bloglist allPosts={allPosts} />
       <AboutSection aboutData={home} />

@@ -22,7 +22,7 @@ export default async function Image() {
   return new ImageResponse(
     (
       // ImageResponse JSX element
-      <div
+      (<div
         style={{
           background: "hsl(20 14.3% 4.1%)",
           width: "100%",
@@ -39,7 +39,7 @@ export default async function Image() {
           Wir bauen schnelle und hoch konvertierende Websites für Ihr
           Photovoltaikunternehmen.
         </p>
-      </div>
+      </div>)
     ),
     // ImageResponse options
     {

@@ -15,11 +15,11 @@ const CustomImage: React.FC<CustomImageProps> = ({
 }) => {
   return (
     // eslint-disable-next-line jsx-a11y/alt-text
-    <Image
+    (<Image
       data={responsiveImage}
       className={clsx(className, "aspect-auto rounded-md")}
       {...otherProps}
-    />
+    />)
   );
 };
 

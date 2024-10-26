@@ -15,7 +15,7 @@ export default function Icon() {
   return new ImageResponse(
     (
       // ImageResponse JSX element
-      <div
+      (<div
         style={{
           fontSize: 12,
           fontWeight: "bold",
@@ -27,9 +27,8 @@ export default function Icon() {
           justifyContent: "center",
           color: "hsl(60 9.1% 97.8%)",
         }}
-      >
-        Lan
-      </div>
+      >Lan
+              </div>)
     ),
     // ImageResponse options
     {

@@ -22,7 +22,7 @@ export default async function Image() {
   return new ImageResponse(
     (
       // ImageResponse JSX element
-      <div
+      (<div
         style={{
           fontSize: 128,
           background: "hsl(20 14.3% 4.1%)",
@@ -33,9 +33,8 @@ export default async function Image() {
           justifyContent: "center",
           color: "hsl(60 9.1% 97.8%)",
         }}
-      >
-        Projekt: Lanas
-      </div>
+      >Projekt: Lanas
+              </div>)
     ),
     // ImageResponse options
     {
