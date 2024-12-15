@@ -21,7 +21,7 @@ const schema = z.object({
 });
 
 export async function submitForm(formData: FormData) {
-  ("use server");
+  "use server"
 
   const rawFormData = {
     name: formData.get("name"),

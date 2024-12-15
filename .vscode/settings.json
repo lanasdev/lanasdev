@@ -11,5 +11,8 @@
   "editor.formatOnSave": true,
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "window.autoDetectColorScheme": false,
+  "workbench.preferredDarkColorTheme": "Dracula Theme Soft",
+  "workbench.preferredHighContrastColorTheme": "Quiet Light"
 }

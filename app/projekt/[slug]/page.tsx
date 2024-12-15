@@ -234,7 +234,7 @@ export default async function Page(props: { params: Promise<{ slug: string }> })
       <DatoImage
         data={p.image.responsiveImage}
         className="mt-16"
-        pictureClassName="object-cover"
+        pictureClassName="object-cover min-w-screen"
       />
       <SectionContainer className="pt-8">
         <div className="flex justify-around gap-4">
