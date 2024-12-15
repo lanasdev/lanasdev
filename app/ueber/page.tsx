@@ -1,8 +1,10 @@
 import Link from "next/link";
+import { Metadata } from 'next';
 import {
   Image as DatoImage,
   ResponsiveImageType,
   StructuredText,
+  toNextMetadata
 } from "react-datocms";
 import { performRequest } from "@/lib/datocms";
 import { gql } from "@/lib/utils";
@@ -10,9 +12,28 @@ import { gql } from "@/lib/utils";
 
 export const revalidate = 300; // 5 minutes
 
+
+
 const ABOUT_QUERY = gql`
   query MyQuery {
+    _site {
+      favicon: faviconMetaTags {
+        attributes
+        content
+        tag
+      }
+    }
     about {
+      seo: _seoMetaTags {
+        attributes
+        content
+        tag
+      }
+      seoFallback: _seoMetaTags {
+        attributes
+        content
+        tag
+      }
       title
       description
       image {
@@ -98,6 +119,10 @@ const ABOUT_QUERY = gql`
   }
 `;
 
+function fetchContent() {
+  return performRequest({ query: ABOUT_QUERY });
+}
+
 export default async function AboutPage() {
   const data = await performRequest({ query: ABOUT_QUERY });
 
@@ -143,4 +168,17 @@ export default async function AboutPage() {
         </div>
       </div>
   );
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { data } = await performRequest({
+    query: ABOUT_QUERY
+  });
+
+  const seoTags = [
+    ...data._site.favicon,
+    ...data.about.seo
+  ];
+
+  return toNextMetadata(seoTags);
 }

@@ -13,7 +13,7 @@ export default function ServiceSection() {
       className="pb-24 pt-24"
       id="dienstleistungen"
     >
-      <h3 className="pb-16 text-3xl font-semibold sr-only">Dienstleistungen</h3>
+      <h3 className="pb-16 text-3xl font-semibold">Dienstleistungen</h3>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           <ServiceCard
             title={"Webdesign"}
