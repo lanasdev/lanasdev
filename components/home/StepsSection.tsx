@@ -52,7 +52,7 @@ export default function StepsSection() {
             Keywords.
           </p>
         </div>
-        <div className="flex flex-col md:col-span-3 md:row-start-2 md:mx-auto md:w-3/4">
+        <div className="flex flex-col md:mx-auto">
           <span className="mb-4 flex size-12 items-center justify-center rounded-full bg-sky-400 text-xl font-medium text-primary-foreground">
             4
           </span>

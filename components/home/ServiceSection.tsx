@@ -5,85 +5,36 @@ import ServiceCard from "./ServiceCard";
 import Image1 from "@/public/img/image1-mini.jpeg";
 import Image2 from "@/public/img/image2.webp";
 import Image3 from "@/public/img/image3.webp";
+import SectionContainer from "@/app/SectionContainer";
 
 export default function ServiceSection() {
   return (
-    <div
-      className="flex flex-col gap-8 overflow-x-hidden pb-24 pt-24 md:[&>*]:justify-between"
+    <SectionContainer
+      className="pb-24 pt-24"
       id="dienstleistungen"
     >
-      <h3 className="sr-only">Dienstleistungen</h3>
+      <h3 className="pb-16 text-3xl font-semibold sr-only">Dienstleistungen</h3>
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          <ServiceCard
+            title={"Webdesign"}
+            description={
+              "Sei es eine Landing Page oder ein ganzer Shopify Store. Wir entwerfen Websites für Ihr Unternehmen, die nicht nur ästhetisch ansprechend sind, sondern Ihnen auch tatsächlich mehr Leads bringen und  konvertieren."
+            }
+          />
+          <ServiceCard
+            title={"Google My Business"}
+            description={
+              'Wir helfen Ihnen bei Ihrem Google My Business und Apple Business Connect Profil und stellen sicher, dass Sie auf der Karte angezeigt werden.'
+            }
+          />
+          <ServiceCard
+            title={"Website Automatisierung"}
+            description={
+              "Wir automatisieren Ihre Leadgewinnung mit Tools wie Zapier und stellen sicher, dass Sie sich auf Ihr Geschäft konzentrieren können."
+            }
+          />
+        </div>
 
-      <div className="flex flex-row gap-16 pl-6 md:pl-16">
-        <div className="flex flex-1 flex-col">
-          <h4 className="text-xl font-semibold">Webdesign</h4>
-          <p className="pt-4 leading-6">
-            Wir designen und erstellen Websites für Ihr Unternehmen, die Ihnen
-            mehr Kunden einbringen und tatsächlich konvertieren, falls nicht
-            gibt es eine Geld-zurück-Garantie.
-          </p>
-        </div>
-        <Image
-          src={Image1}
-          alt="Picture of the author"
-          className=" md:aspect-3/1 aspect-[2/1] max-w-[50%] flex-1 rounded-l-xl object-cover object-center sm:max-w-[66%]"
-        />
-      </div>
-      <div className="flex flex-row-reverse gap-16 pr-6 md:pr-16">
-        <div className="flex flex-col">
-          <h4 className="text-xl font-semibold">Google My Business</h4>
-          <p className="pt-4 leading-6">
-            Wir helfen Ihnen bei Ihrem Google My Business und Apple Business
-            Connect Profil und stellen sicher, dass Sie auf der Karte angezeigt
-            werden.
-          </p>
-        </div>
-        <Image
-          src={Image2}
-          alt="Picture of the author"
-          className=" md:aspect-3/1 aspect-[2/1] max-w-[50%] flex-1 rounded-r-xl object-cover object-center sm:max-w-[66%]"
-        />
-      </div>
-      <div className="flex flex-row gap-16 pl-6 md:pl-16">
-        <div className="flex flex-col">
-          <h4 className="text-xl font-semibold">Website Automation</h4>
-          <p className="pt-4 leading-6">
-            Wir automatisieren Ihre Website mit Tools wie Zapier und stellen
-            sicher, dass Sie sich auf Ihr Geschäft konzentrieren können.
-          </p>
-        </div>
-        <Image
-          src={Image3}
-          alt="Picture of the author"
-          className=" md:aspect-3/1 aspect-[2/1] max-w-[50%] flex-1 rounded-l-xl object-cover object-center sm:max-w-[66%]"
-        />
-      </div>
-      {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-        <ServiceCard
-          title={"Web design & Development"}
-          description={
-            "We design and create Websites for your Company that gets you more leads and actually converts "
-          }
-        />
-        <ServiceCard
-          title={"Google My Business"}
-          description={
-            "We help you with your Google My Business and Apple Business Connect Profile and make sure that you show up on the map"
-          }
-        />
-        <ServiceCard
-          title={"Website Automation"}
-          description={
-            "We automate your Website and make sure that you can focus on your Business"
-          }
-        />
-        <ServiceCard
-          title={"Hosting"}
-          description={
-            "Optional. Website is offline? Not with us. We keep your Business online and running"
-          }
-        />
-      </div> */}
-    </div>
+    </SectionContainer>
   );
 }

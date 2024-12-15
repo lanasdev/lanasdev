@@ -50,7 +50,7 @@ export default function Projectgrid({
             className="aspect-golden-vertical sm:aspect-[3/1] rounded-xl border-2 border-muted-foreground transition-all duration-150 ease-in-out group-hover:scale-103 group-hover:border-foreground group-hover:opacity-80 min-w-full"
             // pictureClassName="object-cover object-top"
           />
-          <p className="line-clamp-2 pt-6 uppercase">{project.description}</p>
+          <p className="line-clamp-2 pt-6 uppercase text-sm sm:text-md">{project.description}</p>
           <h4 className="text-xl font-semibold group-hover:underline group-hover:decoration-muted-foreground ">
             {project.title}
           </h4>

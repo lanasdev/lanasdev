@@ -114,7 +114,7 @@ export default async function Home() {
       <Projectgrid allProjects={allProjects} />
       <ServiceSection />
       {/* <Testimonial /> */}
-      <StepsSection />
+      {/* <StepsSection /> */}
       <Bloglist allPosts={allPosts} />
       <AboutSection aboutData={home} />
       <TechStack techData={home} />
