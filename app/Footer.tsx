@@ -85,15 +85,16 @@ const Footer = async () => {
       slug: "impressum",
       icon: <EnvelopeSimple size={24} />,
       link: "/impressum",
-    }
+    },
   ];
 
   return (
-    <footer className=" bg-foreground text-background px-8 flex justify-between py-8">
+    <footer className="flex justify-between bg-foreground px-8 py-8 text-background">
       <Link href="/" className="">
-        &copy; {new Date().getFullYear() || "2022"} Lanas Webdesign für Photovoltaik{" "}
+        &copy; {new Date().getFullYear() || "2022"} Lanas Webdesign für
+        Photovoltaik{" "}
       </Link>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:gap-y-12 md:grid-cols-4 gap-8 ">
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 md:gap-y-12">
         {socials.map((s, i) => (
           <Link
             href={s.link || "/"}
