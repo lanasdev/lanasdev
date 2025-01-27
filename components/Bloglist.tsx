@@ -13,7 +13,7 @@ export default function Bloglist({ allPosts }) {
         <h3 className="sr-only">Unser Blog</h3>
       </div>
       <h3 className="pb-8 text-3xl font-semibold">Blog</h3>
-      <div className="flex flex-shrink-0 snap-x space-x-4 overflow-x-auto py-4">
+      <div className="flex shrink-0 snap-x space-x-4 overflow-x-auto py-4">
         {allPosts.map((p: any) => (
           <Link
             href={`/blog/${p.slug}`}

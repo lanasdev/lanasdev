@@ -53,7 +53,7 @@ const Contactform = ({ locale }: { locale: Locale }) => {
                 id="first-name"
                 autoComplete="given-name"
                 minLength={2}
-                className="block w-full rounded-md border-0 px-3.5 py-2 text-midnight  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 px-3.5 py-2 text-midnight  shadow-xs ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 sm:text-sm sm:leading-6"
               />
               <ValidationError
                 prefix="Name"
@@ -76,7 +76,7 @@ const Contactform = ({ locale }: { locale: Locale }) => {
                 id="last-name"
                 autoComplete="family-name"
                 minLength={2}
-                className="block w-full rounded-md border-0 px-3.5 py-2 text-midnight  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 px-3.5 py-2 text-midnight  shadow-xs ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 sm:text-sm sm:leading-6"
               />
               <ValidationError
                 prefix="last name"
@@ -100,7 +100,7 @@ const Contactform = ({ locale }: { locale: Locale }) => {
                 autoComplete="email"
                 pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
                 minLength={3}
-                className="block w-full rounded-md border-0 px-3.5 py-2 text-midnight  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 px-3.5 py-2 text-midnight  shadow-xs ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 sm:text-sm sm:leading-6"
               />
               <ValidationError
                 prefix="Email"
@@ -122,7 +122,7 @@ const Contactform = ({ locale }: { locale: Locale }) => {
                 name="company"
                 id="company"
                 autoComplete="organization"
-                className="block w-full rounded-md border-0 px-3.5 py-2 text-midnight  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 px-3.5 py-2 text-midnight  shadow-xs ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 sm:text-sm sm:leading-6"
               />
               <ValidationError
                 prefix="Company"
@@ -144,7 +144,7 @@ const Contactform = ({ locale }: { locale: Locale }) => {
                 id="message"
                 minLength={4}
                 rows={4}
-                className="block w-full rounded-md border-0 px-3.5 py-2 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 dark:text-midnight sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 px-3.5 py-2 shadow-xs ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 dark:text-midnight sm:text-sm sm:leading-6"
                 defaultValue={""}
               />
               <ValidationError
@@ -160,7 +160,7 @@ const Contactform = ({ locale }: { locale: Locale }) => {
             variant={"ghost"}
             type="submit"
             disabled={state.submitting}
-            className="group block w-full cursor-pointer rounded-md border-2 border-midnight bg-midnight px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:bg-white hover:text-midnight focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600 dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-midnight"
+            className="group block w-full cursor-pointer rounded-md border-2 border-midnight bg-midnight px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs transition-all duration-300 hover:bg-white hover:text-midnight focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600 dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-midnight"
           >
             {state.submitting ? (
               <span className="flex transform-gpu items-center justify-center">

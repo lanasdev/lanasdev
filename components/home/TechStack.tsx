@@ -18,7 +18,7 @@ const TechStack = ({
       <h3 className="pb-8 text-3xl font-semibold">
         {titleTechstack ?? "Tech Stack"}
       </h3>
-      <div className="grid auto-cols-auto grid-cols-4  gap-8 md:max-w-screen-sm lg:max-w-screen-md">
+      <div className="grid auto-cols-auto grid-cols-4  gap-8 md:max-w-(--breakpoint-sm) lg:max-w-(--breakpoint-md)">
         {logosTechstack.map((logo, index) => (
           <TechIcon key={index} responsiveImage={logo.responsiveImage} />
         ))}

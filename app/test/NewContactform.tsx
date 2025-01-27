@@ -83,7 +83,7 @@ export function NewContactform() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <div className="flex flex-col sm:flex-row sm:gap-4 sm:[&>*]:flex-1">
+        <div className="flex flex-col sm:flex-row sm:gap-4 sm:*:flex-1">
           <FormField
             control={form.control}
             name="name"

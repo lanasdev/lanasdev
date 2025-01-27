@@ -51,19 +51,19 @@
   "devDependencies": {
     "@mux/mux-player": "^3.2.4",
     "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/postcss": "^4.0.0",
     "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^22.10.5",
     "@types/react": "npm:types-react@19.0.0-rc.1",
     "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
-    "autoprefixer": "^10.4.20",
     "embla-carousel": "8.5.2",
     "eslint": "^9.17.0",
     "eslint-config-next": "15.1.4",
     "graphql-request": "^7.1.2",
     "postcss": "^8.4.49",
     "prettier": "^3.4.2",
-    "prettier-plugin-tailwindcss": "^0.6.9",
-    "tailwindcss": "^3.4.17",
+    "prettier-plugin-tailwindcss": "^0.6.11",
+    "tailwindcss": "^4.0.0",
     "typescript": "^5.7.3"
   },
   "pnpm": {

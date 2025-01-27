@@ -44,7 +44,7 @@ export default function Projectlist({ allProjects }) {
                     src={p.image.responsiveImage.src}
                     // sizes={p.image.responsiveImage.sizes}
                     alt={`Project: ${p.title}`}
-                    className="aspect-[3/4] max-h-[50ch] md:max-h-full md:aspect-video h-fit w-fit object-cover "
+                    className="aspect-3/4 max-h-[50ch] md:max-h-full md:aspect-video h-fit w-fit object-cover "
                     width={800}
                     height={600}
                   />

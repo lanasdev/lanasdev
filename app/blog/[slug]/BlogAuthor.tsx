@@ -15,7 +15,7 @@ const BlogAuthor = ({ author }: { author: Author }) => {
     <div className="flex flex-row items-center gap-3 pt-6 md:gap-0 lg:gap-3">
       <DatoImage
         data={author.picture.responsiveImage}
-        className="dark:boder-white mr-2 aspect-square !w-16 !max-w-16 rounded-full border-2 border-midnight"
+        className="dark:boder-white mr-2 aspect-square w-16! max-w-16! rounded-full border-2 border-midnight"
         // style={{ width: "50px", height: "50px" }}
         pictureClassName="object-cover"
         // placeholderClassName="w-1 rounded-full"

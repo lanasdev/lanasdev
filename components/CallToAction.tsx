@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 const CallToAction = ({ locale = "en" }: { locale: Locale }) => {
   return (
-    <section className="px-8 -mx-8 md:-mx-16 md:px-16 from-amber-400 to-amber-500 bg-gradient-to-b pb-24 relative flex flex-col pt-48 md:flex-row md:items-start md:justify-between">
+    <section className="px-8 -mx-8 md:-mx-16 md:px-16 from-amber-400 to-amber-500 bg-linear-to-b pb-24 relative flex flex-col pt-48 md:flex-row md:items-start md:justify-between">
       {/* px-8 md:px-16 pb-48 */}
       <div className="flex-1">
         <h4 className=" text-accent dark:text-gray-400">

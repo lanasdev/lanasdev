@@ -49,7 +49,7 @@ export default function Contact() {
             weitergeholfen werden kann.
           </p>
           <aside className="mt-10 pb-16 ">
-            <div className="*:flex *:items-center *:gap-4 *:py-2 hover:*:underline">
+            <div className="*:flex *:items-center *:gap-4 *:py-2 *:hover:underline">
               <Link href={`mailto:hey@lanas.dev`}>
                 <EnvelopeSimple className="h-7 w-6" aria-hidden="true" /> Email:
                 hey@lanas.dev
@@ -71,10 +71,10 @@ export default function Contact() {
         <form
           // @ts-ignore
           action={submitForm}
-          className="max-w-screen-md pt-16 sm:flex-[2] sm:pl-8 sm:pt-0 lg:px-16"
+          className="max-w-(--breakpoint-md) pt-16 sm:flex-2 sm:pl-8 sm:pt-0 lg:px-16"
         >
           <div className="flex flex-col gap-4 md:flex-row">
-            <fieldset className=" flex flex-grow flex-col">
+            <fieldset className=" flex grow flex-col">
               <Label htmlFor="name" className="pb-1">
                 Name:
               </Label>
@@ -88,7 +88,7 @@ export default function Contact() {
                 placeholder="Matthias"
               />
             </fieldset>
-            <fieldset className="flex flex-grow flex-col">
+            <fieldset className="flex grow flex-col">
               <Label htmlFor="email" className="pb-1">
                 Email:
               </Label>

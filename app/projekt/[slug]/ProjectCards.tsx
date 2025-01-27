@@ -37,7 +37,7 @@ export default function ProjectCards({
   return (
     <div className=" flex flex-col  pt-12 md:mr-8">
       <h3 className="pb-8 text-3xl font-semibold">Weitere Projekte</h3>
-      <div className="flex flex-shrink-0 snap-x space-x-4 overflow-x-auto py-4">
+      <div className="flex shrink-0 snap-x space-x-4 overflow-x-auto py-4">
         {projects.map((p: any) => (
           <MiniProjectCard project={p} key={p.slug} />
         ))}
