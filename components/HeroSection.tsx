@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import HammerEmoji from "@/public/hammer-emoji.png";
 import { Button } from "@/components/ui/button";
 import Balancer from "react-wrap-balancer";
 import SectionContainer from "@/app/SectionContainer";
@@ -9,19 +8,11 @@ import AvailableBanner from "./AvailableBanner";
 
 export default function HeroSection() {
   return (
-    <SectionContainer className="pt-20">
-      <AvailableBanner />
-
-      <h1 className="pt-4 text-2xl font-bold sm:max-w-2xl sm:text-4xl sm:font-semibold md:text-5xl xl:max-w-3xl xl:leading-tight">
-        <Balancer>Schnelle Websites für Ihr Photovoltaikunternehmen</Balancer>
+    <SectionContainer className="flex flex-col items-center justify-center gap-8 pt-20">
+      <h1 className="text-4xl font-bold">
+        Fetzige Onlineshops als Abo, die begeistern
       </h1>
-      <h2 className="text-md max-w-2xl pb-4 pt-6 font-medium leading-8 text-accent-foreground sm:text-xl">
-        <Balancer>
-          Lanas ist eine Webagentur, die sich auf die Erstellung von
-          Landing&nbsp;Pages und kleinen Shops in der Solarbranche spezialisiert
-          hat.
-        </Balancer>
-      </h2>
+      <h2 className="text-xl">Shopify ist unsere Spielwiese</h2>
     </SectionContainer>
   );
 }

@@ -1,28 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import type { Metadata } from "next";
 
-import { performRequest } from "@/lib/datocms";
-import { gql } from "@/lib/utils";
-
-import {
-  Image as DatoImage,
-  toNextMetadata,
-  ResponsiveImageType,
-} from "react-datocms";
-import Projectgrid from "./Projectgrid";
-import Bloglist from "../components/Bloglist";
 import HeroSection from "@/components/HeroSection";
-import ServiceSection from "@/components/home/ServiceSection";
-import Testimonial from "@/components/home/Testimonial";
-import AboutSection from "@/components/home/AboutSection";
-import TechStack from "@/components/home/TechStack";
-import SectionContainer from "./SectionContainer";
 import Contact from "@/components/Contact";
 import StepsSection from "@/components/home/StepsSection";
-
-export const revalidate = 300; // 5 minutes
 
 export const metadata: Metadata = {
   alternates: {
@@ -30,95 +12,12 @@ export const metadata: Metadata = {
   },
 };
 
-const PAGE_CONTENT_QUERY = gql`
-  query getHome {
-    allProjects(first: 6) {
-      title
-      description
-      slug
-      classname
-      position
-      image {
-        responsiveImage(imgixParams: { auto: format, ar: "3:1" }) {
-          ...responsiveImageFragment
-        }
-      }
-      clientname
-    }
-    allPosts(first: 6) {
-      title
-      slug
-      excerpt
-      createdAt
-      coverImage {
-        responsiveImage(imgixParams: { auto: format }) {
-          ...responsiveImageFragment
-        }
-      }
-      author {
-        name
-        picture {
-          responsiveImage {
-            ...responsiveImageFragment
-          }
-        }
-      }
-    }
-    home {
-      titleAbout
-      textAbout {
-        blocks
-        links
-        value
-      }
-      imageAbout {
-        responsiveImage(imgixParams: { auto: format }) {
-          ...responsiveImageFragment
-        }
-      }
-      titleTechstack
-      logosTechstack {
-        responsiveImage(imgixParams: { auto: format, ar: "1:1" }) {
-          ...responsiveImageFragment
-        }
-      }
-    }
-  }
-
-  fragment responsiveImageFragment on ResponsiveImage {
-    srcSet
-    webpSrcSet
-    sizes
-    src
-    width
-    height
-    aspectRatio
-    alt
-    title
-    base64
-  }
-`;
-
 export default async function Home() {
-  let { data } = await performRequest({
-    query: PAGE_CONTENT_QUERY,
-    variables: {},
-    includeDrafts: false,
-  });
-
-  const { allProjects, allPosts, home } = data;
-
   return (
     <main className="min-h-screen">
       <HeroSection />
-      <Projectgrid allProjects={allProjects} />
-      <ServiceSection />
-      {/* <Testimonial /> */}
-      {/* <StepsSection /> */}
-      <Bloglist allPosts={allPosts} />
-      <AboutSection aboutData={home} />
-      <TechStack techData={home} />
-      <Contact />
+      {/* <StepsSection />
+      <Contact /> */}
       {/* <pre className="max-w-xl">{JSON.stringify(data, null, 2)}</pre> */}
     </main>
   );

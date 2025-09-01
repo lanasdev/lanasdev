@@ -5,7 +5,6 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { cn } from "@/lib/utils";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import NavbarNew from "./NavbarNew";
 
 const generalsans = LocalFont({
   src: "../public/fonts/GeneralSans-Variable.ttf",
@@ -46,7 +45,6 @@ export default function RootLayout({
           "min-h-screen antialiased selection:bg-cyan-300",
         )}
       >
-        {/* <NavbarNew /> */}
         <Navbar />
         {children}
         <Footer />

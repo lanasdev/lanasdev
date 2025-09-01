@@ -1,25 +1,6 @@
 import React from "react";
 import SectionContainer from "../SectionContainer";
 import type { Metadata } from "next";
-import { gql } from "@/lib/utils";
-
-import { StructuredText } from "react-datocms";
-import { performRequest } from "@/lib/datocms";
-
-export const revalidate = 604800; // once a week
-
-const IMPRESSUM_QUERY = gql`
-  query ImpressumQuery {
-    impressum {
-      title
-      content {
-        blocks
-        links
-        value
-      }
-    }
-  }
-`;
 
 export const metadata: Metadata = {
   title: "Impressum",
@@ -27,21 +8,24 @@ export const metadata: Metadata = {
 };
 
 const ContactPage = async () => {
-  let { data } = await performRequest({
-    query: IMPRESSUM_QUERY,
-    variables: {},
-    includeDrafts: false,
-  });
-
-  const impressum = data?.impressum;
-
   return (
-    <SectionContainer className="pb-48 pt-24">
-      <h1 className="pb-8 text-3xl font-semibold">
-        {impressum.title ?? "Impressum"}
-      </h1>
+    <SectionContainer className="pt-24 pb-48">
+      <h1 className="pb-8 text-3xl font-semibold">{"Impressum"}</h1>
       <article className="prose">
-        <StructuredText data={impressum.content} />
+        Dies ist ein tolles Impressum. Hier steht alles wichtige drin.
+        <br />
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus,
+        expedita delectus. Impedit, maxime quam, aspernatur quidem ratione
+        facere animi molestias, alias illo tempore reprehenderit dignissimos
+        laudantium ea? Dolor iure architecto possimus error exercitationem
+        perspiciatis enim, laudantium voluptatibus labore, animi accusantium,
+        consectetur cupiditate. Quisquam non dolorum deserunt dolores
+        reprehenderit illum eveniet quam distinctio perspiciatis inventore sed,
+        iste aperiam alias neque magnam, laboriosam dolor ad soluta esse
+        molestiae accusantium, est quia minus? Enim, ipsum reprehenderit quas,
+        suscipit tempore distinctio magnam assumenda eos harum inventore fugit
+        perspiciatis perferendis ea quibusdam delectus eum ullam praesentium
+        tempora est optio doloribus nihil eveniet cum. Corporis, facilis.
       </article>
     </SectionContainer>
   );
