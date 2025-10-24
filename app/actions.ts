@@ -16,7 +16,7 @@ const baseUrl = process.env.VERCEL_URL
 
 const schema = z.object({
   name: z.string().min(1).max(64),
-  email: z.string().email(),
+  email: z.email(),
   message: z.string().min(1).max(1000),
 });
 
