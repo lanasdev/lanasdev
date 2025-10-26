@@ -65,6 +65,9 @@ const PAGE_CONTENT_QUERY = gql`
       }
     }
     home {
+      title
+      subheading
+      heroinfo
       titleAbout
       textAbout {
         blocks
@@ -110,7 +113,7 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen">
-      <HeroSection />
+      <HeroSection heroData={home} />
       <Projectgrid allProjects={allProjects} />
       <ServiceSection />
       {/* <Testimonial /> */}

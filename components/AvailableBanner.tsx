@@ -2,8 +2,9 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { badgeVariants } from "@/components/ui/badge";
+import Balancer from "react-wrap-balancer";
 
-const AvailableBanner = () => {
+const AvailableBanner = ({ heroInfo }: { heroInfo: string }) => {
   return (
     <Link
       href="/#kontakt"
@@ -23,7 +24,7 @@ const AvailableBanner = () => {
           <circle cx="4" cy="4" r="3" />
         </svg>
       </span>
-      Jetzt verfügbar für neue Projekte
+      <Balancer>{heroInfo}</Balancer>
     </Link>
   );
 };

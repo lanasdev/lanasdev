@@ -3,18 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Button, buttonVariants } from "@/components/ui/button";
 import Icon from "@mdi/react";
-import { mdiMenu } from "@mdi/js";
-
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { mdiMenu, mdiClose } from "@mdi/js";
+import { useState } from "react";
 
 const NavItems = [
   ["Home", "/", "/"],
@@ -27,92 +18,110 @@ const Navbar = () => {
   const pathname = usePathname();
   const match = pathname.match(/^\/[^\/]+/);
   const firstPathname = match ? match[0] : null;
-  // const aClass =
-  //   "rounded-lg px-3 py-2 text-gray-700 font-medium hover:bg-gray-100 hover:text-gray-900 ";
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="flex w-full items-center justify-between gap-4 px-6 py-2 pt-8 sm:px-8 md:px-16">
-      <Link href="/" className="text-xl font-semibold">
-        Lanas
-      </Link>
-      <div className="" role="navigation" aria-label="Main menu">
-        <div className="flex gap-4 md:hidden">
-          <Sheet>
-            <SheetTrigger aria-label="Hamburger menu">
-              <Icon path={mdiMenu} size={1.5} />
-            </SheetTrigger>
-            <SheetContent className="h-full">
-              <SheetHeader className="pt-2 text-left">
-                <SheetTitle>
-                  <Link href="/" className="text-xl font-semibold">
-                    Lanas Webdesign
-                  </Link>
-                </SheetTitle>
-                <SheetDescription>
-                  <p className="text-sm text-accent-foreground">
-                    Lanas ist eine Webagentur, die sich auf die Erstellung von
-                    Landing Pages und kleinen Shops in der Solarbranche
-                    spezialisiert hat.
-                  </p>
-                </SheetDescription>
-              </SheetHeader>
-              <div className="flex flex-col justify-between gap-8">
-                <ul className="flex flex-col items-start gap-y-4 pt-8">
-                  {NavItems.map(([title, url, realUrl]) => (
-                    <li key={title}>
-                      <Link
-                        href={url}
-                        className={cn(
-                          buttonVariants({ variant: "ghost" }),
-                          "rounded-lg py-2 pr-4 text-foreground transition-all hover:underline hover:underline-offset-2",
-                          firstPathname == realUrl ? " font-bold" : "",
-                        )}
-                      >
-                        {title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-                <ContactButton />
-              </div>
-            </SheetContent>
-          </Sheet>
-          <ContactButton />
-        </div>
-        <ul className="hidden md:flex md:space-x-4 ">
-          {NavItems.map(([title, url, realUrl]) => (
-            <li key={title}>
+    <div className="sticky top-0 z-50 flex w-full justify-center px-4 pt-6 sm:px-6 md:px-8 md:w-auto md:justify-center">
+      <nav
+        className={cn(
+          "w-full max-w-6xl backdrop-blur-3xl md:w-auto",
+          "transition-all duration-300 ease-in-out",
+          mobileMenuOpen ? "rounded-3xl bg-stone-100/20 pb-4" : "rounded-[104px] bg-stone-100/20"
+        )}
+      >
+        {/* Desktop Navigation */}
+        <div className="hidden items-center justify-center gap-24 px-12 py-3 md:inline-flex">
+          <Link href="/" className="text-xl font-bold text-stone-950">
+            Lanas
+          </Link>
+
+          <div className="flex items-center justify-end gap-6">
+            {NavItems.map(([title, url, realUrl]) => (
               <Link
+                key={title}
                 href={url}
                 className={cn(
-                  buttonVariants({ variant: "ghost" }),
-                  " border-collapse rounded-none border-b-2 border-hidden px-4 py-2 text-foreground transition-all duration-75 hover:border-b-2 hover:border-solid hover:border-primary hover:bg-inherit  ",
-                  firstPathname == realUrl
-                    ? "border-b-2 border-solid border-primary font-semibold"
-                    : "",
+                  "text-base font-medium text-black transition-all duration-200",
+                  "hover:opacity-70",
+                  firstPathname === realUrl ? "font-bold" : ""
                 )}
               >
                 {title}
               </Link>
-            </li>
-          ))}
-          <li>
+            ))}
             <ContactButton />
-          </li>
-        </ul>
-      </div>
-    </nav>
+          </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        <div className="md:hidden">
+          <div className="flex items-center justify-between px-6 py-4">
+            <Link href="/" className="text-xl font-bold text-stone-950">
+              Lanas
+            </Link>
+
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="rounded-lg p-2 text-stone-950 transition-all hover:opacity-70"
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileMenuOpen}
+            >
+              <Icon
+                path={mobileMenuOpen ? mdiClose : mdiMenu}
+                size={1.2}
+                className="transition-transform duration-200"
+              />
+            </button>
+          </div>
+
+          {/* Accordion Menu */}
+          <div
+            className={cn(
+              "overflow-hidden transition-all duration-300 ease-in-out",
+              mobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+            )}
+          >
+            <div className="border-t border-stone-950/10">
+              <ul className="flex flex-col gap-1 px-6 pt-4">
+                {NavItems.map(([title, url, realUrl]) => (
+                  <li key={title}>
+                    <Link
+                      href={url}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={cn(
+                        "block w-full rounded-lg px-4 py-3 text-base font-medium text-black transition-all",
+                        "hover:bg-stone-950/5",
+                        firstPathname === realUrl ? "font-bold bg-stone-950/5" : ""
+                      )}
+                    >
+                      {title}
+                    </Link>
+                  </li>
+                ))}
+                <li className="pt-2">
+                  <ContactButton mobile onClick={() => setMobileMenuOpen(false)} />
+                </li>‰
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
   );
 };
 
 export default Navbar;
 
-const ContactButton = () => (
+const ContactButton = ({ mobile = false, onClick }: { mobile?: boolean; onClick?: () => void }) => (
   <Link
     href="/#kontakt"
+    onClick={onClick}
     className={cn(
-      buttonVariants({ variant: "default" }),
-      "rounded-md bg-foreground px-6 py-2 text-background transition-colors hover:bg-primary/80",
+      "inline-flex items-center justify-center gap-2 rounded-lg bg-stone-950 px-4 py-1.5 backdrop-blur-[5.25px] transition-all",
+      "text-base font-medium text-white",
+      "hover:bg-stone-800",
+      mobile ? "w-full" : ""
     )}
   >
     Kontakt
