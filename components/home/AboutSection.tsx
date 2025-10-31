@@ -1,21 +1,14 @@
 import SectionContainer from "@/app/SectionContainer";
 import Link from "next/link";
-import {
-	Image as DatoImage,
-	ResponsiveImageType,
-	StructuredText,
-	renderNodeRule,
-} from "react-datocms";
-
-import { isLink } from "datocms-structured-text-utils";
+import { SanityImage } from "@/lib/sanity-image";
+import { SimplePortableText } from "@/components/PortableTextRenderer";
+import type { SanityImageObject } from "@/lib/sanity";
 
 type AboutSectionProps = {
 	aboutData: {
 		titleAbout: string;
 		textAbout: any;
-		imageAbout: {
-			responsiveImage: ResponsiveImageType;
-		};
+		imageAbout: SanityImageObject;
 	};
 };
 
@@ -29,29 +22,15 @@ const AboutSection = ({
 					<h3 className="pb-8 text-3xl font-semibold">
 						{titleAbout ?? "Über mich"}
 					</h3>
-					<DatoImage
-						data={imageAbout.responsiveImage}
-						className="mb-6 aspect-square rounded-xl sm:max-w-12 md:hidden"
-						objectFit="cover"
+					<SanityImage
+						image={imageAbout}
+						alt={titleAbout}
+						width={384}
+						height={384}
+						className="mb-6 aspect-square rounded-xl sm:max-w-12 md:hidden object-cover"
 					/>
 					<article className="leading-8 text-balance">
-						{/* Render Links as <Link> Tags */}
-						<StructuredText
-							data={textAbout}
-							customNodeRules={[
-								renderNodeRule(isLink, ({ node, children, key }) => {
-									return (
-										<Link
-											key={key}
-											href={node.url}
-											className="text-cyan-700 transition-colors hover:text-accent-foreground hover:underline"
-										>
-											{children}
-										</Link>
-									);
-								}),
-							]}
-						/>
+						<SimplePortableText value={textAbout} />
 						<br />
 						<Link
 							href="/ueber"

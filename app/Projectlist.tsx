@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import Link from "next/link";
-import { Image as DatoImage } from "react-datocms";
+import { getSanityImageUrl } from "@/lib/sanity-image";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
@@ -41,8 +41,7 @@ export default function Projectlist({ allProjects }) {
               <article className="shrink-0 group overflow-hidden">
                 <figure className="overflow-auto relative rounded bg-indigo-700 object-cover border-2 transition-shadow duration-200 group-hover:shadow-medium ">
                   <Image
-                    src={p.image.responsiveImage.src}
-                    // sizes={p.image.responsiveImage.sizes}
+                    src={getSanityImageUrl(p.image, { width: 800, height: 600 })}
                     alt={`Project: ${p.title}`}
                     className="aspect-3/4 max-h-[50ch] md:max-h-full md:aspect-video h-fit w-fit object-cover "
                     width={800}

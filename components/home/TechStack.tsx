@@ -1,12 +1,11 @@
 import SectionContainer from "@/app/SectionContainer";
-import { Image as DatoImage, ResponsiveImageType } from "react-datocms";
+import { SanityImage } from "@/lib/sanity-image";
+import type { SanityImageObject } from "@/lib/sanity";
 
 type TechStackProps = {
   techData: {
     titleTechstack: string;
-    logosTechstack: {
-      responsiveImage: ResponsiveImageType;
-    }[];
+    logosTechstack: SanityImageObject[];
   };
 };
 
@@ -20,7 +19,7 @@ const TechStack = ({
       </h3>
       <div className="grid auto-cols-auto grid-cols-4  gap-8 md:max-w-(--breakpoint-sm) lg:max-w-(--breakpoint-md)">
         {logosTechstack.map((logo, index) => (
-          <TechIcon key={index} responsiveImage={logo.responsiveImage} />
+          <TechIcon key={index} image={logo} />
         ))}
       </div>
       {/* <pre className="pt-12">{JSON.stringify(logosTechstack, null, 2)}</pre> */}
@@ -31,14 +30,17 @@ const TechStack = ({
 export default TechStack;
 
 const TechIcon = ({
-  responsiveImage,
+  image,
 }: {
-  responsiveImage: ResponsiveImageType;
+  image: SanityImageObject;
 }) => {
   return (
-    <DatoImage
+    <SanityImage
+      image={image}
+      alt="Technology logo"
+      width={128}
+      height={128}
       className="aspect-square transform-gpu object-contain grayscale filter transition-transform hover:grayscale-0 hover:duration-300 hover:ease-in-out "
-      data={responsiveImage}
     />
   );
 };

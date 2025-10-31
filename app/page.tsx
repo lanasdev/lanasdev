@@ -3,14 +3,8 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import type { Metadata } from "next";
 
-import { performRequest } from "@/lib/datocms";
-import { gql } from "@/lib/utils";
+import { getHomepageData } from "@/lib/sanity";
 
-import {
-  Image as DatoImage,
-  toNextMetadata,
-  ResponsiveImageType,
-} from "react-datocms";
 import Projectgrid from "./Projectgrid";
 import Bloglist from "../components/Bloglist";
 import HeroSection from "@/components/HeroSection";
@@ -30,86 +24,10 @@ export const metadata: Metadata = {
   },
 };
 
-const PAGE_CONTENT_QUERY = gql`
-  query getHome {
-    allProjects(first: 6) {
-      title
-      description
-      slug
-      classname
-      position
-      image {
-        responsiveImage(imgixParams: { auto: format, ar: "3:1" }) {
-          ...responsiveImageFragment
-        }
-      }
-      clientname
-    }
-    allPosts(first: 6) {
-      title
-      slug
-      excerpt
-      createdAt
-      coverImage {
-        responsiveImage(imgixParams: { auto: format }) {
-          ...responsiveImageFragment
-        }
-      }
-      author {
-        name
-        picture {
-          responsiveImage {
-            ...responsiveImageFragment
-          }
-        }
-      }
-    }
-    home {
-      title
-      subheading
-      heroinfo
-      titleAbout
-      textAbout {
-        blocks
-        links
-        value
-      }
-      imageAbout {
-        responsiveImage(imgixParams: { auto: format }) {
-          ...responsiveImageFragment
-        }
-      }
-      titleTechstack
-      logosTechstack {
-        responsiveImage(imgixParams: { auto: format, ar: "1:1" }) {
-          ...responsiveImageFragment
-        }
-      }
-    }
-  }
-
-  fragment responsiveImageFragment on ResponsiveImage {
-    srcSet
-    webpSrcSet
-    sizes
-    src
-    width
-    height
-    aspectRatio
-    alt
-    title
-    base64
-  }
-`;
-
 export default async function Home() {
-  let { data } = await performRequest({
-    query: PAGE_CONTENT_QUERY,
-    variables: {},
-    includeDrafts: false,
-  });
+  const data = await getHomepageData();
 
-  const { allProjects, allPosts, home } = data;
+  const { projects: allProjects, posts: allPosts, home } = data;
 
   return (
     <main className="min-h-screen">

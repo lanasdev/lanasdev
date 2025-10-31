@@ -1,15 +1,8 @@
 import SectionContainer from "@/app/SectionContainer";
 import CalContact from "@/components/CallToAction/CalContact";
-// // import CustomStructuredText from "@/components/CustomStructuredText";
-import { performRequest } from "@/lib/datocms";
-import { gql } from "@/lib/utils";
+import { getPostBySlug, getAllPostSlugs, getOtherPosts } from "@/lib/sanity";
+import { generatePostMetadata } from "@/lib/sanity-metadata";
 import Link from "next/link";
-import {
-  Image as DatoImage,
-  ResponsiveImageType,
-  StructuredText,
-  toNextMetadata,
-} from "react-datocms";
 import BlogAuthor from "./BlogAuthor";
 import BlogHeader from "./BlogHeader";
 import { Metadata, ResolvingMetadata } from "next";
@@ -17,129 +10,18 @@ import { notFound } from "next/navigation";
 import Bloglist from "@/components/Bloglist";
 import OtherPosts from "./OtherPosts";
 import ProgressBar from "@/components/ProgressBar";
-import ClickableImage from "../../../components/ClickableImage";
 import Contact from "@/components/Contact";
-
-type RecordImageType = {
-  responsiveImage: ResponsiveImageType;
-};
+import { PortableTextRenderer } from "@/components/PortableTextRenderer";
+import { SanityImage } from "@/lib/sanity-image";
 
 export const revalidate = 300; // 5 minutes
 
 export async function generateStaticParams() {
-  const query = gql`
-    query getPostsSlugs {
-      allPosts {
-        slug
-      }
-    }
-  `;
-  const { data } = await performRequest({ query });
+  const posts = await getAllPostSlugs();
 
-  const allPosts = data.allPosts;
-
-  return allPosts.map((post: any) => ({
-    params: {
-      slug: post.slug,
-    },
+  return posts.map((post) => ({
+    slug: post.slug,
   }));
-}
-
-const PAGE_CONTENT_QUERY = gql`
-  query getPost($eq: String) {
-    allPosts(filter: { slug: { neq: $eq } }) {
-      title
-      slug
-      excerpt
-      createdAt
-      coverImage {
-        responsiveImage(imgixParams: { auto: format }) {
-          ...responsiveImageFragment
-        }
-      }
-      author {
-        name
-      }
-    }
-    _site {
-      favicon: faviconMetaTags {
-        attributes
-        content
-        tag
-      }
-    }
-    post(filter: { slug: { eq: $eq } }) {
-      title
-      slug
-      date
-      excerpt
-      createdAt
-      content {
-        value
-      }
-      coverImage {
-        responsiveImage(imgixParams: { auto: format }) {
-          ...responsiveImageFragment
-        }
-      }
-      author {
-        name
-        role
-        picture {
-          responsiveImage(
-            imgixParams: { auto: format, w: 150, h: 150, ar: "1:1" }
-          ) {
-            ...responsiveImageFragment
-          }
-        }
-      }
-      content {
-        value
-        links
-        blocks {
-          __typename
-          ... on ImageRecord {
-            id
-            image {
-              responsiveImage(imgixParams: { auto: format }) {
-                ...responsiveImageFragment
-              }
-            }
-          }
-        }
-      }
-      seo {
-        title
-        description
-        noIndex
-        twitterCard
-      }
-      seoFallback: _seoMetaTags {
-        attributes
-        content
-        tag
-      }
-    }
-  }
-  fragment responsiveImageFragment on ResponsiveImage {
-    srcSet
-    webpSrcSet
-    sizes
-    src
-    width
-    height
-    aspectRatio
-    alt
-    title
-    base64
-  }
-`;
-
-function getPageRequest({ params }: { params: { slug: string } }) {
-  return {
-    query: PAGE_CONTENT_QUERY,
-    variables: { eq: params.slug },
-  };
 }
 
 export default async function BlogPage(
@@ -148,46 +30,41 @@ export default async function BlogPage(
   }
 ) {
   const params = await props.params;
-  const query = PAGE_CONTENT_QUERY;
-  const variables = { eq: params.slug };
-  const { data } = await performRequest(
-    getPageRequest({ params: { slug: params.slug } }),
-  );
+  const post = await getPostBySlug(params.slug);
 
-  const p = data?.post;
+  if (!post) {
+    notFound();
+  }
+
+  const otherPosts = await getOtherPosts(params.slug);
+
+  const p = post;
 
   return (
     <>
       <div className="">
-        <BlogHeader title={p.title} date={p.date} author={p.author} />
-        <DatoImage
-          data={p.coverImage.responsiveImage}
-          className="mt-8 max-h-screen"
-          pictureClassName="object-cover"
-        />
-        <SectionContainer className="prose prose-stone mx-auto pt-32 prose-img:rounded-xl lg:max-w-[90ch]">
-          <StructuredText
-            data={p.content}
-            renderBlock={({ record }) => {
-              if (record.__typename === "ImageRecord") {
-                return (
-                  <ClickableImage
-                    data={(record.image as RecordImageType).responsiveImage}
-                  />
-                );
-              }
-              return null;
-            }}
+        <BlogHeader title={p.title} date={p.publishedAt} author={p.author} />
+        {p.mainImage && (
+          <SanityImage
+            image={p.mainImage}
+            alt={p.title}
+            width={1920}
+            height={1080}
+            className="mt-8 max-h-screen w-full object-cover"
+            priority
           />
+        )}
+        <SectionContainer className="prose prose-stone mx-auto pt-32 prose-img:rounded-xl lg:max-w-[90ch]">
+          <PortableTextRenderer value={p.body} />
           <ProgressBar />
         </SectionContainer>
 
         {/* <SectionContainer className="">
         <CalContact />
       </SectionContainer> */}
-        <OtherPosts allPosts={data.allPosts} />
+        <OtherPosts allPosts={otherPosts} />
         {/* <SectionContainer className="">
-        <pre className="max-w-xl pt-24">{JSON.stringify(data, null, 2)}</pre>
+        <pre className="max-w-xl pt-24">{JSON.stringify(post, null, 2)}</pre>
       </SectionContainer> */}
         <Contact />
       </div>
@@ -202,10 +79,14 @@ type MetadataProps = {
 
 export async function generateMetadata(props: MetadataProps, parent: ResolvingMetadata): Promise<Metadata> {
   const params = await props.params;
-  const response = await performRequest(
-    getPageRequest({ params: { slug: params.slug } }),
-  );
-  const p = response.data.post;
+  const post = await getPostBySlug(params.slug);
 
-  return toNextMetadata(p.seoFallback || []);
+  if (!post) {
+    return {};
+  }
+
+  return generatePostMetadata({
+    ...post,
+    slug: { current: params.slug },
+  });
 }

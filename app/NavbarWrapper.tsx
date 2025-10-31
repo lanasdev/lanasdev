@@ -6,24 +6,25 @@ import { buttonVariants } from "@/components/ui/button";
 import Icon from "@mdi/react";
 import { mdiMenu } from "@mdi/js";
 
-import { gql } from "@/lib/utils";
-import { performRequest } from "@/lib/datocms";
+import { client } from "@/sanity/lib/client";
 
-// fetch last 3 posts and projects from dato
-const NAVBAR_QUERY = gql`
-  query getNavbar {
-    allPosts(first: 3) {
-      title
-      slug
+// fetch last 3 posts and projects from Sanity
+async function getNavbarData() {
+  const query = `{
+    "posts": *[_type == "post"] | order(publishedAt desc) [0...3] {
+      title,
+      "slug": slug.current,
       excerpt
-    }
-    allProjects(first: 3) {
-      title
-      slug
+    },
+    "projects": *[_type == "project"] | order(position asc, _createdAt desc) [0...3] {
+      title,
+      "slug": slug.current,
       description
     }
-  }
-`;
+  }`;
+
+  return await client.fetch(query);
+}
 
 const NavItems = [
   {
@@ -49,10 +50,8 @@ const NavItems = [
 ];
 
 export default async function NavbarNew() {
-  // fetch data from dato
-  const { allPosts, allProjects } = await performRequest({
-    query: NAVBAR_QUERY,
-  });
+  // fetch data from Sanity
+  const { posts: allPosts, projects: allProjects } = await getNavbarData();
 
   return (
     <nav className="flex w-full items-center justify-between gap-4 px-6 py-2 pt-8 sm:px-8 md:px-16">

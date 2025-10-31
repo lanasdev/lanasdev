@@ -1,25 +1,29 @@
 import React from "react";
-import { Image, ResponsiveImageType } from "react-datocms";
+import { SanityImage } from "@/lib/sanity-image";
+import type { SanityImageObject } from "@/lib/sanity";
 import clsx from "clsx";
 
 interface CustomImageProps {
-  responsiveImage: ResponsiveImageType;
+  image: SanityImageObject;
+  alt?: string;
   className?: string;
   otherProps?: React.HTMLAttributes<HTMLImageElement>;
 }
 
 const CustomImage: React.FC<CustomImageProps> = ({
-  responsiveImage,
+  image,
+  alt,
   className,
   ...otherProps
 }) => {
   return (
-    // eslint-disable-next-line jsx-a11y/alt-text
-    (<Image
-      data={responsiveImage}
+    <SanityImage
+      image={image}
+      alt={alt || "Image"}
+      width={1200}
+      height={800}
       className={clsx(className, "aspect-auto rounded-md")}
-      {...otherProps}
-    />)
+    />
   );
 };
 

@@ -1,25 +1,19 @@
 import Link from "next/link";
-import {
-  Image as DatoImage,
-  Metadata,
-  ResponsiveImageType,
-} from "react-datocms";
-
-type RecordImageType = {
-  responsiveImage: ResponsiveImageType;
-};
+import { SanityImage } from "@/lib/sanity-image";
 
 export function MiniProjectCard({ project }: { project: any }) {
   return (
     <Link
-      href={`/projekt/${project.slug}`}
-      key={project.slug}
+      href={`/projekt/${project.slug.current}`}
+      key={project.slug.current}
       className="group max-w-xs shrink-0 snap-center"
     >
-      <DatoImage
-        data={project.image.responsiveImage}
-        className="aspect-golden h-48 rounded-xl transition-all duration-300 ease-in-out group-hover:scale-103 group-hover:opacity-80"
-        objectFit="cover"
+      <SanityImage
+        image={project.image}
+        alt={project.title}
+        width={384}
+        height={288}
+        className="aspect-golden h-48 rounded-xl transition-all duration-300 ease-in-out group-hover:scale-103 group-hover:opacity-80 object-cover"
       />
       <p className="line-clamp-1 max-w-xs pt-4">{project.description}</p>
       <h4 className="text-xl font-semibold">{project.title}</h4>

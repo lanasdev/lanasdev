@@ -2,7 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { Image as DatoImage, ResponsiveImageType } from "react-datocms";
+import { SanityImage } from "@/lib/sanity-image";
+import type { SanityImageObject } from "@/lib/sanity";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
@@ -17,10 +18,7 @@ type ProjectType = {
   position: number;
   description: string;
   title: string;
-  image: any;
-  // image: {
-  //   responsiveImage: ResponsiveImageType;
-  // };
+  image: SanityImageObject;
 };
 
 export default function Projectgrid({
@@ -42,14 +40,13 @@ export default function Projectgrid({
             key={project.position}
             className="group relative"
           >
-            <DatoImage
-              data={project?.image?.responsiveImage}
+            <SanityImage
+              image={project.image}
+              alt={project.title}
+              width={640}
+              height={480}
               priority={index === 0 ? true : false}
-              // layout="fill"
-              objectFit="cover"
-              objectPosition="50% 0%"
-              className="aspect-golden-vertical sm:aspect-4/3 rounded-xl border-2 border-muted-foreground transition-all duration-150 ease-in-out group-hover:scale-103 group-hover:border-foreground group-hover:opacity-80 min-w-full"
-            // pictureClassName="object-cover object-top"
+              className="aspect-golden-vertical sm:aspect-4/3 rounded-xl border-2 border-muted-foreground transition-all duration-150 ease-in-out group-hover:scale-103 group-hover:border-foreground group-hover:opacity-80 min-w-full object-cover object-top"
             />
             <p className="line-clamp-2 pt-6 uppercase text-sm sm:text-md">{project.description}</p>
             <h4 className="text-xl font-semibold group-hover:underline group-hover:decoration-muted-foreground ">

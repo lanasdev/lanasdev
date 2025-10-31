@@ -19,12 +19,20 @@ export const postType = defineType({
       },
     }),
     defineField({
+      name: 'excerpt',
+      title: 'Excerpt',
+      type: 'text',
+      rows: 3,
+      description: 'Short description of the post for previews',
+    }),
+    defineField({
       name: 'author',
       type: 'reference',
       to: {type: 'author'},
     }),
     defineField({
       name: 'mainImage',
+      title: 'Cover Image',
       type: 'image',
       options: {
         hotspot: true,
@@ -49,6 +57,35 @@ export const postType = defineType({
     defineField({
       name: 'body',
       type: 'blockContent',
+    }),
+    defineField({
+      name: 'seo',
+      title: 'SEO',
+      type: 'object',
+      fields: [
+        {
+          name: 'title',
+          title: 'SEO Title',
+          type: 'string',
+        },
+        {
+          name: 'description',
+          title: 'SEO Description',
+          type: 'text',
+          rows: 3,
+        },
+        {
+          name: 'image',
+          title: 'OG Image',
+          type: 'image',
+        },
+        {
+          name: 'noIndex',
+          title: 'No Index',
+          type: 'boolean',
+          description: 'Prevent search engines from indexing this page',
+        },
+      ],
     }),
   ],
   preview: {

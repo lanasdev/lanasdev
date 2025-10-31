@@ -1,204 +1,38 @@
 import SectionContainer from "@/app/SectionContainer";
 import CalContact from "@/components/CallToAction/CalContact";
-// import CustomStructuredText from "@/components/CustomStructuredText";
-import { performRequest } from "@/lib/datocms";
-import { gql } from "@/lib/utils";
-import { ResolvingMetadata } from "next";
+import { getProjectBySlug, getAllProjectSlugs } from "@/lib/sanity";
+import { generateProjectMetadata } from "@/lib/sanity-metadata";
+import { ResolvingMetadata, Metadata } from "next";
 import Link from "next/link";
-import {
-  Image as DatoImage,
-  Metadata,
-  ResponsiveImageType,
-  SRCImage,
-  StructuredText,
-  toNextMetadata,
-} from "react-datocms";
 import ProjectCards from "./ProjectCards";
 import Projectlist from "@/app/Projectlist";
 import Projectgrid from "@/app/Projectgrid";
 import Balancer from "react-wrap-balancer";
 import ProgressBar from "@/components/ProgressBar";
-import ClickableImage from "@/components/ClickableImage";
 import Contact from "@/components/Contact";
-
-type RecordImageType = {
-  responsiveImage: ResponsiveImageType;
-};
+import { PortableTextRenderer } from "@/components/PortableTextRenderer";
+import { SanityImage } from "@/lib/sanity-image";
+import { notFound } from "next/navigation";
 
 export const revalidate = 300; // 5 minutes
 
 export async function generateStaticParams() {
-  const query = gql`
-    query getProjectSlugs {
-      allProjects {
-        slug
-      }
-    }
-  `;
-  const { data } = await performRequest({ query });
+  const projects = await getAllProjectSlugs();
 
-  const allProjects = data.allProjects;
-
-  return allProjects.map((project: any) => ({
-    params: {
-      slug: project.slug,
-    },
+  return projects.map((project) => ({
+    slug: project.slug,
   }));
-}
-
-const PAGE_CONTENT_QUERY = gql`
-  query getProject($eq: String) {
-    _site {
-      favicon: faviconMetaTags {
-        attributes
-        content
-        tag
-      }
-    }
-    project(filter: { slug: { eq: $eq } }) {
-      title
-      slug
-      description
-      createdAt
-      clientname
-      liveurl
-      content {
-        value
-      }
-      image {
-        responsiveImage(imgixParams: { auto: format }) {
-          ...responsiveImageFragment
-        }
-      }
-      content {
-        value
-        links {
-          __typename
-          ... on ProjectRecord {
-            id
-            slug
-            title
-            description
-            color1 {
-              hex
-            }
-            color2 {
-              hex
-            }
-            gradientdirection
-          }
-          ... on PostRecord {
-            id
-            title
-            slug
-            excerpt
-            createdAt
-            author {
-              name
-            }
-          }
-          ... on TestimonialRecord {
-            id
-            name
-            slug
-            title
-            company
-            content
-            image {
-              responsiveImage(
-                imgixParams: {
-                  auto: format
-                  fit: crop
-                  w: 300
-                  h: 300
-                  ar: "1"
-                }
-              ) {
-                ...responsiveImageFragment
-              }
-            }
-          }
-        }
-        blocks {
-          __typename
-          ... on ImageRecord {
-            id
-            image {
-              responsiveImage(imgixParams: { auto: format }) {
-                ...responsiveImageFragment
-              }
-            }
-          }
-        }
-      }
-      video {
-        video {
-          streamingUrl
-          mp4Url
-          thumbnailUrl(format: png)
-          duration
-          framerate
-          muxPlaybackId
-          muxAssetId
-        }
-        title
-        smartTags
-        responsiveImage(imgixParams: { auto: format }) {
-          ...responsiveImageFragment
-        }
-      }
-      otherprojects {
-        title
-        slug
-        description
-        image {
-          responsiveImage(imgixParams: { auto: format }) {
-            ...responsiveImageFragment
-          }
-        }
-      }
-      seo {
-        title
-        description
-        noIndex
-        twitterCard
-      }
-      seoFallback: _seoMetaTags {
-        attributes
-        content
-        tag
-      }
-    }
-  }
-
-  fragment responsiveImageFragment on ResponsiveImage {
-    srcSet
-    webpSrcSet
-    sizes
-    src
-    width
-    height
-    aspectRatio
-    alt
-    title
-    base64
-  }
-`;
-
-function getPageRequest({ params }: { params: { slug: string } }) {
-  return {
-    query: PAGE_CONTENT_QUERY,
-    variables: { eq: params.slug },
-  };
 }
 
 export default async function Page(props: { params: Promise<{ slug: string }> }) {
   const params = await props.params;
-  const query = PAGE_CONTENT_QUERY;
-  const variables = { eq: params.slug };
-  const { data } = await performRequest({ query, variables });
+  const project = await getProjectBySlug(params.slug);
 
-  const p = data?.project;
+  if (!project) {
+    notFound();
+  }
+
+  const p = project;
 
   function formatDate(date: string) {
     const months = [
@@ -231,11 +65,16 @@ export default async function Page(props: { params: Promise<{ slug: string }> })
           <Balancer>{p.description}</Balancer>
         </p>
       </SectionContainer>
-      <DatoImage
-        data={p.image.responsiveImage}
-        className="mt-16"
-        pictureClassName="object-cover min-w-screen"
-      />
+      {p.image && (
+        <SanityImage
+          image={p.image}
+          alt={p.title}
+          width={1920}
+          aspectRatio="3:1"
+          className="mt-16 min-w-screen object-cover"
+          priority
+        />
+      )}
       <SectionContainer className="pt-8">
         <div className="flex justify-around gap-4">
           {p.clientname && (
@@ -249,12 +88,12 @@ export default async function Page(props: { params: Promise<{ slug: string }> })
             </div>
           )}
 
-          {p.createdAt && (
+          {p._createdAt && (
             <div className="">
               <p className="font-medium ">
                 Erstellt: {/* format date like this: "Sept 21" */}
                 <span className="inline-block font-normal">
-                  {p.createdAt ? formatDate(p.createdAt) : ""}
+                  {p._createdAt ? formatDate(p._createdAt) : ""}
                 </span>
               </p>
             </div>
@@ -276,53 +115,17 @@ export default async function Page(props: { params: Promise<{ slug: string }> })
         </div>
       </SectionContainer>
       <SectionContainer className="prose prose-stone mx-auto pt-32 prose-img:rounded-xl max-w-full break-words">
-        <StructuredText
-          data={p.content}
-          renderInlineRecord={({ record }) => {
-            switch (record.__typename) {
-              case "PostRecord":
-                return (
-                  <Link href={`/blog/${record.slug}`}>
-                    {(record as any).title || "Link to Post"}
-                  </Link>
-                );
-              case "ProjectRecord":
-                return (
-                  <Link href={`/project/${record.slug}`}>
-                    {(record.name as string) || "Project Name"}
-                  </Link>
-                );
-              default:
-                return <p>{JSON.stringify(record)}</p>;
-            }
-            return <p>{JSON.stringify(record)}</p>;
-          }}
-          renderBlock={({ record }) => {
-            switch (record.__typename) {
-              case "ImageRecord":
-                return (
-                  <ClickableImage
-                    data={(record.image as RecordImageType).responsiveImage}
-                  />
-                );
-              default:
-                // return <p>{JSON.stringify(record)}</p>;
-                return null;
-            }
-            return <p>{JSON.stringify(record)}</p>;
-          }}
-        />
-        {/* <CustomStructuredText data={p.content} /> */}
+        <PortableTextRenderer value={p.content} />
         <ProgressBar />
       </SectionContainer>
       {/* <CalContact /> */}
 
       <SectionContainer className="pt-8">
-        <ProjectCards projects={p.otherprojects} currentProjectSlug={p.slug} />
+        <ProjectCards projects={p.otherprojects || []} currentProjectSlug={p.slug.current} />
         {/* <Projectgrid allProjects={p.otherprojects} /> */}
       </SectionContainer>
       {/* <SectionContainer className="">
-        <pre className="max-w-xl pt-24">{JSON.stringify(data, null, 2)}</pre>
+        <pre className="max-w-xl pt-24">{JSON.stringify(project, null, 2)}</pre>
       </SectionContainer> */}
       <Contact />
     </div>
@@ -336,10 +139,14 @@ type MetadataProps = {
 
 export async function generateMetadata(props: MetadataProps, parent: ResolvingMetadata): Promise<Metadata> {
   const params = await props.params;
-  const response = await performRequest(
-    getPageRequest({ params: { slug: params.slug } }),
-  );
-  const p = response.data.project;
+  const project = await getProjectBySlug(params.slug);
 
-  return toNextMetadata(p.seoFallback || []);
+  if (!project) {
+    return {};
+  }
+
+  return generateProjectMetadata({
+    ...project,
+    slug: { current: params.slug },
+  });
 }

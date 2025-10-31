@@ -1,7 +1,6 @@
 import SectionContainer from "@/app/SectionContainer";
 import BlogAuthor from "./BlogAuthor";
 import Link from "next/link";
-import { ResponsiveImageType } from "react-datocms";
 import { Author } from "./BlogAuthor"; // Import the 'Author' type from the appropriate module
 import Balancer from "react-wrap-balancer";
 

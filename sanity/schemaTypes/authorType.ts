@@ -19,6 +19,12 @@ export const authorType = defineType({
       },
     }),
     defineField({
+      name: 'role',
+      title: 'Role',
+      type: 'string',
+      description: 'Job title or role of the author',
+    }),
+    defineField({
       name: 'image',
       type: 'image',
       options: {

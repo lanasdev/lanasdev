@@ -1,11 +1,5 @@
 import SectionContainer from "@/app/SectionContainer";
 import Link from "next/link";
-import {
-  Image as DatoImage,
-  ResponsiveImageType,
-  StructuredText,
-  renderNodeRule,
-} from "react-datocms";
 
 export default function StepsSection() {
   return (

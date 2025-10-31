@@ -2,7 +2,7 @@ import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import Link from "next/link";
 
-import { Image as DatoImage } from "react-datocms";
+import { SanityImage } from "@/lib/sanity-image";
 import SectionContainer from "@/app/SectionContainer";
 
 // List of all other posts with cover image, title, excerpt, author, date
@@ -29,10 +29,12 @@ export function MiniBlogCard({ post }: { post: any }) {
       key={post.slug}
       className="group max-w-xs shrink-0 snap-center"
     >
-      <DatoImage
-        data={post.coverImage.responsiveImage}
-        className="aspect-golden max-h-96 w-full rounded-xl transition-all duration-300 ease-in-out group-hover:scale-103 group-hover:opacity-80"
-        pictureClassName="object-cover"
+      <SanityImage
+        image={post.mainImage}
+        alt={post.title}
+        width={384}
+        height={288}
+        className="aspect-golden max-h-96 w-full rounded-xl transition-all duration-300 ease-in-out group-hover:scale-103 group-hover:opacity-80 object-cover"
       />
       <p className="line-clamp-1 max-w-xs pt-4">{post.excerpt}</p>
       <h4 className="text-xl font-semibold">{post.title}</h4>

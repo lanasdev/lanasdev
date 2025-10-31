@@ -1,25 +1,10 @@
 import React from "react";
 import SectionContainer from "../SectionContainer";
 import type { Metadata } from "next";
-import { gql } from "@/lib/utils";
-
-import { StructuredText } from "react-datocms";
-import { performRequest } from "@/lib/datocms";
+import { getImpressumPage } from "@/lib/sanity";
+import { PortableTextRenderer } from "@/components/PortableTextRenderer";
 
 export const revalidate = 604800; // once a week
-
-const IMPRESSUM_QUERY = gql`
-  query ImpressumQuery {
-    impressum {
-      title
-      content {
-        blocks
-        links
-        value
-      }
-    }
-  }
-`;
 
 export const metadata: Metadata = {
   title: "Impressum",
@@ -27,13 +12,16 @@ export const metadata: Metadata = {
 };
 
 const ContactPage = async () => {
-  let { data } = await performRequest({
-    query: IMPRESSUM_QUERY,
-    variables: {},
-    includeDrafts: false,
-  });
+  const impressum = await getImpressumPage();
 
-  const impressum = data?.impressum;
+  if (!impressum) {
+    return (
+      <SectionContainer className="pb-48 pt-24">
+        <h1 className="pb-8 text-3xl font-semibold">Impressum</h1>
+        <p>Content not found</p>
+      </SectionContainer>
+    );
+  }
 
   return (
     <SectionContainer className="pb-48 pt-24">
@@ -41,7 +29,7 @@ const ContactPage = async () => {
         {impressum.title ?? "Impressum"}
       </h1>
       <article className="prose">
-        <StructuredText data={impressum.content} />
+        <PortableTextRenderer value={impressum.content} />
       </article>
     </SectionContainer>
   );
