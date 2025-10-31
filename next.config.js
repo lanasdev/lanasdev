@@ -1,20 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    // domains: ["www.datocms-assets.com"],
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "datocms-assets.com",
-        port: "",
-        pathname: "/64642/**",
-      },
-      {
-        protocol: "https",
-        hostname: "www.datocms-assets.com",
-        port: "",
-        pathname: "/64642/**",
-      },
       {
         protocol: "https",
         hostname: "cdn.sanity.io",
@@ -23,6 +10,7 @@ const nextConfig = {
       },
     ],
     qualities: [25, 50, 75, 90],
+    formats: ["image/avif", "image/webp"],
   },
   redirects: async () => {
     return [

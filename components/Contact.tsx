@@ -57,14 +57,6 @@ export default function Contact() {
               <Link href={process.env.NEXT_PUBLIC_TELEGRAM_URL || "#kontakt"}>
                 <TelegramLogo className="h-7 w-6 " /> Telegram: lanasdev
               </Link>
-              {/* <Link href={process.env.NEXT_PUBLIC_CALCOM} || "/kontakt" */}
-              {/* <div className="">
-                <VideoConference className="mr-4 h-7 w-6" aria-hidden="true" />
-                Video Call:{" "}
-                <button data-cal-link="lanas/hallo" className="pl-1">
-                  Jetzt buchen
-                </button>
-              </div> */}
             </div>
           </aside>
         </div>

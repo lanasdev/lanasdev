@@ -1,5 +1,4 @@
 import SectionContainer from "@/app/(app)/SectionContainer";
-import CalContact from "@/components/CallToAction/CalContact";
 import { getPostBySlug, getAllPostSlugs, getOtherPosts } from "@/lib/sanity";
 import { generatePostMetadata } from "@/lib/sanity-metadata";
 import Link from "next/link";

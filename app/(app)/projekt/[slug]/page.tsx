@@ -1,5 +1,4 @@
 import SectionContainer from "@/app/(app)/SectionContainer";
-import CalContact from "@/components/CallToAction/CalContact";
 import { getProjectBySlug, getAllProjectSlugs } from "@/lib/sanity";
 import { generateProjectMetadata } from "@/lib/sanity-metadata";
 import { ResolvingMetadata, Metadata } from "next";
