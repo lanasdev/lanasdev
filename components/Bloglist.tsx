@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { SanityImage } from "@/lib/sanity-image";
-import SectionContainer from "../app/SectionContainer";
+import SectionContainer from "../app/(app)/SectionContainer";
 
 // @ts-ignore
 export default function Bloglist({ allPosts }) {
@@ -16,8 +16,8 @@ export default function Bloglist({ allPosts }) {
       <div className="flex shrink-0 snap-x gap-8 overflow-x-auto py-4 px-4 -mx-4">
         {allPosts.map((p: any) => (
           <Link
-            href={`/blog/${p.slug}`}
-            key={p.slug}
+            href={`/blog/${p.slug.current}`}
+            key={p.slug.current}
             className="w-80 shrink-0 snap-center group relative"
           >
             <SanityImage

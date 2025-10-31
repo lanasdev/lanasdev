@@ -1,4 +1,4 @@
-import SectionContainer from "@/app/SectionContainer";
+import SectionContainer from "@/app/(app)/SectionContainer";
 import Link from "next/link";
 import { SanityImage } from "@/lib/sanity-image";
 import { SimplePortableText } from "@/components/PortableTextRenderer";

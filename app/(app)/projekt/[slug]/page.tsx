@@ -1,12 +1,12 @@
-import SectionContainer from "@/app/SectionContainer";
+import SectionContainer from "@/app/(app)/SectionContainer";
 import CalContact from "@/components/CallToAction/CalContact";
 import { getProjectBySlug, getAllProjectSlugs } from "@/lib/sanity";
 import { generateProjectMetadata } from "@/lib/sanity-metadata";
 import { ResolvingMetadata, Metadata } from "next";
 import Link from "next/link";
 import ProjectCards from "./ProjectCards";
-import Projectlist from "@/app/Projectlist";
-import Projectgrid from "@/app/Projectgrid";
+import Projectlist from "@/app/(app)/Projectlist";
+import Projectgrid from "@/app/(app)/Projectgrid";
 import Balancer from "react-wrap-balancer";
 import ProgressBar from "@/components/ProgressBar";
 import Contact from "@/components/Contact";

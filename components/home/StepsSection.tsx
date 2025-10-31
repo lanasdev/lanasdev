@@ -1,4 +1,4 @@
-import SectionContainer from "@/app/SectionContainer";
+import SectionContainer from "@/app/(app)/SectionContainer";
 import Link from "next/link";
 
 export default function StepsSection() {

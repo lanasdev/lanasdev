@@ -4,7 +4,7 @@ import Link from "next/link";
 import HammerEmoji from "@/public/hammer-emoji.png";
 import { Button } from "@/components/ui/button";
 import Balancer from "react-wrap-balancer";
-import SectionContainer from "@/app/SectionContainer";
+import SectionContainer from "@/app/(app)/SectionContainer";
 import AvailableBanner from "./AvailableBanner";
 
 export default function HeroSection({ heroData }: { heroData: any }) {

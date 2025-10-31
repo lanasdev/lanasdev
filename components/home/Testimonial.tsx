@@ -1,4 +1,4 @@
-import SectionContainer from "@/app/SectionContainer";
+import SectionContainer from "@/app/(app)/SectionContainer";
 import React from "react";
 import Balancer from "react-wrap-balancer";
 

@@ -58,13 +58,13 @@ const components: PortableTextComponents = {
       value,
     }: {
       children: React.ReactNode
-      value?: {slug?: string; title?: string}
+      value?: {slug?: {current: string}; title?: string}
     }) => {
-      if (!value?.slug) return <>{children}</>
+      if (!value?.slug?.current) return <>{children}</>
 
       return (
         <Link
-          href={`/projekt/${value.slug}`}
+          href={`/projekt/${value.slug.current}`}
           className="text-blue-600 hover:text-blue-800 underline"
         >
           {children}
@@ -76,13 +76,13 @@ const components: PortableTextComponents = {
       value,
     }: {
       children: React.ReactNode
-      value?: {slug?: string; title?: string}
+      value?: {slug?: {current: string}; title?: string}
     }) => {
-      if (!value?.slug) return <>{children}</>
+      if (!value?.slug?.current) return <>{children}</>
 
       return (
         <Link
-          href={`/blog/${value.slug}`}
+          href={`/blog/${value.slug.current}`}
           className="text-blue-600 hover:text-blue-800 underline"
         >
           {children}

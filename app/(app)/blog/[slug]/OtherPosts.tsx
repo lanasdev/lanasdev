@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { SanityImage } from "@/lib/sanity-image";
-import SectionContainer from "@/app/SectionContainer";
+import SectionContainer from "@/app/(app)/SectionContainer";
 
 // List of all other posts with cover image, title, excerpt, author, date
 // @ts-ignore
@@ -25,8 +25,8 @@ export default function OtherPosts({ allPosts }) {
 export function MiniBlogCard({ post }: { post: any }) {
   return (
     <Link
-      href={`/blog/${post.slug}`}
-      key={post.slug}
+      href={`/blog/${post.slug.current}`}
+      key={post.slug.current}
       className="group max-w-xs shrink-0 snap-center"
     >
       <SanityImage

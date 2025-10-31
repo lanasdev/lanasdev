@@ -14,7 +14,7 @@ import Image3 from "@/public/img/image3.jpg";
 import SectionContainer from "./SectionContainer";
 
 type ProjectType = {
-  slug: string;
+  slug: { current: string };
   position: number;
   description: string;
   title: string;
@@ -36,8 +36,8 @@ export default function Projectgrid({
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {allProjects.map((project: ProjectType, index) => (
           <Link
-            href={`/projekt/${project.slug}`}
-            key={project.position}
+            href={`/projekt/${project.slug.current}`}
+            key={project.slug.current}
             className="group relative"
           >
             <SanityImage

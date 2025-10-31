@@ -1,4 +1,4 @@
-import SectionContainer from "@/app/SectionContainer";
+import SectionContainer from "@/app/(app)/SectionContainer";
 import { SanityImage } from "@/lib/sanity-image";
 import type { SanityImageObject } from "@/lib/sanity";
 

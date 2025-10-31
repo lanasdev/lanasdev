@@ -33,7 +33,7 @@ export default function ProjectCards({
       <h3 className="pb-8 text-3xl font-semibold">Weitere Projekte</h3>
       <div className="flex shrink-0 snap-x space-x-4 overflow-x-auto py-4">
         {projects.map((p: any) => (
-          <MiniProjectCard project={p} key={p.slug} />
+          <MiniProjectCard project={p} key={p.slug.current} />
         ))}
       </div>
     </div>

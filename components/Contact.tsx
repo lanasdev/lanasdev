@@ -1,11 +1,11 @@
 
 
-import SectionContainer from "../app/SectionContainer";
+import SectionContainer from "../app/(app)/SectionContainer";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import ContactButton from "./ContactButton";
 
-import { submitForm } from "@/app/actions";
+import { submitForm } from "@/app/(app)/actions";
 import Link from "next/link";
 
 import { Input } from "./ui/input";

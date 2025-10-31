@@ -6,13 +6,13 @@ import type { Metadata } from "next";
 import { getHomepageData } from "@/lib/sanity";
 
 import Projectgrid from "./Projectgrid";
-import Bloglist from "../components/Bloglist";
+import Bloglist from "../../components/Bloglist";
 import HeroSection from "@/components/HeroSection";
 import ServiceSection from "@/components/home/ServiceSection";
 import Testimonial from "@/components/home/Testimonial";
 import AboutSection from "@/components/home/AboutSection";
 import TechStack from "@/components/home/TechStack";
-import SectionContainer from "./SectionContainer";
+import SectionContainer from "@/app/(app)/SectionContainer";
 import Contact from "@/components/Contact";
 import StepsSection from "@/components/home/StepsSection";
 

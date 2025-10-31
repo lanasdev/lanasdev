@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
 import LocalFont from "next/font/local";
-import "./globals.css";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
+import "../globals.css";
 import { cn } from "@/lib/utils";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import NavbarNew from "./NavbarNew";
+import Navbar from "@/website/Navbar";
+import Footer from "@/website/Footer";
 
 const generalsans = LocalFont({
-  src: "../public/fonts/GeneralSans-Variable.ttf",
+  src: "../../public/fonts/GeneralSans-Variable.ttf",
   display: "swap",
   variable: "--font-general-sans",
 });
@@ -46,7 +45,6 @@ export default function RootLayout({
           "min-h-screen antialiased selection:bg-cyan-300",
         )}
       >
-        {/* <NavbarNew /> */}
         <Navbar />
         {children}
         <Footer />

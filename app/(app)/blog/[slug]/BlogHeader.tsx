@@ -1,4 +1,4 @@
-import SectionContainer from "@/app/SectionContainer";
+import SectionContainer from "@/app/(app)/SectionContainer";
 import BlogAuthor from "./BlogAuthor";
 import Link from "next/link";
 import { Author } from "./BlogAuthor"; // Import the 'Author' type from the appropriate module

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import SectionContainer from "@/app/SectionContainer";
+import SectionContainer from "@/app/(app)/SectionContainer";
 import Balancer from "react-wrap-balancer";
 import { CheckCircledIcon } from "@radix-ui/react-icons";
 

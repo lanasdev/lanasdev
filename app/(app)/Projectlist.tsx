@@ -34,8 +34,8 @@ export default function Projectlist({ allProjects }) {
           {/* TODO: Fix types */}
           {allProjects.map((p: any) => (
             <Link
-              href={`/projects/${p.slug}`}
-              key={p.slug}
+              href={`/projekt/${p.slug.current}`}
+              key={p.slug.current}
               className="scroll-ml-6 snap-center w-[80%]"
             >
               <article className="shrink-0 group overflow-hidden">

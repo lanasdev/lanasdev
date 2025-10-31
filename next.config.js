@@ -15,7 +15,14 @@ const nextConfig = {
         port: "",
         pathname: "/64642/**",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+        port: "",
+        pathname: "/**",
+      },
     ],
+    qualities: [25, 50, 75, 90],
   },
   redirects: async () => {
     return [
