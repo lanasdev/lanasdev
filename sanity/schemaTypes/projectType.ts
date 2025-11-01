@@ -69,20 +69,8 @@ export const projectType = defineType({
     defineField({
       name: 'video',
       title: 'Project Video',
-      type: 'object',
-      description: 'Video information (Mux or custom)',
-      fields: [
-        {
-          name: 'url',
-          title: 'Video URL',
-          type: 'url',
-        },
-        {
-          name: 'thumbnailUrl',
-          title: 'Thumbnail URL',
-          type: 'url',
-        },
-      ],
+      type: 'mux.video',
+      description: 'Upload video to Mux for hover preview on project cards',
     }),
     defineField({
       name: 'content',

@@ -83,6 +83,12 @@ export async function getHomepageData() {
       image {
         ${imageProjection}
       },
+      video {
+        asset-> {
+          playbackId,
+          thumbTime
+        }
+      },
       _createdAt
     },
     "posts": *[_type == "post"] | order(publishedAt desc) [0...6] {
