@@ -55,6 +55,21 @@ export const postType = defineType({
       type: 'datetime',
     }),
     defineField({
+      name: 'status',
+      title: 'Status',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Entwurf', value: 'draft'},
+          {title: 'Veroeffentlicht', value: 'published'},
+          {title: 'Geplant', value: 'scheduled'},
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'draft',
+      description: 'Synchronisierter Veroeffentlichungsstatus aus Ghost CMS',
+    }),
+    defineField({
       name: 'body',
       type: 'blockContent',
     }),
