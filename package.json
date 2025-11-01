@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "typegen": "sanity schema extract && sanity typegen generate --enforce-required-fields",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@formspree/react": "^3.0.0",

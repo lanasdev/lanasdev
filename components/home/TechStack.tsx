@@ -35,12 +35,13 @@ const TechIcon = ({
   image: SanityImageObject;
 }) => {
   return (
-    <SanityImage
-      image={image}
-      alt="Technology logo"
-      width={128}
-      height={128}
-      className="aspect-square transform-gpu object-contain grayscale filter transition-transform hover:grayscale-0 hover:duration-300 hover:ease-in-out "
-    />
+    <div className="flex items-center justify-center">
+      <SanityImage
+        image={image}
+        alt="Technology logo"
+        height={128}
+        className="h-auto w-auto transform-gpu object-contain grayscale filter transition-transform hover:grayscale-0 hover:duration-300 hover:ease-in-out "
+      />
+    </div>
   );
 };
