@@ -7,7 +7,7 @@ import type {SanityImageObject} from './sanity'
  * Replaces DatoCMS's toNextMetadata function
  */
 
-interface SanitySEO {
+export interface SanitySEO {
   title?: string
   description?: string
   image?: SanityImageObject

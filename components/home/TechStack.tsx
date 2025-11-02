@@ -1,25 +1,27 @@
 import SectionContainer from "@/app/(app)/SectionContainer";
-import { SanityImage } from "@/lib/sanity-image";
 import type { SanityImageObject } from "@/lib/sanity";
+import { SanityImage } from "@/lib/sanity-image";
 
 type TechStackProps = {
   techData: {
-    titleTechstack: string;
-    logosTechstack: SanityImageObject[];
-  };
+    titleTechstack?: string;
+    logosTechstack?: SanityImageObject[];
+  } | null;
 };
 
-const TechStack = ({
-  techData: { titleTechstack, logosTechstack },
-}: TechStackProps) => {
+const TechStack = ({ techData }: TechStackProps) => {
+  if (!techData) return null;
+
+  const { titleTechstack, logosTechstack } = techData;
+
   return (
     <SectionContainer className="pt-24 md:flex md:justify-between md:gap-32">
       <h3 className="pb-8 text-3xl font-semibold">
         {titleTechstack ?? "Tech Stack"}
       </h3>
       <div className="grid auto-cols-auto grid-cols-4  gap-8 md:max-w-(--breakpoint-sm) lg:max-w-(--breakpoint-md)">
-        {logosTechstack.map((logo, index) => (
-          <TechIcon key={index} image={logo} />
+        {logosTechstack?.map((logo) => (
+          <TechIcon key={logo.asset._id} image={logo} />
         ))}
       </div>
       {/* <pre className="pt-12">{JSON.stringify(logosTechstack, null, 2)}</pre> */}
@@ -29,11 +31,7 @@ const TechStack = ({
 
 export default TechStack;
 
-const TechIcon = ({
-  image,
-}: {
-  image: SanityImageObject;
-}) => {
+const TechIcon = ({ image }: { image: SanityImageObject }) => {
   return (
     <div className="flex items-center justify-center">
       <SanityImage
