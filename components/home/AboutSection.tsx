@@ -1,5 +1,4 @@
 import Link from "next/link";
-import type { PortableTextBlock } from "sanity";
 import SectionContainer from "@/app/(app)/SectionContainer";
 import { SimplePortableText } from "@/components/PortableTextRenderer";
 import type { SanityImageObject } from "@/lib/sanity";
@@ -8,7 +7,7 @@ import { SanityImage } from "@/lib/sanity-image";
 type AboutSectionProps = {
   aboutData: {
     titleAbout?: string;
-    textAbout?: PortableTextBlock[];
+    textAbout?: any;
     imageAbout?: SanityImageObject;
   } | null;
 };
