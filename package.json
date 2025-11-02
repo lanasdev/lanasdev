@@ -6,7 +6,12 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "lint:unsafe": "biome check --write --unsafe .",
+    "format": "biome format --write .",
+    "typegen": "sanity schema extract && sanity typegen generate --enforce-required-fields",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@formspree/react": "^3.0.0",
@@ -30,9 +35,11 @@
     "@radix-ui/react-toast": "^1.2.15",
     "@sanity/block-tools": "^3.70.0",
     "@sanity/client": "^7.12.0",
+    "@sanity/assist": "^5.0.2",
     "@sanity/color-input": "^4.0.6",
     "@sanity/icons": "^3.7.4",
     "@sanity/image-url": "^1.2.0",
+    "@sanity/ui": "^3.1.11",
     "@sanity/vision": "^4.12.0",
     "@vercel/edge-config": "^1.4.3",
     "@vercel/postgres": "^0.10.0",
@@ -52,12 +59,15 @@
     "react-wrap-balancer": "^1.1.1",
     "resend": "^6.4.0",
     "sanity": "^4.12.0",
+    "sanity-plugin-media": "^4.0.0",
+    "sanity-plugin-mux-input": "^2.10.0",
     "styled-components": "^6.1.19",
     "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^4.1.12"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.3.2",
     "@mux/mux-player": "^3.8.0",
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/postcss": "^4.1.16",
@@ -71,8 +81,6 @@
     "eslint-config-next": "16.0.1",
     "nanoid": "^5.1.6",
     "postcss": "^8.5.6",
-    "prettier": "^3.6.2",
-    "prettier-plugin-tailwindcss": "^0.7.1",
     "tailwindcss": "^4.1.16",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3"

@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import LocalFont from "next/font/local";
 import "../globals.css";
-import { cn } from "@/lib/utils";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import Navbar from "@/website/Navbar";
+import { draftMode } from "next/headers";
+import { VisualEditing } from "next-sanity/visual-editing";
+import { DisableDraftMode } from "@/components/DisableDraftMode";
+import { cn } from "@/lib/utils";
+import { SanityLive } from "@/sanity/lib/live";
 import Footer from "@/website/Footer";
+import Navbar from "@/website/Navbar";
 
 const generalsans = LocalFont({
   src: "../../public/fonts/GeneralSans-Variable.ttf",
@@ -32,11 +36,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const { isEnabled } = await draftMode();
+
   return (
     <html lang="de">
       <body
@@ -49,6 +55,13 @@ export default function RootLayout({
         {children}
         <Footer />
         <SpeedInsights />
+        <SanityLive />
+        {isEnabled && (
+          <>
+            <VisualEditing />
+            <DisableDraftMode />
+          </>
+        )}
       </body>
     </html>
   );

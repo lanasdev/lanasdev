@@ -1,5 +1,7 @@
-import {client} from '@/sanity/lib/client'
-import type {SanityImageSource} from '@sanity/image-url/lib/types/types'
+import { draftMode } from "next/headers";
+import type { QueryParams } from "next-sanity";
+
+import { sanityFetch } from "@/sanity/lib/live";
 
 // Common image projection
 const imageProjection = `
@@ -18,7 +20,7 @@ const imageProjection = `
   alt,
   hotspot,
   crop
-`
+`;
 
 // Common SEO projection
 const seoProjection = `
@@ -30,7 +32,7 @@ const seoProjection = `
     },
     noIndex
   }
-`
+`;
 
 // Portable Text projections for handling references
 const portableTextProjection = `
@@ -53,12 +55,92 @@ const portableTextProjection = `
   _type == "image" => {
     ${imageProjection}
   }
-`
+`;
+
+type LiveConfig = {
+  perspective: "published" | "previewDrafts";
+  stega: boolean;
+};
+
+type PortableTextValue = Array<Record<string, unknown>>;
+
+type ImpressumPage = {
+  title?: string;
+  content?: PortableTextValue;
+  _updatedAt?: string;
+};
+
+type HomepageData = {
+  home: {
+    title?: string;
+    subheading?: string;
+    heroinfo?: string;
+    titleAbout?: string;
+    textAbout?: PortableTextValue;
+    imageAbout?: SanityImageObject;
+    titleTechstack?: string;
+    logosTechstack?: Array<SanityImageObject>;
+    _updatedAt?: string;
+  } | null;
+  projects: Array<{
+    _id: string;
+    title: string;
+    slug: { current: string };
+    description?: string;
+    image?: SanityImageObject;
+    video?: {
+      asset?: {
+        playbackId?: string;
+        thumbTime?: number;
+      };
+    };
+    _createdAt?: string;
+  }>;
+  posts: Array<{
+    _id: string;
+    title: string;
+    slug: { current: string };
+    excerpt?: string;
+    publishedAt?: string;
+    mainImage?: SanityImageObject;
+    author?: {
+      name?: string;
+      role?: string;
+      image?: SanityImageObject;
+    } | null;
+  }>;
+};
+
+async function resolveLiveConfig(): Promise<LiveConfig> {
+  try {
+    const store = await draftMode();
+
+    if (store.isEnabled) {
+      return { perspective: "previewDrafts", stega: true };
+    }
+  } catch (_error) {
+    // draftMode() throws when no request context is available (eg. build time)
+  }
+
+  return { perspective: "published", stega: false };
+}
+
+async function fetchSanityData<T>(query: string, params?: QueryParams) {
+  const { perspective, stega } = await resolveLiveConfig();
+  const { data } = await sanityFetch({
+    query,
+    params,
+    perspective,
+    stega,
+  });
+
+  return data as T;
+}
 
 /**
  * Fetch homepage data (projects, posts, home content)
  */
-export async function getHomepageData() {
+export async function getHomepageData(): Promise<HomepageData> {
   const query = `{
     "home": *[_type == "home" && _id == "home"][0] {
       title,
@@ -83,6 +165,12 @@ export async function getHomepageData() {
       image {
         ${imageProjection}
       },
+      video {
+        asset-> {
+          playbackId,
+          thumbTime
+        }
+      },
       _createdAt
     },
     "posts": *[_type == "post"] | order(publishedAt desc) [0...6] {
@@ -102,9 +190,9 @@ export async function getHomepageData() {
         }
       }
     }
-  }`
+  }`;
 
-  return await client.fetch(query)
+  return fetchSanityData<HomepageData>(query);
 }
 
 /**
@@ -113,15 +201,49 @@ export async function getHomepageData() {
 export async function getAllProjectSlugs() {
   const query = `*[_type == "project" && defined(slug.current)]{
     "slug": slug.current
-  }`
+  }`;
 
-  return await client.fetch<Array<{slug: string}>>(query)
+  return fetchSanityData<Array<{ slug: string }>>(query);
 }
 
 /**
  * Fetch single project by slug
  */
-export async function getProjectBySlug(slug: string) {
+export async function getProjectBySlug(slug: string): Promise<{
+  _id: string;
+  title: string;
+  slug: { current: string };
+  description?: string;
+  clientname?: string;
+  liveurl?: string;
+  _createdAt?: string;
+  position?: number;
+  classname?: string;
+  image?: SanityImageObject;
+  video?: {
+    asset?: {
+      playbackId?: string;
+      thumbTime?: number;
+    };
+  };
+  content?: PortableTextValue;
+  otherprojects?: Array<{
+    _id: string;
+    title: string;
+    slug: { current: string };
+    description?: string;
+    image?: SanityImageObject;
+  }>;
+  color1?: unknown;
+  color2?: unknown;
+  gradientdirection?: string;
+  seo?: {
+    title?: string;
+    description?: string;
+    image?: SanityImageObject;
+    noIndex?: boolean;
+  };
+} | null> {
   const query = `*[_type == "project" && slug.current == $slug][0] {
     _id,
     title,
@@ -150,9 +272,9 @@ export async function getProjectBySlug(slug: string) {
     color2,
     gradientdirection,
     ${seoProjection}
-  }`
+  }`;
 
-  return await client.fetch(query, {slug})
+  return fetchSanityData(query, { slug });
 }
 
 /**
@@ -161,15 +283,34 @@ export async function getProjectBySlug(slug: string) {
 export async function getAllPostSlugs() {
   const query = `*[_type == "post" && defined(slug.current)]{
     "slug": slug.current
-  }`
+  }`;
 
-  return await client.fetch<Array<{slug: string}>>(query)
+  return fetchSanityData<Array<{ slug: string }>>(query);
 }
 
 /**
  * Fetch single post by slug
  */
-export async function getPostBySlug(slug: string) {
+export async function getPostBySlug(slug: string): Promise<{
+  _id: string;
+  title: string;
+  slug: { current: string };
+  excerpt?: string;
+  publishedAt?: string;
+  mainImage?: SanityImageObject;
+  author?: {
+    name: string;
+    role?: string;
+    image?: SanityImageObject;
+  };
+  body?: Array<unknown>;
+  seo?: {
+    title?: string;
+    description?: string;
+    image?: SanityImageObject;
+    noIndex?: boolean;
+  };
+} | null> {
   const query = `*[_type == "post" && slug.current == $slug][0] {
     _id,
     title,
@@ -188,9 +329,9 @@ export async function getPostBySlug(slug: string) {
     },
     body[]{${portableTextProjection}},
     ${seoProjection}
-  }`
+  }`;
 
-  return await client.fetch(query, {slug})
+  return fetchSanityData(query, { slug });
 }
 
 /**
@@ -210,15 +351,27 @@ export async function getOtherPosts(currentSlug: string) {
       name,
       role
     }
-  }`
+  }`;
 
-  return await client.fetch(query, {currentSlug})
+  return fetchSanityData(query, { currentSlug });
 }
 
 /**
  * Fetch about page data
  */
-export async function getAboutPage() {
+export async function getAboutPage(): Promise<{
+  title: string;
+  description?: string;
+  image?: SanityImageObject;
+  content?: PortableTextValue;
+  seo?: {
+    title?: string;
+    description?: string;
+    image?: SanityImageObject;
+    noIndex?: boolean;
+  };
+  _updatedAt?: string;
+} | null> {
   const query = `*[_type == "about" && _id == "about"][0] {
     title,
     description,
@@ -228,22 +381,22 @@ export async function getAboutPage() {
     content[]{${portableTextProjection}},
     ${seoProjection},
     _updatedAt
-  }`
+  }`;
 
-  return await client.fetch(query)
+  return fetchSanityData(query);
 }
 
 /**
  * Fetch impressum page data
  */
-export async function getImpressumPage() {
+export async function getImpressumPage(): Promise<ImpressumPage | null> {
   const query = `*[_type == "impressum" && _id == "impressum"][0] {
     title,
     content[]{${portableTextProjection}},
     _updatedAt
-  }`
+  }`;
 
-  return await client.fetch(query)
+  return fetchSanityData<ImpressumPage | null>(query);
 }
 
 /**
@@ -260,15 +413,30 @@ export async function getAllTestimonials() {
     image {
       ${imageProjection}
     }
-  }`
+  }`;
 
-  return await client.fetch(query)
+  return fetchSanityData(query);
 }
 
 /**
  * Fetch data for sitemap generation
  */
-export async function getSitemapData() {
+export async function getSitemapData(): Promise<{
+  projects: Array<{
+    slug: string;
+    _updatedAt: string;
+  }>;
+  posts: Array<{
+    slug: string;
+    _updatedAt: string;
+  }>;
+  home?: {
+    _updatedAt: string;
+  };
+  impressum?: {
+    _updatedAt: string;
+  };
+}> {
   const query = `{
     "projects": *[_type == "project" && defined(slug.current)] {
       "slug": slug.current,
@@ -284,9 +452,9 @@ export async function getSitemapData() {
     "impressum": *[_type == "impressum" && _id == "impressum"][0] {
       "_updatedAt": _updatedAt
     }
-  }`
+  }`;
 
-  return await client.fetch(query)
+  return fetchSanityData(query);
 }
 
 /**
@@ -300,9 +468,9 @@ export async function getRecentProjects(limit = 5) {
     image {
       ${imageProjection}
     }
-  }`
+  }`;
 
-  return await client.fetch(query)
+  return fetchSanityData(query);
 }
 
 /**
@@ -310,26 +478,26 @@ export async function getRecentProjects(limit = 5) {
  */
 export type SanityImageObject = {
   asset: {
-    _id: string
-    url: string
+    _id: string;
+    url: string;
     metadata: {
-      lqip: string
+      lqip: string;
       dimensions: {
-        width: number
-        height: number
-        aspectRatio: number
-      }
-    }
-  }
-  alt?: string
+        width: number;
+        height: number;
+        aspectRatio: number;
+      };
+    };
+  };
+  alt?: string;
   hotspot?: {
-    x: number
-    y: number
-  }
+    x: number;
+    y: number;
+  };
   crop?: {
-    top: number
-    bottom: number
-    left: number
-    right: number
-  }
-}
+    top: number;
+    bottom: number;
+    left: number;
+    right: number;
+  };
+};

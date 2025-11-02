@@ -1,37 +1,52 @@
-import SectionContainer from "@/app/(app)/SectionContainer";
-import BlogAuthor from "./BlogAuthor";
 import Link from "next/link";
-import { Author } from "./BlogAuthor"; // Import the 'Author' type from the appropriate module
 import Balancer from "react-wrap-balancer";
+import SectionContainer from "@/app/(app)/SectionContainer";
+import type { SanityImageObject } from "@/lib/sanity";
+import BlogAuthor, { type Author } from "./BlogAuthor"; // Import the 'Author' type from the appropriate module
 
-const BlogHeader = ({
-  title,
-  date,
-  author,
-}: {
+type BlogHeaderProps = {
   title: string;
-  date: string;
-  author: Author;
-}) => {
+  date?: string | null;
+  author?: {
+    name?: string | null;
+    role?: string | null;
+    image?: SanityImageObject | null;
+  } | null;
+};
+
+const BlogHeader = ({ title, date, author }: BlogHeaderProps) => {
   // format date to be more readable
-  const formattedDate = new Date(date)
-    .toLocaleDateString("en-US", {
-      day: "numeric",
-      month: "numeric",
-      year: "numeric",
-    })
-    .replace(/ /g, " ");
+  const formattedDate = date
+    ? new Date(date)
+        .toLocaleDateString("en-US", {
+          day: "numeric",
+          month: "numeric",
+          year: "numeric",
+        })
+        .replace(/ /g, " ")
+    : null;
+
+  const authorInfo: Author | null =
+    author?.name && author.image
+      ? {
+          name: author.name,
+          role: author.role ?? "",
+          image: author.image,
+        }
+      : null;
 
   return (
     <SectionContainer className="flex flex-col space-y-4 pb-8 pt-12">
       <h1 className="text-2xl font-semibold md:text-3xl">
         <Balancer>{title}</Balancer>
       </h1>
-      <span className="text-sm text-gray-600 dark:text-gray-400">
-        {formattedDate}
-      </span>
+      {formattedDate && (
+        <span className="text-sm text-gray-600 dark:text-gray-400">
+          {formattedDate}
+        </span>
+      )}
 
-      {author && <BlogAuthor author={author} />}
+      {authorInfo && <BlogAuthor author={authorInfo} />}
     </SectionContainer>
   );
 };

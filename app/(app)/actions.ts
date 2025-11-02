@@ -1,12 +1,12 @@
 "use server";
 
-import { redirect } from "next/navigation";
-import { revalidatePath } from "next/cache";
 import { sql } from "@vercel/postgres";
-import { z } from "zod";
-
-import { EmailTemplate } from "@/components/email/email-template";
+import { revalidatePath } from "next/cache";
+import { draftMode } from "next/headers";
+import { redirect } from "next/navigation";
 import { Resend } from "resend";
+import { z } from "zod";
+import { EmailTemplate } from "@/components/email/email-template";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -21,7 +21,7 @@ const schema = z.object({
 });
 
 export async function submitForm(formData: FormData) {
-  "use server"
+  "use server";
 
   const rawFormData = {
     name: formData.get("name"),
@@ -93,4 +93,18 @@ export async function submitForm(formData: FormData) {
   revalidatePath("/");
   redirect("/danke");
   //   return { message: "Form submitted" };
+}
+
+const disableDraftDelay = 500;
+
+export async function disableDraftModeAction() {
+  "use server";
+
+  const store = await draftMode();
+
+  if (store.isEnabled) {
+    store.disable();
+  }
+
+  await new Promise((resolve) => setTimeout(resolve, disableDraftDelay));
 }
