@@ -11,7 +11,7 @@ export interface SanitySEO {
   title?: string
   description?: string
   image?: SanityImageObject
-  noIndex?: boolean
+  indexing?: string
 }
 
 interface GenerateMetadataOptions {
@@ -26,11 +26,11 @@ interface GenerateMetadataOptions {
   author?: string
 }
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://lanas.dev'
-const siteName = 'lanas.dev'
-const defaultTitle = 'lanas.dev - Headless Shopify & eCommerce Entwicklung'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://lan.as'
+const siteName = 'Lanas'
+const defaultTitle = 'Lanas - Webdesign & Entwicklung für die Solarbranche'
 const defaultDescription =
-  'Professionelle Shopify und eCommerce Entwicklung mit Fokus auf Headless Commerce. Portfolio, Blog und Projekte.'
+  'Wir bauen blitzschnelle und hoch konvertierende Landing Pages und E-Commerce Shops für Ihr Photovoltaikunternehmen.'
 
 export function generateMetadata(options: GenerateMetadataOptions): Metadata {
   const {seo, title, description, image, path = '', type = 'website', publishedTime, modifiedTime, author} = options
@@ -51,7 +51,7 @@ export function generateMetadata(options: GenerateMetadataOptions): Metadata {
   const metadata: Metadata = {
     title: finalTitle,
     description: finalDescription,
-    robots: seo?.noIndex
+    robots: seo?.indexing === 'noindex'
       ? {
           index: false,
           follow: false,
@@ -150,7 +150,7 @@ export function generateProjectMetadata(project: {
  * Generate metadata for static pages
  */
 export function generatePageMetadata(page: {
-  title: string
+  title?: string
   description?: string
   image?: SanityImageObject
   seo?: SanitySEO

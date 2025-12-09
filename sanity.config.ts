@@ -12,6 +12,7 @@ import { presentationTool } from "sanity/presentation";
 import { structureTool } from "sanity/structure";
 import { media } from "sanity-plugin-media";
 import { muxInput } from "sanity-plugin-mux-input";
+import { LanasIcon } from "./sanity/components/LanasIcon";
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
 import {
   apiVersion,
@@ -44,6 +45,8 @@ const previewUrl = previewOrigin
 
 export default defineConfig({
   basePath: "/studio",
+  name: "Lanas",
+  icon: LanasIcon,
   projectId,
   dataset,
   // Add and edit the content schema in the './sanity/schemaTypes' folder

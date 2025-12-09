@@ -1,11 +1,21 @@
 import type {StructureResolver} from 'sanity/structure'
-import {HomeIcon, InfoOutlineIcon, DocumentIcon} from '@sanity/icons'
+import {HomeIcon, InfoOutlineIcon, DocumentIcon, CogIcon} from '@sanity/icons'
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
 export const structure: StructureResolver = (S) =>
   S.list()
     .title('Content')
     .items([
+      // Settings
+      S.listItem()
+        .title('Site Settings')
+        .icon(CogIcon)
+        .child(
+          S.document()
+            .schemaType('siteSettings')
+            .documentId('siteSettings')
+        ),
+      S.divider(),
       // Singletons
       S.listItem()
         .title('Home Page')
@@ -43,6 +53,7 @@ export const structure: StructureResolver = (S) =>
       // Everything else (excluding our defined types and singletons)
       ...S.documentTypeListItems().filter(
         (item) => item.getId() && ![
+          'siteSettings',
           'home',
           'about',
           'impressum',

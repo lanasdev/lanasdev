@@ -101,6 +101,10 @@ export const homeType = defineType({
         }),
       ],
     }),
+    defineField({
+      name: 'seo',
+      type: 'seo',
+    }),
   ],
   preview: {
     select: {

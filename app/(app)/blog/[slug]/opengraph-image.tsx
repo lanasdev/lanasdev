@@ -6,10 +6,10 @@ export const runtime = 'edge'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
-const QUERY = `*[_type == "project" && slug.current == $slug][0] {
+const QUERY = `*[_type == "post" && slug.current == $slug][0] {
   title,
-  description,
-  image {
+  excerpt,
+  mainImage {
     asset-> {
       url,
       metadata { palette }
@@ -29,9 +29,9 @@ const QUERY = `*[_type == "project" && slug.current == $slug][0] {
 
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const project = await client.fetch(QUERY, { slug })
+  const post = await client.fetch(QUERY, { slug })
 
-  if (!project) {
+  if (!post) {
     return new ImageResponse(
       (
         <div
@@ -46,16 +46,16 @@ export default async function Image({ params }: { params: Promise<{ slug: string
             fontSize: 48,
           }}
         >
-          Project not found
+          Post not found
         </div>
       ),
       { width: 1200, height: 630 }
     )
   }
 
-  const title = project.seo?.title || project.title
-  const description = project.seo?.description || project.description
-  const coverImage = project.seo?.image || project.image
+  const title = post.seo?.title || post.title
+  const description = post.seo?.description || post.excerpt
+  const coverImage = post.seo?.image || post.mainImage
   const coverImageUrl = coverImage?.asset?.url
   const palette = coverImage?.asset?.metadata?.palette
 
@@ -66,3 +66,4 @@ export default async function Image({ params }: { params: Promise<{ slug: string
     palette,
   })
 }
+

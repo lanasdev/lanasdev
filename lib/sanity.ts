@@ -30,7 +30,7 @@ const seoProjection = `
     image {
       ${imageProjection}
     },
-    noIndex
+    indexing
   }
 `;
 
@@ -70,6 +70,33 @@ type ImpressumPage = {
   _updatedAt?: string;
 };
 
+type SiteSettings = {
+  title?: string;
+  description?: string;
+  siteUrl?: string;
+  defaultOgImage?: SanityImageObject;
+  homeOg?: {
+    title?: string;
+    description?: string;
+    image?: SanityImageObject;
+  };
+  blogOg?: {
+    title?: string;
+    description?: string;
+    image?: SanityImageObject;
+  };
+  projektOg?: {
+    title?: string;
+    description?: string;
+    image?: SanityImageObject;
+  };
+  ueberOg?: {
+    title?: string;
+    description?: string;
+    image?: SanityImageObject;
+  };
+};
+
 type HomepageData = {
   home: {
     title?: string;
@@ -80,6 +107,12 @@ type HomepageData = {
     imageAbout?: SanityImageObject;
     titleTechstack?: string;
     logosTechstack?: Array<SanityImageObject>;
+    seo?: {
+      title?: string;
+      description?: string;
+      image?: SanityImageObject;
+      indexing?: string;
+    };
     _updatedAt?: string;
   } | null;
   projects: Array<{
@@ -138,6 +171,50 @@ async function fetchSanityData<T>(query: string, params?: QueryParams) {
 }
 
 /**
+ * Fetch site settings
+ */
+export async function getSiteSettings(): Promise<SiteSettings | null> {
+  const query = `*[_type == "siteSettings" && _id == "siteSettings"][0] {
+    title,
+    description,
+    siteUrl,
+    defaultOgImage {
+      ${imageProjection}
+    },
+    homeOg {
+      title,
+      description,
+      image {
+        ${imageProjection}
+      }
+    },
+    blogOg {
+      title,
+      description,
+      image {
+        ${imageProjection}
+      }
+    },
+    projektOg {
+      title,
+      description,
+      image {
+        ${imageProjection}
+      }
+    },
+    ueberOg {
+      title,
+      description,
+      image {
+        ${imageProjection}
+      }
+    }
+  }`;
+
+  return fetchSanityData<SiteSettings | null>(query);
+}
+
+/**
  * Fetch homepage data (projects, posts, home content)
  */
 export async function getHomepageData(): Promise<HomepageData> {
@@ -155,6 +232,7 @@ export async function getHomepageData(): Promise<HomepageData> {
       logosTechstack[] {
         ${imageProjection}
       },
+      ${seoProjection},
       _updatedAt
     },
     "projects": *[_type == "project"] | order(position asc, _createdAt desc) [0...6] {
@@ -241,7 +319,7 @@ export async function getProjectBySlug(slug: string): Promise<{
     title?: string;
     description?: string;
     image?: SanityImageObject;
-    noIndex?: boolean;
+    indexing?: string;
   };
 } | null> {
   const query = `*[_type == "project" && slug.current == $slug][0] {
@@ -308,7 +386,7 @@ export async function getPostBySlug(slug: string): Promise<{
     title?: string;
     description?: string;
     image?: SanityImageObject;
-    noIndex?: boolean;
+    indexing?: string;
   };
 } | null> {
   const query = `*[_type == "post" && slug.current == $slug][0] {
@@ -368,7 +446,7 @@ export async function getAboutPage(): Promise<{
     title?: string;
     description?: string;
     image?: SanityImageObject;
-    noIndex?: boolean;
+    indexing?: string;
   };
   _updatedAt?: string;
 } | null> {

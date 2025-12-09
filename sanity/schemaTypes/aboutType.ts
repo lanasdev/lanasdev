@@ -125,32 +125,7 @@ export const aboutType = defineType({
     }),
     defineField({
       name: 'seo',
-      title: 'SEO',
-      type: 'object',
-      fields: [
-        {
-          name: 'title',
-          title: 'SEO Title',
-          type: 'string',
-        },
-        {
-          name: 'description',
-          title: 'SEO Description',
-          type: 'text',
-          rows: 3,
-        },
-        {
-          name: 'image',
-          title: 'OG Image',
-          type: 'image',
-        },
-        {
-          name: 'noIndex',
-          title: 'No Index',
-          type: 'boolean',
-          description: 'Prevent search engines from indexing this page',
-        },
-      ],
+      type: 'seo',
     }),
   ],
   preview: {
