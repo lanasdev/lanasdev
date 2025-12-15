@@ -74,7 +74,7 @@
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
     "embla-carousel": "8.6.0",
-    "eslint": "^9.39.1",
+    "eslint": "^9.39.2",
     "eslint-config-next": "16.0.8",
     "nanoid": "^5.1.6",
     "postcss": "^8.5.6",
