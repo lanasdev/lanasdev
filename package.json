@@ -19,7 +19,7 @@
     "@hookform/resolvers": "^5.2.2",
     "@mdi/js": "^7.4.47",
     "@mdi/react": "^1.6.1",
-    "@mux/mux-player-react": "^3.10.1",
+    "@mux/mux-player-react": "^3.10.2",
     "@phosphor-icons/react": "^2.1.10",
     "@portabletext/react": "^6.0.0",
     "@radix-ui/react-avatar": "^1.1.11",
