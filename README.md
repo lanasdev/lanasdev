@@ -44,6 +44,6 @@ SANITY_STUDIO_PREVIEW_PATH=/ # default path when opening previews
 - [x] Recommend other Projects and Blog Posts
 - [] CTA on Projects and Posts (rectangle with Link to Cal.com)
 - [x] make blog posts and project pages static
-- [] project hero videos
+- [x] project hero videos
 - [x] sitemap
 - [] multilang
