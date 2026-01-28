@@ -1,8 +1,7 @@
-import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { badgeVariants } from "@/components/ui/badge";
 import Balancer from "react-wrap-balancer";
+import { badgeVariants } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 
 const AvailableBanner = ({ heroInfo }: { heroInfo: string }) => {
   return (
@@ -18,6 +17,8 @@ const AvailableBanner = ({ heroInfo }: { heroInfo: string }) => {
         <svg
           //   className="mr-1 h-2 w-2 animate-pulse text-green-800"
           className="mr-1 h-2 w-2 animate-pulse text-white group-hover:text-green-600"
+          aria-hidden="true"
+          focusable="false"
           fill="currentColor"
           viewBox="0 0 8 8"
         >

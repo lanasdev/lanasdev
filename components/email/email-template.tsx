@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import * as React from "react";
+import type * as React from "react";
 
 interface EmailTemplateProps {
   clientName: string;
@@ -58,9 +58,7 @@ export function EmailTemplate({
         >
           Vielen Dank für Ihre Anfrage!
         </div>
-        <p
-          style={{ fontSize: "14px", lineHeight: "24px", color: "#1c1917" }}
-        >
+        <p style={{ fontSize: "14px", lineHeight: "24px", color: "#1c1917" }}>
           Hallo {clientName},
           <br />
           <br />

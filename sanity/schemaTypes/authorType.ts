@@ -1,43 +1,43 @@
-import {UserIcon} from '@sanity/icons'
-import {defineArrayMember, defineField, defineType} from 'sanity'
+import { UserIcon } from "@sanity/icons";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 export const authorType = defineType({
-  name: 'author',
-  title: 'Author',
-  type: 'document',
+  name: "author",
+  title: "Author",
+  type: "document",
   icon: UserIcon,
   fields: [
     defineField({
-      name: 'name',
-      type: 'string',
+      name: "name",
+      type: "string",
     }),
     defineField({
-      name: 'slug',
-      type: 'slug',
+      name: "slug",
+      type: "slug",
       options: {
-        source: 'name',
+        source: "name",
       },
     }),
     defineField({
-      name: 'role',
-      title: 'Role',
-      type: 'string',
-      description: 'Job title or role of the author',
+      name: "role",
+      title: "Role",
+      type: "string",
+      description: "Job title or role of the author",
     }),
     defineField({
-      name: 'image',
-      type: 'image',
+      name: "image",
+      type: "image",
       options: {
         hotspot: true,
       },
     }),
     defineField({
-      name: 'bio',
-      type: 'array',
+      name: "bio",
+      type: "array",
       of: [
         defineArrayMember({
-          type: 'block',
-          styles: [{title: 'Normal', value: 'normal'}],
+          type: "block",
+          styles: [{ title: "Normal", value: "normal" }],
           lists: [],
         }),
       ],
@@ -45,8 +45,8 @@ export const authorType = defineType({
   ],
   preview: {
     select: {
-      title: 'name',
-      media: 'image',
+      title: "name",
+      media: "image",
     },
   },
-})
+});

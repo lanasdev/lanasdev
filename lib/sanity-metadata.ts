@@ -1,6 +1,6 @@
-import type {Metadata} from 'next'
-import {getSanityImageUrl} from './sanity-image'
-import type {SanityImageObject} from './sanity'
+import type { Metadata } from "next";
+import type { SanityImageObject } from "./sanity";
+import { getSanityImageUrl } from "./sanity-image";
 
 /**
  * Convert Sanity SEO object to Next.js Metadata
@@ -8,58 +8,70 @@ import type {SanityImageObject} from './sanity'
  */
 
 export interface SanitySEO {
-  title?: string
-  description?: string
-  image?: SanityImageObject
-  indexing?: string
+  title?: string;
+  description?: string;
+  image?: SanityImageObject;
+  indexing?: string;
 }
 
 interface GenerateMetadataOptions {
-  seo?: SanitySEO
-  title?: string
-  description?: string
-  image?: SanityImageObject
-  path?: string
-  type?: 'website' | 'article'
-  publishedTime?: string
-  modifiedTime?: string
-  author?: string
+  seo?: SanitySEO;
+  title?: string;
+  description?: string;
+  image?: SanityImageObject;
+  path?: string;
+  type?: "website" | "article";
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
 }
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://lan.as'
-const siteName = 'Lanas'
-const defaultTitle = 'Lanas - Webdesign & Entwicklung für die Solarbranche'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://lan.as";
+const siteName = "Lanas";
+const defaultTitle = "Lanas - Webdesign & Entwicklung für die Solarbranche";
 const defaultDescription =
-  'Wir bauen blitzschnelle und hoch konvertierende Landing Pages und E-Commerce Shops für Ihr Photovoltaikunternehmen.'
+  "Wir bauen blitzschnelle und hoch konvertierende Landing Pages und E-Commerce Shops für Ihr Photovoltaikunternehmen.";
 
 export function generateMetadata(options: GenerateMetadataOptions): Metadata {
-  const {seo, title, description, image, path = '', type = 'website', publishedTime, modifiedTime, author} = options
+  const {
+    seo,
+    title,
+    description,
+    image,
+    path = "",
+    type = "website",
+    publishedTime,
+    modifiedTime,
+    author,
+  } = options;
 
   // Prioritize SEO fields, then fallback to direct options, then defaults
-  const finalTitle = seo?.title || title || defaultTitle
-  const finalDescription = seo?.description || description || defaultDescription
-  const finalImage = seo?.image || image
+  const finalTitle = seo?.title || title || defaultTitle;
+  const finalDescription =
+    seo?.description || description || defaultDescription;
+  const finalImage = seo?.image || image;
 
   // Generate full URL
-  const url = `${siteUrl}${path}`
+  const url = `${siteUrl}${path}`;
 
   // Generate OG image URL
   const ogImage = finalImage
-    ? getSanityImageUrl(finalImage, {width: 1200, height: 630, quality: 90})
-    : `${siteUrl}/og-image.jpg` // Fallback OG image
+    ? getSanityImageUrl(finalImage, { width: 1200, height: 630, quality: 90 })
+    : `${siteUrl}/og-image.jpg`; // Fallback OG image
 
   const metadata: Metadata = {
     title: finalTitle,
     description: finalDescription,
-    robots: seo?.indexing === 'noindex'
-      ? {
-          index: false,
-          follow: false,
-        }
-      : {
-          index: true,
-          follow: true,
-        },
+    robots:
+      seo?.indexing === "noindex"
+        ? {
+            index: false,
+            follow: false,
+          }
+        : {
+            index: true,
+            follow: true,
+          },
     openGraph: {
       title: finalTitle,
       description: finalDescription,
@@ -73,46 +85,46 @@ export function generateMetadata(options: GenerateMetadataOptions): Metadata {
           alt: finalTitle,
         },
       ],
-      locale: 'de_DE',
+      locale: "de_DE",
       type,
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: finalTitle,
       description: finalDescription,
       images: [ogImage],
-      creator: '@MatthiasWebDev',
+      creator: "@MatthiasWebDev",
     },
     alternates: {
       canonical: url,
     },
-  }
+  };
 
   // Add article-specific metadata
-  if (type === 'article' && publishedTime) {
+  if (type === "article" && publishedTime) {
     metadata.openGraph = {
       ...metadata.openGraph,
-      type: 'article',
+      type: "article",
       publishedTime,
       modifiedTime,
       authors: author ? [author] : undefined,
-    }
+    };
   }
 
-  return metadata
+  return metadata;
 }
 
 /**
  * Generate metadata for blog posts
  */
 export function generatePostMetadata(post: {
-  title: string
-  excerpt?: string
-  mainImage?: SanityImageObject
-  seo?: SanitySEO
-  publishedAt?: string
-  author?: {name: string}
-  slug: {current: string}
+  title: string;
+  excerpt?: string;
+  mainImage?: SanityImageObject;
+  seo?: SanitySEO;
+  publishedAt?: string;
+  author?: { name: string };
+  slug: { current: string };
 }) {
   return generateMetadata({
     seo: post.seo,
@@ -120,21 +132,21 @@ export function generatePostMetadata(post: {
     description: post.excerpt,
     image: post.mainImage,
     path: `/blog/${post.slug.current}`,
-    type: 'article',
+    type: "article",
     publishedTime: post.publishedAt,
     author: post.author?.name,
-  })
+  });
 }
 
 /**
  * Generate metadata for projects
  */
 export function generateProjectMetadata(project: {
-  title: string
-  description?: string
-  image?: SanityImageObject
-  seo?: SanitySEO
-  slug: {current: string}
+  title: string;
+  description?: string;
+  image?: SanityImageObject;
+  seo?: SanitySEO;
+  slug: { current: string };
 }) {
   return generateMetadata({
     seo: project.seo,
@@ -142,19 +154,19 @@ export function generateProjectMetadata(project: {
     description: project.description,
     image: project.image,
     path: `/projekt/${project.slug.current}`,
-    type: 'website',
-  })
+    type: "website",
+  });
 }
 
 /**
  * Generate metadata for static pages
  */
 export function generatePageMetadata(page: {
-  title?: string
-  description?: string
-  image?: SanityImageObject
-  seo?: SanitySEO
-  path: string
+  title?: string;
+  description?: string;
+  image?: SanityImageObject;
+  seo?: SanitySEO;
+  path: string;
 }) {
   return generateMetadata({
     seo: page.seo,
@@ -162,6 +174,6 @@ export function generatePageMetadata(page: {
     description: page.description,
     image: page.image,
     path: page.path,
-    type: 'website',
-  })
+    type: "website",
+  });
 }

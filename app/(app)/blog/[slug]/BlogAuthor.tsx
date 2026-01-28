@@ -1,6 +1,5 @@
-import { SanityImage } from "@/lib/sanity-image";
 import type { SanityImageObject } from "@/lib/sanity";
-import Image from "next/image";
+import { SanityImage } from "@/lib/sanity-image";
 
 export interface Author {
   name: string;

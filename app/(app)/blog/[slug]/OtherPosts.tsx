@@ -1,12 +1,9 @@
-import { Separator } from "@/components/ui/separator";
-import Image from "next/image";
 import Link from "next/link";
-
-import { SanityImage } from "@/lib/sanity-image";
 import SectionContainer from "@/app/(app)/SectionContainer";
+import { SanityImage } from "@/lib/sanity-image";
 
 // List of all other posts with cover image, title, excerpt, author, date
-// @ts-ignore
+// @ts-expect-error
 export default function OtherPosts({ allPosts }) {
   // TODO: Hide Component if empty
   // if (allPosts.length() > 0) return <div></div>;

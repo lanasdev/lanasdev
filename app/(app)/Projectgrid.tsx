@@ -1,19 +1,12 @@
 "use client";
 
 import MuxPlayer from "@mux/mux-player-react";
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
 import type { SanityImageObject } from "@/lib/sanity";
 import { SanityImage } from "@/lib/sanity-image";
 import { cn } from "@/lib/utils";
 
-import Image1 from "@/public/img/image1-mini.webp";
-import Image2 from "@/public/img/image2.jpg";
-import Image3 from "@/public/img/image3.jpg";
 import SectionContainer from "./SectionContainer";
 
 type ProjectType = {
@@ -58,7 +51,7 @@ function ProjectCard({
             alt={project.title}
             width={640}
             height={480}
-            priority={index === 0 ? true : false}
+            priority={index === 0}
             className={cn(
               "absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-300",
               isHovered && hasVideo ? "opacity-0" : "opacity-100",

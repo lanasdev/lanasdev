@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 import SectionContainer from "@/app/(app)/SectionContainer";
 import type { SanityImageObject } from "@/lib/sanity";

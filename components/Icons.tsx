@@ -2,12 +2,12 @@
 
 import {
   CircleNotch,
-  TwitterLogo,
-  InstagramLogo,
-  TelegramLogo,
-  GithubLogo,
   EnvelopeSimple,
+  GithubLogo,
+  InstagramLogo,
   PhoneCall,
+  TelegramLogo,
+  TwitterLogo,
   VideoConference,
 } from "@phosphor-icons/react";
 

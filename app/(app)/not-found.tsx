@@ -1,6 +1,6 @@
+import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
 
 export default function NotFound() {
   return (
@@ -13,7 +13,7 @@ export default function NotFound() {
         href="/"
         className={cn(
           buttonVariants({ variant: "outline" }),
-          "px-6 py-2 mt-4 lg:mt-8"
+          "px-6 py-2 mt-4 lg:mt-8",
         )}
       >
         Zurück zur Startseite

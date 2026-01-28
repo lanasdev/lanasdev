@@ -13,28 +13,27 @@ export const contentType = "image/png";
 // Image generation
 export default function Icon() {
   return new ImageResponse(
-    (
-      // ImageResponse JSX element
-      (<div
-        style={{
-          fontSize: 12,
-          fontWeight: "bold",
-          background: "hsl(20 14.3% 4.1%)",
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          color: "hsl(60 9.1% 97.8%)",
-        }}
-      >Lan
-              </div>)
-    ),
+    // ImageResponse JSX element
+    <div
+      style={{
+        fontSize: 12,
+        fontWeight: "bold",
+        background: "hsl(20 14.3% 4.1%)",
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        color: "hsl(60 9.1% 97.8%)",
+      }}
+    >
+      Lan
+    </div>,
     // ImageResponse options
     {
       // For convenience, we can re-use the exported icons size metadata
       // config to also set the ImageResponse's width and height.
       ...size,
-    }
+    },
   );
 }

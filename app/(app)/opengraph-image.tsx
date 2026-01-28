@@ -1,11 +1,10 @@
-import { ImageResponse } from 'next/og'
-import { client } from '@/sanity/lib/client'
-import { renderOGImage } from '@/lib/og'
+import { renderOGImage } from "@/lib/og";
+import { client } from "@/sanity/lib/client";
 
-export const runtime = 'edge'
-export const size = { width: 1200, height: 630 }
-export const contentType = 'image/png'
-export const alt = 'Lanas - Webdesign & Entwicklung'
+export const runtime = "edge";
+export const size = { width: 1200, height: 630 };
+export const contentType = "image/png";
+export const alt = "Lanas - Webdesign & Entwicklung";
 
 const QUERY = `{
   "home": *[_type == "home" && _id == "home"][0] {
@@ -41,27 +40,33 @@ const QUERY = `{
       }
     }
   }
-}`
+}`;
 
 export default async function Image() {
-  const data = await client.fetch(QUERY)
-  
-  const home = data?.home
-  const settings = data?.settings
-  const homeOg = settings?.homeOg
+  const data = await client.fetch(QUERY);
+
+  const home = data?.home;
+  const settings = data?.settings;
+  const homeOg = settings?.homeOg;
 
   // Priority: homeOg > home.seo > settings defaults
-  const title = homeOg?.title || home?.seo?.title || home?.title || settings?.title || 'Lanas'
-  const description = homeOg?.description || home?.seo?.description || settings?.description
-  const coverImage = homeOg?.image || home?.seo?.image || settings?.defaultOgImage
-  const coverImageUrl = coverImage?.asset?.url
-  const palette = coverImage?.asset?.metadata?.palette
+  const title =
+    homeOg?.title ||
+    home?.seo?.title ||
+    home?.title ||
+    settings?.title ||
+    "Lanas";
+  const description =
+    homeOg?.description || home?.seo?.description || settings?.description;
+  const coverImage =
+    homeOg?.image || home?.seo?.image || settings?.defaultOgImage;
+  const coverImageUrl = coverImage?.asset?.url;
+  const palette = coverImage?.asset?.metadata?.palette;
 
   return renderOGImage({
     title,
     description,
     coverImageUrl,
     palette,
-  })
+  });
 }
-

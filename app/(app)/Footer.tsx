@@ -2,16 +2,15 @@
 import Link from "next/link";
 
 import {
-  TwitterLogo,
-  InstagramLogo,
-  TelegramLogo,
-  GithubLogo,
   EnvelopeSimple,
+  GithubLogo,
+  InstagramLogo,
   PhoneCall,
+  TelegramLogo,
+  TwitterLogo,
 } from "@/components/Icons";
 // import LanguageBar from "./LanguageBar";
 
-import { getAll } from "@vercel/edge-config";
 import { cn } from "@/lib/utils";
 
 export interface EdgeConfig {
@@ -95,7 +94,7 @@ const Footer = async () => {
         Photovoltaik{" "}
       </Link>
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 md:gap-y-12">
-        {socials.map((s, i) => (
+        {socials.map((s, _i) => (
           <Link
             href={s.link || "/"}
             key={s.id}

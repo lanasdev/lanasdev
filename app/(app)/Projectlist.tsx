@@ -1,12 +1,10 @@
 import Image from "next/image";
-
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import Link from "next/link";
-import { getSanityImageUrl } from "@/lib/sanity-image";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { getSanityImageUrl } from "@/lib/sanity-image";
 
-// @ts-ignore
+// @ts-expect-error
 export default function Projectlist({ allProjects }) {
   return (
     <div className="max-w-fit pt-16 ">
@@ -41,7 +39,10 @@ export default function Projectlist({ allProjects }) {
               <article className="shrink-0 group overflow-hidden">
                 <figure className="overflow-auto relative rounded bg-indigo-700 object-cover border-2 transition-shadow duration-200 group-hover:shadow-medium ">
                   <Image
-                    src={getSanityImageUrl(p.image, { width: 800, height: 600 })}
+                    src={getSanityImageUrl(p.image, {
+                      width: 800,
+                      height: 600,
+                    })}
                     alt={`Project: ${p.title}`}
                     className="aspect-3/4 max-h-[50ch] md:max-h-full md:aspect-video h-fit w-fit object-cover "
                     width={800}

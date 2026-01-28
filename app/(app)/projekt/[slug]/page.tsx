@@ -1,17 +1,15 @@
-import SectionContainer from "@/app/(app)/SectionContainer";
-import { getProjectBySlug, getAllProjectSlugs } from "@/lib/sanity";
-import { generateProjectMetadata } from "@/lib/sanity-metadata";
-import { ResolvingMetadata, Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
-import ProjectCards from "./ProjectCards";
-import Projectlist from "@/app/(app)/Projectlist";
-import Projectgrid from "@/app/(app)/Projectgrid";
+import { notFound } from "next/navigation";
 import Balancer from "react-wrap-balancer";
-import ProgressBar from "@/components/ProgressBar";
+import SectionContainer from "@/app/(app)/SectionContainer";
 import Contact from "@/components/Contact";
 import { PortableTextRenderer } from "@/components/PortableTextRenderer";
+import ProgressBar from "@/components/ProgressBar";
+import { getAllProjectSlugs, getProjectBySlug } from "@/lib/sanity";
 import { SanityImage } from "@/lib/sanity-image";
-import { notFound } from "next/navigation";
+import { generateProjectMetadata } from "@/lib/sanity-metadata";
+import ProjectCards from "./ProjectCards";
 
 export const revalidate = 300; // 5 minutes
 
@@ -23,7 +21,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function Page(props: { params: Promise<{ slug: string }> }) {
+export default async function Page(props: {
+  params: Promise<{ slug: string }>;
+}) {
   const params = await props.params;
   const project = await getProjectBySlug(params.slug);
 
@@ -120,7 +120,10 @@ export default async function Page(props: { params: Promise<{ slug: string }> })
       {/* <CalContact /> */}
 
       <SectionContainer className="pt-8">
-        <ProjectCards projects={p.otherprojects || []} currentProjectSlug={p.slug.current} />
+        <ProjectCards
+          projects={p.otherprojects || []}
+          currentProjectSlug={p.slug.current}
+        />
         {/* <Projectgrid allProjects={p.otherprojects} /> */}
       </SectionContainer>
       {/* <SectionContainer className="">
@@ -136,7 +139,10 @@ type MetadataProps = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-export async function generateMetadata(props: MetadataProps, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(
+  props: MetadataProps,
+  _parent: ResolvingMetadata,
+): Promise<Metadata> {
   const params = await props.params;
   const project = await getProjectBySlug(params.slug);
 

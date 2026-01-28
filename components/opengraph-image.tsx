@@ -20,27 +20,25 @@ export default async function Image() {
   // ).then((res) => res.arrayBuffer());
 
   return new ImageResponse(
-    (
-      // ImageResponse JSX element
-      (<div
-        style={{
-          background: "hsl(20 14.3% 4.1%)",
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          color: "hsl(60 9.1% 97.8%)",
-        }}
-        tw="px-16"
-      >
-        <h1 tw="text-6xl font-bold text-balance">Lanas Webdesign</h1>
-        <p tw="text-2xl text-balance max-w-xl">
-          Wir bauen schnelle und hoch konvertierende Websites für Ihr
-          Photovoltaikunternehmen.
-        </p>
-      </div>)
-    ),
+    // ImageResponse JSX element
+    <div
+      style={{
+        background: "hsl(20 14.3% 4.1%)",
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        color: "hsl(60 9.1% 97.8%)",
+      }}
+      tw="px-16"
+    >
+      <h1 tw="text-6xl font-bold text-balance">Lanas Webdesign</h1>
+      <p tw="text-2xl text-balance max-w-xl">
+        Wir bauen schnelle und hoch konvertierende Websites für Ihr
+        Photovoltaikunternehmen.
+      </p>
+    </div>,
     // ImageResponse options
     {
       // For convenience, we can re-use the exported opengraph-image
@@ -54,6 +52,6 @@ export default async function Image() {
       //     weight: 400,
       //   },
       // ],
-    }
+    },
   );
 }

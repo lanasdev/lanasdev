@@ -1,7 +1,6 @@
-import Link from "next/link";
-import SectionContainer from "@/app/(app)/SectionContainer";
-import Balancer from "react-wrap-balancer";
 import { CheckCircledIcon } from "@radix-ui/react-icons";
+import Balancer from "react-wrap-balancer";
+import SectionContainer from "@/app/(app)/SectionContainer";
 
 const ThankYouPage = () => {
   return (

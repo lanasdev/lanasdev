@@ -1,11 +1,11 @@
 "use client";
 
+import { mdiClose, mdiMenu } from "@mdi/js";
+import Icon from "@mdi/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
-import Icon from "@mdi/react";
-import { mdiMenu, mdiClose } from "@mdi/js";
 import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 const NavItems = [
   ["Home", "/", "/"],
@@ -16,7 +16,7 @@ const NavItems = [
 
 const Navbar = () => {
   const pathname = usePathname();
-  const match = pathname.match(/^\/[^\/]+/);
+  const match = pathname.match(/^\/[^/]+/);
   const firstPathname = match ? match[0] : null;
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -26,7 +26,9 @@ const Navbar = () => {
         className={cn(
           "w-full max-w-6xl backdrop-blur-3xl md:w-auto",
           "transition-all duration-300 ease-in-out",
-          mobileMenuOpen ? "rounded-3xl bg-stone-100/20 pb-4" : "rounded-[104px] bg-stone-100/20"
+          mobileMenuOpen
+            ? "rounded-3xl bg-stone-100/20 pb-4"
+            : "rounded-[104px] bg-stone-100/20",
         )}
       >
         {/* Desktop Navigation */}
@@ -43,7 +45,7 @@ const Navbar = () => {
                 className={cn(
                   "text-base font-medium text-black transition-all duration-200",
                   "hover:opacity-70",
-                  firstPathname === realUrl ? "font-bold" : ""
+                  firstPathname === realUrl ? "font-bold" : "",
                 )}
               >
                 {title}
@@ -79,7 +81,7 @@ const Navbar = () => {
           <div
             className={cn(
               "overflow-hidden transition-all duration-300 ease-in-out",
-              mobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+              mobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0",
             )}
           >
             <div className="border-t border-stone-950/10">
@@ -92,7 +94,9 @@ const Navbar = () => {
                       className={cn(
                         "block w-full rounded-lg px-4 py-3 text-base font-medium text-black transition-all",
                         "hover:bg-stone-950/5",
-                        firstPathname === realUrl ? "font-bold bg-stone-950/5" : ""
+                        firstPathname === realUrl
+                          ? "font-bold bg-stone-950/5"
+                          : "",
                       )}
                     >
                       {title}
@@ -100,8 +104,12 @@ const Navbar = () => {
                   </li>
                 ))}
                 <li className="pt-2">
-                  <ContactButton mobile onClick={() => setMobileMenuOpen(false)} />
-                </li>‰
+                  <ContactButton
+                    mobile
+                    onClick={() => setMobileMenuOpen(false)}
+                  />
+                </li>
+                ‰
               </ul>
             </div>
           </div>
@@ -113,7 +121,13 @@ const Navbar = () => {
 
 export default Navbar;
 
-const ContactButton = ({ mobile = false, onClick }: { mobile?: boolean; onClick?: () => void }) => (
+const ContactButton = ({
+  mobile = false,
+  onClick,
+}: {
+  mobile?: boolean;
+  onClick?: () => void;
+}) => (
   <Link
     href="/#kontakt"
     onClick={onClick}
@@ -121,7 +135,7 @@ const ContactButton = ({ mobile = false, onClick }: { mobile?: boolean; onClick?
       "inline-flex items-center justify-center gap-2 rounded-lg bg-stone-950 px-4 py-1.5 backdrop-blur-[5.25px] transition-all",
       "text-base font-medium text-white",
       "hover:bg-stone-800",
-      mobile ? "w-full" : ""
+      mobile ? "w-full" : "",
     )}
   >
     Kontakt

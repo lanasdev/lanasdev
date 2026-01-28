@@ -1,8 +1,7 @@
-import React from "react";
-import SectionContainer from "../SectionContainer";
 import type { Metadata } from "next";
-import { getImpressumPage } from "@/lib/sanity";
 import { PortableTextRenderer } from "@/components/PortableTextRenderer";
+import { getImpressumPage } from "@/lib/sanity";
+import SectionContainer from "../SectionContainer";
 
 export const revalidate = 604800; // once a week
 

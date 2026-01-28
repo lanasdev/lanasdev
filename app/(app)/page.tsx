@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
-
+import Contact from "@/components/Contact";
+import HeroSection from "@/components/HeroSection";
+import AboutSection from "@/components/home/AboutSection";
+import ServiceSection from "@/components/home/ServiceSection";
+import TechStack from "@/components/home/TechStack";
 import { getHomepageData, getSiteSettings } from "@/lib/sanity";
 import { generatePageMetadata } from "@/lib/sanity-metadata";
-
-import Projectgrid from "./Projectgrid";
 import Bloglist from "../../components/Bloglist";
-import HeroSection from "@/components/HeroSection";
-import ServiceSection from "@/components/home/ServiceSection";
-import AboutSection from "@/components/home/AboutSection";
-import TechStack from "@/components/home/TechStack";
-import SectionContainer from "@/app/(app)/SectionContainer";
-import Contact from "@/components/Contact";
+import Projectgrid from "./Projectgrid";
 
 export const revalidate = 300; // 5 minutes
 
@@ -25,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: settings?.title || home?.title || undefined,
     description: settings?.description || undefined,
     image: home?.seo?.image || settings?.defaultOgImage || undefined,
-    path: '/',
+    path: "/",
   });
 }
 

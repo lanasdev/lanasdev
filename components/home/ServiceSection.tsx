@@ -1,18 +1,10 @@
-import Image from "next/image";
-import ServiceCard from "./ServiceCard";
-
-// import Image1 from "@/public/img/image1-mini.webp";
-import Image1 from "@/public/img/image1-mini.jpeg";
-import Image2 from "@/public/img/image2.webp";
-import Image3 from "@/public/img/image3.webp";
 import SectionContainer from "@/app/(app)/SectionContainer";
+
+import ServiceCard from "./ServiceCard";
 
 export default function ServiceSection() {
   return (
-    <SectionContainer
-      className="pb-24 pt-24"
-      id="dienstleistungen"
-    >
+    <SectionContainer className="pb-24 pt-24" id="dienstleistungen">
       <h3 className="pb-16 text-3xl font-semibold">Dienstleistungen</h3>
       <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
         <ServiceCard
@@ -24,7 +16,7 @@ export default function ServiceSection() {
         <ServiceCard
           title={"Google My Business"}
           description={
-            'Wir helfen Ihnen bei Ihrem Google My Business und Apple Business Connect Profil und stellen sicher, dass Sie auf der Karte angezeigt werden.'
+            "Wir helfen Ihnen bei Ihrem Google My Business und Apple Business Connect Profil und stellen sicher, dass Sie auf der Karte angezeigt werden."
           }
         />
         <ServiceCard
@@ -34,7 +26,6 @@ export default function ServiceSection() {
           }
         />
       </div>
-
     </SectionContainer>
   );
 }

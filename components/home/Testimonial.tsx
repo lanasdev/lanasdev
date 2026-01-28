@@ -1,10 +1,8 @@
-import SectionContainer from "@/app/(app)/SectionContainer";
-import React from "react";
+import type React from "react";
 import Balancer from "react-wrap-balancer";
+import SectionContainer from "@/app/(app)/SectionContainer";
 
-interface TestimonialProps {
-  // Add any props you need for your component here
-}
+type TestimonialProps = {};
 
 const Testimonial: React.FC<TestimonialProps> = () => {
   return (

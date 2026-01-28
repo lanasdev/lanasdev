@@ -37,3 +37,6 @@ yarn-error.log*
 
 # ts
 tsconfig.tsbuildinfo
+# next-agents-md
+.next-docs/
+.env*.local

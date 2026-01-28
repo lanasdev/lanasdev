@@ -1,109 +1,109 @@
-import {InfoOutlineIcon} from '@sanity/icons'
-import {defineArrayMember, defineField, defineType} from 'sanity'
+import { InfoOutlineIcon } from "@sanity/icons";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 export const aboutType = defineType({
-  name: 'about',
-  title: 'About Page',
-  type: 'document',
+  name: "about",
+  title: "About Page",
+  type: "document",
   icon: InfoOutlineIcon,
   fields: [
     defineField({
-      name: 'title',
-      title: 'Page Title',
-      type: 'string',
+      name: "title",
+      title: "Page Title",
+      type: "string",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'description',
-      title: 'Page Description',
-      type: 'text',
+      name: "description",
+      title: "Page Description",
+      type: "text",
       rows: 3,
     }),
     defineField({
-      name: 'image',
-      title: 'Hero Image',
-      type: 'image',
+      name: "image",
+      title: "Hero Image",
+      type: "image",
       options: {
         hotspot: true,
       },
       fields: [
         {
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative Text',
+          name: "alt",
+          type: "string",
+          title: "Alternative Text",
         },
       ],
     }),
     defineField({
-      name: 'content',
-      title: 'Page Content',
-      type: 'array',
+      name: "content",
+      title: "Page Content",
+      type: "array",
       of: [
         defineArrayMember({
-          type: 'block',
+          type: "block",
           styles: [
-            {title: 'Normal', value: 'normal'},
-            {title: 'H1', value: 'h1'},
-            {title: 'H2', value: 'h2'},
-            {title: 'H3', value: 'h3'},
-            {title: 'H4', value: 'h4'},
-            {title: 'Quote', value: 'blockquote'},
+            { title: "Normal", value: "normal" },
+            { title: "H1", value: "h1" },
+            { title: "H2", value: "h2" },
+            { title: "H3", value: "h3" },
+            { title: "H4", value: "h4" },
+            { title: "Quote", value: "blockquote" },
           ],
           lists: [
-            {title: 'Bullet', value: 'bullet'},
-            {title: 'Numbered', value: 'number'},
+            { title: "Bullet", value: "bullet" },
+            { title: "Numbered", value: "number" },
           ],
           marks: {
             decorators: [
-              {title: 'Strong', value: 'strong'},
-              {title: 'Emphasis', value: 'em'},
+              { title: "Strong", value: "strong" },
+              { title: "Emphasis", value: "em" },
             ],
             annotations: [
               {
-                title: 'URL',
-                name: 'link',
-                type: 'object',
+                title: "URL",
+                name: "link",
+                type: "object",
                 fields: [
                   {
-                    title: 'URL',
-                    name: 'href',
-                    type: 'url',
+                    title: "URL",
+                    name: "href",
+                    type: "url",
                   },
                 ],
               },
               {
-                title: 'Internal Project Link',
-                name: 'internalProjectLink',
-                type: 'object',
+                title: "Internal Project Link",
+                name: "internalProjectLink",
+                type: "object",
                 fields: [
                   {
-                    name: 'reference',
-                    type: 'reference',
-                    to: [{type: 'project'}],
+                    name: "reference",
+                    type: "reference",
+                    to: [{ type: "project" }],
                   },
                 ],
               },
               {
-                title: 'Internal Post Link',
-                name: 'internalPostLink',
-                type: 'object',
+                title: "Internal Post Link",
+                name: "internalPostLink",
+                type: "object",
                 fields: [
                   {
-                    name: 'reference',
-                    type: 'reference',
-                    to: [{type: 'post'}],
+                    name: "reference",
+                    type: "reference",
+                    to: [{ type: "post" }],
                   },
                 ],
               },
               {
-                title: 'Internal Testimonial Link',
-                name: 'internalTestimonialLink',
-                type: 'object',
+                title: "Internal Testimonial Link",
+                name: "internalTestimonialLink",
+                type: "object",
                 fields: [
                   {
-                    name: 'reference',
-                    type: 'reference',
-                    to: [{type: 'testimonial'}],
+                    name: "reference",
+                    type: "reference",
+                    to: [{ type: "testimonial" }],
                   },
                 ],
               },
@@ -111,31 +111,31 @@ export const aboutType = defineType({
           },
         }),
         defineArrayMember({
-          type: 'image',
-          options: {hotspot: true},
+          type: "image",
+          options: { hotspot: true },
           fields: [
             {
-              name: 'alt',
-              type: 'string',
-              title: 'Alternative Text',
+              name: "alt",
+              type: "string",
+              title: "Alternative Text",
             },
           ],
         }),
       ],
     }),
     defineField({
-      name: 'seo',
-      type: 'seo',
+      name: "seo",
+      type: "seo",
     }),
   ],
   preview: {
     select: {
-      title: 'title',
+      title: "title",
     },
     prepare() {
       return {
-        title: 'About Page Settings',
-      }
+        title: "About Page Settings",
+      };
     },
   },
-})
+});
