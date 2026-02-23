@@ -29,9 +29,9 @@ interface GenerateMetadataOptions {
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://lan.as";
 const siteName = "Lanas";
-const defaultTitle = "Lanas - Webdesign & Entwicklung für die Solarbranche";
+const defaultTitle = "Lanas - Webdesign & Entwicklung für Blitzschnelle Shopify Shops";
 const defaultDescription =
-  "Wir bauen blitzschnelle und hoch konvertierende Landing Pages und E-Commerce Shops für Ihr Photovoltaikunternehmen.";
+  "Wir bauen blitzschnelle und hoch konvertierende Shopify Shops und E-Commerce Websites für Ihr Unternehmen.";
 
 export function generateMetadata(options: GenerateMetadataOptions): Metadata {
   const {

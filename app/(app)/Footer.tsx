@@ -91,7 +91,7 @@ const Footer = async () => {
     <footer className="flex justify-between bg-foreground px-8 py-8 text-background">
       <Link href="/" className="">
         &copy; {new Date().getFullYear() || "2022"} Lanas Webdesign für
-        Photovoltaik{" "}
+        Blitzschnelle Shopify Shops{" "}
       </Link>
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 md:gap-y-12">
         {socials.map((s, _i) => (

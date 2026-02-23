@@ -19,9 +19,14 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return generatePageMetadata({
     seo: home?.seo,
-    title: settings?.title || home?.title || undefined,
-    description: settings?.description || undefined,
-    image: home?.seo?.image || settings?.defaultOgImage || undefined,
+    title: settings?.homeOg?.title || settings?.title || home?.title || undefined,
+    description:
+      settings?.homeOg?.description || settings?.description || undefined,
+    image:
+      settings?.homeOg?.image ||
+      home?.seo?.image ||
+      settings?.defaultOgImage ||
+      undefined,
     path: "/",
   });
 }
