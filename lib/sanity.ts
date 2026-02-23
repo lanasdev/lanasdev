@@ -106,6 +106,15 @@ type HomepageData = {
     textAbout?: PortableTextValue;
     imageAbout?: SanityImageObject;
     titleTechstack?: string;
+    skills?: Array<{
+      _id: string;
+      name?: string;
+      slug?: { current?: string };
+      category?: string;
+      proficiency?: string;
+      description?: string;
+      logo?: SanityImageObject;
+    }>;
     logosTechstack?: Array<SanityImageObject>;
     seo?: {
       title?: string;
@@ -237,6 +246,17 @@ export async function getHomepageData(
         ${imageProjection}
       },
       titleTechstack,
+      "skills": skills[]-> | order(order asc, _createdAt desc) {
+        _id,
+        name,
+        slug,
+        category,
+        proficiency,
+        description,
+        logo {
+          ${imageProjection}
+        }
+      },
       logosTechstack[] {
         ${imageProjection}
       },

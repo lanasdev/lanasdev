@@ -36,6 +36,7 @@ export const structure: StructureResolver = (S) =>
       // Collections
       S.documentTypeListItem("project").title("Projects"),
       S.documentTypeListItem("post").title("Blog Posts"),
+      S.documentTypeListItem("skill").title("Skills"),
       S.documentTypeListItem("testimonial").title("Testimonials"),
       S.divider(),
       S.documentTypeListItem("author").title("Authors"),
@@ -52,6 +53,7 @@ export const structure: StructureResolver = (S) =>
             "impressum",
             "project",
             "post",
+            "skill",
             "testimonial",
             "category",
             "author",

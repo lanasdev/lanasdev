@@ -82,6 +82,21 @@ export const homeType = defineType({
       type: "string",
     }),
     defineField({
+      name: "skills",
+      title: "Skills",
+      type: "array",
+      description: "Select skills to highlight in the homepage stack section.",
+      of: [
+        defineArrayMember({
+          type: "reference",
+          to: [{ type: "skill" }],
+        }),
+      ],
+      validation: (Rule) => [
+        Rule.max(12).warning("Show up to 12 skills for cleaner presentation."),
+      ],
+    }),
+    defineField({
       name: "logosTechstack",
       title: "Tech Stack Logos",
       type: "array",
