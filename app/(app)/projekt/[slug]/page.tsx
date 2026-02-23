@@ -6,6 +6,7 @@ import SectionContainer from "@/app/(app)/SectionContainer";
 import Contact from "@/components/Contact";
 import { PortableTextRenderer } from "@/components/PortableTextRenderer";
 import ProgressBar from "@/components/ProgressBar";
+import { stegaClean } from "next-sanity";
 import { getAllProjectSlugs, getProjectBySlug } from "@/lib/sanity";
 import { SanityImage } from "@/lib/sanity-image";
 import { generateProjectMetadata } from "@/lib/sanity-metadata";
@@ -103,7 +104,7 @@ export default async function Page(props: {
               <p className="font-medium">
                 Live URL:{" "}
                 <Link
-                  href={p.liveurl || "/"}
+                  href={stegaClean(p.liveurl) || "/"}
                   className="font-normal hover:underline"
                 >
                   {p.liveurl}
@@ -144,7 +145,7 @@ export async function generateMetadata(
   _parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const params = await props.params;
-  const project = await getProjectBySlug(params.slug);
+  const project = await getProjectBySlug(params.slug, { stega: false });
 
   if (!project) {
     return {};

@@ -74,7 +74,7 @@ export async function generateMetadata(
   _parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const params = await props.params;
-  const post = await getPostBySlug(params.slug);
+  const post = await getPostBySlug(params.slug, { stega: false });
 
   if (!post) {
     return {};

@@ -55,7 +55,7 @@ export default async function AboutPage() {
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  const about = await getAboutPage();
+  const about = await getAboutPage({ stega: false });
 
   if (!about) {
     return {};

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { stegaClean } from "next-sanity";
 import type { SanityImageObject } from "./sanity";
 import { getSanityImageUrl } from "./sanity-image";
 
@@ -63,7 +64,7 @@ export function generateMetadata(options: GenerateMetadataOptions): Metadata {
     title: finalTitle,
     description: finalDescription,
     robots:
-      seo?.indexing === "noindex"
+      stegaClean(seo?.indexing) === "noindex"
         ? {
             index: false,
             follow: false,

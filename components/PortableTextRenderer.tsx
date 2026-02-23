@@ -1,5 +1,6 @@
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import Link from "next/link";
+import { stegaClean } from "next-sanity";
 import type { SanityImageObject } from "@/lib/sanity";
 import { SanityImage } from "@/lib/sanity-image";
 
@@ -37,7 +38,7 @@ const components: PortableTextComponents = {
       children: React.ReactNode;
       value?: { href?: string };
     }) => {
-      const href = value?.href || "#";
+      const href = stegaClean(value?.href || "#");
       const isExternal = href.startsWith("http");
 
       if (isExternal) {
@@ -191,7 +192,7 @@ export function SimplePortableText({
         children: React.ReactNode;
         value?: { href?: string };
       }) => {
-        const href = value?.href || "#";
+        const href = stegaClean(value?.href || "#");
         const isExternal = href.startsWith("http");
 
         if (isExternal) {

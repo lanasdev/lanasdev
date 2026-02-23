@@ -158,13 +158,17 @@ async function resolveLiveConfig(): Promise<LiveConfig> {
   return { perspective: "published", stega: false };
 }
 
-async function fetchSanityData<T>(query: string, params?: QueryParams) {
-  const { perspective, stega } = await resolveLiveConfig();
+async function fetchSanityData<T>(
+  query: string,
+  params?: QueryParams,
+  options?: { stega?: boolean },
+) {
+  const config = await resolveLiveConfig();
   const { data } = await sanityFetch({
     query,
     params,
-    perspective,
-    stega,
+    perspective: config.perspective,
+    stega: options?.stega ?? config.stega,
   });
 
   return data as T;
@@ -173,7 +177,9 @@ async function fetchSanityData<T>(query: string, params?: QueryParams) {
 /**
  * Fetch site settings
  */
-export async function getSiteSettings(): Promise<SiteSettings | null> {
+export async function getSiteSettings(
+  options?: { stega?: boolean },
+): Promise<SiteSettings | null> {
   const query = `*[_type == "siteSettings" && _id == "siteSettings"][0] {
     title,
     description,
@@ -211,13 +217,15 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
     }
   }`;
 
-  return fetchSanityData<SiteSettings | null>(query);
+  return fetchSanityData<SiteSettings | null>(query, undefined, options);
 }
 
 /**
  * Fetch homepage data (projects, posts, home content)
  */
-export async function getHomepageData(): Promise<HomepageData> {
+export async function getHomepageData(
+  options?: { stega?: boolean },
+): Promise<HomepageData> {
   const query = `{
     "home": *[_type == "home" && _id == "home"][0] {
       title,
@@ -270,7 +278,7 @@ export async function getHomepageData(): Promise<HomepageData> {
     }
   }`;
 
-  return fetchSanityData<HomepageData>(query);
+  return fetchSanityData<HomepageData>(query, undefined, options);
 }
 
 /**
@@ -287,7 +295,10 @@ export async function getAllProjectSlugs() {
 /**
  * Fetch single project by slug
  */
-export async function getProjectBySlug(slug: string): Promise<{
+export async function getProjectBySlug(
+  slug: string,
+  options?: { stega?: boolean },
+): Promise<{
   _id: string;
   title: string;
   slug: { current: string };
@@ -352,7 +363,7 @@ export async function getProjectBySlug(slug: string): Promise<{
     ${seoProjection}
   }`;
 
-  return fetchSanityData(query, { slug });
+  return fetchSanityData(query, { slug }, options);
 }
 
 /**
@@ -369,7 +380,10 @@ export async function getAllPostSlugs() {
 /**
  * Fetch single post by slug
  */
-export async function getPostBySlug(slug: string): Promise<{
+export async function getPostBySlug(
+  slug: string,
+  options?: { stega?: boolean },
+): Promise<{
   _id: string;
   title: string;
   slug: { current: string };
@@ -409,7 +423,7 @@ export async function getPostBySlug(slug: string): Promise<{
     ${seoProjection}
   }`;
 
-  return fetchSanityData(query, { slug });
+  return fetchSanityData(query, { slug }, options);
 }
 
 /**
@@ -437,7 +451,9 @@ export async function getOtherPosts(currentSlug: string) {
 /**
  * Fetch about page data
  */
-export async function getAboutPage(): Promise<{
+export async function getAboutPage(
+  options?: { stega?: boolean },
+): Promise<{
   title: string;
   description?: string;
   image?: SanityImageObject;
@@ -461,7 +477,7 @@ export async function getAboutPage(): Promise<{
     _updatedAt
   }`;
 
-  return fetchSanityData(query);
+  return fetchSanityData(query, undefined, options);
 }
 
 /**
