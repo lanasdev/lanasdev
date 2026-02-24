@@ -1,26 +1,9 @@
 import Link from "next/link";
-import { submitForm } from "@/app/(app)/actions";
 import { EnvelopeSimple, TelegramLogo } from "@/components/Icons";
 import SectionContainer from "../app/(app)/SectionContainer";
-import ContactButton from "./ContactButton";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
-import { Textarea } from "./ui/textarea";
-// import CallToCal from "./CallToAction/CallToCal";
-// import { getCalApi } from "@calcom/embed-react";
+import ContactForm from "./ContactForm";
 
 export default function Contact() {
-  // useEffect(() => {
-  //   (async function () {
-  //     const cal = await getCalApi();
-  //     cal("ui", {
-  //       theme: "dark",
-  //       styles: {
-  //         branding: { brandColor: "#000000" },
-  //       },
-  //     });
-  //   })();
-  // }, []);
   return (
     <SectionContainer className="mt-24 flex flex-col divide-y bg-secondary py-32 sm:flex-row sm:gap-8 sm:divide-x sm:divide-y-0">
       <div className="sm:flex-1 ">
@@ -40,59 +23,13 @@ export default function Contact() {
               hey@lanas.dev
             </Link>
             <Link href={process.env.NEXT_PUBLIC_TELEGRAM_URL || "#kontakt"}>
-              <TelegramLogo className="h-7 w-6 " /> Telegram: lanasdev
+              <TelegramLogo className="h-7 w-6" aria-hidden="true" /> Telegram:
+              lanasdev
             </Link>
           </div>
         </aside>
       </div>
-      <form
-        // @ts-expect-error
-        action={submitForm}
-        className="max-w-(--breakpoint-md) pt-16 sm:flex-2 sm:pl-8 sm:pt-0 lg:px-16"
-      >
-        <div className="flex flex-col gap-4 md:flex-row">
-          <fieldset className=" flex grow flex-col">
-            <Label htmlFor="name" className="pb-1">
-              Name:
-            </Label>
-            <Input
-              type="text"
-              name="name"
-              id="name"
-              className="mt-2 rounded-md border border-foreground px-4 py-3 focus:bg-background"
-              autoComplete="first_name"
-              required
-              placeholder="Matthias"
-            />
-          </fieldset>
-          <fieldset className="flex grow flex-col">
-            <Label htmlFor="email" className="pb-1">
-              Email:
-            </Label>
-            <Input
-              type="email"
-              name="email"
-              id="email"
-              className="mt-2 rounded-md border border-foreground px-4 py-3 focus:bg-background"
-              autoComplete="email"
-              required
-              placeholder="hey@lanas.dev"
-            />
-          </fieldset>
-        </div>
-        <fieldset className="flex flex-col pt-6">
-          <Label htmlFor="message">
-            Gibt es noch etwas, was Sie mitteilen wollen?
-          </Label>
-          <Textarea
-            name="message"
-            id="message"
-            className="mt-2 rounded-md border border-foreground px-4 py-3 focus:bg-background"
-            placeholder="Ihre Nachricht an mich"
-          />
-        </fieldset>
-        <ContactButton className="float-right sm:float-none" />
-      </form>
+      <ContactForm />
     </SectionContainer>
   );
 }

@@ -35,6 +35,12 @@ export default async function RootLayout({
           "min-h-screen antialiased selection:bg-cyan-300",
         )}
       >
+        <a
+          href="#main-content"
+          className="absolute left-[-9999px] focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-foreground focus:px-4 focus:py-2 focus:text-background focus:outline-none focus:ring-2 focus:ring-ring focus:block"
+        >
+          Zum Inhalt springen
+        </a>
         <Navbar />
         {children}
         <Footer />

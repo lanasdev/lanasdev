@@ -16,13 +16,11 @@ type BlogHeaderProps = {
 const BlogHeader = ({ title, date, author }: BlogHeaderProps) => {
   // format date to be more readable
   const formattedDate = date
-    ? new Date(date)
-        .toLocaleDateString("en-US", {
-          day: "numeric",
-          month: "numeric",
-          year: "numeric",
-        })
-        .replace(/ /g, " ")
+    ? new Intl.DateTimeFormat("de-DE", {
+        day: "numeric",
+        month: "numeric",
+        year: "numeric",
+      }).format(new Date(date))
     : null;
 
   const authorInfo: Author | null =

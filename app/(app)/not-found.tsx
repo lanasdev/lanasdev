@@ -4,7 +4,11 @@ import { cn } from "@/lib/utils";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex items-center justify-center flex-col">
+    <main
+      id="main-content"
+      className="min-h-screen flex items-center justify-center flex-col"
+      tabIndex={-1}
+    >
       <h2 className="text-2xl md:text-4xl lg:text-6xl lg:pb-4 font-semibold">
         404: Nicht gefunden
       </h2>
@@ -18,6 +22,6 @@ export default function NotFound() {
       >
         Zurück zur Startseite
       </Link>
-    </div>
+    </main>
   );
 }

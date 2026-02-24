@@ -1,6 +1,6 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
-@config '../tailwind.config.js';
+@config "../tailwind.config.js";
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
@@ -73,5 +73,15 @@
   }
   body {
     @apply bg-background text-foreground;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
+}
+
+/* Sticky nav anchor scroll offset */
+[id="projekte"],
+[id="dienstleistungen"],
+[id="blog"],
+[id="kontakt"] {
+  scroll-margin-top: 6rem;
 }

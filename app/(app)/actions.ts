@@ -15,27 +15,44 @@ const baseUrl = process.env.VERCEL_URL
   : "https://lan.as";
 
 const schema = z.object({
-  name: z.string().min(1).max(64),
-  email: z.email(),
-  message: z.string().min(1).max(1000),
+  name: z.string().min(1, "Name ist erforderlich").max(64),
+  email: z.string().email("E-Mail-Adresse ist ungültig"),
+  message: z.string().min(1, "Nachricht ist erforderlich").max(1000),
 });
 
-export async function submitForm(formData: FormData) {
+export type SubmitFormState = {
+  errors?: { name?: string; email?: string; message?: string };
+  message?: string;
+};
+
+export async function submitForm(
+  _prevState: SubmitFormState | null,
+  formData: FormData,
+): Promise<SubmitFormState> {
   "use server";
 
   const rawFormData = {
-    name: formData.get("name"),
-    email: formData.get("email"),
-    message: formData.get("message"),
+    name: (formData.get("name") as string | null) ?? "",
+    email: (formData.get("email") as string | null) ?? "",
+    message: (formData.get("message") as string | null) ?? "",
   };
 
-  const validatedFormData = schema.safeParse(rawFormData);
+  const result = schema.safeParse(rawFormData);
 
-  if (!validatedFormData.success) {
-    return { message: "Failed to parse Form" };
+  if (!result.success) {
+    const flattened = z.flattenError(result.error);
+    const fieldErrors: SubmitFormState["errors"] = {};
+    for (const [key, messages] of Object.entries(flattened.fieldErrors)) {
+      const k = key as keyof typeof fieldErrors;
+      if (messages?.[0]) fieldErrors[k] = messages[0];
+    }
+    return {
+      errors: fieldErrors,
+      message: "Bitte überprüfen Sie Ihre Eingaben.",
+    };
   }
 
-  const data = validatedFormData.data;
+  const data = result.data;
 
   // update db @vercel/postgres
   try {
@@ -45,7 +62,10 @@ export async function submitForm(formData: FormData) {
   `;
   } catch (e) {
     console.log(e);
-    return { message: "Failed to submit Form" };
+    return {
+      message:
+        "Formular konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.",
+    };
   }
 
   // submit to Contact: https://formspree.io/f/mgedprdn or ContactTest: https://formspree.io/f/moqgajdv
@@ -60,7 +80,10 @@ export async function submitForm(formData: FormData) {
     });
   } catch (error) {
     console.log(error);
-    return { message: "Failed to submit Form to Formspree" };
+    return {
+      message:
+        "Formular konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.",
+    };
   }
 
   const clientName = data.name;
@@ -85,7 +108,10 @@ export async function submitForm(formData: FormData) {
     });
   } catch (error) {
     console.log(error);
-    return { message: "Failed to send Email", error };
+    return {
+      message:
+        "E-Mail konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.",
+    };
   }
 
   // revalidate the page

@@ -35,7 +35,7 @@ export default async function BlogPage(props: {
   const p = post;
 
   return (
-    <div className="">
+    <main id="main-content" className="" tabIndex={-1}>
       <BlogHeader title={p.title} date={p.publishedAt} author={p.author} />
       {p.mainImage && (
         <SanityImage
@@ -60,7 +60,7 @@ export default async function BlogPage(props: {
         <pre className="max-w-xl pt-24">{JSON.stringify(post, null, 2)}</pre>
       </SectionContainer> */}
       <Contact />
-    </div>
+    </main>
   );
 }
 

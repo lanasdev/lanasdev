@@ -31,7 +31,7 @@ export function MiniBlogCard({ post }: { post: any }) {
         alt={post.title}
         width={384}
         height={288}
-        className="aspect-golden max-h-96 w-full rounded-xl transition-all duration-300 ease-in-out group-hover:scale-103 group-hover:opacity-80 object-cover"
+        className="aspect-golden max-h-96 w-full rounded-xl transition-[transform,opacity] duration-300 ease-in-out group-hover:scale-103 group-hover:opacity-80 motion-reduce:transition-none object-cover"
       />
       <p className="line-clamp-1 max-w-xs pt-4">{post.excerpt}</p>
       <h4 className="text-xl font-semibold">{post.title}</h4>

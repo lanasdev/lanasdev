@@ -20,6 +20,11 @@
       "source": "sanity-io/agent-toolkit",
       "sourceType": "github",
       "computedHash": "9f1ddd0e11714c3a0a2f621e46e292f01c90a81aef9207f31bb55e0008023a1f"
+    },
+    "web-design-guidelines": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "computedHash": "a6a44d5498f7e8f68289902f3dedfc6f38ae0cee1e96527c80724cf27f727c2a"
     }
   }
 }

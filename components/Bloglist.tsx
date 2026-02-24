@@ -23,7 +23,7 @@ export default function Bloglist({ allPosts }) {
               alt={p.title}
               width={320}
               height={240}
-              className="aspect-golden max-h-96 w-full rounded-xl transition-all duration-150 ease-in-out group-hover:scale-103 group-hover:border-foreground group-hover:opacity-80 object-cover"
+              className="aspect-golden max-h-96 w-full rounded-xl transition-[transform,opacity,border-color] duration-150 ease-in-out group-hover:scale-103 group-hover:border-foreground group-hover:opacity-80 motion-reduce:transition-none object-cover"
             />
             <p className="line-clamp-1 pt-4">{p.excerpt}</p>
             <h4 className="text-xl font-semibold group-hover:underline group-hover:decoration-muted-foreground">

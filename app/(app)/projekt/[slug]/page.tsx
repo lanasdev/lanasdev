@@ -1,12 +1,12 @@
 import type { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { stegaClean } from "next-sanity";
 import Balancer from "react-wrap-balancer";
 import SectionContainer from "@/app/(app)/SectionContainer";
 import Contact from "@/components/Contact";
 import { PortableTextRenderer } from "@/components/PortableTextRenderer";
 import ProgressBar from "@/components/ProgressBar";
-import { stegaClean } from "next-sanity";
 import { getAllProjectSlugs, getProjectBySlug } from "@/lib/sanity";
 import { SanityImage } from "@/lib/sanity-image";
 import { generateProjectMetadata } from "@/lib/sanity-metadata";
@@ -34,29 +34,14 @@ export default async function Page(props: {
 
   const p = project;
 
-  function formatDate(date: string) {
-    const months = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
-    const d = new Date(date);
-    const month = months[d.getMonth()];
-    const year = d.getFullYear();
-    return `${month} ${year}`;
-  }
+  const formatDate = (dateStr: string) =>
+    new Intl.DateTimeFormat("de-DE", {
+      month: "short",
+      year: "numeric",
+    }).format(new Date(dateStr));
 
   return (
-    <div className="">
+    <main id="main-content" className="" tabIndex={-1}>
       <SectionContainer className="pt-20 ">
         <h1 className="text-3xl font-semibold">
           <Balancer>Projekt: {p.title}</Balancer>
@@ -131,7 +116,7 @@ export default async function Page(props: {
         <pre className="max-w-xl pt-24">{JSON.stringify(project, null, 2)}</pre>
       </SectionContainer> */}
       <Contact />
-    </div>
+    </main>
   );
 }
 

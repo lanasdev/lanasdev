@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 const ContactPage = () => {
   return (
-    <div className="relative bg-white">
+    <main id="main-content" className="relative bg-white" tabIndex={-1}>
       <div className="lg:absolute lg:inset-0 lg:left-1/2">
         <Image
           className="h-64 w-full bg-gray-50 object-cover sm:h-80 lg:absolute lg:h-full"
@@ -207,7 +207,7 @@ const ContactPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 

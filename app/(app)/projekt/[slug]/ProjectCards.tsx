@@ -13,7 +13,7 @@ export function MiniProjectCard({ project }: { project: any }) {
         alt={project.title}
         width={384}
         height={288}
-        className="aspect-golden h-48 rounded-xl transition-all duration-300 ease-in-out group-hover:scale-103 group-hover:opacity-80 object-cover"
+        className="aspect-golden h-48 rounded-xl transition-[transform,opacity] duration-300 ease-in-out group-hover:scale-103 group-hover:opacity-80 motion-reduce:transition-none object-cover"
       />
       <p className="line-clamp-1 max-w-xs pt-4">{project.description}</p>
       <h4 className="text-xl font-semibold">{project.title}</h4>
