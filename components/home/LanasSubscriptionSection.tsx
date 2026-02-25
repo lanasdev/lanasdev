@@ -28,7 +28,7 @@ export default function LanasSubscriptionSection() {
           <CardHeader>
             <CardTitle>Jetzt abonnieren</CardTitle>
             <CardDescription>
-              Geben Sie Ihre E-Mail ein – Sie werden zum sicheren
+              Klicken Sie auf den Button – Sie werden zum sicheren
               Stripe-Checkout weitergeleitet.
             </CardDescription>
           </CardHeader>

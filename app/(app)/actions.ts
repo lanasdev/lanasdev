@@ -137,39 +137,15 @@ export async function disableDraftModeAction() {
   await new Promise((resolve) => setTimeout(resolve, disableDraftDelay));
 }
 
-const shopDesignCheckoutSchema = z.object({
-  email: z.string().email("E-Mail-Adresse ist ungültig"),
-});
-
 export type ShopDesignCheckoutState = {
-  errors?: { email?: string };
   message?: string;
 };
 
 export async function createShopDesignCheckoutSession(
   _prevState: ShopDesignCheckoutState | null,
-  formData: FormData,
+  _formData?: FormData,
 ): Promise<ShopDesignCheckoutState> {
   "use server";
-
-  const raw = {
-    email: (formData.get("email") as string | null) ?? "",
-  };
-
-  const result = shopDesignCheckoutSchema.safeParse(raw);
-
-  if (!result.success) {
-    const flattened = z.flattenError(result.error);
-    const fieldErrors: ShopDesignCheckoutState["errors"] = {};
-    for (const [key, messages] of Object.entries(flattened.fieldErrors)) {
-      const k = key as keyof typeof fieldErrors;
-      if (messages?.[0]) fieldErrors[k] = messages[0];
-    }
-    return {
-      errors: fieldErrors,
-      message: "Bitte überprüfen Sie Ihre Eingaben.",
-    };
-  }
 
   const baseUrl = getBaseUrl();
   const priceId = getShopDesignPriceId();
@@ -179,7 +155,6 @@ export async function createShopDesignCheckoutSession(
     const session = await stripe.checkout.sessions.create({
       mode: "subscription",
       line_items: [{ price: priceId, quantity: 1 }],
-      customer_email: result.data.email,
       success_url: `${baseUrl}/lanas-club/erfolg?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${baseUrl}/lanas-club/abgebrochen`,
     });
