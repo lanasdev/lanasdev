@@ -40,3 +40,4 @@ tsconfig.tsbuildinfo
 # next-agents-md
 .next-docs/
 .env*.local
+next-env.d.ts

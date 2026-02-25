@@ -1,4 +1,10 @@
 import { Suspense, use } from "react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getFaqData } from "@/lib/subscription-faq";
 
@@ -10,14 +16,18 @@ function FaqContent({
   const items = use(promise);
 
   return (
-    <dl className="space-y-4">
+    <Accordion type="single" collapsible className="w-full">
       {items.map((item, i) => (
-        <div key={i}>
-          <dt className="font-medium">{item.question}</dt>
-          <dd className="mt-1 text-muted-foreground">{item.answer}</dd>
-        </div>
+        <AccordionItem key={i} value={`faq-${i}`}>
+          <AccordionTrigger className="text-left text-base">
+            {item.question}
+          </AccordionTrigger>
+          <AccordionContent className="text-muted-foreground">
+            {item.answer}
+          </AccordionContent>
+        </AccordionItem>
       ))}
-    </dl>
+    </Accordion>
   );
 }
 
@@ -38,9 +48,9 @@ export default function SubscriptionFaq() {
   const faqPromise = getFaqData();
 
   return (
-    <section>
-      <h2 className="text-xl font-semibold">Häufige Fragen</h2>
-      <div className="mt-4">
+    <section className="mx-auto max-w-2xl">
+      <h3 className="text-2xl font-semibold">Häufige Fragen</h3>
+      <div className="mt-6">
         <Suspense fallback={<FaqSkeleton />}>
           <FaqContent promise={faqPromise} />
         </Suspense>

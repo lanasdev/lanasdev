@@ -151,23 +151,27 @@ export async function createShopDesignCheckoutSession(
   const priceId = getShopDesignPriceId();
   const stripe = getStripe();
 
+  let sessionUrl: string | null = null;
+
   try {
     const session = await stripe.checkout.sessions.create({
       mode: "subscription",
       line_items: [{ price: priceId, quantity: 1 }],
+      tax_id_collection: { enabled: true },
       success_url: `${baseUrl}/lanas-club/erfolg?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${baseUrl}/lanas-club/abgebrochen`,
     });
-
-    if (session.url) {
-      redirect(session.url);
-    }
+    sessionUrl = session.url;
   } catch (e) {
     console.error("Stripe checkout error:", e);
     return {
       message:
         "Checkout konnte nicht gestartet werden. Bitte versuchen Sie es später erneut.",
     };
+  }
+
+  if (sessionUrl) {
+    redirect(sessionUrl);
   }
 
   return {

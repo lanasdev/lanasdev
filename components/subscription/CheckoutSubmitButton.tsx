@@ -1,8 +1,7 @@
 "use client";
 
-import { CircleNotch } from "@phosphor-icons/react";
+import { ArrowRight, CircleNotch } from "@phosphor-icons/react";
 import { useFormStatus } from "react-dom";
-import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export default function CheckoutSubmitButton({
@@ -16,16 +15,22 @@ export default function CheckoutSubmitButton({
     <button
       type="submit"
       disabled={pending}
-      className={cn(buttonVariants({ variant: "default" }), "mt-6", className)}
+      className={cn(
+        "inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-md transition-all hover:bg-primary/90 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+        className,
+      )}
       aria-busy={pending}
     >
       {pending ? (
         <>
           Wird weitergeleitet…
-          <CircleNotch className="ml-2 h-4 w-4 animate-spin" aria-hidden />
+          <CircleNotch className="h-5 w-5 animate-spin" aria-hidden />
         </>
       ) : (
-        <>Lanas Subscription – 2.800 €/Monat</>
+        <>
+          Jetzt starten
+          <ArrowRight className="h-5 w-5" aria-hidden />
+        </>
       )}
     </button>
   );
