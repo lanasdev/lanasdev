@@ -122,7 +122,7 @@ export default Navbar;
 function ContactButton({ onClick }: { onClick?: () => void }) {
   return (
     <Link
-      href="/club"
+      href="/#club"
       onClick={onClick}
       className={cn(
         "inline-flex items-center justify-center gap-2 rounded-lg bg-stone-950 px-4 py-1.5 backdrop-blur-[5.25px] transition-colors",
@@ -138,7 +138,7 @@ function ContactButton({ onClick }: { onClick?: () => void }) {
 function ContactButtonMobile({ onClick }: { onClick?: () => void }) {
   return (
     <Link
-      href="/club"
+      href="/#club"
       onClick={onClick}
       className={cn(
         "inline-flex w-full items-center justify-center gap-2 rounded-lg bg-stone-950 px-4 py-1.5 backdrop-blur-[5.25px] transition-colors",
