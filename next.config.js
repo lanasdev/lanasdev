@@ -23,6 +23,16 @@ const nextConfig = {
         permanent: false,
       },
       {
+        source: "/shop-design-abo",
+        destination: "/lanas-club",
+        permanent: true,
+      },
+      {
+        source: "/lanas-club",
+        destination: "/#lanas-club",
+        permanent: false,
+      },
+      {
         source: "/meet",
         destination: "https://cal.com/lanas/hallo",
         permanent: true,

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Contact from "@/components/Contact";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/home/AboutSection";
+import LanasSubscriptionSection from "@/components/home/LanasSubscriptionSection";
 import ServiceSection from "@/components/home/ServiceSection";
 import TechStack from "@/components/home/TechStack";
 import { getHomepageData, getSiteSettings } from "@/lib/sanity";
@@ -48,6 +49,7 @@ export default async function Home() {
       {/* <StepsSection /> */}
       <Bloglist allPosts={allPosts} />
       <AboutSection aboutData={home} />
+      <LanasSubscriptionSection />
       <TechStack techData={home} />
       <Contact />
       {/* <pre className="max-w-xl">{JSON.stringify(data, null, 2)}</pre> */}

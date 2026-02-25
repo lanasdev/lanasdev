@@ -29,7 +29,8 @@ interface GenerateMetadataOptions {
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://lan.as";
 const siteName = "Lanas";
-const defaultTitle = "Lanas - Webdesign & Entwicklung für Blitzschnelle Shopify Shops";
+const defaultTitle =
+  "Lanas - Webdesign & Entwicklung für Blitzschnelle Shopify Shops";
 const defaultDescription =
   "Wir bauen blitzschnelle und hoch konvertierende Shopify Shops und E-Commerce Websites für Ihr Unternehmen.";
 

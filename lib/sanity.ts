@@ -186,10 +186,11 @@ async function fetchSanityData<T>(
 /**
  * Fetch site settings
  */
-export async function getSiteSettings(
-  options?: { stega?: boolean },
-): Promise<SiteSettings | null> {
-  const query = defineQuery(`*[_type == "siteSettings" && _id == "siteSettings"][0] {
+export async function getSiteSettings(options?: {
+  stega?: boolean;
+}): Promise<SiteSettings | null> {
+  const query =
+    defineQuery(`*[_type == "siteSettings" && _id == "siteSettings"][0] {
     title,
     description,
     siteUrl,
@@ -232,9 +233,9 @@ export async function getSiteSettings(
 /**
  * Fetch homepage data (projects, posts, home content)
  */
-export async function getHomepageData(
-  options?: { stega?: boolean },
-): Promise<HomepageData> {
+export async function getHomepageData(options?: {
+  stega?: boolean;
+}): Promise<HomepageData> {
   const query = defineQuery(`{
     "home": *[_type == "home" && _id == "home"][0] {
       title,
@@ -448,7 +449,8 @@ export async function getPostBySlug(
  * Fetch all posts except the current one (for "Other Posts" section)
  */
 export async function getOtherPosts(currentSlug: string) {
-  const query = defineQuery(`*[_type == "post" && slug.current != $currentSlug] | order(publishedAt desc) [0...4] {
+  const query =
+    defineQuery(`*[_type == "post" && slug.current != $currentSlug] | order(publishedAt desc) [0...4] {
     _id,
     title,
     slug,
@@ -469,9 +471,7 @@ export async function getOtherPosts(currentSlug: string) {
 /**
  * Fetch about page data
  */
-export async function getAboutPage(
-  options?: { stega?: boolean },
-): Promise<{
+export async function getAboutPage(options?: { stega?: boolean }): Promise<{
   title: string;
   description?: string;
   image?: SanityImageObject;
@@ -515,7 +515,8 @@ export async function getImpressumPage(): Promise<ImpressumPage | null> {
  * Fetch all testimonials
  */
 export async function getAllTestimonials() {
-  const query = defineQuery(`*[_type == "testimonial"] | order(_createdAt desc) {
+  const query =
+    defineQuery(`*[_type == "testimonial"] | order(_createdAt desc) {
     _id,
     name,
     slug,
@@ -573,7 +574,8 @@ export async function getSitemapData(): Promise<{
  * Fetch recent projects (for navbar or other components)
  */
 export async function getRecentProjects(limit = 5) {
-  const query = defineQuery(`*[_type == "project"] | order(position asc, _createdAt desc) [0...$limit] {
+  const query =
+    defineQuery(`*[_type == "project"] | order(position asc, _createdAt desc) [0...$limit] {
     _id,
     title,
     slug,

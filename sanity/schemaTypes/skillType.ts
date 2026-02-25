@@ -73,7 +73,9 @@ export const skillType = defineType({
           name: "alt",
           type: "string",
           validation: (Rule) => [
-            Rule.max(120).warning("Keep alternative text under 120 characters."),
+            Rule.max(120).warning(
+              "Keep alternative text under 120 characters.",
+            ),
           ],
         }),
       ],

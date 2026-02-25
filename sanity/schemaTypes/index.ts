@@ -9,8 +9,8 @@ import { ogConfigType } from "./ogConfigType";
 import { postType } from "./postType";
 import { projectType } from "./projectType";
 import { seoType } from "./seoType";
-import { skillType } from "./skillType";
 import { siteSettingsType } from "./siteSettingsType";
+import { skillType } from "./skillType";
 import { testimonialType } from "./testimonialType";
 
 export const schema: { types: SchemaTypeDefinition[] } = {

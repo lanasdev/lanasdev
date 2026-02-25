@@ -1,4 +1,7 @@
-import { defineLocations, type DocumentLocationResolvers } from "sanity/presentation";
+import {
+  type DocumentLocationResolvers,
+  defineLocations,
+} from "sanity/presentation";
 
 export const resolve: { locations: DocumentLocationResolvers } = {
   locations: {

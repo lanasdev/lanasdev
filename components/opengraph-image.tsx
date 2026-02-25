@@ -35,8 +35,8 @@ export default async function Image() {
     >
       <h1 tw="text-6xl font-bold text-balance">Lanas Webdesign</h1>
       <p tw="text-2xl text-balance max-w-xl">
-        Wir bauen blitzschnelle und hoch konvertierende Shopify Shops für
-        Ihr E-Commerce-Unternehmen.
+        Wir bauen blitzschnelle und hoch konvertierende Shopify Shops für Ihr
+        E-Commerce-Unternehmen.
       </p>
     </div>,
     // ImageResponse options

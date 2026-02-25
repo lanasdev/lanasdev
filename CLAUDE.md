@@ -134,6 +134,10 @@ Required environment variables (see `.env.local`):
 - `NEXT_PUBLIC_SANITY_API_VERSION` - API version (defaults to '2025-10-30')
 - `RESEND_API_KEY` - Resend email service key
 - `FORMSPREE_ID` - Formspree form ID
+- `STRIPE_SECRET_KEY` - Stripe secret key (server-only)
+- `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` - Stripe publishable key (optional, for future client-side use)
+- `STRIPE_WEBHOOK_SECRET` - Stripe webhook signing secret
+- `STRIPE_SHOP_DESIGN_PRICE_ID` - Price ID for Shop Design subscription (e.g. `price_xxx`)
 - Vercel Postgres connection strings (auto-configured on Vercel)
 
 ## Code Patterns
