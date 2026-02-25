@@ -8,7 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 export default function LanasSubscriptionSection() {
   return (
     <SectionContainer className="mt-24 bg-secondary py-24 lg:py-32">
-      <div id="lanas-club" className="scroll-mt-24 text-center">
+      <div id="club" className="scroll-mt-24 text-center">
         <p className="text-sm font-medium tracking-widest text-muted-foreground uppercase">
           Shop Design als Abo
         </p>
