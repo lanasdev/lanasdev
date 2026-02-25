@@ -1,5 +1,5 @@
 import { draftMode } from "next/headers";
-import type { QueryParams } from "next-sanity";
+import { defineQuery, type QueryParams } from "next-sanity";
 
 import { sanityFetch } from "@/sanity/lib/live";
 
@@ -189,7 +189,7 @@ async function fetchSanityData<T>(
 export async function getSiteSettings(
   options?: { stega?: boolean },
 ): Promise<SiteSettings | null> {
-  const query = `*[_type == "siteSettings" && _id == "siteSettings"][0] {
+  const query = defineQuery(`*[_type == "siteSettings" && _id == "siteSettings"][0] {
     title,
     description,
     siteUrl,
@@ -224,7 +224,7 @@ export async function getSiteSettings(
         ${imageProjection}
       }
     }
-  }`;
+  }`);
 
   return fetchSanityData<SiteSettings | null>(query, undefined, options);
 }
@@ -235,7 +235,7 @@ export async function getSiteSettings(
 export async function getHomepageData(
   options?: { stega?: boolean },
 ): Promise<HomepageData> {
-  const query = `{
+  const query = defineQuery(`{
     "home": *[_type == "home" && _id == "home"][0] {
       title,
       subheading,
@@ -296,7 +296,7 @@ export async function getHomepageData(
         }
       }
     }
-  }`;
+  }`);
 
   return fetchSanityData<HomepageData>(query, undefined, options);
 }
@@ -305,9 +305,9 @@ export async function getHomepageData(
  * Fetch all project slugs for static generation
  */
 export async function getAllProjectSlugs() {
-  const query = `*[_type == "project" && defined(slug.current)]{
+  const query = defineQuery(`*[_type == "project" && defined(slug.current)]{
     "slug": slug.current
-  }`;
+  }`);
 
   return fetchSanityData<Array<{ slug: string }>>(query);
 }
@@ -327,7 +327,6 @@ export async function getProjectBySlug(
   liveurl?: string;
   _createdAt?: string;
   position?: number;
-  classname?: string;
   image?: SanityImageObject;
   video?: {
     asset?: {
@@ -353,7 +352,7 @@ export async function getProjectBySlug(
     indexing?: string;
   };
 } | null> {
-  const query = `*[_type == "project" && slug.current == $slug][0] {
+  const query = defineQuery(`*[_type == "project" && slug.current == $slug][0] {
     _id,
     title,
     slug,
@@ -362,7 +361,6 @@ export async function getProjectBySlug(
     liveurl,
     _createdAt,
     position,
-    classname,
     image {
       ${imageProjection}
     },
@@ -381,7 +379,7 @@ export async function getProjectBySlug(
     color2,
     gradientdirection,
     ${seoProjection}
-  }`;
+  }`);
 
   return fetchSanityData(query, { slug }, options);
 }
@@ -390,9 +388,9 @@ export async function getProjectBySlug(
  * Fetch all post slugs for static generation
  */
 export async function getAllPostSlugs() {
-  const query = `*[_type == "post" && defined(slug.current)]{
+  const query = defineQuery(`*[_type == "post" && defined(slug.current)]{
     "slug": slug.current
-  }`;
+  }`);
 
   return fetchSanityData<Array<{ slug: string }>>(query);
 }
@@ -423,7 +421,7 @@ export async function getPostBySlug(
     indexing?: string;
   };
 } | null> {
-  const query = `*[_type == "post" && slug.current == $slug][0] {
+  const query = defineQuery(`*[_type == "post" && slug.current == $slug][0] {
     _id,
     title,
     slug,
@@ -441,7 +439,7 @@ export async function getPostBySlug(
     },
     body[]{${portableTextProjection}},
     ${seoProjection}
-  }`;
+  }`);
 
   return fetchSanityData(query, { slug }, options);
 }
@@ -450,7 +448,7 @@ export async function getPostBySlug(
  * Fetch all posts except the current one (for "Other Posts" section)
  */
 export async function getOtherPosts(currentSlug: string) {
-  const query = `*[_type == "post" && slug.current != $currentSlug] | order(publishedAt desc) [0...4] {
+  const query = defineQuery(`*[_type == "post" && slug.current != $currentSlug] | order(publishedAt desc) [0...4] {
     _id,
     title,
     slug,
@@ -463,7 +461,7 @@ export async function getOtherPosts(currentSlug: string) {
       name,
       role
     }
-  }`;
+  }`);
 
   return fetchSanityData(query, { currentSlug });
 }
@@ -486,7 +484,7 @@ export async function getAboutPage(
   };
   _updatedAt?: string;
 } | null> {
-  const query = `*[_type == "about" && _id == "about"][0] {
+  const query = defineQuery(`*[_type == "about" && _id == "about"][0] {
     title,
     description,
     image {
@@ -495,7 +493,7 @@ export async function getAboutPage(
     content[]{${portableTextProjection}},
     ${seoProjection},
     _updatedAt
-  }`;
+  }`);
 
   return fetchSanityData(query, undefined, options);
 }
@@ -504,11 +502,11 @@ export async function getAboutPage(
  * Fetch impressum page data
  */
 export async function getImpressumPage(): Promise<ImpressumPage | null> {
-  const query = `*[_type == "impressum" && _id == "impressum"][0] {
+  const query = defineQuery(`*[_type == "impressum" && _id == "impressum"][0] {
     title,
     content[]{${portableTextProjection}},
     _updatedAt
-  }`;
+  }`);
 
   return fetchSanityData<ImpressumPage | null>(query);
 }
@@ -517,7 +515,7 @@ export async function getImpressumPage(): Promise<ImpressumPage | null> {
  * Fetch all testimonials
  */
 export async function getAllTestimonials() {
-  const query = `*[_type == "testimonial"] | order(_createdAt desc) {
+  const query = defineQuery(`*[_type == "testimonial"] | order(_createdAt desc) {
     _id,
     name,
     slug,
@@ -527,7 +525,7 @@ export async function getAllTestimonials() {
     image {
       ${imageProjection}
     }
-  }`;
+  }`);
 
   return fetchSanityData(query);
 }
@@ -551,7 +549,7 @@ export async function getSitemapData(): Promise<{
     _updatedAt: string;
   };
 }> {
-  const query = `{
+  const query = defineQuery(`{
     "projects": *[_type == "project" && defined(slug.current)] {
       "slug": slug.current,
       "_updatedAt": _updatedAt
@@ -566,7 +564,7 @@ export async function getSitemapData(): Promise<{
     "impressum": *[_type == "impressum" && _id == "impressum"][0] {
       "_updatedAt": _updatedAt
     }
-  }`;
+  }`);
 
   return fetchSanityData(query);
 }
@@ -575,16 +573,16 @@ export async function getSitemapData(): Promise<{
  * Fetch recent projects (for navbar or other components)
  */
 export async function getRecentProjects(limit = 5) {
-  const query = `*[_type == "project"] | order(position asc, _createdAt desc) [0...${limit}] {
+  const query = defineQuery(`*[_type == "project"] | order(position asc, _createdAt desc) [0...$limit] {
     _id,
     title,
     slug,
     image {
       ${imageProjection}
     }
-  }`;
+  }`);
 
-  return fetchSanityData(query);
+  return fetchSanityData(query, { limit });
 }
 
 /**

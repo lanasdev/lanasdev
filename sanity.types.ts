@@ -96,6 +96,21 @@ export type Impressum = {
     _type: "block";
     _key: string;
   }>;
+  seo?: Seo;
+};
+
+export type Seo = {
+  _type: "seo";
+  title?: string;
+  description?: string;
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  indexing?: "index" | "noindex";
 };
 
 export type ProjectReference = {
@@ -182,20 +197,6 @@ export type About = {
       }
   >;
   seo?: Seo;
-};
-
-export type Seo = {
-  _type: "seo";
-  title?: string;
-  description?: string;
-  image?: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-  indexing?: "index" | "noindex";
 };
 
 export type SkillReference = {
@@ -287,6 +288,59 @@ export type Slug = {
   source?: string;
 };
 
+export type Category = {
+  _id: string;
+  _type: "category";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  description?: string;
+};
+
+export type BlockContent = Array<
+  | {
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<
+        | {
+            href?: string;
+            _type: "link";
+            _key: string;
+          }
+        | {
+            reference?: ProjectReference;
+            _type: "internalProjectLink";
+            _key: string;
+          }
+        | {
+            reference?: PostReference;
+            _type: "internalPostLink";
+            _key: string;
+          }
+      >;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }
+  | {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: "image";
+      _key: string;
+    }
+>;
+
 export type Project = {
   _id: string;
   _type: "project";
@@ -299,7 +353,6 @@ export type Project = {
   clientname?: string;
   liveurl?: string;
   position?: number;
-  classname?: string;
   image?: {
     asset?: SanityImageAssetReference;
     media?: unknown;
@@ -404,18 +457,6 @@ export type Testimonial = {
   };
 };
 
-export type MuxVideoAssetReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "mux.videoAsset";
-};
-
-export type MuxVideo = {
-  _type: "mux.video";
-  asset?: MuxVideoAssetReference;
-};
-
 export type AuthorReference = {
   _ref: string;
   _type: "reference";
@@ -458,36 +499,6 @@ export type Post = {
   seo?: Seo;
 };
 
-export type BlockContent = Array<
-  | {
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-      listItem?: "bullet";
-      markDefs?: Array<{
-        href?: string;
-        _type: "link";
-        _key: string;
-      }>;
-      level?: number;
-      _type: "block";
-      _key: string;
-    }
-  | {
-      asset?: SanityImageAssetReference;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      alt?: string;
-      _type: "image";
-      _key: string;
-    }
->;
-
 export type Author = {
   _id: string;
   _type: "author";
@@ -502,6 +513,7 @@ export type Author = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
+    alt?: string;
     _type: "image";
   };
   bio?: Array<{
@@ -524,15 +536,16 @@ export type Author = {
   }>;
 };
 
-export type Category = {
-  _id: string;
-  _type: "category";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  slug?: Slug;
-  description?: string;
+export type MuxVideoAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "mux.videoAsset";
+};
+
+export type MuxVideo = {
+  _type: "mux.video";
+  asset?: MuxVideoAssetReference;
 };
 
 export type RgbaColor = {
@@ -895,26 +908,26 @@ export type AllSanitySchemaTypes =
   | SanityImageCrop
   | SanityImageHotspot
   | Impressum
+  | Seo
   | ProjectReference
   | PostReference
   | TestimonialReference
   | About
-  | Seo
   | SkillReference
   | Home
   | Skill
   | Slug
+  | Category
+  | BlockContent
   | Project
   | Color
   | Testimonial
-  | MuxVideoAssetReference
-  | MuxVideo
   | AuthorReference
   | CategoryReference
   | Post
-  | BlockContent
   | Author
-  | Category
+  | MuxVideoAssetReference
+  | MuxVideo
   | RgbaColor
   | HsvaColor
   | HslaColor

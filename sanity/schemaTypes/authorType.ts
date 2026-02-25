@@ -10,6 +10,7 @@ export const authorType = defineType({
     defineField({
       name: "name",
       type: "string",
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "slug",
@@ -17,6 +18,7 @@ export const authorType = defineType({
       options: {
         source: "name",
       },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "role",
@@ -30,6 +32,13 @@ export const authorType = defineType({
       options: {
         hotspot: true,
       },
+      fields: [
+        {
+          name: "alt",
+          type: "string",
+          title: "Alternative text",
+        },
+      ],
     }),
     defineField({
       name: "bio",

@@ -54,6 +54,10 @@ export const impressumType = defineType({
         }),
       ],
     }),
+    defineField({
+      name: "seo",
+      type: "seo",
+    }),
   ],
   preview: {
     select: {

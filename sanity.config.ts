@@ -21,6 +21,7 @@ import {
   previewOrigin,
   projectId,
 } from "./sanity/env";
+import { resolve } from "./sanity/lib/resolve";
 import { schema } from "./sanity/schemaTypes";
 import { structure } from "./sanity/structure";
 
@@ -55,6 +56,7 @@ export default defineConfig({
     structureTool({ structure }),
     presentationTool({
       previewUrl,
+      resolve,
     }),
     media(),
     muxInput(),

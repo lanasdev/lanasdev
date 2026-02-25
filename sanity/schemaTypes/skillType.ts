@@ -1,11 +1,11 @@
-import { TagIcon } from "@sanity/icons";
+import { StarIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export const skillType = defineType({
   name: "skill",
   title: "Skill",
   type: "document",
-  icon: TagIcon,
+  icon: StarIcon,
   fields: [
     defineField({
       name: "name",

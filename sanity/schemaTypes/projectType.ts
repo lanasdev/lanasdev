@@ -46,12 +46,6 @@ export const projectType = defineType({
       description: "Used for ordering projects",
     }),
     defineField({
-      name: "classname",
-      title: "CSS Class Name",
-      type: "string",
-      description: "Custom CSS class for styling",
-    }),
-    defineField({
       name: "image",
       title: "Project Image",
       type: "image",
