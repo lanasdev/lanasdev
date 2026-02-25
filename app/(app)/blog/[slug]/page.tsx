@@ -24,13 +24,14 @@ export default async function BlogPage(props: {
   params: Promise<{ slug: string }>;
 }) {
   const params = await props.params;
-  const post = await getPostBySlug(params.slug);
+  const [post, otherPosts] = await Promise.all([
+    getPostBySlug(params.slug),
+    getOtherPosts(params.slug),
+  ]);
 
   if (!post) {
     notFound();
   }
-
-  const otherPosts = await getOtherPosts(params.slug);
 
   const p = post;
 

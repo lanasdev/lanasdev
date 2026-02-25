@@ -12,8 +12,10 @@ import Projectgrid from "./Projectgrid";
 export const revalidate = 300; // 5 minutes
 
 export async function generateMetadata(): Promise<Metadata> {
-  const data = await getHomepageData({ stega: false });
-  const settings = await getSiteSettings({ stega: false });
+  const [data, settings] = await Promise.all([
+    getHomepageData({ stega: false }),
+    getSiteSettings({ stega: false }),
+  ]);
 
   const home = data.home;
 

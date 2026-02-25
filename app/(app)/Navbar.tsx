@@ -104,8 +104,7 @@ const Navbar = () => {
                   </li>
                 ))}
                 <li className="pt-2">
-                  <ContactButton
-                    mobile
+                  <ContactButtonMobile
                     onClick={() => setMobileMenuOpen(false)}
                   />
                 </li>
@@ -120,23 +119,34 @@ const Navbar = () => {
 
 export default Navbar;
 
-const ContactButton = ({
-  mobile = false,
-  onClick,
-}: {
-  mobile?: boolean;
-  onClick?: () => void;
-}) => (
-  <Link
-    href="/#kontakt"
-    onClick={onClick}
-    className={cn(
-      "inline-flex items-center justify-center gap-2 rounded-lg bg-stone-950 px-4 py-1.5 backdrop-blur-[5.25px] transition-colors",
-      "text-base font-medium text-white",
-      "hover:bg-stone-800",
-      mobile ? "w-full" : "",
-    )}
-  >
-    Kontakt
-  </Link>
-);
+function ContactButton({ onClick }: { onClick?: () => void }) {
+  return (
+    <Link
+      href="/#kontakt"
+      onClick={onClick}
+      className={cn(
+        "inline-flex items-center justify-center gap-2 rounded-lg bg-stone-950 px-4 py-1.5 backdrop-blur-[5.25px] transition-colors",
+        "text-base font-medium text-white",
+        "hover:bg-stone-800",
+      )}
+    >
+      Kontakt
+    </Link>
+  );
+}
+
+function ContactButtonMobile({ onClick }: { onClick?: () => void }) {
+  return (
+    <Link
+      href="/#kontakt"
+      onClick={onClick}
+      className={cn(
+        "inline-flex w-full items-center justify-center gap-2 rounded-lg bg-stone-950 px-4 py-1.5 backdrop-blur-[5.25px] transition-colors",
+        "text-base font-medium text-white",
+        "hover:bg-stone-800",
+      )}
+    >
+      Kontakt
+    </Link>
+  );
+}

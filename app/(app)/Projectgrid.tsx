@@ -1,6 +1,6 @@
 "use client";
 
-import MuxPlayer from "@mux/mux-player-react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useState } from "react";
 import type { SanityImageObject } from "@/lib/sanity";
@@ -8,6 +8,11 @@ import { SanityImage } from "@/lib/sanity-image";
 import { cn } from "@/lib/utils";
 
 import SectionContainer from "./SectionContainer";
+
+const MuxPlayer = dynamic(
+  () => import("@mux/mux-player-react").then((m) => m.default),
+  { ssr: false },
+);
 
 type ProjectType = {
   _id: string;
@@ -43,7 +48,7 @@ function ProjectCard({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative aspect-[4/3] min-h-[200px] rounded-xl border-2 border-muted-foreground transition-[transform,border-color] duration-150 ease-in-out group-hover:scale-103 group-hover:border-foreground motion-reduce:transition-none overflow-hidden">
+      <div className="relative aspect-4/3 min-h-[200px] rounded-xl border-2 border-muted-foreground transition-[transform,border-color] duration-150 ease-in-out group-hover:scale-103 group-hover:border-foreground motion-reduce:transition-none overflow-hidden">
         {/* Thumbnail Image */}
         {project.image && (
           <SanityImage
