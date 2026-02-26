@@ -5,8 +5,10 @@ import AboutSection from "@/components/home/AboutSection";
 import LanasSubscriptionSection from "@/components/home/LanasSubscriptionSection";
 import ServiceSection from "@/components/home/ServiceSection";
 import TechStack from "@/components/home/TechStack";
+import { getOrganizationJsonLd, getFaqJsonLd } from "@/lib/json-ld";
 import { getHomepageData, getSiteSettings } from "@/lib/sanity";
 import { generatePageMetadata } from "@/lib/sanity-metadata";
+import { FAQ_DATA } from "@/lib/subscription-faq";
 import Bloglist from "../../components/Bloglist";
 import Projectgrid from "./Projectgrid";
 
@@ -42,6 +44,18 @@ export default async function Home() {
 
   return (
     <main id="main-content" className="min-h-screen" tabIndex={-1}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(getOrganizationJsonLd()),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(getFaqJsonLd(FAQ_DATA)),
+        }}
+      />
       <HeroSection heroData={home} />
       <Projectgrid allProjects={allProjects} />
       <ServiceSection />

@@ -1,6 +1,6 @@
 export type FaqItem = { question: string; answer: string };
 
-const FAQ_DATA: FaqItem[] = [
+export const FAQ_DATA: FaqItem[] = [
   {
     question: "Was ist im Abonnement enthalten?",
     answer:

@@ -10,7 +10,7 @@ const AvailableBanner = ({ heroInfo }: { heroInfo: string }) => {
       className={cn(
         badgeVariants({ variant: "default" }),
         // "bg-green-300 text-green-800 hover:bg-green-100 hover:text-green-900",
-        "group rounded-md px-2 py-1 hover:bg-accent-foreground hover:bg-white hover:text-foreground ",
+        "group rounded-md px-2 py-1 hover:bg-accent-foreground hover:bg-white hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
       )}
     >
       <span className="mr-2 h-2 w-2">

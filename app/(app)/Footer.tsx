@@ -1,110 +1,128 @@
-// "use client";
 import Link from "next/link";
 
 import {
   EnvelopeSimple,
   GithubLogo,
   InstagramLogo,
-  PhoneCall,
   TelegramLogo,
   TwitterLogo,
-} from "@/components/Icons";
-// import LanguageBar from "./LanguageBar";
+} from "@phosphor-icons/react/dist/ssr";
 
-import { cn } from "@/lib/utils";
+const navLinks = [
+  { name: "Home", href: "/" },
+  { name: "Projekte", href: "/#projekte" },
+  { name: "Dienstleistungen", href: "/#dienstleistungen" },
+  { name: "Blog", href: "/#blog" },
+  { name: "Kontakt", href: "/#kontakt" },
+];
 
-export interface EdgeConfig {
-  socials: Socials;
-}
+const socialLinks = [
+  {
+    name: "GitHub",
+    icon: GithubLogo,
+    href: process.env.NEXT_PUBLIC_GITHUB_URL,
+  },
+  {
+    name: "Instagram",
+    icon: InstagramLogo,
+    href: process.env.NEXT_PUBLIC_INSTAGRAM_URL,
+  },
+  {
+    name: "X (Twitter)",
+    icon: TwitterLogo,
+    href: process.env.NEXT_PUBLIC_TWITTER_URL,
+  },
+  {
+    name: "Telegram",
+    icon: TelegramLogo,
+    href: process.env.NEXT_PUBLIC_TELEGRAM_URL,
+  },
+];
 
-export interface Socials {
-  instagram: string;
-  twitter: string;
-  github: string;
-  telegram: string;
-  email: string;
-}
+const linkClasses =
+  "text-background/70 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md";
 
-const Footer = async () => {
-  // const edgeConfig: EdgeConfig = await getAll();
-
-  const socials = [
-    {
-      id: 1,
-      name: "Github",
-      slug: "github",
-      icon: <GithubLogo size={24} />,
-      link: process.env.NEXT_PUBLIC_GITHUB_URL,
-    },
-    {
-      id: 2,
-      name: "Instagram",
-      slug: "instagram",
-      icon: <InstagramLogo size={24} />,
-      link: process.env.NEXT_PUBLIC_INSTAGRAM_URL,
-    },
-    {
-      id: 3,
-      name: "X (Twitter)",
-      slug: "x",
-      icon: <TwitterLogo size={24} />,
-      link: process.env.NEXT_PUBLIC_TWITTER_URL,
-    },
-    {
-      id: 4,
-      name: "Tiktok",
-      slug: "tiktok",
-      icon: <GithubLogo size={24} />,
-      link: process.env.NEXT_PUBLIC_TIKTOK_URL,
-    },
-    {
-      id: 5,
-      name: "Telegram",
-      slug: "telegram",
-      icon: <TelegramLogo size={24} />,
-      link: process.env.NEXT_PUBLIC_TELEGRAM_URL,
-    },
-    {
-      id: 6,
-      name: "Video Call",
-      slug: "cal",
-      icon: <PhoneCall size={24} />,
-      link: process.env.NEXT_PUBLIC_CALCOM,
-    },
-    {
-      id: 7,
-      name: "Email",
-      slug: "email",
-      icon: <EnvelopeSimple size={24} />,
-      link: `mailto:${process.env.NEXT_PUBLIC_EMAIL}?subject=Website`,
-    },
-    {
-      id: 8,
-      name: "Impressum",
-      slug: "impressum",
-      icon: <EnvelopeSimple size={24} />,
-      link: "/impressum",
-    },
-  ];
-
+const Footer = () => {
   return (
-    <footer className="flex justify-between bg-foreground px-8 py-8 text-background">
-      <Link href="/" className="">
-        &copy; {new Date().getFullYear() || "2022"} Lanas Webdesign für
-        Blitzschnelle Shopify Shops{" "}
-      </Link>
-      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 md:gap-y-12">
-        {socials.map((s, _i) => (
-          <Link
-            href={s.link || "/"}
-            key={s.id}
-            className={cn("hover:text-accent hover:underline")}
-            aria-label={s.name}
-          >
-            {s.name}
-          </Link>
-        ))}
-      </div>
+    <footer className="bg-foreground px-6 pt-16 pb-8 text-background md:px-16">
+      <nav aria-label="Footer" className="mx-auto max-w-7xl">
+        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Brand */}
+          <div>
+            <Link
+              href="/"
+              className="text-xl font-bold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md"
+            >
+              Lanas
+            </Link>
+            <p className="mt-2 text-sm text-background/60">
+              Webdesign für blitzschnelle Shopify Shops
+            </p>
+          </div>
+
+          {/* Navigation */}
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-wider text-background/40">
+              Navigation
+            </p>
+            <ul className="mt-4 space-y-2">
+              {navLinks.map((link) => (
+                <li key={link.name}>
+                  <Link href={link.href} className={linkClasses}>
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Rechtliches */}
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-wider text-background/40">
+              Rechtliches
+            </p>
+            <ul className="mt-4 space-y-2">
+              <li>
+                <Link href="/impressum" className={linkClasses}>
+                  Impressum
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Kontakt */}
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-wider text-background/40">
+              Kontakt
+            </p>
+            <Link
+              href={`mailto:${process.env.NEXT_PUBLIC_EMAIL || "hey@lanas.dev"}?subject=Website`}
+              className={`mt-4 block ${linkClasses}`}
+            >
+              {process.env.NEXT_PUBLIC_EMAIL || "hey@lanas.dev"}
+            </Link>
+            <div className="mt-4 flex gap-4">
+              {socialLinks.map((social) => (
+                <Link
+                  key={social.name}
+                  href={social.href || "/"}
+                  aria-label={social.name}
+                  className="text-background/60 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md"
+                >
+                  <social.icon size={22} />
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Divider + copyright */}
+        <div className="mt-12 border-t border-background/10 pt-6">
+          <p className="text-sm text-background/40">
+            &copy; {new Date().getFullYear()} Lanas Webdesign
+          </p>
+        </div>
+      </nav>
     </footer>
   );
 };

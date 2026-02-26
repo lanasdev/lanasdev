@@ -12,7 +12,7 @@ export default function LanasSubscriptionSection() {
         <p className="text-sm font-medium tracking-widest text-muted-foreground uppercase">
           Shop Design als Abo
         </p>
-        <h2 className="mt-3 text-4xl font-bold tracking-tight lg:text-5xl">
+        <h2 className="mt-3 text-4xl font-bold tracking-tight text-balance lg:text-5xl">
           Lanas Club
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
