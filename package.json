@@ -79,7 +79,7 @@
     "react-hook-form": "^7.71.2",
     "react-resizable-panels": "^4.7.0",
     "react-wrap-balancer": "^1.1.1",
-    "recharts": "3.7.0",
+    "recharts": "2.15.4",
     "resend": "^6.9.3",
     "sanity": "^5.12.0",
     "sanity-plugin-media": "^4.1.1",
