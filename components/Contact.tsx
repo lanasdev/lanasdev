@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { EnvelopeSimple, TelegramLogo } from "@/components/Icons";
+import { EnvelopeSimpleIcon, TelegramLogoIcon } from "@/components/Icons";
 import SectionContainer from "../app/(app)/SectionContainer";
 import ContactForm from "./ContactForm";
 
@@ -19,12 +19,12 @@ export default function Contact() {
         <aside className="mt-10 pb-16 ">
           <div className="*:flex *:items-center *:gap-4 *:py-2 *:hover:underline">
             <Link href={`mailto:hey@lanas.dev`}>
-              <EnvelopeSimple className="h-7 w-6" aria-hidden="true" /> Email:
-              hey@lanas.dev
+              <EnvelopeSimpleIcon className="h-7 w-6" aria-hidden="true" />{" "}
+              Email: hey@lanas.dev
             </Link>
             <Link href={process.env.NEXT_PUBLIC_TELEGRAM_URL || "#kontakt"}>
-              <TelegramLogo className="h-7 w-6" aria-hidden="true" /> Telegram:
-              lanasdev
+              <TelegramLogoIcon className="h-7 w-6" aria-hidden="true" />{" "}
+              Telegram: lanasdev
             </Link>
           </div>
         </aside>

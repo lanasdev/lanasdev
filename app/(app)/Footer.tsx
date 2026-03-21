@@ -1,12 +1,11 @@
 import Link from "next/link";
-
 import {
-  EnvelopeSimple,
-  GithubLogo,
-  InstagramLogo,
-  TelegramLogo,
-  TwitterLogo,
-} from "@phosphor-icons/react/dist/ssr";
+  EnvelopeSimpleIcon,
+  GithubLogoIcon,
+  InstagramLogoIcon,
+  TelegramLogoIcon,
+  XLogoIcon,
+} from "@/components/Icons";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -19,23 +18,28 @@ const navLinks = [
 const socialLinks = [
   {
     name: "GitHub",
-    icon: GithubLogo,
+    icon: GithubLogoIcon,
     href: process.env.NEXT_PUBLIC_GITHUB_URL,
   },
   {
     name: "Instagram",
-    icon: InstagramLogo,
+    icon: InstagramLogoIcon,
     href: process.env.NEXT_PUBLIC_INSTAGRAM_URL,
   },
   {
     name: "X (Twitter)",
-    icon: TwitterLogo,
+    icon: XLogoIcon,
     href: process.env.NEXT_PUBLIC_TWITTER_URL,
   },
   {
     name: "Telegram",
-    icon: TelegramLogo,
+    icon: TelegramLogoIcon,
     href: process.env.NEXT_PUBLIC_TELEGRAM_URL,
+  },
+  {
+    name: "Mail",
+    icon: EnvelopeSimpleIcon,
+    href: `mailto:${process.env.NEXT_PUBLIC_EMAIL || "hey@lanas.dev"}`,
   },
 ];
 
@@ -95,12 +99,6 @@ const Footer = () => {
             <p className="text-sm font-semibold uppercase tracking-wider text-background/40">
               Kontakt
             </p>
-            <Link
-              href={`mailto:${process.env.NEXT_PUBLIC_EMAIL || "hey@lanas.dev"}?subject=Website`}
-              className={`mt-4 block ${linkClasses}`}
-            >
-              {process.env.NEXT_PUBLIC_EMAIL || "hey@lanas.dev"}
-            </Link>
             <div className="mt-4 flex gap-4">
               {socialLinks.map((social) => (
                 <Link

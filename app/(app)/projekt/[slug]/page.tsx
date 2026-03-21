@@ -99,7 +99,7 @@ export default async function Page(props: {
           )}
         </div>
       </SectionContainer>
-      <SectionContainer className="prose prose-stone mx-auto pt-32 prose-img:rounded-xl max-w-full break-words">
+      <SectionContainer className="prose prose-stone mx-auto pt-32 prose-img:rounded-xl max-w-full wrap-break-word">
         <PortableTextRenderer value={p.content} />
         <ProgressBar />
       </SectionContainer>
@@ -112,10 +112,6 @@ export default async function Page(props: {
         />
         {/* <Projectgrid allProjects={p.otherprojects} /> */}
       </SectionContainer>
-      {/* <SectionContainer className="">
-        <pre className="max-w-xl pt-24">{JSON.stringify(project, null, 2)}</pre>
-      </SectionContainer> */}
-      <Contact />
     </main>
   );
 }

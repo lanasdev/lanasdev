@@ -5,7 +5,7 @@ import AboutSection from "@/components/home/AboutSection";
 import LanasSubscriptionSection from "@/components/home/LanasSubscriptionSection";
 import ServiceSection from "@/components/home/ServiceSection";
 import TechStack from "@/components/home/TechStack";
-import { getOrganizationJsonLd, getFaqJsonLd } from "@/lib/json-ld";
+import { getFaqJsonLd, getOrganizationJsonLd } from "@/lib/json-ld";
 import { getHomepageData, getSiteSettings } from "@/lib/sanity";
 import { generatePageMetadata } from "@/lib/sanity-metadata";
 import { FAQ_DATA } from "@/lib/subscription-faq";
@@ -62,11 +62,10 @@ export default async function Home() {
       {/* <Testimonial /> */}
       {/* <StepsSection /> */}
       <Bloglist allPosts={allPosts} />
+      <TechStack techData={home} />
       <AboutSection aboutData={home} />
       <LanasSubscriptionSection />
-      <TechStack techData={home} />
-      <Contact />
-      {/* <pre className="max-w-xl">{JSON.stringify(data, null, 2)}</pre> */}
+      {/* <Contact /> */}
     </main>
   );
 }

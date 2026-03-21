@@ -57,10 +57,6 @@ export default async function BlogPage(props: {
         <CalContact />
       </SectionContainer> */}
       <OtherPosts allPosts={otherPosts} />
-      {/* <SectionContainer className="">
-        <pre className="max-w-xl pt-24">{JSON.stringify(post, null, 2)}</pre>
-      </SectionContainer> */}
-      <Contact />
     </main>
   );
 }

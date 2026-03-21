@@ -1,26 +1,26 @@
 "use client";
 
 import {
-  CircleNotch,
-  EnvelopeSimple,
-  GithubLogo,
-  InstagramLogo,
-  PhoneCall,
-  TelegramLogo,
-  TwitterLogo,
-  VideoConference,
+  CircleNotchIcon,
+  EnvelopeSimpleIcon,
+  GithubLogoIcon,
+  InstagramLogoIcon,
+  PhoneCallIcon,
+  TelegramLogoIcon,
+  VideoConferenceIcon,
+  XLogoIcon,
 } from "@phosphor-icons/react";
 
 // // reexport all icons
 export {
-  CircleNotch,
-  TwitterLogo,
-  InstagramLogo,
-  TelegramLogo,
-  GithubLogo,
-  EnvelopeSimple,
-  PhoneCall,
-  VideoConference,
+  CircleNotchIcon,
+  InstagramLogoIcon,
+  TelegramLogoIcon,
+  GithubLogoIcon,
+  EnvelopeSimpleIcon,
+  PhoneCallIcon,
+  VideoConferenceIcon,
+  XLogoIcon,
 };
 
 // export function TwitterIcon() {

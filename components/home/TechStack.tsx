@@ -23,7 +23,7 @@ const TechStack = ({ techData }: TechStackProps) => {
   const hasSkills = Boolean(skills && skills.length > 0);
 
   return (
-    <SectionContainer className="pt-24 md:flex md:justify-between md:gap-32">
+    <SectionContainer className="pt-24 md:flex md:justify-between md:gap-32 mb-16">
       <h3 className="pb-8 text-3xl font-semibold">
         {titleTechstack ?? "Tech Stack"}
       </h3>
