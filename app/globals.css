@@ -77,6 +77,8 @@
   }
   body {
     @apply bg-background text-foreground;
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--primary)) transparent;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
   }
